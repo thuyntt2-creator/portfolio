@@ -2016,7 +2016,6 @@ function initLiveInPlacePlayer() {
   const stage = document.getElementById('mvDeliveryStage');
   const parcelWrapper = document.getElementById('ghnParcelWrapper');
   const btnUnbox = document.getElementById('btnUnboxParcel');
-  const vfxLayer = document.getElementById('unboxingVfxLayer');
   const card = document.getElementById('mvLiveCard');
   const btnRepack = document.getElementById('btnRepackBox');
 
@@ -2034,215 +2033,28 @@ function initLiveInPlacePlayer() {
 
   if (!card) return;
 
-  if (!card || !btnPlay) return;
+  // Real Master Vocal Audio Element from Suno
+  const audio = new Audio('assets/theme_song.m4a?v=vocal1');
+  audio.preload = 'auto';
 
-  const TOTAL_DURATION = 198; // 3:18
   let isPlaying = false;
-  let currentTime = 0;
-  let lastFrameTime = 0;
+  let audioCtx = null;
+  let analyser = null;
   let animFrameId = null;
 
-  // Web Audio Synth Engine
-  let audioCtx = null;
-  let masterGain = null;
-  let analyser = null;
-  let noiseBuffer = null;
-  let nextBeatTime = 0;
-  let current16thNote = 0;
-  const BPM = 124;
-  const secondsPerBeat = 60.0 / BPM;
-  const secondsPer16th = secondsPerBeat / 4.0;
-
-  function initAudioContext() {
+  function initVisualizer() {
     if (audioCtx) return;
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) return;
-    audioCtx = new AudioContextClass();
-    masterGain = audioCtx.createGain();
-    masterGain.gain.setValueAtTime(0.7, audioCtx.currentTime);
-
-    analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 64;
-    masterGain.connect(analyser);
-    analyser.connect(audioCtx.destination);
-
-    // Create white noise for snare and hats
-    const bufferSize = audioCtx.sampleRate * 2;
-    noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-    const output = noiseBuffer.getChannelData(0);
-    for (let i = 0; i < bufferSize; i++) {
-      output[i] = Math.random() * 2 - 1;
-    }
-  }
-
-  // Synthesizer Drum & Instrument Voices
-  function playKick(time) {
-    if (!audioCtx) return;
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.connect(gain);
-    gain.connect(masterGain);
-
-    osc.frequency.setValueAtTime(140, time);
-    osc.frequency.exponentialRampToValueAtTime(36, time + 0.12);
-
-    gain.gain.setValueAtTime(1.0, time);
-    gain.gain.exponentialRampToValueAtTime(0.001, time + 0.22);
-
-    osc.start(time);
-    osc.stop(time + 0.22);
-  }
-
-  function playSnare(time) {
-    if (!audioCtx || !noiseBuffer) return;
-    const noiseSource = audioCtx.createBufferSource();
-    noiseSource.buffer = noiseBuffer;
-
-    const filter = audioCtx.createBiquadFilter();
-    filter.type = 'highpass';
-    filter.frequency.setValueAtTime(800, time);
-
-    const noiseGain = audioCtx.createGain();
-    noiseSource.connect(filter);
-    filter.connect(noiseGain);
-    noiseGain.connect(masterGain);
-
-    noiseGain.gain.setValueAtTime(0.8, time);
-    noiseGain.gain.exponentialRampToValueAtTime(0.01, time + 0.18);
-
-    noiseSource.start(time);
-    noiseSource.stop(time + 0.18);
-
-    // Snare tone body
-    const osc = audioCtx.createOscillator();
-    const oscGain = audioCtx.createGain();
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(180, time);
-    osc.frequency.exponentialRampToValueAtTime(80, time + 0.08);
-
-    oscGain.gain.setValueAtTime(0.6, time);
-    oscGain.gain.exponentialRampToValueAtTime(0.01, time + 0.1);
-
-    osc.connect(oscGain);
-    oscGain.connect(masterGain);
-    osc.start(time);
-    osc.stop(time + 0.1);
-  }
-
-  function playHiHat(time, open = false) {
-    if (!audioCtx || !noiseBuffer) return;
-    const source = audioCtx.createBufferSource();
-    source.buffer = noiseBuffer;
-
-    const filter = audioCtx.createBiquadFilter();
-    filter.type = 'bandpass';
-    filter.frequency.setValueAtTime(8500, time);
-
-    const gain = audioCtx.createGain();
-    source.connect(filter);
-    filter.connect(gain);
-    gain.connect(masterGain);
-
-    const duration = open ? 0.25 : 0.04;
-    gain.gain.setValueAtTime(open ? 0.4 : 0.22, time);
-    gain.gain.exponentialRampToValueAtTime(0.001, time + duration);
-
-    source.start(time);
-    source.stop(time + duration);
-  }
-
-  // Harmonic Chord Progressions: Am (A2/A3) -> F (F2/F3) -> C (C3/C4) -> G (G2/G3)
-  const bassNotes = [55, 43.65, 65.41, 49.0]; // A1, F1, C2, G1
-  const arpScales = [
-    [220, 261.63, 329.63, 440], // Am
-    [174.61, 220, 261.63, 349.23], // F
-    [261.63, 329.63, 392, 523.25], // C
-    [196, 246.94, 293.66, 392]     // G
-  ];
-
-  function playSynthBass(time, chordIdx) {
-    if (!audioCtx) return;
-    const osc = audioCtx.createOscillator();
-    const filter = audioCtx.createBiquadFilter();
-    const gain = audioCtx.createGain();
-
-    osc.type = 'sawtooth';
-    osc.frequency.setValueAtTime(bassNotes[chordIdx % 4], time);
-
-    filter.type = 'lowpass';
-    filter.Q.setValueAtTime(4.0, time);
-    filter.frequency.setValueAtTime(350, time);
-    filter.frequency.exponentialRampToValueAtTime(140, time + secondsPer16th * 1.8);
-
-    gain.gain.setValueAtTime(0.5, time);
-    gain.gain.exponentialRampToValueAtTime(0.001, time + secondsPer16th * 1.9);
-
-    osc.connect(filter);
-    filter.connect(gain);
-    gain.connect(masterGain);
-
-    osc.start(time);
-    osc.stop(time + secondsPer16th * 1.9);
-  }
-
-  function playArpLead(time, freq) {
-    if (!audioCtx) return;
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-
-    osc.type = 'square';
-    osc.frequency.setValueAtTime(freq, time);
-
-    gain.gain.setValueAtTime(0.18, time);
-    gain.gain.exponentialRampToValueAtTime(0.001, time + secondsPer16th * 1.5);
-
-    osc.connect(gain);
-    gain.connect(masterGain);
-
-    osc.start(time);
-    osc.stop(time + secondsPer16th * 1.5);
-  }
-
-  // Scheduler loops ahead by 150ms
-  function scheduleNotes() {
-    if (!isPlaying || !audioCtx) return;
-    const lookahead = 0.15; // 150ms
-
-    while (nextBeatTime < audioCtx.currentTime + lookahead) {
-      const beat16 = current16thNote % 16;
-      const bar = Math.floor(current16thNote / 16);
-      const chordIdx = bar % 4;
-
-      // 4-on-the-floor kick
-      if (beat16 === 0 || beat16 === 4 || beat16 === 8 || beat16 === 12) {
-        playKick(nextBeatTime);
-      }
-
-      // Snare on 2 and 4 (beat 4 and 12 in 16th notes)
-      if (beat16 === 4 || beat16 === 12) {
-        playSnare(nextBeatTime);
-      }
-
-      // Hi-hats: 16th notes with open hat on upbeat
-      if (beat16 % 2 === 0) {
-        playHiHat(nextBeatTime, beat16 === 2 || beat16 === 10);
-      } else {
-        playHiHat(nextBeatTime, false);
-      }
-
-      // Synth bassline pattern
-      if (beat16 === 0 || beat16 === 3 || beat16 === 6 || beat16 === 8 || beat16 === 11 || beat16 === 14) {
-        playSynthBass(nextBeatTime, chordIdx);
-      }
-
-      // Arpeggiated melody line
-      const arpNote = arpScales[chordIdx][beat16 % 4];
-      if (beat16 % 2 === 0) {
-        playArpLead(nextBeatTime, arpNote);
-      }
-
-      nextBeatTime += secondsPer16th;
-      current16thNote++;
+    try {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+      audioCtx = new AudioContextClass();
+      const source = audioCtx.createMediaElementSource(audio);
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 64;
+      source.connect(analyser);
+      analyser.connect(audioCtx.destination);
+    } catch(e) {
+      console.log('Visualizer setup error:', e);
     }
   }
 
@@ -2253,26 +2065,13 @@ function initLiveInPlacePlayer() {
     return `${m}:${s < 10 ? '0' : ''}${s}`;
   }
 
-  if (timeDuration) {
-    timeDuration.textContent = formatTime(TOTAL_DURATION);
-  }
-
-  function updateVisuals(time) {
-    if (timeCurrent) timeCurrent.textContent = formatTime(time);
-    if (progressFill) progressFill.style.width = `${Math.min(100, (time / TOTAL_DURATION) * 100)}%`;
-
-    // Real-time lyrics runner
-    for (let i = SYNCHRONIZED_LYRICS.length - 1; i >= 0; i--) {
-      if (time >= SYNCHRONIZED_LYRICS[i].time) {
-        if (lyricCurrent && lyricCurrent.textContent !== SYNCHRONIZED_LYRICS[i].text) {
-          lyricCurrent.textContent = SYNCHRONIZED_LYRICS[i].text;
-          if (lyricNext) lyricNext.textContent = SYNCHRONIZED_LYRICS[i].next || '';
-        }
-        break;
-      }
+  audio.addEventListener('loadedmetadata', () => {
+    if (timeDuration && audio.duration) {
+      timeDuration.textContent = formatTime(audio.duration);
     }
+  });
 
-    // Mini equalizer live reaction
+  function updateVisualizerBars() {
     const eqBars = document.querySelectorAll('#mvMiniEq .eq-bar');
     if (analyser && isPlaying && eqBars.length > 0) {
       const dataArray = new Uint8Array(analyser.frequencyBinCount);
@@ -2282,51 +2081,55 @@ function initLiveInPlacePlayer() {
         const h = Math.max(3, Math.min(16, (val / 255) * 16));
         bar.style.height = `${h}px`;
       });
+      animFrameId = requestAnimationFrame(updateVisualizerBars);
     }
   }
 
-  function loop(now) {
-    if (!isPlaying) return;
-    if (!lastFrameTime) lastFrameTime = now;
-    const delta = (now - lastFrameTime) / 1000;
-    lastFrameTime = now;
+  audio.addEventListener('timeupdate', () => {
+    const cur = audio.currentTime;
+    const dur = audio.duration || 196;
+    if (timeCurrent) timeCurrent.textContent = formatTime(cur);
+    if (progressFill) progressFill.style.width = `${Math.min(100, (cur / dur) * 100)}%`;
 
-    currentTime += delta;
-    if (currentTime >= TOTAL_DURATION) {
-      stopPlayback();
-      currentTime = 0;
-      updateVisuals(0);
-      return;
+    // Real-time Karaoke Subtitles
+    for (let i = SYNCHRONIZED_LYRICS.length - 1; i >= 0; i--) {
+      if (cur >= SYNCHRONIZED_LYRICS[i].time) {
+        if (lyricCurrent && lyricCurrent.textContent !== SYNCHRONIZED_LYRICS[i].text) {
+          lyricCurrent.textContent = SYNCHRONIZED_LYRICS[i].text;
+          if (lyricNext) lyricNext.textContent = SYNCHRONIZED_LYRICS[i].next || '';
+        }
+        break;
+      }
     }
+  });
 
-    scheduleNotes();
-    updateVisuals(currentTime);
-    animFrameId = requestAnimationFrame(loop);
-  }
+  audio.addEventListener('ended', () => {
+    isPlaying = false;
+    card.classList.remove('playing');
+    if (playSvg) playSvg.innerHTML = '<path d="M8 5v14l11-7z"/>';
+    if (lyricCurrent) lyricCurrent.textContent = '▶ Bấm Play để nghe lại từ đầu...';
+    if (progressFill) progressFill.style.width = '0%';
+    document.querySelectorAll('#mvMiniEq .eq-bar').forEach(b => b.style.height = '4px');
+    if (animFrameId) cancelAnimationFrame(animFrameId);
+  });
 
   function startPlayback() {
-    initAudioContext();
+    initVisualizer();
     if (audioCtx && audioCtx.state === 'suspended') {
       audioCtx.resume();
     }
+    audio.play().catch(e => console.log('Audio playback error:', e));
     isPlaying = true;
     card.classList.add('playing');
     if (playSvg) {
       playSvg.innerHTML = '<rect x="6" y="4" width="4" height="16" fill="currentColor"/><rect x="14" y="4" width="4" height="16" fill="currentColor"/>';
     }
-
-    // Reset beat clock to current position
-    if (audioCtx) {
-      nextBeatTime = audioCtx.currentTime + 0.05;
-      current16thNote = Math.floor(currentTime / secondsPer16th);
-    }
-    lastFrameTime = performance.now();
-    animFrameId = requestAnimationFrame(loop);
-
-    showToast('🔥 <strong>Đang phát bài hát:</strong> MAKE DATA MOVE (chạy lời trực tiếp)');
+    updateVisualizerBars();
+    showToast('🎤 <strong>ĐANG PHÁT BÀI HÁT GỐC (FULL VOCALS):</strong> MAKE DATA MOVE');
   }
 
   function stopPlayback() {
+    audio.pause();
     isPlaying = false;
     card.classList.remove('playing');
     if (playSvg) {
@@ -2336,7 +2139,6 @@ function initLiveInPlacePlayer() {
       cancelAnimationFrame(animFrameId);
       animFrameId = null;
     }
-    // Reset eq bars
     document.querySelectorAll('#mvMiniEq .eq-bar').forEach(b => b.style.height = '4px');
   }
 
@@ -2348,43 +2150,22 @@ function initLiveInPlacePlayer() {
     }
   }
 
-  btnPlay.addEventListener('click', (e) => {
-    e.stopPropagation();
-    togglePlay();
-  });
+  if (btnPlay) {
+    btnPlay.addEventListener('click', (e) => {
+      e.stopPropagation();
+      togglePlay();
+    });
+  }
 
-  // Scrubbing progress track
+  // Scrubbing on progress bar
   if (progressTrack) {
     progressTrack.addEventListener('click', (e) => {
       e.stopPropagation();
       const rect = progressTrack.getBoundingClientRect();
       const clickRatio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-      currentTime = clickRatio * TOTAL_DURATION;
-      if (audioCtx) {
-        current16thNote = Math.floor(currentTime / secondsPer16th);
-        nextBeatTime = audioCtx.currentTime + 0.05;
+      if (audio.duration) {
+        audio.currentTime = clickRatio * audio.duration;
       }
-      updateVisuals(currentTime);
-    });
-  }
-
-  // Toggle full lyrics accordion drawer
-  if (btnToggleLyrics && lyricsDrawer) {
-    btnToggleLyrics.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isHidden = lyricsDrawer.hidden;
-      lyricsDrawer.hidden = !isHidden;
-      btnToggleLyrics.setAttribute('aria-expanded', String(isHidden));
-      btnToggleLyrics.innerHTML = isHidden ? '<span>Thu gọn lời ✕</span>' : '<span>📜 Xem toàn bộ lời</span>';
-    });
-  }
-
-  if (btnCloseDrawer && lyricsDrawer && btnToggleLyrics) {
-    btnCloseDrawer.addEventListener('click', (e) => {
-      e.stopPropagation();
-      lyricsDrawer.hidden = true;
-      btnToggleLyrics.setAttribute('aria-expanded', 'false');
-      btnToggleLyrics.innerHTML = '<span>📜 Xem toàn bộ lời</span>';
     });
   }
 
@@ -2392,22 +2173,6 @@ function initLiveInPlacePlayer() {
   function triggerUnboxing() {
     if (!stage || !card || !parcelWrapper) return;
     stage.classList.add('unboxing-active');
-    initAudioContext();
-    if (audioCtx) {
-      try {
-        const osc = audioCtx.createOscillator();
-        const g = audioCtx.createGain();
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(500, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.35);
-        g.gain.setValueAtTime(0.3, audioCtx.currentTime);
-        g.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
-        osc.connect(g);
-        g.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.35);
-      } catch(e) {}
-    }
 
     setTimeout(() => {
       parcelWrapper.style.display = 'none';
@@ -2416,7 +2181,7 @@ function initLiveInPlacePlayer() {
       stage.classList.remove('stage-parcel');
       stage.classList.add('stage-mv');
       startPlayback();
-      showToast('🎁 <strong>ĐÃ MỞ KIỆN HÀNG THÀNH CÔNG!</strong> Đang phát bài hát chủ đề.');
+      showToast('🎁 <strong>ĐÃ MỞ KIỆN HÀNG THÀNH CÔNG!</strong> Đang phát bài hát có giọng hát ca sĩ AI.');
     }, 450);
   }
 
@@ -2427,8 +2192,9 @@ function initLiveInPlacePlayer() {
     parcelWrapper.style.display = 'block';
     stage.classList.remove('stage-mv');
     stage.classList.add('stage-parcel');
-    currentTime = 0;
-    updateVisuals(0);
+    audio.currentTime = 0;
+    if (progressFill) progressFill.style.width = '0%';
+    if (lyricCurrent) lyricCurrent.textContent = '▶ Bấm Play để nghe nhạc & chạy lời...';
     showToast('📦 Đã đóng gói lại kiện hàng. Bạn có thể khui hộp lại bất cứ lúc nào!');
   }
 
@@ -2453,6 +2219,26 @@ function initLiveInPlacePlayer() {
     });
   }
 
+  // Toggle full lyrics accordion drawer
+  if (btnToggleLyrics && lyricsDrawer) {
+    btnToggleLyrics.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = lyricsDrawer.hidden;
+      lyricsDrawer.hidden = !isHidden;
+      btnToggleLyrics.setAttribute('aria-expanded', String(isHidden));
+      btnToggleLyrics.innerHTML = isHidden ? '<span>Thu gọn lời ✕</span>' : '<span>📜 Xem toàn bộ lời</span>';
+    });
+  }
+
+  if (btnCloseDrawer && lyricsDrawer && btnToggleLyrics) {
+    btnCloseDrawer.addEventListener('click', (e) => {
+      e.stopPropagation();
+      lyricsDrawer.hidden = true;
+      btnToggleLyrics.setAttribute('aria-expanded', 'false');
+      btnToggleLyrics.innerHTML = '<span>📜 Xem toàn bộ lời</span>';
+    });
+  }
+
   // Expose global debug controller
   window.mvPlayer = {
     unbox: triggerUnboxing,
@@ -2461,10 +2247,10 @@ function initLiveInPlacePlayer() {
     pause: stopPlayback,
     toggle: togglePlay,
     seek: (sec) => {
-      currentTime = sec;
-      updateVisuals(sec);
+      audio.currentTime = sec;
     },
-    getCurrentTime: () => currentTime,
-    isPlaying: () => isPlaying
+    getCurrentTime: () => audio.currentTime,
+    isPlaying: () => isPlaying,
+    audioElement: audio
   };
 }
