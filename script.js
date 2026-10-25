@@ -184,7 +184,7 @@ const CASE_DATA = {
     desc: 'Hệ sinh thái do Thủy tự tay thiết kế & phát triển từ A-Z: Full-stack Web App (namtrungbo.vercel.app) kết hợp Data Pipeline tự động hóa 5 tỉnh Nam Trung Bộ. Đặc biệt tiên phong tích hợp cổng giao thức Model Context Protocol (MCP) cho phép Ban Giám đốc kết nối Trợ lý AI (Claude Desktop, Cursor) để truy vấn số liệu bằng tiếng Việt tự nhiên.',
     metrics: [
       { val: '14+ Modules', lbl: 'Giám sát vận hành chuyên sâu' },
-      { val: '18 AMs', lbl: 'Quản trị điều hành trực tiếp 5 tỉnh' },
+      { val: '27 AMs', lbl: 'Quản trị 85 bưu cục tại 5 tỉnh' },
       { val: 'MCP Protocol', lbl: 'Cổng tích hợp Trợ lý AI thông minh' }
     ],
     tech: ['Production: namtrungbo.vercel.app', 'Model Context Protocol (MCP)', 'Python 3.11', 'Telegram Bot API', 'Google Sheets Engine', 'Pandas Analytics'],
@@ -218,14 +218,14 @@ const CASE_DATA = {
               <span style="width:8px; height:8px; background:#10b981; border-radius:50%; box-shadow:0 0 8px #10b981;"></span>
               🚀 SẢN PHẨM SẢN XUẤT THỰC TẾ ĐANG VẬN HÀNH (LIVE PRODUCTION)
             </div>
-            <div style="color:var(--text-muted); font-size:0.82rem; margin-top:4px;">Web App phục vụ Ban Giám đốc Vùng & 18 AMs điều hành 5 tỉnh Nam Trung Bộ hàng ngày.</div>
+            <div style="color:var(--text-muted); font-size:0.82rem; margin-top:4px;">Web App phục vụ Ban Giám đốc Vùng & 27 AMs điều hành 85 bưu cục tại 5 tỉnh Nam Trung Bộ hàng ngày.</div>
           </div>
           <a href="https://namtrungbo.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding:9px 18px; font-size:0.84rem; text-decoration:none; white-space:nowrap;">
             Mở Live Dashboard ↗
           </a>
         </div>
         <h4 class="m-section-title">⚠️ Bối cảnh & Nỗi đau vận hành (Operational Pain Point)</h4>
-        <p class="m-text">Toàn vùng NTB gồm 5 tỉnh với địa bàn trải rộng từ cao nguyên (Lâm Đồng, Đắk Nông) đến duyên hải (Khánh Hòa, Ninh Thuận, Bình Thuận). Hằng ngày, Ban Giám đốc và 18 Account Manager (AM) phải tổng hợp thủ công hàng chục file dữ liệu rời rạc từ hệ thống. Việc này làm chậm trễ quyết định can thiệp đến tận 11h trưa — khi ca giao sáng gần như đã chốt sổ.</p>
+        <p class="m-text">Toàn vùng NTB gồm 5 tỉnh với địa bàn trải rộng từ cao nguyên (Lâm Đồng, Đắk Nông) đến duyên hải (Khánh Hòa, Ninh Thuận, Bình Thuận). Hằng ngày, Ban Giám đốc và 27 Account Manager (AM) quản lý 85 bưu cục phải tổng hợp thủ công hàng chục file dữ liệu rời rạc từ hệ thống. Việc này làm chậm trễ quyết định can thiệp đến tận 11h trưa — khi ca giao sáng gần như đã chốt sổ.</p>
       </div>
       <div class="m-section">
         <h4 class="m-section-title">🔍 Giải pháp: Hệ Thống GHN Ops Dashboard (namtrungbo.vercel.app)</h4>
@@ -240,7 +240,7 @@ const CASE_DATA = {
       </div>
       <div class="m-section">
         <h4 class="m-section-title">💰 Tác động & Giá trị đem lại cho Doanh nghiệp</h4>
-        <p class="m-text">Không chỉ là báo cáo tĩnh, hệ thống đã trở thành công cụ làm việc hàng ngày của Giám đốc Vùng và 18 AMs. Giảm 85% thời gian tổng hợp số liệu, giải phóng hàng trăm giờ làm việc mỗi tháng và nâng cao độ nhạy bén trong can thiệp vận hành tức thì.</p>
+        <p class="m-text">Không chỉ là báo cáo tĩnh, hệ thống đã trở thành công cụ làm việc hàng ngày của Giám đốc Vùng và 27 AMs. Giảm 85% thời gian tổng hợp số liệu, giải phóng hàng trăm giờ làm việc mỗi tháng và nâng cao độ nhạy bén trong can thiệp vận hành tức thì.</p>
       </div>
     `
   },
@@ -796,7 +796,7 @@ function initLiveTicker() {
 
   const messages = [
     '🌟 Live Production App: namtrungbo.vercel.app • Hệ thống Quản trị Vận hành NTB do Thủy xây dựng',
-    '5 Tỉnh Nam Trung Bộ • 18 Account Managers • Tích hợp Trợ lý AI qua Giao thức MCP',
+    '5 Tỉnh Nam Trung Bộ • 27 Account Managers (AMs) • 85 Bưu cục • Tích hợp Trợ lý AI qua Giao thức MCP',
     'Khánh Hòa: %GTC ca sáng đạt 96.4% • Bưu cục Nha Trang giải tỏa 100% đơn tồn',
     'Lâm Đồng: Phát hiện & xử lý 2 đơn COD gối đầu • Kiểm soát an toàn ngân quỹ',
     'Đắk Nông: Thang cứu hộ động kích hoạt thành công • 14 bưu cục vượt chỉ tiêu Bậc 2',
