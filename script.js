@@ -807,49 +807,47 @@ const JOURNEY_STOPS = {
     impact: 'Nền tảng tư duy cấu trúc hóa và phân tích số liệu giúp chuyển dịch dễ dàng sang lĩnh vực Logistics.'
   },
   2: {
-    period: '2023 – 07/2025',
-    badge: 'THẤU HIỂU NỖI ĐAU KHÁCH HÀNG',
-    role: 'Key Account Care Executive',
-    company: 'Giao Hàng Nhanh (GHN Express) · Đối tác TMĐT: Shopee, Lazada, Tiki',
+    period: '2023 – 2024',
+    badge: 'ĐIỂM XUẤT PHÁT TẠI GHN',
+    role: 'Key Account Care (KAC)',
+    company: 'Giao Hàng Nhanh (GHN Express) · Chăm Sóc Khách Hàng Trọng Điểm',
     bullets: [
-      'Trực tiếp tiếp nhận và xử lý hàng nghìn khiếu nại phức tạp trên các hệ thống chuyên dụng (IH Shopee, X-Space Lazada, Jira Tiki, Freshdesk).',
-      'Đại diện nội bộ kết nối trực tiếp với đội ngũ Vận hành trung chuyển và bưu cục địa phương để cứu đơn hàng trong tích tắc.',
-      'Đúc rút và phân loại nguyên nhân cốt lõi dẫn tới khiếu nại trễ hẹn, hỏng vỡ hoặc mất hàng trong chuỗi cung ứng.',
-      'Chủ động đề xuất cải tiến các quy trình tương tác nội bộ rườm rà gây chậm trễ thời gian phản hồi khách hàng.'
+      'Khởi đầu tại GHN với vị trí KAC (Key Account Care): Trực tiếp tiếp nhận, phân loại và xử lý các ca khiếu nại khẩn cấp, cứu đơn hàng cho các đối tác lớn.',
+      'Làm việc sâu sát giữa khối dịch vụ khách hàng với đội ngũ Vận hành trung chuyển (HUB) và bưu cục cơ sở để tháo gỡ điểm nghẽn giao hàng.',
+      'Thấu hiểu tận tường tâm lý và nỗi đau của khách hàng khi đơn hàng bị trễ hoặc xảy ra sự cố, từ đó nhận diện các mắt xích vận hành cần tối ưu.'
     ],
-    impact: 'Trực chiến xử lý sự cố thực tế giúp hiểu rõ tận tường từng mắt xích vận hành giao nhận.'
+    impact: 'Kinh nghiệm thực chiến quý giá từ vị trí KAC là nền móng vững chắc giúp Thủy hiểu rõ vận hành cơ sở để thăng tiến lên KA.'
   },
   3: {
-    period: '07/2025 – 05/2026',
+    period: '2024 – 2025',
     badge: '🏆 CHIẾN BINH XUẤT SẮC GHN 2025',
-    role: 'Key Account Executive · Chiến Binh Xuất Sắc 2025',
-    company: 'Giao Hàng Nhanh (GHN Express) · Quản lý Khách Hàng Doanh Nghiệp Lớn',
+    role: 'Key Account Executive (KA) · Team Sàn Shopee - Tiki - Lazada',
+    company: 'Giao Hàng Nhanh (GHN Express) · Quản Lý Khách Hàng Doanh Nghiệp Sàn TMĐT',
     awardBanner: {
       title: 'GIẢI THƯỞNG: CHIẾN BINH XUẤT SẮC NĂM 2025',
       presenter: 'Ban Giám Đốc Công Ty Cổ Phần Giao Hàng Nhanh (GHN Express) trao tặng',
-      reason: 'Vinh danh cá nhân xuất sắc toàn diện nhờ thành tích tối ưu hóa luồng vận đơn cắt giảm 15-20% tỷ lệ khiếu nại sàn TMĐT, tự động hóa công cụ phân tích dữ liệu và giữ vững SLA cam kết cho toàn bộ tập khách hàng doanh nghiệp lớn.'
+      reason: 'Vinh danh cá nhân xuất sắc toàn diện thuộc team KA Sàn TMĐT (Shopee, Tiki, Lazada) nhờ thành tích tối ưu hóa luồng vận đơn cắt giảm 15-20% tỷ lệ khiếu nại, tự động hóa công cụ phân tích dữ liệu và giữ vững cam kết SLA trong các mùa Siêu Sale cao điểm.'
     },
     bullets: [
-      'Vinh dự đón nhận danh hiệu và cúp vinh danh "Chiến Binh Xuất Sắc Năm 2025" do Ban Lãnh Đạo Giao Hàng Nhanh (GHN Express) trực tiếp khen thưởng.',
-      'Đóng vai trò cố vấn tin cậy (trusted advisor) cho các khách hàng TMĐT lớn; dự báo sản lượng và khuyến nghị hành động tuân thủ SLA.',
-      'Thiết kế lại luồng trạng thái vận đơn (shipping status flow), cắt giảm 15-20% tỷ lệ liên hệ khiếu nại trên mỗi đơn hàng.',
-      'Tự tay phát triển các công cụ báo cáo tự động bằng Google Apps Script & Python, giảm 30% thời gian thao tác thủ công của team.',
-      'Xử lý dứt điểm các tình huống leo thang (escalation) nghiêm trọng với sàn TMĐT, bảo vệ uy tín thương hiệu GHN.'
+      'Chuyển sang team KA, trực tiếp phụ trách điều phối và cố vấn chiến lược cho các đối tác Sàn Thương Mại Điện Tử hàng đầu: Shopee, Tiki, Lazada.',
+      'Dự báo sản lượng, phối hợp cùng các sàn thiết kế lại luồng trạng thái vận đơn (shipping status flow), cắt giảm 15-20% tỷ lệ khiếu nại phát sinh.',
+      'Chủ động học hỏi lập trình, tự tay phát triển các công cụ báo cáo tự động bằng Google Apps Script & Python, cắt giảm 30% thời gian thao tác thủ công cho team.',
+      'Xử lý xuất sắc các đợt Siêu Sale Mega Campaign bão táp, vinh dự được Ban Giám Đốc trao tặng cúp vinh danh "Chiến Binh Xuất Sắc Năm 2025".'
     ],
-    impact: 'Bước chuyển mình bản lề từ chăm sóc khách hàng sang kiến tạo giải pháp dữ liệu – tiền đề được Ban Giám Đốc tin tưởng giao trọng trách Trợ Lý GĐ Vùng NTB.'
+    impact: 'Bước chuyển mình vượt bậc từ KAC sang KA Sàn TMĐT — bảo chứng năng lực quản trị đối tác lớn và tư duy tự động hóa dữ liệu.'
   },
   4: {
-    period: '2026 – Hiện tại',
-    badge: 'ĐIỀU HÀNH & TỰ ĐỘNG HÓA CHIẾN LƯỢC',
+    period: 'Hiện tại',
+    badge: 'QUẢN TRỊ VẬN HÀNH 5 TỈNH THÀNH',
     role: 'Assistant Regional Director (Trợ Lý Giám Đốc Vùng Nam Trung Bộ)',
-    company: 'Giao Hàng Nhanh (GHN) · 5 Tỉnh: Khánh Hòa, Lâm Đồng, Đắk Nông, Ninh Thuận, Bình Thuận',
+    company: 'Giao Hàng Nhanh (GHN) · Vận Hành 5 Tỉnh: Khánh Hòa, Lâm Đồng, Đắk Nông, Ninh Thuận, Bình Thuận',
     bullets: [
-      'Lập báo cáo vận hành, kinh doanh và theo dõi PFM cho Giám đốc Vùng; tổng hợp dữ liệu KPI 5 tỉnh và 27 Quản lý khu vực (AMs) với 85 bưu cục.',
-      'Xây dựng pipeline báo cáo tự động (Python, Google Apps Script), rút ngắn 85% thời gian thủ công và theo dõi KPI thời gian thực (%OPR, %ODR, %FD).',
-      'Phát triển hệ sinh thái Bot Telegram: Bot Điểm danh báo cáo 5 mốc, Bot Điểm danh Kaizen 5S kho bãi, Bot Check-in thực địa cho HRBP & SUP.',
-      'Dẫn dắt đánh giá nhân sự tài năng hàng quý trên 5 tỉnh, xác định nhân sự tiềm năng cao và định hướng lộ trình thăng tiến.'
+      'Được Ban Giám Đốc bổ nhiệm làm Trợ Lý GĐ Vùng: Trực tiếp điều hành vận hành toàn diện quy mô 5 tỉnh thành với 27 Quản lý khu vực (AMs) và 85 bưu cục.',
+      'Lập trình và làm chủ hệ sinh thái 18+ Bot tự động: Tính toán số đơn KPI còn thiếu so với Target để đưa bưu cục thoát bất ổn, bot tự động đề xuất OFF tuyến bảo vệ trạm khi quá tải, bot push hàng aging...',
+      'Thiết lập hệ thống kiểm soát kỷ luật 5 mốc giờ vàng, bot điểm danh Kaizen 5S kho bãi và định vị GPS thực địa cho đội ngũ HRBP & Giám sát SUP.',
+      'Theo dõi và tối ưu các chỉ số trọng yếu (%GTC, %ODR, %OPR, %FD), biến dữ liệu thành hành động can thiệp tức thì bảo vệ an toàn kho bãi.'
     ],
-    impact: 'Tự động hóa 100% luồng báo cáo buổi sáng & trưa cho Ban Giám đốc Vùng Nam Trung Bộ.'
+    impact: 'Tự động hóa toàn diện hệ thống Control Tower, đồng hành cùng Ban Giám Đốc đưa Vùng Nam Trung Bộ về đích rực rỡ.'
   }
 };
 
@@ -1984,60 +1982,58 @@ function initBotEcosystemMatrix() {
    LO-FI CHILL MV MODAL CONTROLLER & LYRICS CLIPBOARD
    ========================================================================== */
 const SUNO_PROMPT_TEMPLATE = `[STYLE OF MUSIC]
-Lo-Fi chill, Vietnamese indie pop, acoustic guitar, nostalgic warm female vocal, mellow rhodes piano, vinyl crackle, 85 bpm, emotional, peaceful night drive
+Upbeat synth-pop, energetic J-rock anime opening style, driving four-on-the-floor dance beat, powerful melodic female vocal, infectious electric guitar hook, punchy bass, 130 bpm, euphoric, motivational, inspiring anthem
 
 [TITLE]
-Chuyến Xe Nam Trung Bộ (Make Data Move)
+Chiến Binh Áo Cam (Make Data Move)
 
 [LYRICS]
 [Intro]
-(Tiếng bàn phím gõ lách cách... tiếng mưa rơi ngoài hiên...)
-Phan Thiết sóng xô, Đà Lạt sương mờ...
-Những con số biết nói, cho đêm nay không bơ vơ...
+(Tiếng guitar điện riff dồn dập, tiếng còi xe tải và beat trống 130 BPM bùng nổ!)
+Hey! Bước chân ra tuyến, năng lượng tràn đầy!
+Nha Trang, Đà Lạt, Phan Thiết, Đắk Nông, Phan Rang!
+Chiến Binh Áo Cam... Make Data Move!
 
 [Verse 1]
-Nhớ những ngày đầu bước chân rời giảng đường Kinh Tế,
-Tai nghe từng cuộc gọi, lắng từng nỗi âu lo.
-Mỗi kiện hàng là một niềm mong đợi,
-Chậm một giờ là trĩu nặng một âu lo.
-Em tập nhìn dòng chảy phía sau màn hình tối,
-Học từng chuyến luân chuyển, từng trạm dừng lẻ loi...
-
-[Pre-Chorus]
-Và em chọn viết tiếp bằng những dòng code đêm,
-Từng con bot gửi tin cho ca sáng êm đềm.
-Đo từng khoảng cách, giữ từng mốc giờ vàng,
-Cho những anh bưu tá vững vàng từng chuyến hàng...
-
-[Chorus]
-Này chuyến xe ơi, qua đèo cao dốc gió,
-Khánh Hòa nắng biển hay Đắk Nông đất đỏ.
-Tám mươi lăm bưu cục, hai mươi bảy tuyến đường,
-Dữ liệu chuyển mình thành trọn vẹn yêu thương.
-Make data move, giữ bình yên kho bãi,
-Để vạn kiện hàng hôm nay đều đến nơi...
+Ngày đầu tiên vào GHN làm cô nàng KAC,
+Điện thoại reo liên hồi, từng ca khó đều qua tay.
+Cứu từng đơn hỏa tốc, thấu hiểu nỗi lo khách hàng,
+Nhìn ra từng điểm nghẽn để mở lối cho kiện hàng!
 
 [Verse 2]
-Năm hai lăm ghi dấu kỷ niệm chương trao tặng,
-Chiến Binh Xuất Sắc — nụ cười sau bao đêm thức trắng.
-Không chỉ là báo cáo hay số liệu khan khan,
-Là đồng hành gỡ rối, cùng đội ngũ vượt gian nan.
-Cứ mỗi độ chốt ca, nhìn con số về đích,
-Thấy bình yên nở hoa sau bao điều thử thách...
+Bước sang team KA, kề vai Shopee, Tiki, Lazada,
+Mùa Siêu Sale bão táp, chẳng ngại khó hay đường xa!
+Viết code đo từng nhịp, hạ hai mươi phần trăm khiếu nại,
+Chiến Binh Xuất Sắc 2025 — cúp vinh danh sáng ngời trên tay!
 
 [Chorus]
-Này chuyến xe ơi, qua đèo cao dốc gió,
-Khánh Hòa nắng biển hay Đắk Nông đất đỏ.
-Tám mươi lăm bưu cục, hai mươi bảy tuyến đường,
-Dữ liệu chuyển mình thành trọn vẹn yêu thương.
-Make data move, giữ bình yên kho bãi,
-Để vạn kiện hàng hôm nay đều đến nơi...
+NÀY CHIẾN BINH ÁO CAM! BẬT HẾT TỐC LỰC TIẾN LÊN!
+NĂM TỈNH NAM TRUNG BỘ — VỮNG VÀNG DỰNG XÂY NỀN!
+Tám mươi lăm bưu cục, hai mươi bảy AM đồng hành,
+Bot quét xuyên màn đêm, cho tuyến đường thông nhanh!
+Make data move! Vận hành đỉnh cao!
+Giữ vững từng cam kết, tự hào vươn cao!
+
+[Verse 3]
+Giờ là Trợ Lý Giám Đốc Vùng, bao quát cả năm tỉnh thành,
+Từ đèo cao Lâm Đồng đến biển xanh Khánh Hòa nắng vàng.
+Đắk Nông đất đỏ bazan, Ninh Thuận - Bình Thuận lộng gió,
+Tính KPI còn thiếu, kéo trạm vượt bão gian khó!
+Bot xin off tuyến kịp thời, bảo vệ an toàn kho bãi!
+
+[Chorus]
+NÀY CHIẾN BINH ÁO CAM! BẬT HẾT TỐC LỰC TIẾN LÊN!
+NĂM TỈNH NAM TRUNG BỘ — VỮNG VÀNG DỰNG XÂY NỀN!
+Tám mươi lăm bưu cục, hai mươi bảy AM đồng hành,
+Bot quét xuyên màn đêm, cho tuyến đường thông nhanh!
+Make data move! Vận hành đỉnh cao!
+Giữ vững từng cam kết, tự hào vươn cao!
 
 [Outro]
-Đêm đã khuya rồi... tách cà phê cũng cạn...
-Trạm đã vào giấc, chuyến xe vẫn lăn tăn...
-Make data move...
-Make ops flawless...`;
+Make data move!
+Make ops flawless!
+GHN Nam Trung Bộ — Về đích rực rỡ!
+(Guitar solo fade out with cheering applause!)`;
 
 function initMvModal() {
   const btnOpen = document.getElementById('btnOpenMvModal');
