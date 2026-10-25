@@ -788,6 +788,14 @@ function initLiveTicker() {
 /* ==========================================================================
    7. WEB AUDIO INTERACTIVE SOUND FX & LO-FI AMBIENT RADIO
    ========================================================================== */
+function showToast(msg) {
+  const toast = document.getElementById('audioToast');
+  if (!toast) return;
+  toast.innerHTML = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3500);
+}
+
 const AudioEngine = {
   ctx: null,
   isRadioOn: false,
@@ -797,19 +805,23 @@ const AudioEngine = {
   lastHoverTime: 0,
 
   init() {
-    if (!this.ctx) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      this.ctx = new AudioContext();
-      this.gainMaster = this.ctx.createGain();
-      this.gainMaster.gain.setValueAtTime(0.28, this.ctx.currentTime);
-      this.gainMaster.connect(this.ctx.destination);
+    try {
+      if (!this.ctx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        this.ctx = new AudioContext();
+        this.gainMaster = this.ctx.createGain();
+        this.gainMaster.gain.setValueAtTime(0.75, this.ctx.currentTime);
+        this.gainMaster.connect(this.ctx.destination);
 
-      this.gainRadio = this.ctx.createGain();
-      this.gainRadio.gain.setValueAtTime(0.09, this.ctx.currentTime);
-      this.gainRadio.connect(this.gainMaster);
-    }
-    if (this.ctx.state === 'suspended') {
-      this.ctx.resume();
+        this.gainRadio = this.ctx.createGain();
+        this.gainRadio.gain.setValueAtTime(0.35, this.ctx.currentTime);
+        this.gainRadio.connect(this.gainMaster);
+      }
+      if (this.ctx.state === 'suspended') {
+        this.ctx.resume();
+      }
+    } catch (e) {
+      console.warn('AudioContext init error:', e);
     }
   },
 
@@ -824,16 +836,16 @@ const AudioEngine = {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(320, this.ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(480, this.ctx.currentTime + 0.04);
+      osc.frequency.setValueAtTime(360, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(520, this.ctx.currentTime + 0.05);
 
-      gain.gain.setValueAtTime(0.02, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.045);
+      gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.06);
 
       osc.connect(gain);
       gain.connect(this.gainMaster);
       osc.start();
-      osc.stop(this.ctx.currentTime + 0.045);
+      osc.stop(this.ctx.currentTime + 0.06);
     } catch (e) {}
   },
 
@@ -845,41 +857,39 @@ const AudioEngine = {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = 'triangle';
-      osc.frequency.setValueAtTime(640, this.ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(160, this.ctx.currentTime + 0.06);
+      osc.frequency.setValueAtTime(700, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(180, this.ctx.currentTime + 0.08);
 
-      gain.gain.setValueAtTime(0.06, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.06);
+      gain.gain.setValueAtTime(0.18, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.08);
 
       osc.connect(gain);
       gain.connect(this.gainMaster);
       osc.start();
-      osc.stop(this.ctx.currentTime + 0.06);
+      osc.stop(this.ctx.currentTime + 0.08);
     } catch (e) {}
   },
 
   playSuccess() {
-    if (!this.isRadioOn) return;
     this.init();
-
     try {
-      // Warm chord arpeggio: Eb4, G4, Bb4, Eb5
+      // Melodic 4-note chord: Eb4, G4, Bb4, Eb5
       const notes = [311.13, 392.00, 466.16, 622.25];
       notes.forEach((freq, idx) => {
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
         osc.type = 'sine';
-        const startT = this.ctx.currentTime + idx * 0.07;
+        const startT = this.ctx.currentTime + idx * 0.08;
         osc.frequency.setValueAtTime(freq, startT);
 
         gain.gain.setValueAtTime(0, startT);
-        gain.gain.linearRampToValueAtTime(0.07, startT + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.0001, startT + 0.45);
+        gain.gain.linearRampToValueAtTime(0.2, startT + 0.03);
+        gain.gain.exponentialRampToValueAtTime(0.0001, startT + 0.5);
 
         osc.connect(gain);
         gain.connect(this.gainMaster);
         osc.start(startT);
-        osc.stop(startT + 0.45);
+        osc.stop(startT + 0.5);
       });
     } catch (e) {}
   },
@@ -892,62 +902,80 @@ const AudioEngine = {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = 'square';
-      osc.frequency.setValueAtTime(800 + Math.random() * 400, this.ctx.currentTime);
+      osc.frequency.setValueAtTime(900 + Math.random() * 500, this.ctx.currentTime);
 
-      gain.gain.setValueAtTime(0.015, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.03);
+      gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.04);
 
       osc.connect(gain);
       gain.connect(this.gainMaster);
       osc.start();
-      osc.stop(this.ctx.currentTime + 0.03);
+      osc.stop(this.ctx.currentTime + 0.04);
     } catch (e) {}
   },
 
   playTelegram() {
-    if (!this.isRadioOn) return;
     this.init();
-
     try {
-      [680, 1020].forEach((freq, i) => {
+      [720, 1080].forEach((freq, i) => {
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
         osc.type = 'sine';
-        const startT = this.ctx.currentTime + i * 0.12;
+        const startT = this.ctx.currentTime + i * 0.13;
         osc.frequency.setValueAtTime(freq, startT);
 
-        gain.gain.setValueAtTime(0.07, startT);
-        gain.gain.exponentialRampToValueAtTime(0.0001, startT + 0.35);
+        gain.gain.setValueAtTime(0.22, startT);
+        gain.gain.exponentialRampToValueAtTime(0.0001, startT + 0.4);
 
         osc.connect(gain);
         gain.connect(this.gainMaster);
         osc.start(startT);
-        osc.stop(startT + 0.35);
+        osc.stop(startT + 0.4);
       });
     } catch (e) {}
   },
 
-  toggleRadio() {
+  async toggleRadio() {
     this.init();
+    if (this.ctx && this.ctx.state === 'suspended') {
+      try { await this.ctx.resume(); } catch(e){}
+    }
+
     this.isRadioOn = !this.isRadioOn;
     const btn = document.getElementById('btnSoundToggle');
     const label = document.getElementById('soundLabel');
+    const lofiAudio = document.getElementById('lofiAudio');
 
     if (this.isRadioOn) {
       if (btn) {
         btn.classList.add('active');
         btn.setAttribute('aria-pressed', 'true');
       }
-      if (label) label.textContent = 'Radio: BẬT';
-      this.startAmbientRadio();
+      if (label) label.textContent = 'Radio: BẬT ♫';
+
+      // Play audio stream or fallback to synth
+      if (lofiAudio) {
+        lofiAudio.volume = 0.35;
+        lofiAudio.play().catch(() => {
+          this.startAmbientRadio();
+        });
+      } else {
+        this.startAmbientRadio();
+      }
+
       this.playSuccess();
+      showToast('📻 <strong>Đã BẬT Radio Lo-Fi:</strong> Nhấp vào các mục trên trang để nghe âm thanh!');
     } else {
       if (btn) {
         btn.classList.remove('active');
         btn.setAttribute('aria-pressed', 'false');
       }
       if (label) label.textContent = 'Radio: TẮT';
+      if (lofiAudio) {
+        lofiAudio.pause();
+      }
       this.stopAmbientRadio();
+      showToast('🔇 Đã tắt âm thanh Radio');
     }
   },
 
@@ -956,7 +984,7 @@ const AudioEngine = {
     try {
       const filter = this.ctx.createBiquadFilter();
       filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(680, this.ctx.currentTime);
+      filter.frequency.setValueAtTime(750, this.ctx.currentTime);
       filter.connect(this.gainRadio);
 
       // Warm relaxing chord: Eb major 9
@@ -974,7 +1002,7 @@ const AudioEngine = {
       const lfo = this.ctx.createOscillator();
       const lfoGain = this.ctx.createGain();
       lfo.frequency.setValueAtTime(0.25, this.ctx.currentTime);
-      lfoGain.gain.setValueAtTime(140, this.ctx.currentTime);
+      lfoGain.gain.setValueAtTime(180, this.ctx.currentTime);
       lfo.connect(lfoGain);
       lfoGain.connect(filter.frequency);
       lfo.start();
@@ -993,7 +1021,9 @@ const AudioEngine = {
 function initAudioEngine() {
   const btnToggle = document.getElementById('btnSoundToggle');
   if (btnToggle) {
-    btnToggle.addEventListener('click', () => {
+    btnToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       AudioEngine.toggleRadio();
     });
   }
@@ -1027,7 +1057,7 @@ function initAudioEngine() {
   const btnSortNow = document.getElementById('btnSortNow');
   if (btnSortNow) {
     btnSortNow.addEventListener('click', () => {
-      setTimeout(() => AudioEngine.playSuccess(), 200);
+      setTimeout(() => AudioEngine.playSuccess(), 150);
     });
   }
 }
