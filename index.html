@@ -147,85 +147,136 @@
 
         <!-- Right Side: In-Place Live MV Player with Real-Time Running Lyrics -->
         <div class="hero-mv-sidebar">
-          <div class="mv-card-neo" id="mvLiveCard" role="region" aria-label="Trình phát MV: MAKE DATA MOVE">
-            <div class="mv-neo-buddy" aria-hidden="true">
-              <span class="buddy-pixel">👾</span>
-            </div>
-            <div class="mv-thumbnail-wrapper" id="mvThumbnailWrapper">
-              <img src="assets/mv_cover.jpg" alt="MV MAKE DATA MOVE" class="mv-cover-img" id="mvCoverImg" loading="lazy" />
-              <div class="mv-overlay-gradient"></div>
+          <div class="mv-delivery-stage stage-parcel" id="mvDeliveryStage">
 
-              <!-- Big Play / Pause Button in Center -->
-              <button type="button" class="mv-play-btn" id="btnMvPlayToggle" aria-label="Phát hoặc tạm dừng bài hát">
-                <svg id="mvPlaySvg" viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-              </button>
-
-              <!-- Live Synchronized Karaoke Lyrics Overlay directly on the Video -->
-              <div class="mv-lyrics-overlay" id="mvLyricsOverlay">
-                <div class="mv-lyric-current" id="mvLyricCurrent">▶ Bấm Play để nghe nhạc & chạy lời...</div>
-                <div class="mv-lyric-next" id="mvLyricNext">MAKE DATA MOVE · Suno AI × Thủy</div>
+            <!-- 1. GHN Cyberpunk Delivery Parcel (Arrival & Unboxing Trigger) -->
+            <div class="ghn-parcel-wrapper" id="ghnParcelWrapper" role="button" tabindex="0" aria-label="Kiện hàng GHN Express: Bấm để mở hộp và phát bài hát chủ đề">
+              <div class="parcel-top-banner">
+                <span class="parcel-pulse-dot"></span>
+                <span class="banner-text">🚚 KIỆN HÀNG GHN EXPRESS ĐÃ ĐẾN BẠN</span>
               </div>
 
-              <!-- Audio Progress Bar Overlay -->
-              <div class="mv-player-bar-container">
-                <div class="mv-progress-track" id="mvProgressTrack">
-                  <div class="mv-progress-fill" id="mvProgressFill"></div>
+              <div class="parcel-box-card" id="parcelBoxCard">
+                <img src="assets/parcel_box.jpg" alt="Kiện hàng GHN Express đặc biệt" class="parcel-box-img" id="parcelBoxImg" />
+                <div class="parcel-scan-laser" id="parcelScanLaser"></div>
+                
+                <!-- Holographic Cyberpunk Shipping Label -->
+                <div class="parcel-shipping-tag">
+                  <div class="pst-row-top">
+                    <span class="pst-badge">GHN PRIORITY // CẤP BÁCH</span>
+                    <span class="pst-code">#NTB-2026-VIP</span>
+                  </div>
+                  <div class="pst-meta">
+                    <div class="pst-line"><span class="pst-lbl">Người gửi:</span> Nguyễn Thị Thanh Thủy (NTB Ops)</div>
+                    <div class="pst-line"><span class="pst-lbl">Kiện hàng:</span> Official Theme Song · MAKE DATA MOVE</div>
+                  </div>
                 </div>
-                <div class="mv-time-row">
-                  <span class="mv-time-current" id="mvTimeCurrent">0:00</span>
-                  <span class="mv-time-duration" id="mvTimeDuration">3:18</span>
-                </div>
-              </div>
-            </div>
 
-            <div class="mv-card-footer">
-              <div class="mv-footer-left">
-                <h4 class="mv-title">MAKE DATA MOVE</h4>
-                <div class="mv-mini-eq" id="mvMiniEq" aria-hidden="true">
-                  <span></span><span></span><span></span><span></span>
+                <!-- Big Central Unbox Button -->
+                <div class="parcel-unbox-overlay">
+                  <button type="button" class="btn-unbox-action" id="btnUnboxParcel" aria-label="Mở kiện hàng để xem MV">
+                    <span class="unbox-icon">📦 ✂️</span>
+                    <span class="unbox-primary-txt">MỞ KIỆN HÀNG (UNBOX MV)</span>
+                    <span class="unbox-sub-txt">Bật nắp & phát nhạc liền tay</span>
+                  </button>
                 </div>
               </div>
-              <button type="button" class="btn-toggle-full-lyrics" id="btnToggleFullLyrics" aria-expanded="false">
-                <span>📜 Xem toàn bộ lời</span>
-              </button>
             </div>
 
-            <!-- Expandable Lyrics Drawer directly below the card (No popup!) -->
-            <div class="mv-lyrics-drawer" id="mvLyricsDrawer" hidden>
-              <div class="drawer-header">
-                <span class="dh-title">LỜI BÀI HÁT (FULL LYRICS)</span>
-                <span class="dh-close" id="btnCloseDrawer">Thu gọn ✕</span>
+            <!-- 2. Laser Tape Cut & Burst VFX -->
+            <div class="unboxing-vfx-layer" id="unboxingVfxLayer" aria-hidden="true">
+              <div class="laser-slice-beam" id="laserSliceBeam"></div>
+              <div class="unbox-neon-shockwave" id="unboxShockwave"></div>
+              <div class="unbox-floating-badge" id="unboxFloatingBadge">✨ UNBOXING THEME SONG... ✨</div>
+            </div>
+
+            <!-- 3. The Unboxed Live MV Player -->
+            <div class="mv-card-neo" id="mvLiveCard" role="region" aria-label="Trình phát MV: MAKE DATA MOVE" style="display: none;">
+              <!-- Top bar with Repack button -->
+              <div class="mv-unboxed-bar">
+                <span class="unboxed-tag">✨ ĐÃ KHUI KIỆN HÀNG #NTB-2026</span>
+                <button type="button" class="btn-repack-box" id="btnRepackBox" title="Đóng gói lại kiện hàng để trải nghiệm lại hiệu ứng mở hộp">
+                  <span>📦 Gói lại</span>
+                </button>
               </div>
-              <div class="drawer-body">
-                <p class="lyric-line"><strong>[Intro]</strong></p>
-                <p class="lyric-line">Midnight on the terminal screen, signal's turning emerald green.</p>
-                <p class="lyric-line">From the coast to the highland crest, never stop, never settle for less...</p>
-                <p class="lyric-line"><strong>[Verse 1]</strong></p>
-                <p class="lyric-line">Started at the frontline, picking up the call, every single parcel, watching where they fall.</p>
-                <p class="lyric-line">Turned the friction into code, turned the panic into speed,</p>
-                <p class="lyric-line">Building up the systems for everything they need.</p>
-                <p class="lyric-line">Shopee in the fast lane, Tiki on the dash, Lazada rolling through the flash!</p>
-                <p class="lyric-line"><strong>[Pre-Chorus]</strong></p>
-                <p class="lyric-line">Lines of Python burning bright, guiding all the trucks tonight.</p>
-                <p class="lyric-line">We don't wait for things to break, we rewrite the moves they make!</p>
-                <p class="lyric-line"><strong>[Chorus]</strong></p>
-                <p class="lyric-line"><em>MAKE DATA MOVE! (Hey!)</em></p>
-                <p class="lyric-line"><em>Hear the rhythm on the highway roar, five provinces running strong and pure!</em></p>
-                <p class="lyric-line"><em>From the ocean breeze to the mountain peaks, we are the pulse that the city seeks!</em></p>
-                <p class="lyric-line"><em>MAKE OPS FLAWLESS, BREAK THE GROOVE! MAKE DATA MOVE!</em></p>
-                <p class="lyric-line"><strong>[Verse 2]</strong></p>
-                <p class="lyric-line">Twenty-twenty-five came with the gold in hand, best of the best, standing where I stand.</p>
-                <p class="lyric-line">Eighty-five stations locked in sync, fixing every bottleneck in the time you blink.</p>
-                <p class="lyric-line">Calculate the target, clear the line, everything arriving right on time!</p>
-                <p class="lyric-line"><strong>[Outro]</strong></p>
-                <p class="lyric-line">Five provinces, one command... The fastest pulse across the land.</p>
-                <p class="lyric-line">Make data move... Make ops flawless.</p>
+
+              <div class="mv-thumbnail-wrapper" id="mvThumbnailWrapper">
+                <img src="assets/mv_cover.jpg" alt="MV MAKE DATA MOVE" class="mv-cover-img" id="mvCoverImg" loading="lazy" />
+                <div class="mv-overlay-gradient"></div>
+
+                <!-- Big Play / Pause Button in Center -->
+                <button type="button" class="mv-play-btn" id="btnMvPlayToggle" aria-label="Phát hoặc tạm dừng bài hát">
+                  <svg id="mvPlaySvg" viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                    <rect x="6" y="4" width="4" height="16" fill="currentColor"/><rect x="14" y="4" width="4" height="16" fill="currentColor"/>
+                  </svg>
+                </button>
+
+                <!-- Live Synchronized Karaoke Lyrics Overlay directly on the Video -->
+                <div class="mv-lyrics-overlay" id="mvLyricsOverlay">
+                  <div class="mv-lyric-current" id="mvLyricCurrent">🎶 [Intro] Midnight on the terminal screen...</div>
+                  <div class="mv-lyric-next" id="mvLyricNext">Signal's turning emerald green...</div>
+                </div>
+
+                <!-- Audio Progress Bar Overlay -->
+                <div class="mv-player-bar-container">
+                  <div class="mv-progress-track" id="mvProgressTrack">
+                    <div class="mv-progress-fill" id="mvProgressFill"></div>
+                  </div>
+                  <div class="mv-time-row">
+                    <span class="mv-time-current" id="mvTimeCurrent">0:00</span>
+                    <span class="mv-time-duration" id="mvTimeDuration">3:18</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mv-card-footer">
+                <div class="mv-footer-left">
+                  <h4 class="mv-title">MAKE DATA MOVE</h4>
+                  <div class="mv-mini-eq" id="mvMiniEq" aria-hidden="true">
+                    <span></span><span></span><span></span><span></span>
+                  </div>
+                </div>
+                <button type="button" class="btn-toggle-full-lyrics" id="btnToggleFullLyrics" aria-expanded="false">
+                  <span>📜 Xem toàn bộ lời</span>
+                </button>
+              </div>
+
+              <!-- Expandable Lyrics Drawer directly below the card -->
+              <div class="mv-lyrics-drawer" id="mvLyricsDrawer" hidden>
+                <div class="drawer-header">
+                  <span class="dh-title">LỜI BÀI HÁT (FULL LYRICS)</span>
+                  <span class="dh-close" id="btnCloseDrawer">Thu gọn ✕</span>
+                </div>
+                <div class="drawer-body">
+                  <p class="lyric-line"><strong>[Intro]</strong></p>
+                  <p class="lyric-line">Midnight on the terminal screen, signal's turning emerald green.</p>
+                  <p class="lyric-line">From the coast to the highland crest, never stop, never settle for less...</p>
+                  <p class="lyric-line"><strong>[Verse 1]</strong></p>
+                  <p class="lyric-line">Started at the frontline, picking up the call, every single parcel, watching where they fall.</p>
+                  <p class="lyric-line">Turned the friction into code, turned the panic into speed,</p>
+                  <p class="lyric-line">Building up the systems for everything they need.</p>
+                  <p class="lyric-line">Shopee in the fast lane, Tiki on the dash, Lazada rolling through the flash!</p>
+                  <p class="lyric-line"><strong>[Pre-Chorus]</strong></p>
+                  <p class="lyric-line">Lines of Python burning bright, guiding all the trucks tonight.</p>
+                  <p class="lyric-line">We don't wait for things to break, we rewrite the moves they make!</p>
+                  <p class="lyric-line"><strong>[Chorus]</strong></p>
+                  <p class="lyric-line"><em>🔥 MAKE DATA MOVE! (Hey!)</em></p>
+                  <p class="lyric-line"><em>Hear the rhythm on the highway roar, five provinces running strong and pure!</em></p>
+                  <p class="lyric-line"><em>From the ocean breeze to the mountain peaks, we are the pulse that the city seeks!</em></p>
+                  <p class="lyric-line"><em>MAKE OPS FLAWLESS, BREAK THE GROOVE! MAKE DATA MOVE!</em></p>
+                  <p class="lyric-line"><strong>[Verse 2]</strong></p>
+                  <p class="lyric-line">Twenty-twenty-five came with the gold in hand, best of the best, standing where I stand.</p>
+                  <p class="lyric-line">Eighty-five stations locked in sync, fixing every bottleneck in the time you blink.</p>
+                  <p class="lyric-line">Calculate the target, clear the line, everything arriving right on time!</p>
+                  <p class="lyric-line"><strong>[Outro]</strong></p>
+                  <p class="lyric-line">Five provinces, one command... The fastest pulse across the land.</p>
+                  <p class="lyric-line">Make data move... Make ops flawless. ✨</p>
+                </div>
               </div>
             </div>
+
           </div>
-        </div>
+        </div></div>
       </div>
 
       <div class="hero-stats-panel">

@@ -69,15 +69,17 @@ function initHeroCanvas() {
   }
 
   function recalcTargets() {
+    const isDesktop = width > 1024;
     const colCount = 7;
-    const colWidth = Math.min(100, (width * 0.7) / colCount);
-    const startX = width * 0.35;
-    const baseY = height * 0.65;
+    const maxAreaWidth = isDesktop ? width * 0.46 : width * 0.85;
+    const colWidth = Math.min(64, maxAreaWidth / colCount);
+    const startX = isDesktop ? width * 0.04 : width * 0.08;
+    const baseY = height * 0.68;
 
     nodes.forEach((n) => {
-      // Form structured bar columns
-      n.targetX = startX + n.colIndex * (colWidth + 12);
-      n.targetY = baseY - n.rowRank * 16;
+      // Form structured bar columns in the left/center zone
+      n.targetX = startX + n.colIndex * (colWidth + 8);
+      n.targetY = baseY - n.rowRank * 14;
     });
   }
   recalcTargets();
@@ -2011,7 +2013,13 @@ const SYNCHRONIZED_LYRICS = [
 ];
 
 function initLiveInPlacePlayer() {
+  const stage = document.getElementById('mvDeliveryStage');
+  const parcelWrapper = document.getElementById('ghnParcelWrapper');
+  const btnUnbox = document.getElementById('btnUnboxParcel');
+  const vfxLayer = document.getElementById('unboxingVfxLayer');
   const card = document.getElementById('mvLiveCard');
+  const btnRepack = document.getElementById('btnRepackBox');
+
   const btnPlay = document.getElementById('btnMvPlayToggle');
   const playSvg = document.getElementById('mvPlaySvg');
   const lyricCurrent = document.getElementById('mvLyricCurrent');
@@ -2023,6 +2031,8 @@ function initLiveInPlacePlayer() {
   const btnToggleLyrics = document.getElementById('btnToggleFullLyrics');
   const lyricsDrawer = document.getElementById('mvLyricsDrawer');
   const btnCloseDrawer = document.getElementById('btnCloseDrawer');
+
+  if (!card) return;
 
   if (!card || !btnPlay) return;
 
@@ -2378,8 +2388,75 @@ function initLiveInPlacePlayer() {
     });
   }
 
+  // Unboxing & Repacking Controller
+  function triggerUnboxing() {
+    if (!stage || !card || !parcelWrapper) return;
+    stage.classList.add('unboxing-active');
+    initAudioContext();
+    if (audioCtx) {
+      try {
+        const osc = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(500, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.35);
+        g.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+        osc.connect(g);
+        g.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.35);
+      } catch(e) {}
+    }
+
+    setTimeout(() => {
+      parcelWrapper.style.display = 'none';
+      card.style.display = 'block';
+      stage.classList.remove('unboxing-active');
+      stage.classList.remove('stage-parcel');
+      stage.classList.add('stage-mv');
+      startPlayback();
+      showToast('🎁 <strong>ĐÃ MỞ KIỆN HÀNG THÀNH CÔNG!</strong> Đang phát bài hát chủ đề.');
+    }, 450);
+  }
+
+  function repackBox() {
+    if (!stage || !card || !parcelWrapper) return;
+    stopPlayback();
+    card.style.display = 'none';
+    parcelWrapper.style.display = 'block';
+    stage.classList.remove('stage-mv');
+    stage.classList.add('stage-parcel');
+    currentTime = 0;
+    updateVisuals(0);
+    showToast('📦 Đã đóng gói lại kiện hàng. Bạn có thể khui hộp lại bất cứ lúc nào!');
+  }
+
+  if (btnUnbox) {
+    btnUnbox.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triggerUnboxing();
+    });
+  }
+
+  if (parcelWrapper) {
+    parcelWrapper.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triggerUnboxing();
+    });
+  }
+
+  if (btnRepack) {
+    btnRepack.addEventListener('click', (e) => {
+      e.stopPropagation();
+      repackBox();
+    });
+  }
+
   // Expose global debug controller
   window.mvPlayer = {
+    unbox: triggerUnboxing,
+    repack: repackBox,
     play: startPlayback,
     pause: stopPlayback,
     toggle: togglePlay,
