@@ -804,54 +804,73 @@ const JOURNEY_STOPS = {
     bullets: [
       'Được đào tạo bài bản về tư duy kinh tế vĩ mô & vi mô, phân tích định lượng và mô hình hóa dữ liệu.',
       'Rèn luyện phương pháp luận giải quyết vấn đề dựa trên bằng chứng dữ liệu (Data-driven Problem Solving).',
-      'Xây dựng kỹ năng giao tiếp chiến lược, quản trị dự án và tư duy kinh doanh hiện đại.'
+      'Xây dựng tư duy hệ thống và phân tích số liệu tài chính - kinh doanh giúp chuyển dịch thuận lợi sang ngành Logistics.'
     ],
-    impact: 'Nền tảng tư duy cấu trúc hóa và phân tích số liệu giúp chuyển dịch dễ dàng sang lĩnh vực Logistics.'
+    impact: 'Nền tảng tư duy cấu trúc hóa và phân tích số liệu giúp Thủy nhanh chóng làm chủ các luồng dữ liệu chuỗi cung ứng.'
   },
   2: {
+    period: '2022 – 2023',
+    badge: 'QUẢN LÝ BƯU CỤC TUYẾN ĐẦU',
+    role: 'Area Manager (AM - Quản Lý Khu Vực)',
+    company: 'Ninja Van Vietnam · Khối Vận Hành Bưu Cục Tuyến Đầu',
+    bullets: [
+      'Trực tiếp quản lý và điều phối mạng lưới bưu cục và đội ngũ bưu tá tại khu vực phụ trách.',
+      'Tối ưu hóa tỷ lệ giao hàng thành công (Success Rate), giám sát chặt chẽ tỷ lệ gán đơn và giải phóng tồn kho hàng ngày.',
+      'Thực chiến xử lý sự cố hàng hóa, điều phối tải bưu tá và giải quyết khiếu nại khách hàng ngay tại điểm nóng tuyến đầu.'
+    ],
+    impact: 'Kinh nghiệm AM thực chiến tại Ninja Van giúp Thủy thấu hiểu sâu sắc nỗi đau vận hành bưu cục, tạo bước đệm hoàn hảo khi bước qua cánh cổng GHN.'
+  },
+  3: {
     period: '2023 – 2024',
-    badge: 'ĐIỂM XUẤT PHÁT TẠI GHN',
+    badge: 'CÁNH CỔNG GIA NHẬP GHN',
     role: 'Key Account Care (KAC)',
     company: 'Giao Hàng Nhanh (GHN Express) · Chăm Sóc Khách Hàng Trọng Điểm',
     bullets: [
-      'Khởi đầu tại GHN với vị trí KAC (Key Account Care): Trực tiếp tiếp nhận, phân loại và xử lý các ca khiếu nại khẩn cấp, cứu đơn hàng cho các đối tác lớn.',
+      'Chính thức bước qua cánh cổng GHN với vị trí KAC: Trực tiếp tiếp nhận, phân loại và xử lý các ca khiếu nại khẩn cấp, cứu đơn hàng cho các sàn TMĐT lớn.',
       'Làm việc sâu sát giữa khối dịch vụ khách hàng với đội ngũ Vận hành trung chuyển (HUB) và bưu cục cơ sở để tháo gỡ điểm nghẽn giao hàng.',
-      'Thấu hiểu tận tường tâm lý và nỗi đau của khách hàng khi đơn hàng bị trễ hoặc xảy ra sự cố, từ đó nhận diện các mắt xích vận hành cần tối ưu.'
+      'Thấu hiểu tận tường tâm lý và nỗi đau của đối tác lớn khi đơn hàng bị trễ hoặc xảy ra sự cố, từ đó nhận diện các mắt xích vận hành cần tối ưu bằng dữ liệu.'
     ],
-    impact: 'Kinh nghiệm thực chiến quý giá từ vị trí KAC là nền móng vững chắc giúp Thủy hiểu rõ vận hành cơ sở để thăng tiến lên KA.'
-  },
-  3: {
-    period: '2024 – 2025',
-    badge: '🏆 CHIẾN BINH XUẤT SẮC GHN 2025',
-    role: 'Key Account Executive (KA) · Team Sàn Shopee - Tiki - Lazada',
-    company: 'Giao Hàng Nhanh (GHN Express) · Quản Lý Khách Hàng Doanh Nghiệp Sàn TMĐT',
-    awardBanner: {
-      title: 'GIẢI THƯỞNG: CHIẾN BINH XUẤT SẮC NĂM 2025',
-      presenter: 'Ban Giám Đốc Công Ty Cổ Phần Giao Hàng Nhanh (GHN Express) trao tặng',
-      reason: 'Vinh danh cá nhân xuất sắc toàn diện thuộc team KA Sàn TMĐT (Shopee, Tiki, Lazada) nhờ thành tích tối ưu hóa luồng vận đơn cắt giảm 15-20% tỷ lệ khiếu nại, tự động hóa công cụ phân tích dữ liệu và giữ vững cam kết SLA trong các mùa Siêu Sale cao điểm.'
-    },
-    bullets: [
-      'Chuyển sang team KA, trực tiếp phụ trách điều phối và cố vấn chiến lược cho các đối tác Sàn Thương Mại Điện Tử hàng đầu: Shopee, Tiki, Lazada.',
-      'Dự báo sản lượng, phối hợp cùng các sàn thiết kế lại luồng trạng thái vận đơn (shipping status flow), cắt giảm 15-20% tỷ lệ khiếu nại phát sinh.',
-      'Chủ động học hỏi lập trình, tự tay phát triển các công cụ báo cáo tự động bằng Google Apps Script & Python, cắt giảm 30% thời gian thao tác thủ công cho team.',
-      'Xử lý xuất sắc các đợt Siêu Sale Mega Campaign bão táp, vinh dự được Ban Giám Đốc trao tặng cúp vinh danh "Chiến Binh Xuất Sắc Năm 2025".'
-    ],
-    impact: 'Bước chuyển mình vượt bậc từ KAC sang KA Sàn TMĐT — bảo chứng năng lực quản trị đối tác lớn và tư duy tự động hóa dữ liệu.'
+    impact: 'Hiểu rõ góc nhìn của cả khách hàng lẫn bưu cục, mở ra cơ hội thăng tiến vượt bậc lên quản lý Key Account cấp cao.'
   },
   4: {
-    period: 'Hiện tại',
-    badge: 'QUẢN TRỊ VẬN HÀNH 5 TỈNH THÀNH',
-    role: 'Assistant Regional Director (Trợ Lý Giám Đốc Vùng Nam Trung Bộ)',
-    company: 'Giao Hàng Nhanh (GHN) · Vận Hành 5 Tỉnh: Khánh Hòa, Lâm Đồng, Đắk Nông, Ninh Thuận, Bình Thuận',
+    period: '2024 – 2025',
+    badge: '🏆 CHIẾN BINH XUẤT SẮC 2025',
+    role: 'Key Account Executive (Shopee · Tiki · Lazada)',
+    company: 'Giao Hàng Nhanh (GHN Express) · Khối Khách Hàng Doanh Nghiệp',
+    awardBanner: {
+      title: 'CHIẾN BINH XUẤT SẮC GHN NĂM 2025',
+      desc: 'Vinh danh cá nhân có thành tích vượt trội nhất trong việc bảo vệ sản lượng hàng triệu đơn hàng, duy trì chỉ số cam kết SLA %GTC > 98.5% và xây dựng hệ thống tự động hóa khiếu nại cho các sàn TMĐT hàng đầu Việt Nam.'
+    },
     bullets: [
-      'Được Ban Giám Đốc bổ nhiệm làm Trợ Lý GĐ Vùng: Trực tiếp điều hành vận hành toàn diện quy mô 5 tỉnh thành với 19 AMs, 2 SUPs và 85 bưu cục.',
-      'Lập trình và làm chủ hệ sinh thái 18+ Bot tự động: Tính toán số đơn KPI còn thiếu so với Target để đưa bưu cục thoát bất ổn, bot tự động đề xuất OFF tuyến bảo vệ trạm khi quá tải, bot push hàng aging...',
-      'Thiết lập hệ thống kiểm soát kỷ luật 5 mốc giờ vàng, bot điểm danh Kaizen 5S kho bãi và định vị GPS thực địa cho đội ngũ HRBP & Giám sát SUP.',
-      'Theo dõi và tối ưu các chỉ số trọng yếu (%GTC, %ODR, %OPR, %FD), biến dữ liệu thành hành động can thiệp tức thì bảo vệ an toàn kho bãi.'
+      'Quản lý trực tiếp các tài khoản sàn TMĐT chiến lược hàng đầu (Shopee, Tiki, Lazada) với sản lượng hàng trăm nghìn đơn mỗi ngày.',
+      'Xây dựng Dashboard tự động hóa giám sát SLA real-time, cảnh báo sớm các điểm nghẽn kho bãi và trung chuyển trong các đợt Mega Sale.',
+      'Đàm phán và thống nhất quy trình phối hợp giải quyết khiếu nại nhanh với đội ngũ Ops sàn, giảm 20% thời gian xử lý sự cố hoàn trả.'
     ],
-    impact: 'Tự động hóa toàn diện hệ thống Control Tower, đồng hành cùng Ban Giám Đốc đưa Vùng Nam Trung Bộ về đích rực rỡ.'
+    impact: 'Xuất sắc đạt danh hiệu Chiến Binh Xuất Sắc 2025 do Ban Giám Đốc GHN trao tặng — minh chứng cho năng lực thực chiến hàng đầu.'
+  },
+  5: {
+    period: '2026 – Hiện tại',
+    badge: 'VỊ TRÍ HIỆN TẠI',
+    role: 'Assistant Regional Director (Trợ lý Giám Đốc Vùng Nam Trung Bộ)',
+    company: 'Giao Hàng Nhanh (GHN Express) · Địa bàn: Khánh Hòa, Lâm Đồng, Đắk Nông, Ninh Thuận, Bình Thuận',
+    bullets: [
+      'Trực tiếp hỗ trợ Giám đốc Vùng điều hành toàn diện quy mô 5 tỉnh thành với đội ngũ 19 AMs + 2 SUPs và 85 bưu cục.',
+      'Kiến trúc và triển khai Web App Control Tower tích hợp AI MCP, tự động hóa 100% pipeline báo cáo ca sáng và ca trưa (%OPR, %ODR, %FD).',
+      'Xây dựng thuật toán bóc tách giao thoa 3 điều kiện phát hiện gian lận GPS và COD gối đầu, triệt tiêu 95% nguy cơ thất thoát dòng tiền.',
+      'Thiết lập mô hình xếp hạng năng lực AM/Bưu cục minh bạch, giúp Ban Giám đốc Vùng ra quyết định can thiệp chính xác trong 15 phút.'
+    ],
+    impact: 'Chuyển hóa hoàn toàn cách thức điều hành vùng từ "báo cáo thủ công bị động" sang "hệ thống cảnh báo sớm và can thiệp tức thì bằng dữ liệu".'
   }
 };
+
+const CHIBI_STOPS = [
+  { id: 1, x: 80, y: 300, msg: "🎓 Xuất phát: Cử nhân UEH!", shirt: "#3b82f6", item: "#cbd5e1" },
+  { id: 2, x: 260, y: 300, msg: "📦 Area Manager @ Ninja Van!", shirt: "#dc2626", item: "#f59e0b" },
+  { id: "gate", x: 385, y: 275, msg: "⛩️ MỞ CỔNG GHN! Bước vào nhà Cam!", shirt: "#f97316", item: "#22c55e" },
+  { id: 3, x: 460, y: 230, msg: "🧡 KAC @ GHN: Giải cứu đơn hàng!", shirt: "#f97316", item: "#06b6d4" },
+  { id: 4, x: 660, y: 130, msg: "🏆 KA Sàn TMĐT · Chiến Binh Xuất Sắc!", shirt: "#f97316", item: "#fbbf24" },
+  { id: 5, x: 870, y: 65, msg: "🚀 Trợ Lý GĐ Vùng NTB (5 Tỉnh)!", shirt: "#f97316", item: "#d4f236" }
+];
 
 function initCareerJourney() {
   const nodes = document.querySelectorAll('.journey-node');
@@ -862,59 +881,174 @@ function initCareerJourney() {
   const jBullets = document.getElementById('jBullets');
   const jFooter = document.getElementById('jFooter');
 
-  nodes.forEach((node) => {
-    node.addEventListener('click', (e) => {
-      const stopId = parseInt(node.getAttribute('data-stop'), 10);
-      const data = JOURNEY_STOPS[stopId];
-      if (!data) return;
+  const chibi = document.getElementById('chibiCharacter');
+  const chibiMsg = document.getElementById('chibiMsg');
+  const chibiShirt = document.getElementById('chibiShirt');
+  const chibiItem = document.getElementById('chibiItem');
+  const ghnGate = document.getElementById('ghnGate');
 
-      nodes.forEach((n) => n.classList.remove('active'));
-      node.classList.add('active');
+  const btnNext = document.getElementById('btnChibiNext');
+  const btnAuto = document.getElementById('btnChibiAuto');
+  const btnReset = document.getElementById('btnChibiReset');
+  const statusText = document.getElementById('chibiStatusText');
 
-      if (jPeriod) jPeriod.textContent = data.period;
-      if (jBadge) jBadge.textContent = data.badge;
-      if (jRole) jRole.textContent = data.role;
-      if (jCompany) jCompany.textContent = data.company;
+  let currentChibiIndex = CHIBI_STOPS.length - 1; // Default at Current (Stop 5)
+  let autoTimer = null;
 
-      if (jBullets) {
-        let awardHtml = '';
-        if (data.awardBanner) {
-          awardHtml = `
-            <div class="award-banner-card">
-              <div class="abc-trophy-wrap">
-                <span class="abc-trophy-icon">🏆</span>
-                <span class="abc-sparkle s1">✨</span>
-                <span class="abc-sparkle s2">✨</span>
-              </div>
-              <div class="abc-content">
-                <div class="abc-header">
-                  <span class="abc-tag">Vinh Danh Cá Nhân Xuất Sắc Toàn Diện</span>
-                  <h4 class="abc-title">${data.awardBanner.title}</h4>
-                </div>
-                <p class="abc-presenter">🎖️ <strong>Đơn vị trao thưởng:</strong> ${data.awardBanner.presenter}</p>
-                <p class="abc-reason">${data.awardBanner.reason}</p>
-              </div>
+  function renderStopDetails(stopId, event) {
+    const data = JOURNEY_STOPS[stopId];
+    if (!data) return;
+
+    nodes.forEach(n => {
+      const nid = parseInt(n.getAttribute('data-stop'), 10);
+      n.classList.toggle('active', nid === stopId);
+    });
+
+    if (jPeriod) jPeriod.textContent = data.period;
+    if (jBadge) jBadge.textContent = data.badge;
+    if (jRole) jRole.textContent = data.role;
+    if (jCompany) jCompany.textContent = data.company;
+
+    if (jBullets) {
+      let awardHtml = '';
+      if (data.awardBanner) {
+        awardHtml = `
+          <div class="award-banner-card">
+            <div class="abc-trophy-wrap">
+              <span class="abc-trophy-icon">🏆</span>
+              <span class="abc-sparkle s1">✨</span>
+              <span class="abc-sparkle s2">✨</span>
             </div>
-          `;
-        }
-        jBullets.innerHTML = awardHtml + data.bullets
-          .map((b) => `<li>${b}</li>`)
-          .join('');
+            <div class="abc-content">
+              <div class="abc-header">
+                <span class="abc-tag">Vinh Danh Cá Nhân Xuất Sắc Toàn Diện</span>
+                <h4 class="abc-title">${data.awardBanner.title}</h4>
+              </div>
+              <p class="abc-reason">${data.awardBanner.desc}</p>
+            </div>
+          </div>
+        `;
       }
 
-      if (jFooter) {
-        jFooter.innerHTML = `<span class="j-impact-tag"><strong>Tác động chính:</strong> ${data.impact}</span>`;
+      jBullets.innerHTML = awardHtml + data.bullets.map(b => `<li>${b}</li>`).join('');
+    }
+
+    if (jFooter) {
+      jFooter.innerHTML = `<span class="j-impact-tag"><strong>Tác động chính:</strong> ${data.impact}</span>`;
+    }
+
+    if (stopId === 4) {
+      triggerAwardConfetti(event);
+      if (window.soundFX && window.soundFX.playAwardChime) {
+        window.soundFX.playAwardChime();
+      }
+    }
+  }
+
+  function walkChibiTo(index, event) {
+    if (index < 0 || index >= CHIBI_STOPS.length) return;
+    currentChibiIndex = index;
+    const target = CHIBI_STOPS[index];
+
+    if (chibi) {
+      chibi.classList.add('walking');
+      chibi.setAttribute('transform', `translate(${target.x}, ${target.y})`);
+      if (chibiMsg) chibiMsg.textContent = target.msg;
+
+      // Uniform color change
+      if (chibiShirt && target.shirt) {
+        chibiShirt.setAttribute('fill', target.shirt);
+      }
+      if (chibiItem && target.item) {
+        chibiItem.setAttribute('fill', target.item);
       }
 
-      // Special Award Celebratory Effects when selecting 2025 stop
-      if (stopId === 3) {
-        triggerAwardConfetti(e);
-        if (window.soundFX && window.soundFX.playAwardChime) {
-          window.soundFX.playAwardChime();
-        }
+      setTimeout(() => {
+        chibi.classList.remove('walking');
+      }, 850);
+    }
+
+    // Gate opening animation
+    if (ghnGate) {
+      if (target.id >= 3 || target.id === 'gate') {
+        ghnGate.classList.add('gate-open');
+      } else {
+        ghnGate.classList.remove('gate-open');
+      }
+    }
+
+    // Update details card if it's a numeric milestone
+    if (typeof target.id === 'number') {
+      renderStopDetails(target.id, event);
+    }
+
+    if (statusText) {
+      statusText.innerHTML = `📍 Đang ở mốc: <strong>${target.msg}</strong>`;
+    }
+  }
+
+  // Click on nodes
+  nodes.forEach(node => {
+    node.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+      const stopId = parseInt(node.getAttribute('data-stop'), 10);
+      const chibiIdx = CHIBI_STOPS.findIndex(s => s.id === stopId);
+      if (chibiIdx !== -1) {
+        walkChibiTo(chibiIdx, e);
       }
     });
   });
+
+  // Click directly on GHN Gate
+  if (ghnGate) {
+    ghnGate.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+      const gateIdx = CHIBI_STOPS.findIndex(s => s.id === 'gate');
+      if (gateIdx !== -1) {
+        walkChibiTo(gateIdx, e);
+        showToast('⛩️ <strong>CÁNH CỔNG GHN ĐÃ MỞ!</strong> Chào mừng Thanh Thủy bước vào ngôi nhà áo Cam.');
+      }
+    });
+  }
+
+  // Controller Buttons
+  if (btnNext) {
+    btnNext.addEventListener('click', (e) => {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+      let next = currentChibiIndex + 1;
+      if (next >= CHIBI_STOPS.length) next = 0;
+      walkChibiTo(next, e);
+    });
+  }
+
+  if (btnReset) {
+    btnReset.addEventListener('click', (e) => {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+      walkChibiTo(0, e);
+    });
+  }
+
+  if (btnAuto) {
+    btnAuto.addEventListener('click', () => {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+      let idx = 0;
+      walkChibiTo(0);
+      autoTimer = setInterval(() => {
+        idx++;
+        if (idx < CHIBI_STOPS.length) {
+          walkChibiTo(idx);
+        } else {
+          clearInterval(autoTimer);
+          autoTimer = null;
+        }
+      }, 1600);
+    });
+  }
+
+  // Initialize at current position
+  walkChibiTo(CHIBI_STOPS.length - 1);
 }
 
 function triggerAwardConfetti(event) {
