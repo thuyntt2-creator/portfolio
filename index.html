@@ -145,28 +145,84 @@
           </div>
         </div>
 
-        <!-- Right Side: The Clean Aesthetic MV Card -->
+        <!-- Right Side: In-Place Live MV Player with Real-Time Running Lyrics -->
         <div class="hero-mv-sidebar">
-          <div class="mv-card-neo" id="btnOpenMvModal" role="button" tabindex="0" aria-label="Mở MV: MAKE DATA MOVE">
+          <div class="mv-card-neo" id="mvLiveCard" role="region" aria-label="Trình phát MV: MAKE DATA MOVE">
             <div class="mv-neo-buddy" aria-hidden="true">
               <span class="buddy-pixel">👾</span>
             </div>
-            <div class="mv-thumbnail-wrapper">
-              <img src="assets/mv_cover.jpg" alt="MV MAKE DATA MOVE" class="mv-cover-img" loading="lazy" />
+            <div class="mv-thumbnail-wrapper" id="mvThumbnailWrapper">
+              <img src="assets/mv_cover.jpg" alt="MV MAKE DATA MOVE" class="mv-cover-img" id="mvCoverImg" loading="lazy" />
               <div class="mv-overlay-gradient"></div>
-              <div class="mv-play-btn" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+
+              <!-- Big Play / Pause Button in Center -->
+              <button type="button" class="mv-play-btn" id="btnMvPlayToggle" aria-label="Phát hoặc tạm dừng bài hát">
+                <svg id="mvPlaySvg" viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
                   <path d="M8 5v14l11-7z"/>
                 </svg>
+              </button>
+
+              <!-- Live Synchronized Karaoke Lyrics Overlay directly on the Video -->
+              <div class="mv-lyrics-overlay" id="mvLyricsOverlay">
+                <div class="mv-lyric-current" id="mvLyricCurrent">▶ Bấm Play để nghe nhạc & chạy lời...</div>
+                <div class="mv-lyric-next" id="mvLyricNext">MAKE DATA MOVE · Suno AI × Thủy</div>
               </div>
-              <div class="mv-badge-duration">
-                <span class="mv-dot-live"></span>
-                3:18
+
+              <!-- Audio Progress Bar Overlay -->
+              <div class="mv-player-bar-container">
+                <div class="mv-progress-track" id="mvProgressTrack">
+                  <div class="mv-progress-fill" id="mvProgressFill"></div>
+                </div>
+                <div class="mv-time-row">
+                  <span class="mv-time-current" id="mvTimeCurrent">0:00</span>
+                  <span class="mv-time-duration" id="mvTimeDuration">3:18</span>
+                </div>
               </div>
             </div>
+
             <div class="mv-card-footer">
-              <h4 class="mv-title">MAKE DATA MOVE</h4>
-              <span class="mv-credits">MV · Suno × Thuy</span>
+              <div class="mv-footer-left">
+                <h4 class="mv-title">MAKE DATA MOVE</h4>
+                <div class="mv-mini-eq" id="mvMiniEq" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+              <button type="button" class="btn-toggle-full-lyrics" id="btnToggleFullLyrics" aria-expanded="false">
+                <span>📜 Xem toàn bộ lời</span>
+              </button>
+            </div>
+
+            <!-- Expandable Lyrics Drawer directly below the card (No popup!) -->
+            <div class="mv-lyrics-drawer" id="mvLyricsDrawer" hidden>
+              <div class="drawer-header">
+                <span class="dh-title">LỜI BÀI HÁT (FULL LYRICS)</span>
+                <span class="dh-close" id="btnCloseDrawer">Thu gọn ✕</span>
+              </div>
+              <div class="drawer-body">
+                <p class="lyric-line"><strong>[Intro]</strong></p>
+                <p class="lyric-line">Midnight on the terminal screen, signal's turning emerald green.</p>
+                <p class="lyric-line">From the coast to the highland crest, never stop, never settle for less...</p>
+                <p class="lyric-line"><strong>[Verse 1]</strong></p>
+                <p class="lyric-line">Started at the frontline, picking up the call, every single parcel, watching where they fall.</p>
+                <p class="lyric-line">Turned the friction into code, turned the panic into speed,</p>
+                <p class="lyric-line">Building up the systems for everything they need.</p>
+                <p class="lyric-line">Shopee in the fast lane, Tiki on the dash, Lazada rolling through the flash!</p>
+                <p class="lyric-line"><strong>[Pre-Chorus]</strong></p>
+                <p class="lyric-line">Lines of Python burning bright, guiding all the trucks tonight.</p>
+                <p class="lyric-line">We don't wait for things to break, we rewrite the moves they make!</p>
+                <p class="lyric-line"><strong>[Chorus]</strong></p>
+                <p class="lyric-line"><em>MAKE DATA MOVE! (Hey!)</em></p>
+                <p class="lyric-line"><em>Hear the rhythm on the highway roar, five provinces running strong and pure!</em></p>
+                <p class="lyric-line"><em>From the ocean breeze to the mountain peaks, we are the pulse that the city seeks!</em></p>
+                <p class="lyric-line"><em>MAKE OPS FLAWLESS, BREAK THE GROOVE! MAKE DATA MOVE!</em></p>
+                <p class="lyric-line"><strong>[Verse 2]</strong></p>
+                <p class="lyric-line">Twenty-twenty-five came with the gold in hand, best of the best, standing where I stand.</p>
+                <p class="lyric-line">Eighty-five stations locked in sync, fixing every bottleneck in the time you blink.</p>
+                <p class="lyric-line">Calculate the target, clear the line, everything arriving right on time!</p>
+                <p class="lyric-line"><strong>[Outro]</strong></p>
+                <p class="lyric-line">Five provinces, one command... The fastest pulse across the land.</p>
+                <p class="lyric-line">Make data move... Make ops flawless.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -994,145 +1050,6 @@
 
   <!-- Scripts -->
   <script src="script.js?v=ghn7"></script>
-  <!-- Lo-Fi Chill MV Player & Lyrics Modal -->
-  <dialog id="mvModal" class="mv-dialog" aria-labelledby="mvModalTitle">
-    <div class="mv-dialog-content">
-      <div class="mv-dialog-header">
-        <div class="mvd-title-wrap">
-          <span class="mvd-badge" style="color:#ff6b00;">🔥 OFFICIAL THEME SONG · SÔI ĐỘNG & TRUYỀN CẢM HỨNG</span>
-          <h3 id="mvModalTitle" class="mvd-title">MAKE DATA MOVE (Official Theme Song)</h3>
-          <span class="mvd-author">Sáng tác & Thể hiện: <strong>Suno AI × Thanh Thủy</strong> · Thể loại: Modern Synth-Pop & Electronic Indie Dance (English)</span>
-        </div>
-        <button type="button" class="mvd-close-btn" id="btnCloseMvModal" aria-label="Đóng trình phát MV">
-          <svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 5l10 10M15 5L5 15"/>
-          </svg>
-        </button>
-      </div>
 
-      <div class="mv-dialog-body">
-        <!-- Left: Audio Vinyl & Controls -->
-        <div class="mv-player-col">
-          <div class="mv-vinyl-container">
-            <div class="mv-vinyl-disc" id="mvVinylDisc">
-              <img src="assets/mv_cover.jpg" alt="Vinyl Cover" class="mv-vinyl-cover" />
-              <div class="mv-vinyl-center"></div>
-            </div>
-            <div class="mv-sound-status" id="mvSoundStatus">
-              <span class="mv-status-dot"></span>
-              <span id="mvStatusText">Sẵn sàng phát bản nhạc sôi động</span>
-            </div>
-          </div>
-
-          <div class="mv-audio-controls">
-            <button type="button" class="btn-mv-play" id="btnToggleMvAudio">
-              <span id="mvPlayIcon">▶</span>
-              <span id="mvPlayText">Phát Nhạc Lo-Fi</span>
-            </button>
-            <button type="button" class="btn-mv-copy" id="btnCopyLyrics">
-              <span>📋 Chép Lời & Suno Prompt</span>
-            </button>
-          </div>
-
-          <!-- Equalizer Bar Animation -->
-          <div class="mv-equalizer" id="mvEqualizer" aria-hidden="true">
-            <span class="eq-bar"></span>
-            <span class="eq-bar"></span>
-            <span class="eq-bar"></span>
-            <span class="eq-bar"></span>
-            <span class="eq-bar"></span>
-            <span class="eq-bar"></span>
-            <span class="eq-bar"></span>
-            <span class="eq-bar"></span>
-          </div>
-
-          <div class="mv-suno-box">
-            <span class="suno-box-label">💡 CÁCH TẠO BÀI HÁT NÀY TRÊN SUNO:</span>
-            <p>1. Bấm nút <strong>"Chép Lời & Suno Prompt"</strong> bên trên.</p>
-            <p>2. Truy cập <a href="https://suno.com" target="_blank" rel="noopener noreferrer">suno.com</a> -> Bật <em>Custom Mode</em>.</p>
-            <p>3. Dán Prompt vào ô <em>Style</em> và dán Lời vào ô <em>Lyrics</em> -> Bấm Create!</p>
-          </div>
-        </div>
-
-        <!-- Right: Synchronized Lyrics Panel -->
-        <div class="mv-lyrics-col">
-          <div class="lyrics-header">
-            <span class="lh-title">📜 LỜI BÀI HÁT (LYRICS)</span>
-            <span class="lh-hint">Lo-Fi Beats to Relax & Operate</span>
-          </div>
-          <div class="lyrics-scroll-area" id="lyricsScrollArea">
-            <div class="lyrics-verse">
-              <span class="verse-tag">[Intro — Crisp electronic drums, pulsing synth bass & chic guitar groove]</span>
-              <p>Midnight on the terminal screen,</p>
-              <p>Signal's turning emerald green.</p>
-              <p>From the coast to the highland crest,</p>
-              <p>Never stop, never settle for less...</p>
-            </div>
-
-            <div class="lyrics-verse">
-              <span class="verse-tag">[Verse 1 — Stylish, confident rhythm: KAC & KA era]</span>
-              <p>Started at the frontline, picking up the call,</p>
-              <p>Every single parcel, watching where they fall.</p>
-              <p>Turned the friction into code, turned the panic into speed,</p>
-              <p>Building up the systems for everything they need.</p>
-              <p><strong>Shopee</strong> in the fast lane, <strong>Tiki</strong> on the dash,</p>
-              <p><strong>Lazada</strong> rolling through the flash!</p>
-            </div>
-
-            <div class="lyrics-verse">
-              <span class="verse-tag">[Pre-Chorus — Driving synth build-up]</span>
-              <p>Lines of Python burning bright,</p>
-              <p>Guiding all the trucks tonight.</p>
-              <p>We don't wait for things to break,</p>
-              <p>We rewrite the moves they make!</p>
-            </div>
-
-            <div class="lyrics-verse highlight-chorus">
-              <span class="verse-tag">[Chorus — Infectious, energetic, explosive hook]</span>
-              <p><strong>MAKE DATA MOVE! (Hey!)</strong></p>
-              <p><strong>Hear the rhythm on the highway roar,</strong></p>
-              <p><strong>Five provinces running strong and pure!</strong></p>
-              <p><strong>From the ocean breeze to the mountain peaks,</strong></p>
-              <p><strong>We are the pulse that the city seeks!</strong></p>
-              <p><strong>MAKE OPS FLAWLESS, BREAK THE GROOVE!</strong></p>
-              <p><strong>MAKE DATA MOVE!</strong></p>
-            </div>
-
-            <div class="lyrics-verse">
-              <span class="verse-tag">[Verse 2 — The 2025 Award & 5 Provinces Operation]</span>
-              <p>Twenty-twenty-five came with the gold in hand,</p>
-              <p><em>Excellent Warrior</em>, standing where I stand.</p>
-              <p>Eighty-five stations locked in sync,</p>
-              <p>Fixing every bottleneck in the time you blink.</p>
-              <p>Calculate the target, clear the line,</p>
-              <p>Everything arriving right on time!</p>
-            </div>
-
-            <div class="lyrics-verse highlight-chorus">
-              <span class="verse-tag">[Chorus — Maximum energy repeat]</span>
-              <p><strong>MAKE DATA MOVE! (Hey!)</strong></p>
-              <p><strong>Hear the rhythm on the highway roar,</strong></p>
-              <p><strong>Five provinces running strong and pure!</strong></p>
-              <p><strong>From the ocean breeze to the mountain peaks,</strong></p>
-              <p><strong>We are the pulse that the city seeks!</strong></p>
-              <p><strong>MAKE OPS FLAWLESS, BREAK THE GROOVE!</strong></p>
-              <p><strong>MAKE DATA MOVE!</strong></p>
-            </div>
-
-            <div class="lyrics-verse">
-              <span class="verse-tag">[Bridge & Outro — Punchy bass drop, vocal chops]</span>
-              <p>(Vocal chops: <em>Make it move... make it move...</em>)</p>
-              <p>No more noise, no more doubt,</p>
-              <p>That's what data's all about!</p>
-              <p>Five provinces, one command...</p>
-              <p>The fastest pulse across the land.</p>
-              <p><strong>Make data move. Make ops flawless.</strong></p>
-              <p>(Upbeat synth-pop outro fades out with echo)</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </dialog>
 </body>
 </html>

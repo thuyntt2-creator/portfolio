@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLiveTicker();
   initAudioEngine();
   initGhnHighway();
-  initMvModal();
+  initLiveInPlacePlayer();
 });
 
 /* ==========================================================================
@@ -1979,179 +1979,415 @@ function initBotEcosystemMatrix() {
 
 
 /* ==========================================================================
-   LO-FI CHILL MV MODAL CONTROLLER & LYRICS CLIPBOARD
+   IN-PLACE LIVE MV SYNTH-POP PLAYER & REAL-TIME KARAOKE LYRICS ENGINE
    ========================================================================== */
-const SUNO_PROMPT_TEMPLATE = `[STYLE OF MUSIC]
-Modern synth-pop, energetic electronic indie dance, driving four-on-the-floor bassline, crisp confident female vocals, chic, stylish, infectious euro-pop hook, catchy synth leads, 126 bpm, anthemic
+const SYNCHRONIZED_LYRICS = [
+  { time: 0, text: "🎶 [Intro] Midnight on the terminal screen...", next: "Signal's turning emerald green..." },
+  { time: 6, text: "Signal's turning emerald green.", next: "From the coast to the highland crest..." },
+  { time: 11, text: "From the coast to the highland crest, never stop, never settle for less...", next: "Started at the frontline, picking up the call..." },
+  { time: 19, text: "Started at the frontline, picking up the call,", next: "Every single parcel, watching where they fall..." },
+  { time: 25, text: "Every single parcel, watching where they fall.", next: "Turned the friction into code, turned the panic into speed..." },
+  { time: 31, text: "Turned the friction into code, turned the panic into speed,", next: "Building up the systems for everything they need..." },
+  { time: 38, text: "Building up the systems for everything they need.", next: "Shopee in the fast lane, Tiki on the dash..." },
+  { time: 44, text: "Shopee in the fast lane, Tiki on the dash,", next: "Lazada rolling through the flash!" },
+  { time: 48, text: "Lazada rolling through the flash!", next: "Lines of Python burning bright..." },
+  { time: 54, text: "Lines of Python burning bright, guiding all the trucks tonight.", next: "We don't wait for things to break..." },
+  { time: 61, text: "We don't wait for things to break, we rewrite the moves they make!", next: "🔥 MAKE DATA MOVE! (Hey!)" },
+  { time: 67, text: "🔥 MAKE DATA MOVE! (Hey!)", next: "Hear the rhythm on the highway roar..." },
+  { time: 72, text: "Hear the rhythm on the highway roar, five provinces running strong and pure!", next: "From the ocean breeze to the mountain peaks..." },
+  { time: 79, text: "From the ocean breeze to the mountain peaks, we are the pulse that the city seeks!", next: "MAKE OPS FLAWLESS, BREAK THE GROOVE!" },
+  { time: 87, text: "MAKE OPS FLAWLESS, BREAK THE GROOVE! MAKE DATA MOVE!", next: "Twenty-twenty-five came with the gold in hand..." },
+  { time: 96, text: "Twenty-twenty-five came with the gold in hand,", next: "Best of the best, standing where I stand..." },
+  { time: 102, text: "Best of the best, standing where I stand.", next: "Eighty-five stations locked in sync..." },
+  { time: 108, text: "Eighty-five stations locked in sync, fixing every bottleneck in the time you blink.", next: "Calculate the target, clear the line..." },
+  { time: 116, text: "Calculate the target, clear the line, everything arriving right on time!", next: "🔥 MAKE DATA MOVE! (Hey!)" },
+  { time: 124, text: "🔥 MAKE DATA MOVE! (Hey!)", next: "Hear the rhythm on the highway roar..." },
+  { time: 130, text: "Hear the rhythm on the highway roar, five provinces running strong and pure!", next: "From the ocean breeze to the mountain peaks..." },
+  { time: 138, text: "From the ocean breeze to the mountain peaks, we are the pulse that the city seeks!", next: "MAKE OPS FLAWLESS, BREAK THE GROOVE!" },
+  { time: 146, text: "MAKE OPS FLAWLESS, BREAK THE GROOVE! MAKE DATA MOVE!", next: "No more noise, no more doubt..." },
+  { time: 156, text: "No more noise, no more doubt, that's what data's all about!", next: "Five provinces, one command..." },
+  { time: 165, text: "Five provinces, one command... The fastest pulse across the land.", next: "Make data move... Make ops flawless..." },
+  { time: 175, text: "Make data move... Make ops flawless. ✨", next: "GHN Nam Trung Bộ — 2026" }
+];
 
-[TITLE]
-MAKE DATA MOVE (Official Theme Song)
+function initLiveInPlacePlayer() {
+  const card = document.getElementById('mvLiveCard');
+  const btnPlay = document.getElementById('btnMvPlayToggle');
+  const playSvg = document.getElementById('mvPlaySvg');
+  const lyricCurrent = document.getElementById('mvLyricCurrent');
+  const lyricNext = document.getElementById('mvLyricNext');
+  const progressFill = document.getElementById('mvProgressFill');
+  const progressTrack = document.getElementById('mvProgressTrack');
+  const timeCurrent = document.getElementById('mvTimeCurrent');
+  const timeDuration = document.getElementById('mvTimeDuration');
+  const btnToggleLyrics = document.getElementById('btnToggleFullLyrics');
+  const lyricsDrawer = document.getElementById('mvLyricsDrawer');
+  const btnCloseDrawer = document.getElementById('btnCloseDrawer');
 
-[LYRICS]
-[Intro]
-(Crisp electronic drums kick in, pulsing synth bass & chic guitar groove)
-Midnight on the terminal screen,
-Signal's turning emerald green.
-From the coast to the highland crest,
-Never stop, never settle for less...
+  if (!card || !btnPlay) return;
 
-[Verse 1]
-Started at the frontline, picking up the call,
-Every single parcel, watching where they fall.
-Turned the friction into code, turned the panic into speed,
-Building up the systems for everything they need.
-Shopee in the fast lane, Tiki on the dash,
-Lazada rolling through the flash!
+  const TOTAL_DURATION = 198; // 3:18
+  let isPlaying = false;
+  let currentTime = 0;
+  let lastFrameTime = 0;
+  let animFrameId = null;
 
-[Pre-Chorus]
-Lines of Python burning bright,
-Guiding all the trucks tonight.
-We don't wait for things to break,
-We rewrite the moves they make!
+  // Web Audio Synth Engine
+  let audioCtx = null;
+  let masterGain = null;
+  let analyser = null;
+  let noiseBuffer = null;
+  let nextBeatTime = 0;
+  let current16thNote = 0;
+  const BPM = 124;
+  const secondsPerBeat = 60.0 / BPM;
+  const secondsPer16th = secondsPerBeat / 4.0;
 
-[Chorus]
-MAKE DATA MOVE! (Hey!)
-Hear the rhythm on the highway roar,
-Five provinces running strong and pure!
-From the ocean breeze to the mountain peaks,
-We are the pulse that the city seeks!
-MAKE OPS FLAWLESS, BREAK THE GROOVE!
-MAKE DATA MOVE!
+  function initAudioContext() {
+    if (audioCtx) return;
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+    audioCtx = new AudioContextClass();
+    masterGain = audioCtx.createGain();
+    masterGain.gain.setValueAtTime(0.7, audioCtx.currentTime);
 
-[Verse 2]
-Twenty-twenty-five came with the gold in hand,
-Best of the best, standing where I stand.
-Eighty-five stations locked in sync,
-Fixing every bottleneck in the time you blink.
-Calculate the target, clear the line,
-Everything arriving right on time!
+    analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 64;
+    masterGain.connect(analyser);
+    analyser.connect(audioCtx.destination);
 
-[Chorus]
-MAKE DATA MOVE! (Hey!)
-Hear the rhythm on the highway roar,
-Five provinces running strong and pure!
-From the ocean breeze to the mountain peaks,
-We are the pulse that the city seeks!
-MAKE OPS FLAWLESS, BREAK THE GROOVE!
-MAKE DATA MOVE!
-
-[Bridge]
-(Punchy bass drop, vocal chops: "Make it move... make it move...")
-No more noise, no more doubt,
-That's what data's all about!
-
-[Outro]
-Five provinces, one command...
-The fastest pulse across the land.
-Make data move...
-Make ops flawless.
-(Upbeat synth-pop outro fades out with echo)`;
-
-function initMvModal() {
-  const btnOpen = document.getElementById('btnOpenMvModal');
-  const modal = document.getElementById('mvModal');
-  const btnClose = document.getElementById('btnCloseMvModal');
-  const btnToggleAudio = document.getElementById('btnToggleMvAudio');
-  const btnCopyLyrics = document.getElementById('btnCopyLyrics');
-  const vinyl = document.getElementById('mvVinylDisc');
-  const eq = document.getElementById('mvEqualizer');
-  const playIcon = document.getElementById('mvPlayIcon');
-  const playText = document.getElementById('mvPlayText');
-  const statusText = document.getElementById('mvStatusText');
-
-  if (!btnOpen || !modal) return;
-
-  btnOpen.addEventListener('click', () => {
-    modal.showModal();
-    if (window.soundFX && window.soundFX.playPop) window.soundFX.playPop();
-  });
-
-  if (btnClose) {
-    btnClose.addEventListener('click', () => {
-      modal.close();
-    });
-  }
-
-  // Backdrop click
-  modal.addEventListener('click', (e) => {
-    const rect = modal.getBoundingClientRect();
-    const isInDialog = (
-      rect.top <= e.clientY &&
-      e.clientY <= rect.top + rect.height &&
-      rect.left <= e.clientX &&
-      e.clientX <= rect.left + rect.width
-    );
-    if (!isInDialog) {
-      modal.close();
+    // Create white noise for snare and hats
+    const bufferSize = audioCtx.sampleRate * 2;
+    noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      output[i] = Math.random() * 2 - 1;
     }
-  });
-
-  let mvAudio = null;
-  let isPlayingMv = false;
-
-  function stopMvPlayback() {
-    if (mvAudio && !mvAudio.paused) {
-      mvAudio.pause();
-    }
-    isPlayingMv = false;
-    if (vinyl) vinyl.classList.remove('spinning');
-    if (eq) eq.classList.remove('active');
-    if (playIcon) playIcon.textContent = '▶';
-    if (playText) playText.textContent = 'Phát Nhạc';
-    if (statusText) statusText.textContent = 'Sẵn sàng phát nhạc';
   }
 
-  if (btnClose) {
-    btnClose.addEventListener('click', () => {
-      modal.close();
-      stopMvPlayback();
-    });
+  // Synthesizer Drum & Instrument Voices
+  function playKick(time) {
+    if (!audioCtx) return;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(masterGain);
+
+    osc.frequency.setValueAtTime(140, time);
+    osc.frequency.exponentialRampToValueAtTime(36, time + 0.12);
+
+    gain.gain.setValueAtTime(1.0, time);
+    gain.gain.exponentialRampToValueAtTime(0.001, time + 0.22);
+
+    osc.start(time);
+    osc.stop(time + 0.22);
   }
 
-  modal.addEventListener('close', () => {
-    stopMvPlayback();
-  });
+  function playSnare(time) {
+    if (!audioCtx || !noiseBuffer) return;
+    const noiseSource = audioCtx.createBufferSource();
+    noiseSource.buffer = noiseBuffer;
 
-  if (btnToggleAudio) {
-    btnToggleAudio.addEventListener('click', () => {
-      if (!mvAudio) {
-        mvAudio = new Audio('assets/theme_song.m4a');
-        mvAudio.addEventListener('ended', () => {
-          stopMvPlayback();
-          if (playText) playText.textContent = 'Phát Lại';
-          if (statusText) statusText.textContent = 'Đã phát xong bài hát';
-        });
+    const filter = audioCtx.createBiquadFilter();
+    filter.type = 'highpass';
+    filter.frequency.setValueAtTime(800, time);
+
+    const noiseGain = audioCtx.createGain();
+    noiseSource.connect(filter);
+    filter.connect(noiseGain);
+    noiseGain.connect(masterGain);
+
+    noiseGain.gain.setValueAtTime(0.8, time);
+    noiseGain.gain.exponentialRampToValueAtTime(0.01, time + 0.18);
+
+    noiseSource.start(time);
+    noiseSource.stop(time + 0.18);
+
+    // Snare tone body
+    const osc = audioCtx.createOscillator();
+    const oscGain = audioCtx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(180, time);
+    osc.frequency.exponentialRampToValueAtTime(80, time + 0.08);
+
+    oscGain.gain.setValueAtTime(0.6, time);
+    oscGain.gain.exponentialRampToValueAtTime(0.01, time + 0.1);
+
+    osc.connect(oscGain);
+    oscGain.connect(masterGain);
+    osc.start(time);
+    osc.stop(time + 0.1);
+  }
+
+  function playHiHat(time, open = false) {
+    if (!audioCtx || !noiseBuffer) return;
+    const source = audioCtx.createBufferSource();
+    source.buffer = noiseBuffer;
+
+    const filter = audioCtx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.setValueAtTime(8500, time);
+
+    const gain = audioCtx.createGain();
+    source.connect(filter);
+    filter.connect(gain);
+    gain.connect(masterGain);
+
+    const duration = open ? 0.25 : 0.04;
+    gain.gain.setValueAtTime(open ? 0.4 : 0.22, time);
+    gain.gain.exponentialRampToValueAtTime(0.001, time + duration);
+
+    source.start(time);
+    source.stop(time + duration);
+  }
+
+  // Harmonic Chord Progressions: Am (A2/A3) -> F (F2/F3) -> C (C3/C4) -> G (G2/G3)
+  const bassNotes = [55, 43.65, 65.41, 49.0]; // A1, F1, C2, G1
+  const arpScales = [
+    [220, 261.63, 329.63, 440], // Am
+    [174.61, 220, 261.63, 349.23], // F
+    [261.63, 329.63, 392, 523.25], // C
+    [196, 246.94, 293.66, 392]     // G
+  ];
+
+  function playSynthBass(time, chordIdx) {
+    if (!audioCtx) return;
+    const osc = audioCtx.createOscillator();
+    const filter = audioCtx.createBiquadFilter();
+    const gain = audioCtx.createGain();
+
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(bassNotes[chordIdx % 4], time);
+
+    filter.type = 'lowpass';
+    filter.Q.setValueAtTime(4.0, time);
+    filter.frequency.setValueAtTime(350, time);
+    filter.frequency.exponentialRampToValueAtTime(140, time + secondsPer16th * 1.8);
+
+    gain.gain.setValueAtTime(0.5, time);
+    gain.gain.exponentialRampToValueAtTime(0.001, time + secondsPer16th * 1.9);
+
+    osc.connect(filter);
+    filter.connect(gain);
+    gain.connect(masterGain);
+
+    osc.start(time);
+    osc.stop(time + secondsPer16th * 1.9);
+  }
+
+  function playArpLead(time, freq) {
+    if (!audioCtx) return;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(freq, time);
+
+    gain.gain.setValueAtTime(0.18, time);
+    gain.gain.exponentialRampToValueAtTime(0.001, time + secondsPer16th * 1.5);
+
+    osc.connect(gain);
+    gain.connect(masterGain);
+
+    osc.start(time);
+    osc.stop(time + secondsPer16th * 1.5);
+  }
+
+  // Scheduler loops ahead by 150ms
+  function scheduleNotes() {
+    if (!isPlaying || !audioCtx) return;
+    const lookahead = 0.15; // 150ms
+
+    while (nextBeatTime < audioCtx.currentTime + lookahead) {
+      const beat16 = current16thNote % 16;
+      const bar = Math.floor(current16thNote / 16);
+      const chordIdx = bar % 4;
+
+      // 4-on-the-floor kick
+      if (beat16 === 0 || beat16 === 4 || beat16 === 8 || beat16 === 12) {
+        playKick(nextBeatTime);
       }
 
-      isPlayingMv = !isPlayingMv;
-      if (isPlayingMv) {
-        mvAudio.play().catch(e => console.log('Audio playback error:', e));
-        if (vinyl) vinyl.classList.add('spinning');
-        if (eq) eq.classList.add('active');
-        if (playIcon) playIcon.textContent = '⏸';
-        if (playText) playText.textContent = 'Tạm Dừng';
-        if (statusText) statusText.textContent = 'Đang phát: MAKE DATA MOVE 🎵';
-        showToast('🔥 <strong>Đang phát bài hát chính thức:</strong> MAKE DATA MOVE (Suno track)!');
+      // Snare on 2 and 4 (beat 4 and 12 in 16th notes)
+      if (beat16 === 4 || beat16 === 12) {
+        playSnare(nextBeatTime);
+      }
+
+      // Hi-hats: 16th notes with open hat on upbeat
+      if (beat16 % 2 === 0) {
+        playHiHat(nextBeatTime, beat16 === 2 || beat16 === 10);
       } else {
-        mvAudio.pause();
-        if (vinyl) vinyl.classList.remove('spinning');
-        if (eq) eq.classList.remove('active');
-        if (playIcon) playIcon.textContent = '▶';
-        if (playText) playText.textContent = 'Tiếp Tục Phát';
-        if (statusText) statusText.textContent = 'Đã tạm dừng';
+        playHiHat(nextBeatTime, false);
       }
+
+      // Synth bassline pattern
+      if (beat16 === 0 || beat16 === 3 || beat16 === 6 || beat16 === 8 || beat16 === 11 || beat16 === 14) {
+        playSynthBass(nextBeatTime, chordIdx);
+      }
+
+      // Arpeggiated melody line
+      const arpNote = arpScales[chordIdx][beat16 % 4];
+      if (beat16 % 2 === 0) {
+        playArpLead(nextBeatTime, arpNote);
+      }
+
+      nextBeatTime += secondsPer16th;
+      current16thNote++;
+    }
+  }
+
+  function formatTime(sec) {
+    if (isNaN(sec) || !isFinite(sec)) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  }
+
+  if (timeDuration) {
+    timeDuration.textContent = formatTime(TOTAL_DURATION);
+  }
+
+  function updateVisuals(time) {
+    if (timeCurrent) timeCurrent.textContent = formatTime(time);
+    if (progressFill) progressFill.style.width = `${Math.min(100, (time / TOTAL_DURATION) * 100)}%`;
+
+    // Real-time lyrics runner
+    for (let i = SYNCHRONIZED_LYRICS.length - 1; i >= 0; i--) {
+      if (time >= SYNCHRONIZED_LYRICS[i].time) {
+        if (lyricCurrent && lyricCurrent.textContent !== SYNCHRONIZED_LYRICS[i].text) {
+          lyricCurrent.textContent = SYNCHRONIZED_LYRICS[i].text;
+          if (lyricNext) lyricNext.textContent = SYNCHRONIZED_LYRICS[i].next || '';
+        }
+        break;
+      }
+    }
+
+    // Mini equalizer live reaction
+    const eqBars = document.querySelectorAll('#mvMiniEq .eq-bar');
+    if (analyser && isPlaying && eqBars.length > 0) {
+      const dataArray = new Uint8Array(analyser.frequencyBinCount);
+      analyser.getByteFrequencyData(dataArray);
+      eqBars.forEach((bar, idx) => {
+        const val = dataArray[idx * 3] || 100;
+        const h = Math.max(3, Math.min(16, (val / 255) * 16));
+        bar.style.height = `${h}px`;
+      });
+    }
+  }
+
+  function loop(now) {
+    if (!isPlaying) return;
+    if (!lastFrameTime) lastFrameTime = now;
+    const delta = (now - lastFrameTime) / 1000;
+    lastFrameTime = now;
+
+    currentTime += delta;
+    if (currentTime >= TOTAL_DURATION) {
+      stopPlayback();
+      currentTime = 0;
+      updateVisuals(0);
+      return;
+    }
+
+    scheduleNotes();
+    updateVisuals(currentTime);
+    animFrameId = requestAnimationFrame(loop);
+  }
+
+  function startPlayback() {
+    initAudioContext();
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    isPlaying = true;
+    card.classList.add('playing');
+    if (playSvg) {
+      playSvg.innerHTML = '<rect x="6" y="4" width="4" height="16" fill="currentColor"/><rect x="14" y="4" width="4" height="16" fill="currentColor"/>';
+    }
+
+    // Reset beat clock to current position
+    if (audioCtx) {
+      nextBeatTime = audioCtx.currentTime + 0.05;
+      current16thNote = Math.floor(currentTime / secondsPer16th);
+    }
+    lastFrameTime = performance.now();
+    animFrameId = requestAnimationFrame(loop);
+
+    showToast('🔥 <strong>Đang phát bài hát:</strong> MAKE DATA MOVE (chạy lời trực tiếp)');
+  }
+
+  function stopPlayback() {
+    isPlaying = false;
+    card.classList.remove('playing');
+    if (playSvg) {
+      playSvg.innerHTML = '<path d="M8 5v14l11-7z"/>';
+    }
+    if (animFrameId) {
+      cancelAnimationFrame(animFrameId);
+      animFrameId = null;
+    }
+    // Reset eq bars
+    document.querySelectorAll('#mvMiniEq .eq-bar').forEach(b => b.style.height = '4px');
+  }
+
+  function togglePlay() {
+    if (isPlaying) {
+      stopPlayback();
+    } else {
+      startPlayback();
+    }
+  }
+
+  btnPlay.addEventListener('click', (e) => {
+    e.stopPropagation();
+    togglePlay();
+  });
+
+  // Scrubbing progress track
+  if (progressTrack) {
+    progressTrack.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const rect = progressTrack.getBoundingClientRect();
+      const clickRatio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      currentTime = clickRatio * TOTAL_DURATION;
+      if (audioCtx) {
+        current16thNote = Math.floor(currentTime / secondsPer16th);
+        nextBeatTime = audioCtx.currentTime + 0.05;
+      }
+      updateVisuals(currentTime);
     });
   }
 
-  if (btnCopyLyrics) {
-    btnCopyLyrics.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(SUNO_PROMPT_TEMPLATE);
-        showToast('📋 <strong>Đã chép Prompt & Lời bài hát!</strong> Hãy dán vào ô Custom của Suno.com để tạo bài hát ngay nhé!');
-        if (window.soundFX && window.soundFX.playSuccess) window.soundFX.playSuccess();
-      } catch (e) {
-        showToast('⚠️ Không thể tự chép, bạn hãy bôi đen lời bài hát bên cạnh nhé!');
-      }
+  // Toggle full lyrics accordion drawer
+  if (btnToggleLyrics && lyricsDrawer) {
+    btnToggleLyrics.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = lyricsDrawer.hidden;
+      lyricsDrawer.hidden = !isHidden;
+      btnToggleLyrics.setAttribute('aria-expanded', String(isHidden));
+      btnToggleLyrics.innerHTML = isHidden ? '<span>Thu gọn lời ✕</span>' : '<span>📜 Xem toàn bộ lời</span>';
     });
   }
+
+  if (btnCloseDrawer && lyricsDrawer && btnToggleLyrics) {
+    btnCloseDrawer.addEventListener('click', (e) => {
+      e.stopPropagation();
+      lyricsDrawer.hidden = true;
+      btnToggleLyrics.setAttribute('aria-expanded', 'false');
+      btnToggleLyrics.innerHTML = '<span>📜 Xem toàn bộ lời</span>';
+    });
+  }
+
+  // Expose global debug controller
+  window.mvPlayer = {
+    play: startPlayback,
+    pause: stopPlayback,
+    toggle: togglePlay,
+    seek: (sec) => {
+      currentTime = sec;
+      updateVisuals(sec);
+    },
+    getCurrentTime: () => currentTime,
+    isPlaying: () => isPlaying
+  };
 }
