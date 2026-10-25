@@ -1956,6 +1956,544 @@ dialog::backdrop {
 }
 
 /* ==========================================================================
+   GHN EXPRESS ANIMATED HIGHWAY (Xe Tải & Bưu Tá Giao Hàng Nam Trung Bộ)
+   ========================================================================== */
+.ghn-highway-section {
+  max-width: var(--container-max);
+  margin: 10px auto 40px;
+  padding: 0 28px;
+  position: relative;
+  z-index: 20;
+}
+
+.highway-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.highway-title-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.highway-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #f36523;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.highway-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.highway-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-truck-action {
+  background: rgba(243, 101, 35, 0.12);
+  color: #f36523;
+  border: 1px solid rgba(243, 101, 35, 0.35);
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-spring);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-truck-action:hover {
+  background: #f36523;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(243, 101, 35, 0.35);
+}
+
+.btn-turbo {
+  background: rgba(212, 242, 54, 0.12);
+  color: var(--accent-lime);
+  border-color: rgba(212, 242, 54, 0.35);
+}
+
+.btn-turbo:hover {
+  background: var(--accent-lime);
+  color: #080c14;
+  box-shadow: 0 6px 18px rgba(212, 242, 54, 0.4);
+}
+
+/* Highway Track Container */
+.highway-track-container {
+  background: linear-gradient(180deg, rgba(14, 20, 34, 0.9) 0%, rgba(8, 12, 20, 0.98) 100%);
+  border: 1px solid rgba(243, 101, 35, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px 34px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  min-height: 180px;
+}
+
+/* Milestones */
+.road-milestones {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  padding-bottom: 12px;
+  margin-bottom: 30px;
+}
+
+.milestone-station {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* Road Asphalt & Scrolling Lanes */
+.road-asphalt {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #111827;
+  border-top: 2px solid #2d3748;
+}
+
+.road-lane-lines {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 200%;
+  height: 3px;
+  background-image: repeating-linear-gradient(90deg, #f59e0b 0, #f59e0b 24px, transparent 24px, transparent 50px);
+  transform: translateY(-50%);
+  animation: road-scroll 0.8s linear infinite;
+}
+
+@keyframes road-scroll {
+  from { transform: translate(0, -50%); }
+  to { transform: translate(-50px, -50%); }
+}
+
+/* Common Vehicle Box */
+.ghn-vehicle {
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
+  z-index: 5;
+  transition: filter 0.2s ease, transform 0.15s ease;
+}
+
+.ghn-vehicle:hover {
+  filter: drop-shadow(0 0 14px rgba(243, 101, 35, 0.75));
+}
+
+.ghn-vehicle:active {
+  transform: scale(0.96);
+}
+
+.ghn-vehicle:focus-visible {
+  outline: 2px solid var(--accent-lime);
+  outline-offset: 4px;
+}
+
+/* GHN Express 5-Ton Truck */
+.ghn-truck {
+  bottom: 22px;
+  width: 175px;
+  height: 68px;
+  animation: truck-drive 14s infinite linear;
+}
+
+@keyframes truck-drive {
+  0% { left: -220px; }
+  100% { left: 105%; }
+}
+
+.ghn-truck.turbo-active {
+  animation: truck-drive-turbo 4.5s infinite linear !important;
+}
+
+@keyframes truck-drive-turbo {
+  0% { left: -220px; }
+  100% { left: 105%; }
+}
+
+.truck-body {
+  display: flex;
+  align-items: flex-end;
+  height: 52px;
+}
+
+.truck-container {
+  width: 120px;
+  height: 52px;
+  background: #ffffff;
+  border-radius: 4px 0 0 2px;
+  border: 1px solid #d1d5db;
+  border-right: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10px;
+  position: relative;
+  box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.truck-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: #f36523;
+  border-radius: 4px 0 0 0;
+}
+
+.truck-logo-area {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.ghn-logo-text {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.15rem;
+  color: #f36523;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.ghn-logo-sub {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 0.58rem;
+  color: #0b2545;
+}
+
+.truck-slogan {
+  font-size: 0.55rem;
+  color: #4b5563;
+  font-family: var(--font-mono);
+  margin-top: 2px;
+}
+
+.container-groove {
+  position: absolute;
+  top: 10px;
+  bottom: 8px;
+  right: 14px;
+  width: 1px;
+  background: #e5e7eb;
+  box-shadow: 1px 0 0 #9ca3af;
+}
+
+/* Truck Cabin */
+.truck-cabin {
+  width: 46px;
+  height: 44px;
+  background: #f36523;
+  border-radius: 0 14px 4px 0;
+  position: relative;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cabin-window {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  width: 24px;
+  height: 16px;
+  background: #0b2545;
+  border-radius: 0 8px 0 0;
+  overflow: hidden;
+}
+
+.driver-silhouette {
+  position: absolute;
+  bottom: 0;
+  left: 4px;
+  width: 10px;
+  height: 11px;
+  background: #f3f4f6;
+  border-radius: 50% 50% 0 0;
+}
+
+.cabin-headlight {
+  position: absolute;
+  bottom: 8px;
+  right: 2px;
+  width: 6px;
+  height: 6px;
+  background: #fef08a;
+  border-radius: 2px;
+  box-shadow: 0 0 10px #fef08a;
+}
+
+.truck-headlight-beam {
+  position: absolute;
+  bottom: 14px;
+  right: -130px;
+  width: 140px;
+  height: 35px;
+  background: linear-gradient(90deg, rgba(254, 240, 138, 0.4) 0%, rgba(254, 240, 138, 0) 100%);
+  clip-path: polygon(0 40%, 100% 0%, 100% 100%, 0 60%);
+  pointer-events: none;
+}
+
+.cabin-bumper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 5px;
+  background: #374151;
+  border-radius: 0 2px 2px 0;
+}
+
+/* Wheels */
+.truck-wheels {
+  position: absolute;
+  bottom: -9px;
+  left: 0;
+  right: 0;
+  display: flex;
+}
+
+.wheel {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #1f2937;
+  border-radius: 50%;
+  border: 3px solid #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.wheel-rim {
+  width: 8px;
+  height: 8px;
+  background: #9ca3af;
+  border-radius: 50%;
+  animation: wheel-spin 0.4s linear infinite;
+  position: relative;
+}
+
+.wheel-rim::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 3px;
+  width: 2px;
+  height: 6px;
+  background: #111827;
+}
+
+@keyframes wheel-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.wheel-rear { left: 16px; }
+.wheel-mid { left: 42px; }
+.wheel-front { right: 8px; }
+
+/* Exhaust Turbo Flame */
+.exhaust-pipe {
+  position: absolute;
+  bottom: 2px;
+  left: -12px;
+}
+
+.turbo-flame {
+  display: none;
+  width: 24px;
+  height: 10px;
+  background: linear-gradient(270deg, #38bdf8, #06b6d4, #ffffff);
+  border-radius: 50% 0 0 50%;
+  box-shadow: 0 0 14px #38bdf8;
+  animation: flame-flicker 0.1s infinite alternate;
+}
+
+.ghn-truck.turbo-active .turbo-flame {
+  display: block;
+}
+
+@keyframes flame-flicker {
+  from { transform: scaleX(0.8) scaleY(0.9); }
+  to { transform: scaleX(1.3) scaleY(1.1); }
+}
+
+/* Interactive Click Speech Bubble */
+.truck-bubble {
+  position: absolute;
+  top: -28px;
+  left: 30px;
+  background: #f36523;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(243, 101, 35, 0.4);
+  pointer-events: none;
+  animation: bubble-bob 2s infinite ease-in-out;
+}
+
+@keyframes bubble-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* GHN Scooter / Bưu tá giao hàng */
+.ghn-scooter {
+  bottom: 16px;
+  width: 58px;
+  height: 46px;
+  animation: scooter-drive 8.5s infinite linear;
+  animation-delay: -3.5s;
+}
+
+@keyframes scooter-drive {
+  0% { left: -100px; }
+  100% { left: 105%; }
+}
+
+.scooter-rider {
+  position: absolute;
+  bottom: 16px;
+  left: 14px;
+}
+
+.rider-helmet {
+  width: 14px;
+  height: 14px;
+  background: #f36523;
+  border-radius: 50% 50% 40% 40%;
+  border-right: 3px solid #111827;
+}
+
+.rider-body {
+  width: 12px;
+  height: 14px;
+  background: #f36523;
+  border-radius: 3px;
+  margin-top: -2px;
+  margin-left: 1px;
+}
+
+.scooter-cargo-box {
+  position: absolute;
+  bottom: 14px;
+  left: -2px;
+  width: 18px;
+  height: 20px;
+  background: #f36523;
+  border-radius: 2px;
+  border: 1px solid #ea580c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.45rem;
+  font-weight: 900;
+}
+
+.cargo-icon {
+  font-size: 0.55rem;
+  line-height: 1;
+}
+
+.scooter-chassis {
+  position: absolute;
+  bottom: 6px;
+  left: 10px;
+  width: 32px;
+  height: 8px;
+  background: #374151;
+  border-radius: 2px 8px 0 0;
+}
+
+.scooter-light {
+  position: absolute;
+  top: 0;
+  right: -2px;
+  width: 4px;
+  height: 4px;
+  background: #fef08a;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #fef08a;
+}
+
+.scooter-wheels .wheel {
+  width: 14px;
+  height: 14px;
+  bottom: -4px;
+}
+
+.wheel-s-rear { left: 2px; }
+.wheel-s-front { right: 4px; }
+
+/* Dropped Parcels Animations */
+.parcel-drop-zone {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-parcel-badge {
+  position: absolute;
+  background: rgba(17, 24, 39, 0.95);
+  border: 1px solid #f36523;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 10px rgba(243, 101, 35, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: parcel-pop 2.2s forwards var(--ease-spring);
+  z-index: 10;
+}
+
+@keyframes parcel-pop {
+  0% { transform: translateY(0) scale(0.6); opacity: 0; }
+  20% { transform: translateY(-24px) scale(1.1); opacity: 1; }
+  70% { transform: translateY(-40px) scale(1); opacity: 0.9; }
+  100% { transform: translateY(-60px) scale(0.9); opacity: 0; }
+}
+
+/* ==========================================================================
    RESPONSIVE DESIGN (Tablets & Mobile)
    ========================================================================== */
 @media (max-width: 1100px) {

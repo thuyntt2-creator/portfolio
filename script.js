@@ -1,11 +1,14 @@
 /**
- * TRAN QUYNH THUY — PORTFOLIO INTERACTION ENGINE
+ * NGUYỄN THỊ THANH THỦY — PORTFOLIO INTERACTION ENGINE
  * Features:
  * 1. Interactive Logistics Sorting Canvas (Hero Data Packets)
  * 2. Case Studies Dynamic Previewer & Deep Modal
  * 3. Interactive Career Journey Path (SVG Nodes)
  * 4. Control Tower Live Simulator (Interactive Terminal & Telegram Bot Alert)
  * 5. 1-Click Clipboard Copy & CV Modal Controller
+ * 6. Live Ticker Animation
+ * 7. Web Audio Engine & Lo-Fi Ambient Radio
+ * 8. GHN Highway Transit & Vehicle Simulation (Truck & Scooter)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactAndModals();
   initLiveTicker();
   initAudioEngine();
+  initGhnHighway();
 });
 
 /* ==========================================================================
@@ -935,6 +939,105 @@ const AudioEngine = {
     } catch (e) {}
   },
 
+  playHorn() {
+    this.init();
+    try {
+      // Dual-tone realistic GHN truck horn (sawtooth brassy blast)
+      const tones = [293.66, 369.99]; // D4 and F#4
+      tones.forEach(freq => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+
+        const filter = this.ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(1400, this.ctx.currentTime);
+
+        gain.gain.setValueAtTime(0, this.ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.24, this.ctx.currentTime + 0.04);
+        gain.gain.setValueAtTime(0.24, this.ctx.currentTime + 0.28);
+        gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.45);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(this.gainMaster);
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.45);
+      });
+    } catch (e) {}
+  },
+
+  playScooterBeep() {
+    this.init();
+    try {
+      // Cute high-pitch scooter beep ("Tin tin!")
+      [0, 0.1].forEach((delay) => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        const startT = this.ctx.currentTime + delay;
+        osc.frequency.setValueAtTime(988, startT);
+
+        gain.gain.setValueAtTime(0.2, startT);
+        gain.gain.exponentialRampToValueAtTime(0.0001, startT + 0.07);
+
+        osc.connect(gain);
+        gain.connect(this.gainMaster);
+        osc.start(startT);
+        osc.stop(startT + 0.07);
+      });
+    } catch (e) {}
+  },
+
+  playNitro() {
+    this.init();
+    try {
+      // Powerful rocket whoosh + sub-bass roar
+      const bufferSize = Math.floor(this.ctx.sampleRate * 0.75);
+      const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+      }
+
+      const noise = this.ctx.createBufferSource();
+      noise.buffer = buffer;
+
+      const filter = this.ctx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.Q.setValueAtTime(3.0, this.ctx.currentTime);
+      filter.frequency.setValueAtTime(260, this.ctx.currentTime);
+      filter.frequency.exponentialRampToValueAtTime(2200, this.ctx.currentTime + 0.35);
+      filter.frequency.exponentialRampToValueAtTime(350, this.ctx.currentTime + 0.75);
+
+      const gain = this.ctx.createGain();
+      gain.gain.setValueAtTime(0.01, this.ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.32, this.ctx.currentTime + 0.2);
+      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.75);
+
+      noise.connect(filter);
+      filter.connect(gain);
+      gain.connect(this.gainMaster);
+      noise.start();
+      noise.stop(this.ctx.currentTime + 0.75);
+
+      // Low bass rumble
+      const osc = this.ctx.createOscillator();
+      const oscGain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(70, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(160, this.ctx.currentTime + 0.3);
+      osc.frequency.exponentialRampToValueAtTime(50, this.ctx.currentTime + 0.75);
+      oscGain.gain.setValueAtTime(0.22, this.ctx.currentTime);
+      oscGain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.75);
+      osc.connect(oscGain);
+      oscGain.connect(this.gainMaster);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.75);
+    } catch (e) {}
+  },
+
   async toggleRadio() {
     this.init();
     if (this.ctx && this.ctx.state === 'suspended') {
@@ -1058,6 +1161,158 @@ function initAudioEngine() {
   if (btnSortNow) {
     btnSortNow.addEventListener('click', () => {
       setTimeout(() => AudioEngine.playSuccess(), 150);
+    });
+  }
+}
+
+/* ==========================================================================
+   8. GHN HIGHWAY TRANSIT & VEHICLE SIMULATION
+   ========================================================================== */
+function initGhnHighway() {
+  const ghnTruck = document.getElementById('ghnTruck');
+  const ghnScooter = document.getElementById('ghnScooter');
+  const btnHonkTruck = document.getElementById('btnHonkTruck');
+  const btnTurboTruck = document.getElementById('btnTurboTruck');
+  const parcelDropZone = document.getElementById('parcelDropZone');
+  const highwayTrack = document.getElementById('highwayTrack');
+  const truckBubble = document.getElementById('truckBubble');
+
+  if (!ghnTruck || !highwayTrack) return;
+
+  const parcelPhrases = [
+    '📦 Đơn Shopee hỏa tốc đã bàn giao!',
+    '⚡ SLA cam kết 24h: 98.7%!',
+    '🏔️ Vượt đèo Ngoạn Mục an toàn!',
+    '🚀 Hub Nha Trang -> Hub Phan Thiết: On-time!',
+    '📊 GTC +100% · AM chuẩn hóa thành công!',
+    '💰 COD 100% minh bạch về ví!',
+    '🚚 Bưu cục Đà Lạt giải tỏa 100% tồn!',
+    '🔥 Tuyến liên tỉnh Nam Trung Bộ thông suốt!',
+    '📦 Đơn TikTok Shop giao siêu tốc!'
+  ];
+
+  let phraseIdx = 0;
+
+  function dropParcelBadge(sourceEl, customText) {
+    if (!parcelDropZone || !highwayTrack) return;
+    const text = customText || parcelPhrases[phraseIdx % parcelPhrases.length];
+    phraseIdx++;
+
+    const badge = document.createElement('div');
+    badge.className = 'floating-parcel-badge';
+    badge.innerHTML = text;
+
+    // Calculate position
+    const trackRect = highwayTrack.getBoundingClientRect();
+    const sourceRect = sourceEl.getBoundingClientRect();
+    const leftOffset = Math.max(20, Math.min(trackRect.width - 240, sourceRect.left - trackRect.left + sourceRect.width * 0.2));
+    const topOffset = Math.max(10, sourceRect.top - trackRect.top - 18);
+
+    badge.style.left = `${leftOffset}px`;
+    badge.style.top = `${topOffset}px`;
+
+    parcelDropZone.appendChild(badge);
+    setTimeout(() => {
+      badge.remove();
+    }, 2200);
+  }
+
+  function triggerTruckHonk() {
+    AudioEngine.playHorn();
+    dropParcelBadge(ghnTruck);
+    if (truckBubble) {
+      truckBubble.textContent = 'BÍP BÍP! 📢 Bác tài nhường đường nào!';
+      truckBubble.style.opacity = '1';
+      truckBubble.style.transform = 'translateY(-6px)';
+      setTimeout(() => {
+        truckBubble.textContent = 'Bấm vào em đi! 🚚💨';
+        truckBubble.style.transform = 'translateY(0)';
+      }, 2500);
+    }
+    showToast('🚚 <strong>GHN Express:</strong> BÍP BÍP! Xe tải 10 tấn đang luân chuyển hàng liên tỉnh!');
+  }
+
+  let isTurboActive = false;
+  function toggleTurbo() {
+    isTurboActive = !isTurboActive;
+    if (isTurboActive) {
+      ghnTruck.classList.add('turbo-active');
+      if (btnTurboTruck) {
+        btnTurboTruck.classList.add('active');
+        btnTurboTruck.innerHTML = '<span>🔥 Turbo Nitro Đang Chạy! (3.5x)</span>';
+      }
+      AudioEngine.playNitro();
+      if (truckBubble) {
+        truckBubble.textContent = 'PHÓNG NHANH GIAO ĐÚNG HẸN! 🚀💨';
+        truckBubble.style.opacity = '1';
+      }
+      // Drop several rapid parcels
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => dropParcelBadge(ghnTruck, '🔥 GIAO SIÊU TỐC NITRO!'), i * 350);
+      }
+      showToast('🚀 <strong>NITRO ACTIVATED:</strong> Xe GHN tăng tốc 3.5x vượt đèo Ngoạn Mục!');
+    } else {
+      ghnTruck.classList.remove('turbo-active');
+      if (btnTurboTruck) {
+        btnTurboTruck.classList.remove('active');
+        btnTurboTruck.innerHTML = '<span>⚡ Kích hoạt Turbo Nitro</span>';
+      }
+      if (truckBubble) {
+        truckBubble.textContent = 'Chạy vận tốc chuẩn định mức 🚚';
+      }
+      showToast('⚡ Xe GHN trở lại tốc độ hành trình tiêu chuẩn');
+    }
+  }
+
+  function triggerScooter() {
+    AudioEngine.playScooterBeep();
+    dropParcelBadge(ghnScooter, '🛵 Bưu tá chặng cuối: "Khách ơi xuống nhận hàng nha!"');
+    showToast('🛵 <strong>Bưu tá GHN:</strong> Tin tin! Đang giao hàng chặng cuối tận tay khách hàng!');
+  }
+
+  // Hook buttons
+  if (btnHonkTruck) {
+    btnHonkTruck.addEventListener('click', (e) => {
+      e.preventDefault();
+      triggerTruckHonk();
+    });
+  }
+
+  if (btnTurboTruck) {
+    btnTurboTruck.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleTurbo();
+    });
+  }
+
+  // Hook vehicles
+  ghnTruck.addEventListener('click', (e) => {
+    e.preventDefault();
+    triggerTruckHonk();
+  });
+
+  ghnTruck.addEventListener('dblclick', (e) => {
+    e.preventDefault();
+    toggleTurbo();
+  });
+
+  ghnTruck.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      triggerTruckHonk();
+    }
+  });
+
+  if (ghnScooter) {
+    ghnScooter.addEventListener('click', (e) => {
+      e.preventDefault();
+      triggerScooter();
+    });
+    ghnScooter.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        triggerScooter();
+      }
     });
   }
 }

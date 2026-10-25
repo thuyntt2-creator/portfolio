@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=ghn3">
 </head>
 <body class="site-body">
   <!-- Subtle Grain & Background Glow Overlay -->
@@ -161,6 +161,98 @@
             <span class="stat-label">Ngăn chặn rủi ro chiếm dụng COD</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Section: GHN Express Animated Highway (Tuyến Luân Chuyển & Giao Hàng Siêu Tốc) -->
+    <section class="ghn-highway-section" aria-label="Đội xe giao nhận GHN vùng Nam Trung Bộ">
+      <div class="highway-header">
+        <div class="highway-title-wrap">
+          <span class="highway-badge">🚚 GHN LOGISTICS EXPRESS TRANSIT</span>
+          <h3 class="highway-title">Tuyến Luân Chuyển Liên Tỉnh & Giao Hàng Nam Trung Bộ</h3>
+        </div>
+        <div class="highway-actions">
+          <button type="button" class="btn-truck-action" id="btnHonkTruck" title="Bấm còi bíp bíp">
+            <span>📢 Bấm còi (Bíp bíp!)</span>
+          </button>
+          <button type="button" class="btn-truck-action btn-turbo" id="btnTurboTruck" title="Tăng tốc độ xe tải giao hàng">
+            <span>⚡ Kích hoạt Turbo Nitro</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="highway-track-container" id="highwayTrack">
+        <!-- Landmark Milestones -->
+        <div class="road-milestones" aria-hidden="true">
+          <span class="milestone-station ms-1">📍 Hub Nha Trang</span>
+          <span class="milestone-station ms-2">📍 Bưu cục Đà Lạt</span>
+          <span class="milestone-station ms-3">📍 Hub Phan Thiết</span>
+          <span class="milestone-station ms-4">📍 Bưu cục Gia Nghĩa</span>
+          <span class="milestone-station ms-5">📍 Hub Phan Rang</span>
+        </div>
+
+        <!-- Animated Road Strip -->
+        <div class="road-asphalt">
+          <div class="road-lane-lines"></div>
+        </div>
+
+        <!-- The GHN Express Cargo Truck -->
+        <div class="ghn-vehicle ghn-truck" id="ghnTruck" role="button" tabindex="0" aria-label="Xe tải GHN Express. Nhấp để bấm còi hoặc tăng tốc!">
+          <div class="truck-headlight-beam"></div>
+          <div class="truck-body">
+            <!-- Container Box -->
+            <div class="truck-container">
+              <div class="truck-logo-area">
+                <span class="ghn-logo-text">GHN</span>
+                <span class="ghn-logo-sub">EXPRESS</span>
+              </div>
+              <div class="truck-slogan">Giao Hàng Nhanh · NTB Fleet</div>
+              <div class="container-groove"></div>
+            </div>
+            <!-- Truck Cabin (Orange) -->
+            <div class="truck-cabin">
+              <div class="cabin-window">
+                <div class="driver-silhouette"></div>
+              </div>
+              <div class="cabin-headlight"></div>
+              <div class="cabin-bumper"></div>
+            </div>
+          </div>
+          <!-- Truck Wheels -->
+          <div class="truck-wheels">
+            <div class="wheel wheel-front"><div class="wheel-rim"></div></div>
+            <div class="wheel wheel-mid"><div class="wheel-rim"></div></div>
+            <div class="wheel wheel-rear"><div class="wheel-rim"></div></div>
+          </div>
+          <!-- Exhaust Turbo Nitro Flame -->
+          <div class="exhaust-pipe">
+            <div class="turbo-flame" id="turboFlame"></div>
+          </div>
+          <!-- Tooltip Click Me -->
+          <div class="truck-bubble" id="truckBubble">Bấm vào em đi! 🚚💨</div>
+        </div>
+
+        <!-- The GHN Express Scooter / Bưu tá giao hàng -->
+        <div class="ghn-vehicle ghn-scooter" id="ghnScooter" role="button" tabindex="0" aria-label="Bưu tá GHN giao hàng chặng cuối. Nhấp để bấm còi!">
+          <div class="scooter-rider">
+            <div class="rider-helmet"></div>
+            <div class="rider-body"></div>
+          </div>
+          <div class="scooter-cargo-box">
+            <span>GHN</span>
+            <span class="cargo-icon">📦</span>
+          </div>
+          <div class="scooter-chassis">
+            <div class="scooter-light"></div>
+          </div>
+          <div class="scooter-wheels">
+            <div class="wheel wheel-s-front"><div class="wheel-rim"></div></div>
+            <div class="wheel wheel-s-rear"><div class="wheel-rim"></div></div>
+          </div>
+        </div>
+
+        <!-- Pop-up Floating Parcels Container -->
+        <div class="parcel-drop-zone" id="parcelDropZone"></div>
       </div>
     </section>
 
@@ -778,6 +870,6 @@
   </audio>
 
   <!-- Scripts -->
-  <script src="script.js"></script>
+  <script src="script.js?v=ghn3"></script>
 </body>
 </html>
