@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLiveTicker();
   initAudioEngine();
   initGhnHighway();
+  initMvModal();
 });
 
 /* ==========================================================================
@@ -1976,4 +1977,148 @@ function initBotEcosystemMatrix() {
 
   // Initial render all
   renderBots('ALL');
+}
+
+
+/* ==========================================================================
+   LO-FI CHILL MV MODAL CONTROLLER & LYRICS CLIPBOARD
+   ========================================================================== */
+const SUNO_PROMPT_TEMPLATE = `[STYLE OF MUSIC]
+Lo-Fi chill, Vietnamese indie pop, acoustic guitar, nostalgic warm female vocal, mellow rhodes piano, vinyl crackle, 85 bpm, emotional, peaceful night drive
+
+[TITLE]
+Chuyến Xe Nam Trung Bộ (Make Data Move)
+
+[LYRICS]
+[Intro]
+(Tiếng bàn phím gõ lách cách... tiếng mưa rơi ngoài hiên...)
+Phan Thiết sóng xô, Đà Lạt sương mờ...
+Những con số biết nói, cho đêm nay không bơ vơ...
+
+[Verse 1]
+Nhớ những ngày đầu bước chân rời giảng đường Kinh Tế,
+Tai nghe từng cuộc gọi, lắng từng nỗi âu lo.
+Mỗi kiện hàng là một niềm mong đợi,
+Chậm một giờ là trĩu nặng một âu lo.
+Em tập nhìn dòng chảy phía sau màn hình tối,
+Học từng chuyến luân chuyển, từng trạm dừng lẻ loi...
+
+[Pre-Chorus]
+Và em chọn viết tiếp bằng những dòng code đêm,
+Từng con bot gửi tin cho ca sáng êm đềm.
+Đo từng khoảng cách, giữ từng mốc giờ vàng,
+Cho những anh bưu tá vững vàng từng chuyến hàng...
+
+[Chorus]
+Này chuyến xe ơi, qua đèo cao dốc gió,
+Khánh Hòa nắng biển hay Đắk Nông đất đỏ.
+Tám mươi lăm bưu cục, hai mươi bảy tuyến đường,
+Dữ liệu chuyển mình thành trọn vẹn yêu thương.
+Make data move, giữ bình yên kho bãi,
+Để vạn kiện hàng hôm nay đều đến nơi...
+
+[Verse 2]
+Năm hai lăm ghi dấu kỷ niệm chương trao tặng,
+Chiến Binh Xuất Sắc — nụ cười sau bao đêm thức trắng.
+Không chỉ là báo cáo hay số liệu khan khan,
+Là đồng hành gỡ rối, cùng đội ngũ vượt gian nan.
+Cứ mỗi độ chốt ca, nhìn con số về đích,
+Thấy bình yên nở hoa sau bao điều thử thách...
+
+[Chorus]
+Này chuyến xe ơi, qua đèo cao dốc gió,
+Khánh Hòa nắng biển hay Đắk Nông đất đỏ.
+Tám mươi lăm bưu cục, hai mươi bảy tuyến đường,
+Dữ liệu chuyển mình thành trọn vẹn yêu thương.
+Make data move, giữ bình yên kho bãi,
+Để vạn kiện hàng hôm nay đều đến nơi...
+
+[Outro]
+Đêm đã khuya rồi... tách cà phê cũng cạn...
+Trạm đã vào giấc, chuyến xe vẫn lăn tăn...
+Make data move...
+Make ops flawless...`;
+
+function initMvModal() {
+  const btnOpen = document.getElementById('btnOpenMvModal');
+  const modal = document.getElementById('mvModal');
+  const btnClose = document.getElementById('btnCloseMvModal');
+  const btnToggleAudio = document.getElementById('btnToggleMvAudio');
+  const btnCopyLyrics = document.getElementById('btnCopyLyrics');
+  const vinyl = document.getElementById('mvVinylDisc');
+  const eq = document.getElementById('mvEqualizer');
+  const playIcon = document.getElementById('mvPlayIcon');
+  const playText = document.getElementById('mvPlayText');
+  const statusText = document.getElementById('mvStatusText');
+
+  if (!btnOpen || !modal) return;
+
+  btnOpen.addEventListener('click', () => {
+    modal.showModal();
+    if (window.soundFX && window.soundFX.playPop) window.soundFX.playPop();
+  });
+
+  if (btnClose) {
+    btnClose.addEventListener('click', () => {
+      modal.close();
+    });
+  }
+
+  // Backdrop click
+  modal.addEventListener('click', (e) => {
+    const rect = modal.getBoundingClientRect();
+    const isInDialog = (
+      rect.top <= e.clientY &&
+      e.clientY <= rect.top + rect.height &&
+      rect.left <= e.clientX &&
+      e.clientX <= rect.left + rect.width
+    );
+    if (!isInDialog) {
+      modal.close();
+    }
+  });
+
+  let isPlayingMv = false;
+  if (btnToggleAudio) {
+    btnToggleAudio.addEventListener('click', async () => {
+      isPlayingMv = !isPlayingMv;
+      if (isPlayingMv) {
+        if (vinyl) vinyl.classList.add('spinning');
+        if (eq) eq.classList.add('active');
+        if (playIcon) playIcon.textContent = '⏸';
+        if (playText) playText.textContent = 'Tạm Dừng';
+        if (statusText) statusText.textContent = 'Đang phát Lo-Fi Chill: Chuyến Xe Nam Trung Bộ';
+        
+        // Trigger ambient Lo-Fi synth
+        if (window.soundFX) {
+          if (!window.soundFX.isRadioOn) {
+            await window.soundFX.toggleRadio();
+          }
+        }
+        showToast('🎵 <strong>Đang phát Lo-Fi Chill:</strong> Thư giãn và đọc lời bài hát cùng Thủy nhé!');
+      } else {
+        if (vinyl) vinyl.classList.remove('spinning');
+        if (eq) eq.classList.remove('active');
+        if (playIcon) playIcon.textContent = '▶';
+        if (playText) playText.textContent = 'Phát Nhạc Lo-Fi';
+        if (statusText) statusText.textContent = 'Đã tạm dừng phát nhạc';
+        
+        if (window.soundFX && window.soundFX.isRadioOn) {
+          await window.soundFX.toggleRadio();
+        }
+      }
+    });
+  }
+
+  if (btnCopyLyrics) {
+    btnCopyLyrics.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(SUNO_PROMPT_TEMPLATE);
+        showToast('📋 <strong>Đã chép Prompt & Lời bài hát!</strong> Hãy dán vào ô Custom của Suno.com để tạo bài hát ngay nhé!');
+        if (window.soundFX && window.soundFX.playSuccess) window.soundFX.playSuccess();
+      } catch (e) {
+        showToast('⚠️ Không thể tự chép, bạn hãy bôi đen lời bài hát bên cạnh nhé!');
+      }
+    });
+  }
 }
