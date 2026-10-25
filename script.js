@@ -1982,58 +1982,70 @@ function initBotEcosystemMatrix() {
    LO-FI CHILL MV MODAL CONTROLLER & LYRICS CLIPBOARD
    ========================================================================== */
 const SUNO_PROMPT_TEMPLATE = `[STYLE OF MUSIC]
-Upbeat synth-pop, energetic J-rock anime opening style, driving four-on-the-floor dance beat, powerful melodic female vocal, infectious electric guitar hook, punchy bass, 130 bpm, euphoric, motivational, inspiring anthem
+Modern synth-pop, energetic electronic indie dance, driving four-on-the-floor bassline, crisp confident female vocals, chic, stylish, infectious euro-pop hook, catchy synth leads, 126 bpm, anthemic
 
 [TITLE]
-Chiến Binh Áo Cam (Make Data Move)
+MAKE DATA MOVE (Official Theme Song)
 
 [LYRICS]
 [Intro]
-(Tiếng guitar điện riff dồn dập, tiếng còi xe tải và beat trống 130 BPM bùng nổ!)
-Hey! Bước chân ra tuyến, năng lượng tràn đầy!
-Nha Trang, Đà Lạt, Phan Thiết, Đắk Nông, Phan Rang!
-Chiến Binh Áo Cam... Make Data Move!
+(Crisp electronic drums kick in, pulsing synth bass & chic guitar groove)
+Midnight on the terminal screen,
+Signal's turning emerald green.
+From the coast to the highland crest,
+Never stop, never settle for less...
 
 [Verse 1]
-Ngày đầu tiên vào GHN làm cô nàng KAC,
-Điện thoại reo liên hồi, từng ca khó đều qua tay.
-Cứu từng đơn hỏa tốc, thấu hiểu nỗi lo khách hàng,
-Nhìn ra từng điểm nghẽn để mở lối cho kiện hàng!
+Started at the frontline, picking up the call,
+Every single parcel, watching where they fall.
+Turned the friction into code, turned the panic into speed,
+Building up the systems for everything they need.
+Shopee in the fast lane, Tiki on the dash,
+Lazada rolling through the flash!
+
+[Pre-Chorus]
+Lines of Python burning bright,
+Guiding all the trucks tonight.
+We don't wait for things to break,
+We rewrite the moves they make!
+
+[Chorus]
+MAKE DATA MOVE! (Hey!)
+Hear the rhythm on the highway roar,
+Five provinces running strong and pure!
+From the ocean breeze to the mountain peaks,
+We are the pulse that the city seeks!
+MAKE OPS FLAWLESS, BREAK THE GROOVE!
+MAKE DATA MOVE!
 
 [Verse 2]
-Bước sang team KA, kề vai Shopee, Tiki, Lazada,
-Mùa Siêu Sale bão táp, chẳng ngại khó hay đường xa!
-Viết code đo từng nhịp, hạ hai mươi phần trăm khiếu nại,
-Chiến Binh Xuất Sắc 2025 — cúp vinh danh sáng ngời trên tay!
+Twenty-twenty-five came with the gold in hand,
+Best of the best, standing where I stand.
+Eighty-five stations locked in sync,
+Fixing every bottleneck in the time you blink.
+Calculate the target, clear the line,
+Everything arriving right on time!
 
 [Chorus]
-NÀY CHIẾN BINH ÁO CAM! BẬT HẾT TỐC LỰC TIẾN LÊN!
-NĂM TỈNH NAM TRUNG BỘ — VỮNG VÀNG DỰNG XÂY NỀN!
-Tám mươi lăm bưu cục, hai mươi bảy AM đồng hành,
-Bot quét xuyên màn đêm, cho tuyến đường thông nhanh!
-Make data move! Vận hành đỉnh cao!
-Giữ vững từng cam kết, tự hào vươn cao!
+MAKE DATA MOVE! (Hey!)
+Hear the rhythm on the highway roar,
+Five provinces running strong and pure!
+From the ocean breeze to the mountain peaks,
+We are the pulse that the city seeks!
+MAKE OPS FLAWLESS, BREAK THE GROOVE!
+MAKE DATA MOVE!
 
-[Verse 3]
-Giờ là Trợ Lý Giám Đốc Vùng, bao quát cả năm tỉnh thành,
-Từ đèo cao Lâm Đồng đến biển xanh Khánh Hòa nắng vàng.
-Đắk Nông đất đỏ bazan, Ninh Thuận - Bình Thuận lộng gió,
-Tính KPI còn thiếu, kéo trạm vượt bão gian khó!
-Bot xin off tuyến kịp thời, bảo vệ an toàn kho bãi!
-
-[Chorus]
-NÀY CHIẾN BINH ÁO CAM! BẬT HẾT TỐC LỰC TIẾN LÊN!
-NĂM TỈNH NAM TRUNG BỘ — VỮNG VÀNG DỰNG XÂY NỀN!
-Tám mươi lăm bưu cục, hai mươi bảy AM đồng hành,
-Bot quét xuyên màn đêm, cho tuyến đường thông nhanh!
-Make data move! Vận hành đỉnh cao!
-Giữ vững từng cam kết, tự hào vươn cao!
+[Bridge]
+(Punchy bass drop, vocal chops: "Make it move... make it move...")
+No more noise, no more doubt,
+That's what data's all about!
 
 [Outro]
-Make data move!
-Make ops flawless!
-GHN Nam Trung Bộ — Về đích rực rỡ!
-(Guitar solo fade out with cheering applause!)`;
+Five provinces, one command...
+The fastest pulse across the land.
+Make data move...
+Make ops flawless.
+(Upbeat synth-pop outro fades out with echo)`;
 
 function initMvModal() {
   const btnOpen = document.getElementById('btnOpenMvModal');
