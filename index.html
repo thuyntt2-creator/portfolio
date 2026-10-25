@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trần Quỳnh Thúy — E-Commerce Operations & Data-Driven Control Tower Specialist</title>
+  <meta name="description" content="Trần Quỳnh Thúy: Chuyên gia Vận hành Thương mại điện tử & Tự động hóa Dữ liệu (Operations Control Tower), Trợ lý Giám đốc Vùng Nam Trung Bộ tại Giao Hàng Nhanh.">
+  <meta name="keywords" content="Trần Quỳnh Thúy, Data Analyst, Operations Specialist, Logistics, E-commerce, Control Tower, GHN, Nam Trung Bộ, Python, Google Apps Script">
+  <meta property="og:title" content="Trần Quỳnh Thúy — E-Commerce Operations & Data-Driven Key Account">
+  <meta property="og:description" content="Biến dữ liệu vận hành thành quyết định can thiệp thực tế. Kiến trúc sư hệ thống Bot & Control Tower 5 tỉnh Nam Trung Bộ.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="site-body">
+  <!-- Subtle Grain & Background Glow Overlay -->
+  <div class="bg-noise" aria-hidden="true"></div>
+  <div class="bg-ambient glow-1" aria-hidden="true"></div>
+  <div class="bg-ambient glow-2" aria-hidden="true"></div>
+
+  <!-- Top Announcement / Live Pulse Bar -->
+  <aside class="live-pulse-bar" aria-label="Trạng thái hệ thống thời gian thực">
+    <div class="pulse-container">
+      <span class="pulse-dot" aria-hidden="true"></span>
+      <span class="pulse-tag">OPS CONTROL TOWER</span>
+      <span class="pulse-divider" aria-hidden="true">/</span>
+      <span class="pulse-text" id="liveTickerText">5 Tỉnh Nam Trung Bộ • 18 Account Managers • Tự động hóa Pipeline thời gian thực</span>
+      <span class="pulse-badge">LIVE STATUS</span>
+    </div>
+  </aside>
+
+  <!-- Main Navigation -->
+  <header class="site-header" id="header">
+    <div class="header-inner">
+      <a href="#hero" class="brand-logo" aria-label="Trang chủ Trần Quỳnh Thúy">
+        <div class="brand-matrix" aria-hidden="true">
+          <span class="m-cell"></span>
+          <span class="m-cell"></span>
+          <span class="m-cell active"></span>
+          <span class="m-cell"></span>
+          <span class="m-cell active"></span>
+          <span class="m-cell"></span>
+          <span class="m-cell active"></span>
+          <span class="m-cell"></span>
+          <span class="m-cell"></span>
+        </div>
+        <div class="brand-meta">
+          <span class="brand-name">Trần Quỳnh Thúy</span>
+          <span class="brand-sub">Operations & Data Specialist</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Điều hướng chính">
+        <a href="#cases" class="nav-link">Công việc</a>
+        <a href="#journey" class="nav-link">Lộ trình</a>
+        <a href="#philosophy" class="nav-link">Tư duy vận hành</a>
+        <a href="#simulator" class="nav-link nav-special">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <polygon points="5 3 19 10 5 17 5 3"></polygon>
+          </svg>
+          Mô phỏng Control Tower
+        </a>
+        <a href="#contact" class="nav-link">Liên hệ</a>
+        <button type="button" class="btn-cv-header" id="btnOpenCvModal" aria-label="Xem và tải CV">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M4 3h9l4 4v10H4z"></path>
+            <path d="M13 3v4h4"></path>
+            <path d="M7 10h6M7 13h4"></path>
+          </svg>
+          CV
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <!-- Hero Section with Interactive Sorting Canvas -->
+    <section class="hero-section" id="hero" aria-labelledby="heroTitle">
+      <div class="hero-canvas-container">
+        <canvas id="heroCanvas" aria-label="Mô phỏng tương tác các kiện hàng và luồng dữ liệu vận hành. Rê chuột để chuẩn hóa luồng dữ liệu."></canvas>
+        <div class="canvas-hint" id="canvasHint" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 2.5 19.5 12l-7 1.6-3.4 6.9z"></path>
+          </svg>
+          <span>Rê chuột để phân luồng dữ liệu tự động</span>
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Assistant Regional Director @ GHN Nam Trung Bộ
+        </div>
+
+        <h1 class="hero-headline" id="heroTitle">
+          <span>MAKE DATA MOVE.</span>
+          <span>MAKE OPS</span>
+          <mark class="highlight-lime">FLAWLESS.</mark>
+        </h1>
+
+        <p class="hero-description">
+          Không chỉ làm báo cáo hay chạy tool — Tôi chuyển hóa <strong>dữ liệu vận hành thành hành động can thiệp tức thì</strong>: phát hiện gối đầu COD & giả mạo GPS, giải cứu 14 bưu cục đáy, và tự động hóa hệ thống Control Tower trên toàn bộ 5 tỉnh Nam Trung Bộ.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#cases" class="btn-primary" id="btnExploreWork">
+            <span>Khám phá 5 Case Study tiêu biểu</span>
+            <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M10 4v12m-5-5 5 5 5-5"></path>
+            </svg>
+          </a>
+
+          <a href="#simulator" class="btn-secondary" id="btnTrySimulator">
+            <svg class="btn-icon icon-lime" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="10" cy="10" r="7"></circle>
+              <polygon points="8 7 14 10 8 13 8 7" fill="currentColor"></polygon>
+            </svg>
+            <span>Trải nghiệm giả lập Bot Radar</span>
+          </a>
+        </div>
+
+        <div class="hero-stats-panel">
+          <div class="canvas-meter">
+            <button type="button" class="btn-sort-now" id="btnSortNow">
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 16v-4M8 16V9M12 16V6M16 16V3"></path>
+              </svg>
+              Tự động chuẩn hóa
+            </button>
+            <div class="meter-track" aria-hidden="true">
+              <div class="meter-bar" id="meterBar" style="width: 28%"></div>
+            </div>
+            <span class="meter-value" id="meterValue">28% Chuẩn hóa</span>
+          </div>
+
+          <div class="hero-stat-card">
+            <span class="stat-number">5 Tỉnh / 18 AMs</span>
+            <span class="stat-label">Quy mô quản trị dữ liệu NTB</span>
+          </div>
+          <div class="hero-stat-card">
+            <span class="stat-number">-20%</span>
+            <span class="stat-label">Contact Rate khiếu nại sàn TMĐT</span>
+          </div>
+          <div class="hero-stat-card">
+            <span class="stat-number">95%</span>
+            <span class="stat-label">Ngăn chặn rủi ro chiếm dụng COD</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Featured Cases (Interactive Case Showcase) -->
+    <section class="section cases-section" id="cases" aria-labelledby="casesTitle">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow">PORTFOLIO & CORE PROJECTS</span>
+          <h2 class="section-title" id="casesTitle">Công việc tiêu biểu</h2>
+        </div>
+        <p class="section-intro">
+          05 Case Study thực chiến bóc tách từ bài toán vận hành logistics thực tế.
+          <span class="hover-hint">· Nhấp hoặc rê vào từng dòng để xem phân tích chi tiết</span>
+        </p>
+      </div>
+
+      <div class="cases-layout">
+        <!-- Cases List -->
+        <div class="cases-list" role="tablist" aria-label="Danh sách dự án tiêu biểu">
+          <!-- Case 1 -->
+          <article class="case-item active" data-case="1" tabindex="0" role="tab" aria-selected="true" id="tab-case-1">
+            <div class="case-header-row">
+              <span class="case-index">01</span>
+              <div class="case-title-group">
+                <h3 class="case-title">
+                  Hệ Sinh Thái NTB Operations Control Tower
+                  <span class="tag-badge badge-ai" title="Tự động hóa pipeline & bot cảnh báo">AUTOMATION</span>
+                </h3>
+                <span class="case-meta">Trợ lý Giám đốc Vùng · Python & VPS Pipeline · Hiện tại</span>
+              </div>
+              <span class="case-metric-pill">Master Pulse 5 Tỉnh</span>
+              <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 15 15 5M5 5h10v10"></path>
+              </svg>
+            </div>
+            <p class="case-summary">
+              Tự động hóa quy trình bóc tách dữ liệu từ Google Sheets & API nội bộ, giám sát thời gian thực 4 chỉ số sinh mệnh (%OPR, %ODR, %FD, %GTC) và gửi cảnh báo can thiệp trực tiếp vào Telegram của 18 Quản lý khu vực.
+            </p>
+          </article>
+
+          <!-- Case 2 -->
+          <article class="case-item" data-case="2" tabindex="0" role="tab" aria-selected="false" id="tab-case-2">
+            <div class="case-header-row">
+              <span class="case-index">02</span>
+              <div class="case-title-group">
+                <h3 class="case-title">
+                  Radar Bắt Quả Tang Fake GPS & Chặn Chiếm Dụng COD
+                  <span class="tag-badge badge-fraud" title="Thuật toán chống gian lận & bảo vệ dòng tiền">RISK CONTROL</span>
+                </h3>
+                <span class="case-meta">Quản trị rủi ro · Phân tích định vị không gian · 2026</span>
+              </div>
+              <span class="case-metric-pill">Triệt tiêu 95% thất thoát</span>
+              <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 15 15 5M5 5h10v10"></path>
+              </svg>
+            </div>
+            <p class="case-summary">
+              Giao thoa 3 điều kiện: Đơn COD > 400.000đ bị hoãn >= 2 ngày + Tọa độ check-in lệch > 2.000m so với địa chỉ khách. Tự động bắn danh sách đích danh yêu cầu AM kiểm tra thùng xe bưu tá trước 11h trưa.
+            </p>
+          </article>
+
+          <!-- Case 3 -->
+          <article class="case-item" data-case="3" tabindex="0" role="tab" aria-selected="false" id="tab-case-3">
+            <div class="case-header-row">
+              <span class="case-index">03</span>
+              <div class="case-title-group">
+                <h3 class="case-title">
+                  Dynamic Target Staircase — Giải Cứu 14 Bưu Cục Đáy
+                  <span class="tag-badge badge-strategy" title="Thuật toán động tạo động lực điều hành">STRATEGY</span>
+                </h3>
+                <span class="case-meta">Điều hành Vận hành · Tối ưu hiệu suất giao · 2026</span>
+              </div>
+              <span class="case-metric-pill">+12.4% Tỷ lệ giao</span>
+              <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 15 15 5M5 5h10v10"></path>
+              </svg>
+            </div>
+            <p class="case-summary">
+              Thay thế mục tiêu cứng nhắc bằng thang bậc động theo từng khung giờ: bưu cục yếu kích hoạt bậc cứu hộ thấp [40% - 50% - 60%] để bưu tá có động lực bứt phá, kéo cụm 14 bưu cục khó khăn nhất về mốc an toàn.
+            </p>
+          </article>
+
+          <!-- Case 4 -->
+          <article class="case-item" data-case="4" tabindex="0" role="tab" aria-selected="false" id="tab-case-4">
+            <div class="case-header-row">
+              <span class="case-index">04</span>
+              <div class="case-title-group">
+                <h3 class="case-title">
+                  Tái Cấu Trúc Shipping Status Flow & Cắt Giảm 20% Contact Rate
+                  <span class="tag-badge badge-award" title="Đạt giải Chiến Binh Xuất Sắc 2025">AWARD 2025</span>
+                </h3>
+                <span class="case-meta">Key Account Executive · Shopee, Lazada, Tiki · 2025 – 2026</span>
+              </div>
+              <span class="case-metric-pill">Giảm 20% khiếu nại</span>
+              <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 15 15 5M5 5h10v10"></path>
+              </svg>
+            </div>
+            <p class="case-summary">
+              Phân tích các điểm nghẽn gây hoang mang cho người mua hàng, thiết kế lại luồng trạng thái đơn hàng và bộ công cụ báo cáo tự động, bảo vệ cam kết SLA với các đối tác thương mại điện tử lớn nhất Việt Nam.
+            </p>
+          </article>
+
+          <!-- Case 5 -->
+          <article class="case-item" data-case="5" tabindex="0" role="tab" aria-selected="false" id="tab-case-5">
+            <div class="case-header-row">
+              <span class="case-index">05</span>
+              <div class="case-title-group">
+                <h3 class="case-title">
+                  Staffing Capacity Model & Cảnh Báo Bưu Tá Bỏ Tuyến
+                  <span class="tag-badge badge-ops" title="Tối ưu năng suất & nguồn lực con người">STAFFING</span>
+                </h3>
+                <span class="case-meta">Quản trị nhân lực & Năng suất · Vùng NTB · 2026</span>
+              </div>
+              <span class="case-metric-pill">Triệt tiêu tắc nghẽn ca chiều</span>
+              <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 15 15 5M5 5h10v10"></path>
+              </svg>
+            </div>
+            <p class="case-summary">
+              Theo dõi giờ check-out ca sáng và số lượng đơn tồn trên tuyến, tự động phát hiện bưu tá không đi giao hoặc năng suất dưới ngưỡng chuẩn trước 14h00 để Quản lý bưu cục kịp thời điều phối nhân sự tăng cường.
+            </p>
+          </article>
+        </div>
+
+        <!-- Case Interactive Preview Card -->
+        <aside class="case-preview-card" id="casePreviewCard" aria-live="polite">
+          <div class="preview-glow" aria-hidden="true"></div>
+          <div class="preview-inner">
+            <div class="preview-top">
+              <span class="preview-badge" id="previewBadge">CASE 01 · AUTOMATION</span>
+              <span class="preview-id" id="previewId">ID: NTB-CTRL-01</span>
+            </div>
+
+            <div class="preview-visual" id="previewVisual">
+              <!-- Rendered via JS -->
+            </div>
+
+            <div class="preview-body">
+              <h4 class="preview-title" id="previewTitle">Hệ Sinh Thái NTB Operations Control Tower</h4>
+              <p class="preview-desc" id="previewDesc">
+                Hệ thống tự động hóa toàn diện từ thu thập dữ liệu Google Sheet, tính toán chỉ số hiệu năng và kích hoạt thông báo điều hành qua Telegram Bot tới 18 Quản lý khu vực trên 5 tỉnh thành.
+              </p>
+
+              <div class="preview-metrics-grid" id="previewMetrics">
+                <div class="p-metric">
+                  <span class="p-val">85%</span>
+                  <span class="p-lbl">Giảm thời gian tổng hợp thủ công</span>
+                </div>
+                <div class="p-metric">
+                  <span class="p-val">18 AMs</span>
+                  <span class="p-lbl">Nhận thông báo can thiệp tự động</span>
+                </div>
+                <div class="p-metric">
+                  <span class="p-val">5 Tỉnh</span>
+                  <span class="p-lbl">Bao phủ toàn diện Nam Trung Bộ</span>
+                </div>
+              </div>
+
+              <div class="preview-tech-tags" id="previewTech">
+                <span class="tech-chip">Python 3.11</span>
+                <span class="tech-chip">Telegram Bot API</span>
+                <span class="tech-chip">Google Sheets API</span>
+                <span class="tech-chip">Cron on Linux/VPS</span>
+                <span class="tech-chip">Pandas Data Pipeline</span>
+              </div>
+
+              <button type="button" class="btn-open-detail" id="btnOpenDetailModal">
+                <span>Xem chi tiết giải pháp & kiến trúc</span>
+                <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 10h10m-5-5 5 5-5 5"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Section: Career Path (Từ Chăm Sóc Khách Hàng Đến Tự Động Hóa Dữ Liệu) -->
+    <section class="section journey-section" id="journey" aria-labelledby="journeyTitle">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow">CAREER TRAJECTORY</span>
+          <h2 class="section-title" id="journeyTitle">Từ giải quyết khiếu nại đến kiến trúc sư dữ liệu</h2>
+        </div>
+        <p class="section-intro">
+          Hành trình phát triển sự nghiệp: Đi từ sự thấu hiểu sâu sắc nỗi đau của khách hàng và đối tác đến việc làm chủ dữ liệu và xây dựng hệ thống tự động hóa.
+          <span class="hover-hint">· Nhấp vào các mốc thời gian trên biểu đồ để xem chi tiết</span>
+        </p>
+      </div>
+
+      <div class="journey-container">
+        <!-- Interactive SVG Chart -->
+        <div class="journey-chart-wrapper">
+          <svg class="journey-svg" id="journeySvg" viewBox="0 0 960 380" aria-label="Biểu đồ lộ trình phát triển năng lực nghề nghiệp từ năm 2018 đến nay">
+            <defs>
+              <linearGradient id="pathGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#3b82f6" />
+                <stop offset="50%" stop-color="#06b6d4" />
+                <stop offset="100%" stop-color="#10b981" />
+              </linearGradient>
+              <filter id="glowEffect" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="4" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+
+            <!-- Grid Lines & Year Markers -->
+            <g class="chart-grid">
+              <line x1="80" y1="40" x2="80" y2="320" class="grid-line"></line>
+              <text x="80" y="348" class="grid-year">2018</text>
+
+              <line x1="260" y1="40" x2="260" y2="320" class="grid-line"></line>
+              <text x="260" y="348" class="grid-year">2022</text>
+
+              <line x1="440" y1="40" x2="440" y2="320" class="grid-line"></line>
+              <text x="440" y="348" class="grid-year">2023</text>
+
+              <line x1="640" y1="40" x2="640" y2="320" class="grid-line"></line>
+              <text x="640" y="348" class="grid-year">2025</text>
+
+              <line x1="860" y1="40" x2="860" y2="320" class="grid-line"></line>
+              <text x="860" y="348" class="grid-year">Hiện tại</text>
+            </g>
+
+            <!-- Y-Axis Labels -->
+            <g class="axis-labels">
+              <text x="35" y="300" class="axis-lbl-sub">Chăm sóc & Khiếu nại</text>
+              <text x="35" y="180" class="axis-lbl-sub">Quản lý Đối tác & Vận hành</text>
+              <text x="35" y="65" class="axis-lbl-main">Dữ liệu & Tự động hóa Chiến lược</text>
+            </g>
+
+            <!-- Main Curve Path -->
+            <path d="M 80 300 L 260 300 Q 350 300 440 240 Q 540 180 640 140 Q 750 90 860 65" 
+                  class="journey-path" 
+                  stroke="url(#pathGradient)" 
+                  fill="none" 
+                  stroke-width="5"
+                  filter="url(#glowEffect)">
+            </path>
+
+            <!-- Interactive Stop Nodes -->
+            <g class="journey-node" data-stop="1" tabindex="0" role="button" aria-label="Giai đoạn 2018 - 2022: Đại học Kinh tế TP.HCM">
+              <circle cx="80" cy="300" r="14" class="node-hit"></circle>
+              <circle cx="80" cy="300" r="7" class="node-dot"></circle>
+              <text x="80" y="275" class="node-title">UEH (Kinh tế)</text>
+            </g>
+
+            <g class="journey-node" data-stop="2" tabindex="0" role="button" aria-label="Giai đoạn 2023 - 2025: Key Account Care Executive tại GHN">
+              <circle cx="440" cy="240" r="14" class="node-hit"></circle>
+              <circle cx="440" cy="240" r="8" class="node-dot"></circle>
+              <text x="440" y="215" class="node-title">KA Care Executive</text>
+            </g>
+
+            <g class="journey-node" data-stop="3" tabindex="0" role="button" aria-label="Giai đoạn 2025 - 2026: Key Account Executive tại GHN">
+              <circle cx="640" cy="140" r="14" class="node-hit"></circle>
+              <circle cx="640" cy="140" r="9" class="node-dot"></circle>
+              <text x="640" y="115" class="node-title">Key Account Exec</text>
+            </g>
+
+            <g class="journey-node active" data-stop="4" tabindex="0" role="button" aria-label="Giai đoạn Hiện tại: Assistant Regional Director tại GHN">
+              <circle cx="860" cy="65" r="18" class="node-hit"></circle>
+              <circle cx="860" cy="65" r="10" class="node-dot pulse-node"></circle>
+              <text x="860" y="40" class="node-title highlight-lime">Trợ lý GĐ Vùng NTB</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Node Detail Display Card -->
+        <div class="journey-detail-card" id="journeyDetailCard">
+          <div class="j-card-header">
+            <span class="j-period" id="jPeriod">2026 – Hiện tại</span>
+            <span class="j-badge" id="jBadge">VỊ TRÍ HIỆN TẠI</span>
+          </div>
+          <h3 class="j-role" id="jRole">Assistant Regional Director (Trợ lý Giám Đốc Vùng Nam Trung Bộ)</h3>
+          <p class="j-company" id="jCompany">Giao Hàng Nhanh (GHN Express) · Địa bàn: Khánh Hòa, Lâm Đồng, Đắk Nông, Ninh Thuận, Bình Thuận</p>
+          
+          <ul class="j-bullets" id="jBullets">
+            <li>Lập báo cáo vận hành, kinh doanh và theo dõi PFM cho Giám đốc Vùng; tổng hợp dữ liệu KPI 5 tỉnh và 18 Quản lý khu vực (AM).</li>
+            <li>Xây dựng pipeline báo cáo tự động (Python, Google Apps Script), rút ngắn 85% thời gian thủ công và theo dõi KPI thời gian thực (%OPR, %ODR, %FD).</li>
+            <li>Phân tích rủi ro vận hành: bắt quả tang bưu tá gian lận GPS, chặn nguy cơ chiếm dụng dòng tiền COD, follow bưu tá off tuyến đột xuất.</li>
+            <li>Dẫn dắt đánh giá nhân sự tài năng hàng quý trên 5 tỉnh, xác định nhân sự tiềm năng cao và định hướng lộ trình đào tạo thăng tiến.</li>
+          </ul>
+
+          <div class="j-card-footer" id="jFooter">
+            <span class="j-impact-tag"><strong>Tác động chính:</strong> Tự động hóa 100% luồng báo cáo buổi sáng & trưa cho toàn bộ Ban Giám đốc Vùng.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Operational Philosophy (Một con số chỉ có nghĩa khi...) -->
+    <section class="section philosophy-section" id="philosophy" aria-labelledby="philosophyTitle">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow">OPERATIONAL PHILOSOPHY</span>
+          <h2 class="section-title" id="philosophyTitle">Một con số chỉ có nghĩa khi dẫn tới hành động</h2>
+        </div>
+        <p class="section-intro">
+          Nhà tuyển dụng không cần người biết làm dashboard đẹp nhưng vô hồn. Họ cần người hiểu chuỗi cung ứng và biến các chỉ số thành quyết định can thiệp kịp thời.
+        </p>
+      </div>
+
+      <div class="philosophy-grid">
+        <!-- Question Card 1 -->
+        <div class="phil-card">
+          <div class="phil-icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <span class="phil-tag">RỦI RO TÀI CHÍNH</span>
+          <h3 class="phil-question">"Đơn hàng nào đang bị giữ bất thường và có dấu hiệu gian lận?"</h3>
+          <div class="phil-answer">
+            <p class="phil-action"><strong>Hành động can thiệp:</strong> Không chờ tới khi tiền COD thất thoát sau 1 tuần đối soát. Bot tự động quét các đơn COD > 400.000đ bị hoãn trên 2 ngày và có tọa độ bấm hoãn lệch > 2km so với khách hàng, đẩy trực tiếp cho AM xuống kiểm tra thùng xe ngay trước 11h trưa.</p>
+            <span class="phil-result">➔ Triệt tiêu 95% hành vi chiếm dụng dòng tiền</span>
+          </div>
+        </div>
+
+        <!-- Question Card 2 -->
+        <div class="phil-card">
+          <div class="phil-icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 20V10M12 20V4M6 20v-6"></path>
+            </svg>
+          </div>
+          <span class="phil-tag">HIỆU QUẢ GIAO HÀNG</span>
+          <h3 class="phil-question">"Bưu cục nào đang kéo tụt tỷ lệ giao toàn vùng và cần cứu viện ngay?"</h3>
+          <div class="phil-answer">
+            <p class="phil-action"><strong>Hành động can thiệp:</strong> Không dùng một con số mục tiêu 85% cứng nhắc khiến bưu tá nản lòng. Áp dụng thuật toán Bậc thang động (Dynamic Target Staircase): khi GTC dưới 55%, tự động hạ nấc mục tiêu ngắn hạn xuống 45% - 50% để tạo động lực giao trước khi nâng dần.</p>
+            <span class="phil-result">➔ Cứu vớt thành công 14 bưu cục đáy vùng NTB</span>
+          </div>
+        </div>
+
+        <!-- Question Card 3 -->
+        <div class="phil-card">
+          <div class="phil-icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <span class="phil-tag">TRẢI NGHIỆM KHÁCH HÀNG</span>
+          <h3 class="phil-question">"Khách liên hệ phàn nàn vì bưu tá trễ hay vì quy trình hiển thị gây hoang mang?"</h3>
+          <div class="phil-answer">
+            <p class="phil-action"><strong>Hành động can thiệp:</strong> Bóc tách chi tiết nguyên nhân contact rate với sàn Shopee/Lazada. Nhận diện các trạng thái trung gian gây hiểu nhầm, xây dựng lại status flow minh bạch và hệ thống cảnh báo sớm đơn rớt luân chuyển liên tỉnh.</p>
+            <span class="phil-result">➔ Giảm 15-20% contact rate trên toàn sàn TMĐT</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Control Tower Live Simulator (Tương tác độc đáo cho nhà tuyển dụng) -->
+    <section class="section simulator-section" id="simulator" aria-labelledby="simTitle">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow">INTERACTIVE DEMO</span>
+          <h2 class="section-title" id="simTitle">Trải nghiệm NTB Control Tower Radar</h2>
+        </div>
+        <p class="section-intro">
+          Mô phỏng trực quan cách các bot tự động hóa phát hiện sự cố và gửi chỉ đạo can thiệp xuống từng Bưu cục / Quản lý khu vực (AM) trong vòng vài giây.
+        </p>
+      </div>
+
+      <div class="simulator-box">
+        <div class="sim-controls">
+          <div class="sim-label">Chọn tình huống vận hành cần xử lý:</div>
+          <div class="sim-scenarios" role="radiogroup" aria-label="Các tình huống mô phỏng">
+            <button type="button" class="btn-scenario active" data-scenario="cod">
+              <span class="scenario-dot"></span>
+              <span>1. Đơn COD 1.8M hoãn 3 ngày (Fake GPS)</span>
+            </button>
+            <button type="button" class="btn-scenario" data-scenario="bottom_bc">
+              <span class="scenario-dot"></span>
+              <span>2. Bưu cục Krông Nô GTC lúc 10h đạt 39%</span>
+            </button>
+            <button type="button" class="btn-scenario" data-scenario="drop_shopee">
+              <span class="scenario-dot"></span>
+              <span>3. Cảnh báo rớt kết nối sàn Shopee trước cutoff</span>
+            </button>
+          </div>
+
+          <button type="button" class="btn-run-sim" id="btnRunSim">
+            <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polygon points="5 3 19 10 5 17 5 3"></polygon>
+            </svg>
+            <span>Kích hoạt Bot xử lý tự động</span>
+          </button>
+        </div>
+
+        <div class="sim-terminal-screen">
+          <div class="terminal-bar">
+            <div class="terminal-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="terminal-title">NTB_OPS_RADAR_ENGINE.py — VPS AUTOMATION LOG</span>
+            <span class="terminal-status" id="simStatus">READY</span>
+          </div>
+
+          <div class="terminal-body" id="simTerminalBody">
+            <div class="t-line dim">[07:15:00] Initializing NTB Data Pipeline on Linux VPS...</div>
+            <div class="t-line dim">[07:15:02] Connected to Google Sheets API & Internal WMS Master DB.</div>
+            <div class="t-line highlight-lime">[07:15:04] Ready! Nhấp nút "Kích hoạt Bot xử lý tự động" ở trên để xem quá trình bóc tách & kích hoạt can thiệp.</div>
+          </div>
+
+          <div class="telegram-mockup" id="telegramMockup" style="display: none;">
+            <div class="tg-head">
+              <div class="tg-avatar">🤖</div>
+              <div class="tg-info">
+                <span class="tg-name">NTB Ops Alert Bot</span>
+                <span class="tg-sub">Gửi vào nhóm: AM_LAM_DONG_CANH_BAO</span>
+              </div>
+              <span class="tg-time" id="tgTime">10:05</span>
+            </div>
+            <div class="tg-message" id="tgMessage">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Skills & Competencies -->
+    <section class="section skills-section" id="skills" aria-labelledby="skillsTitle">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow">TOOLKIT & CAPABILITIES</span>
+          <h2 class="section-title" id="skillsTitle">Năng lực cốt lõi & Công nghệ</h2>
+        </div>
+        <p class="section-intro">
+          Sự kết hợp giữa tư duy kinh tế, kinh nghiệm hiện trường logistics và kỹ năng tự động hóa dữ liệu.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-category-card">
+          <div class="skill-cat-header">
+            <div class="cat-icon-badge">⚡</div>
+            <h3 class="cat-title">Tự Động Hóa & Lập Trình</h3>
+          </div>
+          <p class="cat-desc">Xây dựng các công cụ và bot tự vận hành không cần con người chạy tay.</p>
+          <div class="cat-tags">
+            <span class="skill-tag">Python 3 (Pandas, Requests, Playwright)</span>
+            <span class="skill-tag">Telegram Bot API</span>
+            <span class="skill-tag">Google Apps Script (GAS)</span>
+            <span class="skill-tag">Task Scheduler / Cron Job trên VPS</span>
+            <span class="skill-tag">SQL & Query Optimization</span>
+            <span class="skill-tag">Web Scraping & Trích xuất tự động</span>
+          </div>
+        </div>
+
+        <div class="skill-category-card">
+          <div class="skill-cat-header">
+            <div class="cat-icon-badge">📊</div>
+            <h3 class="cat-title">Phân Tích Dữ Liệu & BI</h3>
+          </div>
+          <p class="cat-desc">Thiết kế dashboard và theo dõi các chỉ số sinh mệnh của chuỗi cung ứng.</p>
+          <div class="cat-tags">
+            <span class="skill-tag">Google Sheets & Excel (Advanced Array / Pivot / Data Modeling)</span>
+            <span class="skill-tag">Theo dõi KPI Real-time (%OPR, %ODR, %FD, %GTC)</span>
+            <span class="skill-tag">Dự báo sản lượng & Trend Forecasting</span>
+            <span class="skill-tag">Phân tích tổn thất & Chi phí vận hành (PFM)</span>
+            <span class="skill-tag">Định vị Geolocation & Haversine Distance</span>
+          </div>
+        </div>
+
+        <div class="skill-category-card">
+          <div class="skill-cat-header">
+            <div class="cat-icon-badge">🚚</div>
+            <h3 class="cat-title">Vận Hành Thương Mại Điện Tử & KA</h3>
+          </div>
+          <p class="cat-desc">Kinh nghiệm thực chiến phối hợp cùng các sàn TMĐT lớn và quản lý bưu cục địa phương.</p>
+          <div class="cat-tags">
+            <span class="skill-tag">Quản lý Tài Khoản Trọng Yếu (Shopee, Lazada, Tiki)</span>
+            <span class="skill-tag">Tái thiết kế Luồng Trạng Thái Vận Đơn (Status Flow)</span>
+            <span class="skill-tag">Xử lý Escalation & Khiếu nại dịch vụ cấp cao</span>
+            <span class="skill-tag">Tối ưu Staffing & Năng suất Bưu tá</span>
+            <span class="skill-tag">Đánh giá & Phát triển nhân sự tài năng</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Contact & Resume Download -->
+    <section class="section contact-section" id="contact" aria-labelledby="contactTitle">
+      <div class="contact-card">
+        <div class="contact-left">
+          <div class="contact-avatar-wrap">
+            <img src="assets/avatar.png" alt="Chân dung Trần Quỳnh Thúy" class="contact-avatar" width="120" height="132" loading="lazy">
+            <span class="online-indicator" title="Sẵn sàng trao đổi cơ hội mới"></span>
+          </div>
+          <div class="contact-intro">
+            <span class="contact-eyebrow">SẴN SÀNG HỢP TÁC</span>
+            <h2 class="contact-title" id="contactTitle">Cùng nâng tầm hiệu suất vận hành của bạn?</h2>
+            <p class="contact-text">
+              Tôi luôn cởi mở trao đổi về các vị trí <strong>Operations Specialist, Data-Driven Key Account, hoặc Operations Strategist</strong> tại các doanh nghiệp Logistics & E-Commerce dẫn đầu.
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-right">
+          <div class="contact-channel-list">
+            <div class="channel-item">
+              <span class="ch-label">Email trực tiếp</span>
+              <div class="ch-value-row">
+                <a href="mailto:thuytqt120820@gmail.com" class="ch-link" id="emailLink">thuytqt120820@gmail.com</a>
+                <button type="button" class="btn-copy-email" id="btnCopyEmail" title="Sao chép email vào clipboard">
+                  <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="6" y="6" width="11" height="11" rx="2"></rect>
+                    <path d="M4 14V4a2 2 0 0 1 2-2h10"></path>
+                  </svg>
+                  <span id="copyFeedback">Sao chép</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="channel-item">
+              <span class="ch-label">Số điện thoại / Zalo</span>
+              <a href="tel:0368644943" class="ch-link highlight-lime">0368 644 943</a>
+            </div>
+
+            <div class="channel-item">
+              <span class="ch-label">Địa bàn làm việc</span>
+              <span class="ch-plain">Quận 10, TP. Hồ Chí Minh · Sẵn sàng đi công tác các tỉnh</span>
+            </div>
+
+            <div class="contact-action-btns">
+              <button type="button" class="btn-primary" id="btnViewCv">
+                <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M4 3h9l4 4v10H4z"></path>
+                  <path d="M13 3v4h4"></path>
+                  <path d="M7 10h6M7 13h4"></path>
+                </svg>
+                <span>Xem bản CV đầy đủ (PDF/Image)</span>
+              </button>
+
+              <a href="mailto:thuytqt120820@gmail.com?subject=Trao%20đổi%20cơ%20hội%20nghề%20nghiệp%20-%20Trần%20Quỳnh%20Thúy" class="btn-secondary">
+                <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M3 4h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"></path>
+                  <polyline points="3 5 10 11 17 5"></polyline>
+                </svg>
+                <span>Gửi lời mời phỏng vấn</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="f-brand">
+        <span class="f-name">Trần Quỳnh Thúy</span>
+        <span class="f-desc">E-Commerce Operations & Data-Driven Control Tower Specialist</span>
+      </div>
+      <div class="f-note">
+        Được xây dựng với tư duy kỹ thuật số hiện đại · Tối ưu hiệu năng & trải nghiệm
+      </div>
+      <a href="#hero" class="f-back-top" aria-label="Cuộn lên đầu trang">
+        Lên đầu trang ↑
+      </a>
+    </div>
+  </footer>
+
+  <!-- Modal: In-Depth Case Study Detail -->
+  <dialog class="modal-case-detail" id="modalCaseDetail" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <button type="button" class="modal-close" id="btnCloseCaseModal" aria-label="Đóng cửa sổ chi tiết">✕</button>
+      <div class="modal-header">
+        <span class="modal-badge" id="modalBadge">CASE STUDY CHI TIẾT</span>
+        <h3 class="modal-title" id="modalTitle">Tiêu đề dự án</h3>
+        <p class="modal-subtitle" id="modalSubtitle">Vai trò và bối cảnh vận hành</p>
+      </div>
+      <div class="modal-content" id="modalContent">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modal: View CV Modal -->
+  <dialog class="modal-cv-viewer" id="modalCvViewer" aria-labelledby="modalCvTitle">
+    <div class="modal-cv-box">
+      <button type="button" class="modal-close" id="btnCloseCvModal" aria-label="Đóng cửa sổ xem CV">✕</button>
+      <div class="modal-header">
+        <span class="modal-badge">BẢN CV GỐC</span>
+        <h3 class="modal-title" id="modalCvTitle">Curriculum Vitae — Trần Quỳnh Thúy</h3>
+        <p class="modal-subtitle">E-Commerce Operations Specialist | Data-Driven Key Account</p>
+      </div>
+      <div class="modal-cv-body">
+        <div class="cv-actions-bar">
+          <a href="assets/cv-full.png" download="CV_TranQuynhThuy_Operations_Specialist.png" class="btn-primary btn-sm">
+            Tải ảnh CV gốc (PNG)
+          </a>
+          <button type="button" class="btn-secondary btn-sm" onclick="window.print()">
+            In CV / Lưu thành PDF
+          </button>
+        </div>
+        <div class="cv-image-scroll">
+          <img src="assets/cv-full.png" alt="Bản CV đầy đủ của Trần Quỳnh Thúy" class="cv-full-image" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
