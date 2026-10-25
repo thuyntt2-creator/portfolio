@@ -2086,34 +2086,59 @@ function initMvModal() {
     }
   });
 
+  let mvAudio = null;
   let isPlayingMv = false;
+
+  function stopMvPlayback() {
+    if (mvAudio && !mvAudio.paused) {
+      mvAudio.pause();
+    }
+    isPlayingMv = false;
+    if (vinyl) vinyl.classList.remove('spinning');
+    if (eq) eq.classList.remove('active');
+    if (playIcon) playIcon.textContent = '▶';
+    if (playText) playText.textContent = 'Phát Nhạc';
+    if (statusText) statusText.textContent = 'Sẵn sàng phát nhạc';
+  }
+
+  if (btnClose) {
+    btnClose.addEventListener('click', () => {
+      modal.close();
+      stopMvPlayback();
+    });
+  }
+
+  modal.addEventListener('close', () => {
+    stopMvPlayback();
+  });
+
   if (btnToggleAudio) {
-    btnToggleAudio.addEventListener('click', async () => {
+    btnToggleAudio.addEventListener('click', () => {
+      if (!mvAudio) {
+        mvAudio = new Audio('assets/theme_song.m4a');
+        mvAudio.addEventListener('ended', () => {
+          stopMvPlayback();
+          if (playText) playText.textContent = 'Phát Lại';
+          if (statusText) statusText.textContent = 'Đã phát xong bài hát';
+        });
+      }
+
       isPlayingMv = !isPlayingMv;
       if (isPlayingMv) {
+        mvAudio.play().catch(e => console.log('Audio playback error:', e));
         if (vinyl) vinyl.classList.add('spinning');
         if (eq) eq.classList.add('active');
         if (playIcon) playIcon.textContent = '⏸';
         if (playText) playText.textContent = 'Tạm Dừng';
-        if (statusText) statusText.textContent = 'Đang phát Lo-Fi Chill: Chuyến Xe Nam Trung Bộ';
-        
-        // Trigger ambient Lo-Fi synth
-        if (window.soundFX) {
-          if (!window.soundFX.isRadioOn) {
-            await window.soundFX.toggleRadio();
-          }
-        }
-        showToast('🎵 <strong>Đang phát Lo-Fi Chill:</strong> Thư giãn và đọc lời bài hát cùng Thủy nhé!');
+        if (statusText) statusText.textContent = 'Đang phát: MAKE DATA MOVE 🎵';
+        showToast('🔥 <strong>Đang phát bài hát chính thức:</strong> MAKE DATA MOVE (Suno track)!');
       } else {
+        mvAudio.pause();
         if (vinyl) vinyl.classList.remove('spinning');
         if (eq) eq.classList.remove('active');
         if (playIcon) playIcon.textContent = '▶';
-        if (playText) playText.textContent = 'Phát Nhạc Lo-Fi';
-        if (statusText) statusText.textContent = 'Đã tạm dừng phát nhạc';
-        
-        if (window.soundFX && window.soundFX.isRadioOn) {
-          await window.soundFX.toggleRadio();
-        }
+        if (playText) playText.textContent = 'Tiếp Tục Phát';
+        if (statusText) statusText.textContent = 'Đã tạm dừng';
       }
     });
   }
