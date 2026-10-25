@@ -820,17 +820,22 @@ const JOURNEY_STOPS = {
   },
   3: {
     period: '07/2025 – 05/2026',
-    badge: 'TỐI ƯU HÓA QUY TRÌNH',
-    role: 'Key Account Executive (Chiến Binh Xuất Sắc 2025)',
+    badge: '🏆 CHIẾN BINH XUẤT SẮC GHN 2025',
+    role: 'Key Account Executive · Chiến Binh Xuất Sắc 2025',
     company: 'Giao Hàng Nhanh (GHN Express) · Quản lý Khách Hàng Doanh Nghiệp Lớn',
+    awardBanner: {
+      title: 'GIẢI THƯỞNG: CHIẾN BINH XUẤT SẮC NĂM 2025',
+      presenter: 'Ban Giám Đốc Công Ty Cổ Phần Giao Hàng Nhanh (GHN Express) trao tặng',
+      reason: 'Vinh danh cá nhân xuất sắc toàn diện nhờ thành tích tối ưu hóa luồng vận đơn cắt giảm 15-20% tỷ lệ khiếu nại sàn TMĐT, tự động hóa công cụ phân tích dữ liệu và giữ vững SLA cam kết cho toàn bộ tập khách hàng doanh nghiệp lớn.'
+    },
     bullets: [
+      'Vinh dự đón nhận danh hiệu và cúp vinh danh "Chiến Binh Xuất Sắc Năm 2025" do Ban Lãnh Đạo Giao Hàng Nhanh (GHN Express) trực tiếp khen thưởng.',
       'Đóng vai trò cố vấn tin cậy (trusted advisor) cho các khách hàng TMĐT lớn; dự báo sản lượng và khuyến nghị hành động tuân thủ SLA.',
       'Thiết kế lại luồng trạng thái vận đơn (shipping status flow), cắt giảm 15-20% tỷ lệ liên hệ khiếu nại trên mỗi đơn hàng.',
-      'Tự tay phát triển các công cụ báo cáo tự động bằng Google Apps Script, giảm 30% thời gian thao tác thủ công của team.',
-      'Xử lý các tình huống leo thang (escalation) nghiêm trọng với sàn TMĐT, đảm bảo tính liên tục của hợp đồng dịch vụ.',
-      'Vinh dự được trao tặng giải thưởng "Chiến binh xuất sắc năm 2025" từ Ban Điều hành GHN.'
+      'Tự tay phát triển các công cụ báo cáo tự động bằng Google Apps Script & Python, giảm 30% thời gian thao tác thủ công của team.',
+      'Xử lý dứt điểm các tình huống leo thang (escalation) nghiêm trọng với sàn TMĐT, bảo vệ uy tín thương hiệu GHN.'
     ],
-    impact: 'Bước chuyển mình từ "người hỗ trợ" thành "người kiến tạo giải pháp dữ liệu" cho khách hàng lớn.'
+    impact: 'Bước chuyển mình bản lề từ chăm sóc khách hàng sang kiến tạo giải pháp dữ liệu – tiền đề được Ban Giám Đốc tin tưởng giao trọng trách Trợ Lý GĐ Vùng NTB.'
   },
   4: {
     period: '2026 – Hiện tại',
@@ -857,7 +862,7 @@ function initCareerJourney() {
   const jFooter = document.getElementById('jFooter');
 
   nodes.forEach((node) => {
-    node.addEventListener('click', () => {
+    node.addEventListener('click', (e) => {
       const stopId = parseInt(node.getAttribute('data-stop'), 10);
       const data = JOURNEY_STOPS[stopId];
       if (!data) return;
@@ -871,7 +876,27 @@ function initCareerJourney() {
       if (jCompany) jCompany.textContent = data.company;
 
       if (jBullets) {
-        jBullets.innerHTML = data.bullets
+        let awardHtml = '';
+        if (data.awardBanner) {
+          awardHtml = `
+            <div class="award-banner-card">
+              <div class="abc-trophy-wrap">
+                <span class="abc-trophy-icon">🏆</span>
+                <span class="abc-sparkle s1">✨</span>
+                <span class="abc-sparkle s2">✨</span>
+              </div>
+              <div class="abc-content">
+                <div class="abc-header">
+                  <span class="abc-tag">Vinh Danh Cá Nhân Xuất Sắc Toàn Diện</span>
+                  <h4 class="abc-title">${data.awardBanner.title}</h4>
+                </div>
+                <p class="abc-presenter">🎖️ <strong>Đơn vị trao thưởng:</strong> ${data.awardBanner.presenter}</p>
+                <p class="abc-reason">${data.awardBanner.reason}</p>
+              </div>
+            </div>
+          `;
+        }
+        jBullets.innerHTML = awardHtml + data.bullets
           .map((b) => `<li>${b}</li>`)
           .join('');
       }
@@ -879,8 +904,75 @@ function initCareerJourney() {
       if (jFooter) {
         jFooter.innerHTML = `<span class="j-impact-tag"><strong>Tác động chính:</strong> ${data.impact}</span>`;
       }
+
+      // Special Award Celebratory Effects when selecting 2025 stop
+      if (stopId === 3) {
+        triggerAwardConfetti(e);
+        if (window.soundFX && window.soundFX.playAwardChime) {
+          window.soundFX.playAwardChime();
+        }
+      }
     });
   });
+}
+
+function triggerAwardConfetti(event) {
+  let container = document.getElementById('awardConfettiContainer');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'awardConfettiContainer';
+    container.className = 'award-confetti-container';
+    document.body.appendChild(container);
+  }
+
+  // Calculate burst origin
+  const originX = event ? (event.clientX || window.innerWidth / 2) : (window.innerWidth / 2);
+  const originY = event ? (event.clientY || window.innerHeight / 2) : (window.innerHeight / 2);
+
+  const colors = ['#f59e0b', '#fbbf24', '#d4f236', '#10b981', '#06b6d4', '#ffffff', '#ffd700'];
+  const symbols = ['✦', '★', '🏆', '✨', '🎖️', '•', '◆'];
+  const PARTICLE_COUNT = 45;
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    const p = document.createElement('div');
+    p.className = 'confetti-particle';
+    
+    const isSymbol = Math.random() > 0.45;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    
+    if (isSymbol) {
+      p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      p.style.fontSize = Math.floor(Math.random() * 14 + 14) + 'px';
+      p.style.color = color;
+      p.style.textShadow = `0 0 8px ${color}`;
+    } else {
+      p.style.width = Math.floor(Math.random() * 8 + 6) + 'px';
+      p.style.height = Math.floor(Math.random() * 12 + 6) + 'px';
+      p.style.background = color;
+      p.style.borderRadius = (Math.random() > 0.5 ? '50%' : '2px');
+      p.style.boxShadow = `0 0 10px ${color}`;
+    }
+
+    const angle = Math.random() * Math.PI * 2;
+    const velocity = Math.random() * 180 + 70;
+    const tx = Math.cos(angle) * velocity;
+    const ty = Math.sin(angle) * velocity + (Math.random() * 90 + 30); // gravity bias downward
+    const rot = (Math.random() - 0.5) * 720;
+    const dur = (Math.random() * 0.5 + 0.9).toFixed(2);
+
+    p.style.left = `${originX}px`;
+    p.style.top = `${originY}px`;
+    p.style.setProperty('--tx', `${tx}px`);
+    p.style.setProperty('--ty', `${ty}px`);
+    p.style.setProperty('--rot', `${rot}deg`);
+    p.style.setProperty('--dur', `${dur}s`);
+
+    container.appendChild(p);
+
+    setTimeout(() => {
+      p.remove();
+    }, parseFloat(dur) * 1000 + 100);
+  }
 }
 
 /* ==========================================================================
@@ -1175,7 +1267,32 @@ const AudioEngine = {
     } catch (e) {}
   },
 
+  playAwardChime() {
+    this.init();
+    if (!this.ctx || !this.isRadioOn) return;
+    try {
+      // Golden Victory Arpeggio: C5 -> E5 -> G5 -> C6
+      const notes = [523.25, 659.25, 783.99, 1046.50];
+      notes.forEach((freq, idx) => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, this.ctx.currentTime + idx * 0.08);
+
+        gain.gain.setValueAtTime(0.001, this.ctx.currentTime + idx * 0.08);
+        gain.gain.linearRampToValueAtTime(0.28, this.ctx.currentTime + idx * 0.08 + 0.03);
+        gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + idx * 0.08 + 0.65);
+
+        osc.connect(gain);
+        gain.connect(this.gainMaster);
+        osc.start(this.ctx.currentTime + idx * 0.08);
+        osc.stop(this.ctx.currentTime + idx * 0.08 + 0.65);
+      });
+    } catch(e) {}
+  },
+
   playSuccess() {
+
     this.init();
     try {
       // Melodic 4-note chord: Eb4, G4, Bb4, Eb5

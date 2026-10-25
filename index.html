@@ -537,6 +537,15 @@
                 <feGaussianBlur stdDeviation="4" result="blur" />
                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
               </filter>
+              <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f59e0b" />
+                <stop offset="50%" stop-color="#fbbf24" />
+                <stop offset="100%" stop-color="#d97706" />
+              </linearGradient>
+              <filter id="goldGlow" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
             </defs>
 
             <!-- Grid Lines & Year Markers -->
@@ -586,10 +595,18 @@
               <text x="440" y="215" class="node-title">KA Care Executive</text>
             </g>
 
-            <g class="journey-node" data-stop="3" tabindex="0" role="button" aria-label="Giai đoạn 2025 - 2026: Key Account Executive tại GHN">
+            <g class="journey-node node-award" data-stop="3" tabindex="0" role="button" aria-label="Giai đoạn 2025: Key Account Executive tại GHN - Giải Thưởng Chiến Binh Xuất Sắc 2025 do GHN trao tặng">
+              <!-- Golden Glowing Aura / Halo -->
+              <circle cx="640" cy="140" r="24" class="node-award-aura"></circle>
+              <circle cx="640" cy="140" r="16" class="node-award-pulse"></circle>
               <circle cx="640" cy="140" r="14" class="node-hit"></circle>
-              <circle cx="640" cy="140" r="9" class="node-dot"></circle>
-              <text x="640" y="115" class="node-title">Key Account Exec</text>
+              <circle cx="640" cy="140" r="9" class="node-dot node-dot-award"></circle>
+              <text x="640" y="118" class="node-title highlight-gold">Key Account Exec</text>
+              <!-- Floating Golden Trophy Badge -->
+              <g class="award-tag-group" id="awardTagGroup" transform="translate(640, 88)">
+                <rect x="-88" y="-13" width="176" height="24" rx="12" class="award-tag-bg"></rect>
+                <text x="0" y="3" class="award-tag-text">🏆 CHIẾN BINH XUẤT SẮC 2025</text>
+              </g>
             </g>
 
             <g class="journey-node active" data-stop="4" tabindex="0" role="button" aria-label="Giai đoạn Hiện tại: Assistant Regional Director tại GHN">

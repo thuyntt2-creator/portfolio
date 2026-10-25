@@ -2918,3 +2918,262 @@ dialog::backdrop {
   color: #e2e8f0;
   font-weight: 600;
 }
+
+
+/* ==========================================================================
+   2025 GHN EXCELLENT WARRIOR AWARD (CHIẾN BINH XUẤT SẮC) SPECIAL EFFECTS
+   ========================================================================== */
+.node-award {
+  cursor: pointer;
+}
+
+.node-award-aura {
+  fill: rgba(245, 158, 11, 0.18);
+  animation: awardAura 2.4s infinite ease-in-out;
+  pointer-events: none;
+}
+
+.node-award-pulse {
+  fill: none;
+  stroke: #fbbf24;
+  stroke-width: 2px;
+  animation: awardPulse 2.2s infinite ease-out;
+  pointer-events: none;
+}
+
+.node-dot-award {
+  stroke: #fbbf24 !important;
+  fill: #1a1714 !important;
+  filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.85));
+  transition: all 0.25s ease;
+}
+
+.journey-node:hover .node-dot-award,
+.journey-node.active .node-dot-award {
+  fill: #f59e0b !important;
+  stroke: #ffffff !important;
+  transform: scale(1.35);
+  filter: drop-shadow(0 0 14px rgba(251, 191, 36, 1));
+}
+
+.highlight-gold {
+  fill: #fbbf24 !important;
+  font-weight: 700;
+  filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.4));
+}
+
+/* Floating Golden Badge in SVG */
+.award-tag-group {
+  animation: awardFloat 3s infinite ease-in-out;
+  cursor: pointer;
+}
+
+.award-tag-bg {
+  fill: rgba(24, 20, 15, 0.94);
+  stroke: #f59e0b;
+  stroke-width: 1.5px;
+  filter: drop-shadow(0 4px 14px rgba(245, 158, 11, 0.45));
+  transition: all 0.25s ease;
+}
+
+.award-tag-group:hover .award-tag-bg,
+.journey-node.active .award-tag-bg {
+  fill: #f59e0b;
+  stroke: #fbbf24;
+  filter: drop-shadow(0 0 18px rgba(251, 191, 36, 0.8));
+}
+
+.award-tag-text {
+  fill: #fbbf24;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  transition: fill 0.2s ease;
+  pointer-events: none;
+}
+
+.award-tag-group:hover .award-tag-text,
+.journey-node.active .award-tag-text {
+  fill: #0b0f19;
+  font-weight: 900;
+}
+
+@keyframes awardPulse {
+  0% {
+    r: 10px;
+    opacity: 0.95;
+    stroke-width: 3.5px;
+  }
+  100% {
+    r: 28px;
+    opacity: 0;
+    stroke-width: 0.5px;
+  }
+}
+
+@keyframes awardAura {
+  0%, 100% {
+    r: 20px;
+    fill: rgba(245, 158, 11, 0.15);
+  }
+  50% {
+    r: 27px;
+    fill: rgba(245, 158, 11, 0.38);
+  }
+}
+
+@keyframes awardFloat {
+  0%, 100% {
+    transform: translate(640px, 88px);
+  }
+  50% {
+    transform: translate(640px, 81px);
+  }
+}
+
+/* Golden Award Banner Card inside Journey Detail Panel */
+.award-banner-card {
+  margin-top: 14px;
+  margin-bottom: 22px;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(20, 17, 12, 0.9) 100%);
+  border: 1.5px solid rgba(245, 158, 11, 0.5);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.18), inset 0 0 20px rgba(245, 158, 11, 0.06);
+  position: relative;
+  overflow: hidden;
+  animation: awardSlideIn 0.35s ease-out;
+}
+
+.award-banner-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: skewX(-25deg);
+  animation: awardShine 4s infinite;
+}
+
+@keyframes awardShine {
+  0% { left: -100%; }
+  22%, 100% { left: 200%; }
+}
+
+@keyframes awardSlideIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.abc-trophy-wrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.7);
+}
+
+.abc-trophy-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.abc-sparkle {
+  position: absolute;
+  font-size: 13px;
+  animation: sparkleTwinkle 2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+.abc-sparkle.s1 { top: -6px; right: -4px; animation-delay: 0.2s; }
+.abc-sparkle.s2 { bottom: -4px; left: -4px; animation-delay: 0.9s; }
+
+@keyframes sparkleTwinkle {
+  0%, 100% { transform: scale(0.6) rotate(0deg); opacity: 0.3; }
+  50% { transform: scale(1.3) rotate(20deg); opacity: 1; }
+}
+
+.abc-content {
+  flex: 1;
+}
+
+.abc-header {
+  margin-bottom: 4px;
+}
+
+.abc-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #fbbf24;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.abc-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 2px 0 6px;
+  text-shadow: 0 0 14px rgba(245, 158, 11, 0.45);
+}
+
+.abc-presenter {
+  font-size: 0.82rem;
+  color: #f1f5f9;
+  margin-bottom: 6px;
+}
+
+.abc-reason {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Confetti Burst Container */
+.award-confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+.confetti-particle {
+  position: absolute;
+  pointer-events: none;
+  animation: confettiBurst var(--dur, 1.2s) cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes confettiBurst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx, 0px), var(--ty, 160px)) scale(0.3) rotate(var(--rot, 360deg));
+  }
+}
