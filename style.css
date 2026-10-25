@@ -2743,3 +2743,175 @@ dialog::backdrop {
     text-align: center;
   }
 }
+
+/* ==========================================================================
+   BOT ECOSYSTEM OPERATIONS MATRIX SHOWCASE
+   ========================================================================== */
+.bot-matrix-wrapper {
+  margin-top: 56px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.bot-matrix-header {
+  margin-bottom: 28px;
+}
+
+.bm-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent-lime);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.bm-title {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.bm-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 900px;
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.bm-filter-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.bm-pill {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bm-pill:hover, .bm-pill.active {
+  background: var(--accent-lime);
+  color: #0b0f19;
+  border-color: var(--accent-lime);
+  box-shadow: 0 4px 14px rgba(212, 242, 54, 0.3);
+}
+
+.bot-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.bot-card-item {
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.bot-card-item:hover {
+  border-color: var(--accent-lime);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.bc-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.bc-id {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--accent-cyan);
+}
+
+.bc-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #34d399;
+  font-weight: 600;
+}
+
+.bc-status-dot {
+  width: 6px;
+  height: 6px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.bc-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.bc-file {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-amber);
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.bc-insight {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+
+.bc-meta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  font-size: 0.72rem;
+}
+
+.bc-meta-label {
+  color: var(--text-dim);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.bc-meta-val {
+  color: #e2e8f0;
+  font-weight: 600;
+}

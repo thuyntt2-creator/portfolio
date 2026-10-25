@@ -118,7 +118,7 @@
         </h1>
 
         <p class="hero-description">
-          Không chỉ làm báo cáo hay chạy tool — Tôi chuyển hóa <strong>dữ liệu vận hành thành hành động can thiệp tức thì</strong>: phát hiện gối đầu COD & giả mạo GPS, giải cứu 14 bưu cục đáy, và tự động hóa hệ thống Control Tower trên toàn bộ 5 tỉnh Nam Trung Bộ.
+          Không chỉ làm báo cáo hay chạy tool — Tôi chuyển hóa <strong>dữ liệu vận hành thành hành động can thiệp tức thì</strong>: phát hiện gối đầu COD & giả mạo GPS, cảnh báo bưu cục bất ổn & tối ưu năng suất giao hàng, và tự động hóa hệ thống Control Tower trên toàn bộ 5 tỉnh Nam Trung Bộ.
         </p>
 
         <div class="hero-actions">
@@ -169,6 +169,32 @@
             <span class="stat-number">95%</span>
             <span class="stat-label">Ngăn chặn rủi ro chiếm dụng COD</span>
           </div>
+        </div>
+      </div>
+
+      <!-- Interactive Full Bot Ecosystem Operations Matrix -->
+      <div class="bot-matrix-wrapper" id="botEcosystemMatrix">
+        <div class="bot-matrix-header">
+          <div class="bm-title-group">
+            <span class="bm-eyebrow">FULL CONTROL TOWER ECOSYSTEM · 18+ PRODUCTION BOT PIPELINES</span>
+            <h3 class="bm-title">Hệ Sinh Thái Toàn Bộ Bot Vận Hành Đang Chạy</h3>
+            <p class="bm-desc">
+              Hệ thống tự động hóa toàn diện do Thủy trực tiếp lập trình và vận hành hàng ngày: Quản trị năng suất bưu tá, quét điểm nghẽn tồn kho luân chuyển, cảnh báo bưu cục bất ổn, tự động đề xuất OFF tuyến, giám sát quá hạn sàn TMĐT và siết chặt kỷ luật vận hành 5 tỉnh Nam Trung Bộ.
+            </p>
+          </div>
+          <div class="bm-filter-pills" id="bmFilterPills">
+            <button type="button" class="bm-pill active" data-mod="ALL">Tất Cả (18+ Bot)</button>
+            <button type="button" class="bm-pill" data-mod="PROD">⚡ Năng Suất & Giao Hàng</button>
+            <button type="button" class="bm-pill" data-mod="INVENTORY">📦 Tồn Kho & Luân Chuyển</button>
+            <button type="button" class="bm-pill" data-mod="RISK">🚨 Bất Ổn & OFF Tuyến</button>
+            <button type="button" class="bm-pill" data-mod="ECOMM">🛒 Sàn TMĐT (Shopee, TikTok, Lazada)</button>
+            <button type="button" class="bm-pill" data-mod="FINANCE">💰 Tài Chính & Gian Lận COD</button>
+            <button type="button" class="bm-pill" data-mod="HR">⏱️ Kỷ Luật, SUP & Thị Trường</button>
+          </div>
+        </div>
+
+        <div class="bot-cards-grid" id="botCardsGrid">
+          <!-- Rendered dynamically via JavaScript -->
         </div>
       </div>
     </section>
@@ -309,7 +335,7 @@
               <span class="case-index">01</span>
               <div class="case-title-group">
                 <h3 class="case-title">
-                  Bóc Tách Gối Đầu COD & Bắt Quả Tang Fake GPS
+                  Cảnh Báo Gối Đầu Tiền Mặt COD & Giả Mạo Vị Trí (Fake GPS)
                   <span class="tag-badge badge-fraud" title="Kiểm soát gian lận dòng tiền">CHỐNG GIAN LẬN · COD RISK</span>
                 </h3>
                 <span class="case-meta">Kiểm soát rủi ro tài chính · Python, GPS Haversine, Google Sheets API & GTalk</span>
@@ -320,7 +346,7 @@
               </svg>
             </div>
             <p class="case-summary">
-              Thuật toán bóc tách giao thoa 3 điều kiện (COD &gt; 400k, hoãn ≥ 2 ngày, lệch GPS &gt; 2.000m) bóc trần chiêu trò bưu tá chiếm dụng tiền mặt và giả mạo tọa độ. Tự động bóc tách sheet riêng gửi đích danh 27 AMs kiểm tra túi hàng trước 11h trưa.
+              Thuật toán bóc tách giao thoa 3 điều kiện: Tiền thu hộ COD &gt; 400.000 VNĐ, hoãn hẹn liên tiếp từ 2 ngày và độ lệch GPS check-in &gt; 2.000m. Tự động bóc tách sheet riêng gửi đích danh 27 AMs kiểm tra túi hàng trước 11h trưa.
             </p>
           </article>
 
@@ -330,18 +356,18 @@
               <span class="case-index">02</span>
               <div class="case-title-group">
                 <h3 class="case-title">
-                  Dynamic Target Staircase & Giải Cứu 14 Bưu Cục Đáy
-                  <span class="tag-badge badge-gtc" title="Chiến lược bậc thang động">DYNAMIC TARGET · GTC</span>
+                  Báo Cáo Năng Suất Giao Hàng Real-time & Đo Lường Gap To Target
+                  <span class="tag-badge badge-gtc" title="Mục tiêu GTC & Năng suất">TARGET GTC · GAP TO GOAL</span>
                 </h3>
-                <span class="case-meta">Quản trị mục tiêu giao hàng · Python, Playwright Headless, Jinja2 Card PNG</span>
+                <span class="case-meta">Theo dõi năng suất NVPTT & Quản trị Target GTC · Python, Jinja2 Card PNG, GTalk</span>
               </div>
-              <span class="case-metric-pill">+4% – 6% GTC 14 Bưu Cục Đáy</span>
+              <span class="case-metric-pill">Đo lường Gap to Target theo giờ</span>
               <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M5 15 15 5M5 5h10v10"></path>
               </svg>
             </div>
             <p class="case-summary">
-              Thuật toán Bậc Thang Động hạ thang cứu hộ [40% - 60%] khi GTC &lt; 55% và tự nâng [60% - 80%] khi vượt ngưỡng. Tự động quy đổi % thành số đơn hàng còn thiếu (Gap to Target) theo từng khung giờ (11h30, 15h00, 18h00) để AM điều phối cứu viện kịp thời.
+              Theo dõi sản lượng và năng suất giao hàng bưu tá theo thời gian thực (Realtime & N-1), tự động tính số đơn hàng còn thiếu (Gap to Target) theo từng khung giờ then chốt (11h30, 15h00, 18h00) gửi thẻ ảnh GTalk giúp AM kịp điều phối dứt điểm chỉ tiêu.
             </p>
           </article>
 
@@ -351,10 +377,10 @@
               <span class="case-index">03</span>
               <div class="case-title-group">
                 <h3 class="case-title">
-                  Bóc Tách Aging Cột O & Giám Sát Tỷ Lệ Gán Đơn Tồn AM
-                  <span class="tag-badge badge-aging" title="Kiểm soát tồn kho quá hạn">AGING · TIẾT KIỆM ĐỀN BÙ</span>
+                  Push Đơn Tồn Kho: Aging Lưu Bãi, Treo Luân Chuyển (LC) & Pending Lấy
+                  <span class="tag-badge badge-aging" title="Kiểm soát hàng tồn quá hạn">AGING · GIẢM ĐỀN BÙ</span>
                 </h3>
-                <span class="case-meta">Tối ưu hóa kho bãi & Hàng siêu trễ · Python Pandas, JSON Snapshots, Automated Color Table</span>
+                <span class="case-meta">Tối ưu hóa kho bãi & Ngăn ngừa đền bù hàng hóa · Python Pandas, JSON Snapshots</span>
               </div>
               <span class="case-metric-pill">-65% Đơn tồn &gt;8 ngày</span>
               <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -362,7 +388,7 @@
               </svg>
             </div>
             <p class="case-summary">
-              Phân tầng toàn bộ dải tồn kho quá hạn (&gt;3N, &gt;5N, &gt;8N, &gt;10N), thiết lập công thức "Tỷ lệ gán đơn tồn (Assignment Rate)" và xếp hạng công khai 27 AMs trên GTalk lãnh đạo Vùng, dứt điểm đơn siêu trễ trước khi phát sinh hàng trăm triệu tiền đền bù.
+              Quét các điểm nghẽn kho bãi: Đơn lưu bãi quá hạn (&gt;3N, &gt;5N, &gt;8N), đơn kẹt xe tải luân chuyển liên tỉnh và pending lấy; thiết lập công thức "Tỷ lệ xử lý đơn tồn (Assignment Rate)" của AM để dứt điểm đơn siêu trễ, giảm hàng trăm triệu tiền đền bù hàng hư.
             </p>
           </article>
 
@@ -372,7 +398,28 @@
               <span class="case-index">04</span>
               <div class="case-title-group">
                 <h3 class="case-title">
-                  Bot Điểm Danh & Chấm Phạt Cut-off 5 Mốc Giờ Vàng
+                  Cảnh Báo Bưu Cục Bất Ổn & Đề Xuất Tự Động OFF Tuyến Bảo Vệ Trạm
+                  <span class="tag-badge badge-risk" title="Định lượng đơn cần clear & Tự động OFF tuyến">BẤT ỔN OPS · BOT OFF TUYẾN</span>
+                </h3>
+                <span class="case-meta">Giám sát rủi ro trạm & Đề xuất tắt tuyến TMĐT · Python, GSpread, Bot rqoff</span>
+              </div>
+              <span class="case-metric-pill">Định lượng số đơn thoát bất ổn</span>
+              <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 15 15 5M5 5h10v10"></path>
+              </svg>
+            </div>
+            <p class="case-summary">
+              Phân loại bưu cục theo 3 cấp độ (Nằm TOP Bất Ổn, Chuẩn Bị Nhảy Nhóm, Cấp Cảnh Báo), tự động tính số lượng đơn cần clear trong ngày để thoát bất ổn. Kết hợp Bot rqoff tự động đề xuất OFF tuyến (tắt nhận đơn sàn TMĐT Shopee/Lazada vào bưu cục) để bảo vệ trạm không bị vỡ.
+            </p>
+          </article>
+
+          <!-- Case 5 -->
+          <article class="case-item" data-case="5" tabindex="0" role="tab" aria-selected="false" id="tab-case-5">
+            <div class="case-header-row">
+              <span class="case-index">05</span>
+              <div class="case-title-group">
+                <h3 class="case-title">
+                  Điểm Danh Quân Số & Nhắc Báo Cáo 5 Mốc Vận Hành (Lưu Trữ SQLite)
                   <span class="tag-badge badge-sqlite" title="Kỷ luật thép vận hành SQLite">SQLITE · KỶ LUẬT VẬN HÀNH</span>
                 </h3>
                 <span class="case-meta">Tự động hóa báo cáo & Kỷ luật điều hành · SQLite DB, Python Automation, Telegram & GTalk</span>
@@ -383,28 +430,7 @@
               </svg>
             </div>
             <p class="case-summary">
-              Chuẩn hóa 5 mốc cut-off chiến lược (08:00, 10:00, 11:00, 16:00, 20:00) với cơ sở dữ liệu SQLite ghi nhận chính xác đến từng giây. Bot đếm ngược nhắc giờ trước 15p, tự động tính phạt theo quy chế và đẩy thẳng lên Google Sheet công khai.
-            </p>
-          </article>
-
-          <!-- Case 5 -->
-          <article class="case-item" data-case="5" tabindex="0" role="tab" aria-selected="false" id="tab-case-5">
-            <div class="case-header-row">
-              <span class="case-index">05</span>
-              <div class="case-title-group">
-                <h3 class="case-title">
-                  Chốt Hàng Về 08:05 & Thuật Toán Risk Score Trạm Bất Ổn
-                  <span class="tag-badge badge-risk" title="Phòng ngừa nguy cơ vỡ trạm">RISK SCORE · DỰ BÁO VỠ TRẠM</span>
-                </h3>
-                <span class="case-meta">Logistics Control Tower · Python Playwright Crawler, Multi-factor Risk Engine</span>
-              </div>
-              <span class="case-metric-pill">Cảnh báo sớm 4 – 6h</span>
-              <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M5 15 15 5M5 5h10v10"></path>
-              </svg>
-            </div>
-            <p class="case-summary">
-              Đo lường lượng hàng cập bến lúc 08:05 kết hợp thuật toán Risk Score đa biến (Hàng về &gt;130%, thiếu quân &gt;20%, tồn dồn &gt;30%) để nhận diện nguy cơ vỡ trạm trước 4-6 tiếng, chỉ đạo xe tải và bưu tá cơ động cứu viện kịp thời.
+              Chuẩn hóa 5 mốc cut-off chiến lược (08:00, 10:00, 11:00, 16:00, 20:00) với cơ sở dữ liệu SQLite ghi nhận chính xác đến từng giây. Bot đếm ngược nhắc giờ trước 15p, tự động loại trừ phép hợp lệ và tính phạt đẩy thẳng lên Google Sheet công khai.
             </p>
           </article>
 
@@ -414,18 +440,18 @@
               <span class="case-index">06</span>
               <div class="case-title-group">
                 <h3 class="case-title">
-                  Flask Webhook Server Phân Luồng Ticket Khiếu Nại Realtime
-                  <span class="tag-badge badge-webhook" title="Phân luồng khiếu nại tức thì">FLASK · NLP REGEX &lt; 30S</span>
+                  Số Hóa Giám Sát Đi Thị Trường Cho HRBP & Quản Lý Vận Hành (SUP)
+                  <span class="tag-badge badge-ops" title="Số hóa kiểm tra thực địa">FIELD OPS · GEO CHECK-IN</span>
                 </h3>
-                <span class="case-meta">Xử lý sự cố khách hàng đa luồng · Flask Microframework, Regex NLP, Google Sheet Routing</span>
+                <span class="case-meta">Quản trị nhân sự & Giám sát thực địa · Telegram Geo Check-in, Google Sheets</span>
               </div>
-              <span class="case-metric-pill">-80% Thời gian xử lý</span>
+              <span class="case-metric-pill">Real-time GPS Check-in</span>
               <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M5 15 15 5M5 5h10v10"></path>
               </svg>
             </div>
             <p class="case-summary">
-              Máy chủ Flask Webhook đa luồng bóc tách mã vận đơn và tên AM bằng Regex NLP, tự động tra cứu bảng ánh xạ Group ID và chuyển tiếp phiếu khiếu nại về thẳng nhóm Kaizen 5 tỉnh chỉ trong &lt; 30 giây, thay thế hoàn toàn copy-paste thủ công 6-12 tiếng.
+              Số hóa toàn diện lịch trình công tác thực địa của đội ngũ HRBP và SUP: Check-in vị trí thực tế tại bưu cục bằng GPS, ghi nhận biên bản đánh giá chất lượng nhân sự, an ninh, layout kho bãi và gửi dữ liệu tức thì về Google Sheets thời gian thực.
             </p>
           </article>
         </div>
@@ -444,7 +470,7 @@
             </div>
 
             <div class="preview-body">
-              <h4 class="preview-title" id="previewTitle">Bóc Tách Gối Đầu COD & Bắt Quả Tang Fake GPS</h4>
+              <h4 class="preview-title" id="previewTitle">Cảnh Báo Gối Đầu Tiền Mặt COD & Giả Mạo Vị Trí (Fake GPS)</h4>
               <p class="preview-desc" id="previewDesc">
                 Thuật toán bóc tách giao thoa 3 điều kiện: Đơn có tiền thu hộ COD &gt; 400.000 VNĐ bị hoãn hẹn liên tiếp từ 2 ngày, kết hợp độ lệch tọa độ check-in GPS bưu tá &gt; 2.000m so với địa chỉ khách hàng. Hệ thống tự động phân tách tab riêng cho 27 AMs và bắn cảnh báo đích danh yêu cầu kiểm tra túi hàng bưu tá trước 11h00 trưa.
               </p>

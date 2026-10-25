@@ -14,6 +14,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initHeroCanvas();
   initCaseStudies();
+  initBotEcosystemMatrix();
   initCareerJourney();
   initSimulator();
   initContactAndModals();
@@ -179,7 +180,7 @@ const CASE_DATA = {
   1: {
     id: 'NTB-COD-01',
     badge: 'CASE 01 · FINANCIAL RISK · FRAUD DETECTION',
-    title: 'Bóc Tách Gối Đầu COD & Bắt Quả Tang Gian Lận Fake GPS',
+    title: 'Cảnh Báo Gối Đầu Tiền Mặt COD & Giả Mạo Vị Trí (Fake GPS)',
     role: 'Kiểm Soát Rủi Ro Tài Chính & Dòng Tiền · Python, GPS Haversine, Google Sheets API, GTalk Bot',
     desc: 'Thuật toán bóc tách giao thoa 3 điều kiện: Đơn có tiền thu hộ COD > 400.000 VNĐ bị hoãn hẹn liên tiếp từ 2 ngày, kết hợp độ lệch tọa độ check-in GPS bưu tá > 2.000m so với địa chỉ khách hàng. Hệ thống tự động phân tách tab riêng cho 27 AMs và bắn cảnh báo đích danh yêu cầu kiểm tra túi hàng bưu tá trước 11h00 trưa.',
     metrics: [
@@ -268,32 +269,33 @@ const CASE_DATA = {
 
   2: {
     id: 'NTB-GTC-02',
-    badge: 'CASE 02 · REVENUE STAIRCASE · GTC BOOST',
-    title: 'Dynamic Target Staircase & Giải Cứu 14 Bưu Cục Đáy',
-    role: 'Chiến Lược Quản Trị Mục Tiêu GTC · Python, Headless Playwright, Jinja2 Thẻ Ảnh PNG, Google Chat',
-    desc: 'Thuật toán Bậc Thang Động (Dynamic Staircase): Tự động nhận diện bưu cục yếu kém (GTC < 55%) để kích hoạt thang cứu hộ thấp [40% - 60%], tự nâng bậc [60% - 80%] khi vượt ngưỡng. Đặc biệt quy đổi tỷ lệ % thành "Số Lượng Đơn Hàng Còn Thiếu (Gap to Target)" theo từng khung giờ then chốt.',
+    badge: 'CASE 02 · OPERATIONS PRODUCTIVITY · TARGET GTC',
+    title: 'Báo Cáo Năng Suất Giao Hàng Real-time & Đo Lường Gap To Target',
+    role: 'Theo Dõi Năng Suất NVPTT & Quản Trị Target GTC Bưu Cục · Python, Jinja2 Thẻ Ảnh PNG, GTalk',
+    desc: 'Hệ thống tự động theo dõi sản lượng và năng suất giao hàng của nhân viên theo thời gian thực (Realtime & N-1) kết hợp quản trị chỉ tiêu GTC bưu cục. Tự động quy đổi tỷ lệ % mục tiêu thành "Số Lượng Đơn Hàng Còn Thiếu (Gap to Target)" gửi kèm thẻ ảnh trực quan qua GTalk theo các khung giờ 11h30, 15h00, 18h00 giúp AM điều phối tiếp ứng dứt điểm chỉ tiêu.',
     metrics: [
-      { val: '+4% – 6% GTC', lbl: 'Tăng trưởng 14 bưu cục cảnh báo' },
-      { val: '14 Bưu Cục', lbl: 'Giải cứu thành công bưu cục đáy' },
-      { val: '11:30 · 15:00 · 18:00', lbl: 'Render thẻ ảnh Gap-to-Target theo giờ' }
+      { val: 'Real-time', lbl: 'Theo dõi năng suất shipper theo giờ' },
+      { val: 'Gap-to-Target', lbl: 'Tính số đơn còn thiếu đạt chỉ tiêu' },
+      { val: '11:30 · 15:00 · 18:00', lbl: 'Gửi thẻ ảnh tự động qua GTalk' }
     ],
-    tech: ['Python 3.11', 'Playwright Headless', 'Jinja2 HTML Cards', 'Pillow Image Generation', 'Google Chat API', 'Dynamic Staircase Logic'],
+    tech: ['Python 3.11', 'Playwright Headless', 'Jinja2 HTML Cards', 'Pillow Image Generation', 'Google Chat API', 'Năng Suất Realtime & N-1'],
     visualHtml: `
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
         <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-emerald); display:flex; align-items:center; gap:6px;">
           <span style="width:7px; height:7px; background:#10b981; border-radius:50%; box-shadow:0 0 8px #10b981;"></span>
-          THUẬT TOÁN TARGET BẬC THANG ĐỘNG (GTC)
+          BÁO CÁO NĂNG SUẤT NVPTT & THEO DÕI TARGET GTC
         </span>
-        <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-dim);">File: report_target_gtalk.py</span>
+        <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-dim);">File: send_realtime_and_target_gtalk.py</span>
       </div>
       <div style="background:rgba(16,185,129,0.06); border:1px solid rgba(16,185,129,0.25); border-radius:8px; padding:12px; margin-bottom:10px;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-          <span style="font-size:0.75rem; font-weight:700; color:var(--text-main);">Hub Phan Rang (Ninh Thuận)</span>
-          <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--accent-amber); background:rgba(245,158,11,0.15); padding:2px 6px; border-radius:4px;">GTC Hiện Tại: 51.8%</span>
+          <span style="font-size:0.75rem; font-weight:700; color:var(--text-main);">Bưu cục: (BTH) Đồng Kho - AM: Lê Thanh Nhựt</span>
+          <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--accent-amber); background:rgba(245,158,11,0.15); padding:2px 6px; border-radius:4px;">GTC Hiện Tại: 47.51%</span>
         </div>
         <div style="background:rgba(0,0,0,0.3); border-radius:6px; padding:8px; font-size:0.73rem; line-height:1.5;">
-          <div style="color:var(--accent-cyan); font-weight:600; margin-bottom:3px;">🎯 THANG CỨU HỘ ĐỘNG ĐANG KÍCH HOẠT: [40% → 45% → 50% → 55% → 60%]</div>
-          <div style="color:var(--text-muted);">Quy đổi mốc 15h00: <strong style="color:var(--accent-lime);">CÒN THIẾU ĐÚNG 84 ĐƠN</strong> để đạt ngưỡng thưởng 60%!</div>
+          <div style="color:var(--accent-cyan); font-weight:600; margin-bottom:3px;">⚡ ĐÁNH GIÁ TIẾN ĐỘ THỜI GIAN THỰC (REAL-TIME):</div>
+          <div style="color:var(--text-muted);">Đã gán: <strong style="color:#fff;">1,187 đơn</strong> · Đã giao TC: <strong style="color:var(--accent-lime);">564 đơn</strong> · LTC: <strong style="color:var(--accent-rose);">192 đơn</strong></div>
+          <div style="color:var(--accent-lime); margin-top:3px; font-weight:600;">🎯 Quy đổi Gap: Còn thiếu đúng 84 đơn để chạm mốc thưởng ca chiều!</div>
         </div>
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.72rem; color:var(--text-dim);">
@@ -305,42 +307,43 @@ const CASE_DATA = {
       <div class="m-section">
         <h4 class="m-section-title">⚠️ Bối cảnh & Nỗi đau vận hành (Operational Pain Point)</h4>
         <p class="m-text">
-          Tỷ lệ Giao Thành Công (GTC) toàn vùng Nam Trung Bộ thường xuyên bị kéo tụt bởi nhóm "14 bưu cục đáy" (chủ yếu ở vùng núi hiểm trở Lâm Đồng, Đắk Nông hoặc bưu cục thiếu nhân sự). Trước đây, Ban Giám đốc chỉ gửi một chỉ tiêu % cứng nhắc (ví dụ: yêu cầu toàn vùng đạt 85%).
+          Trước đây, Ban Giám đốc và Quản lý khu vực (AM) chỉ theo dõi con số % GTC chung chung của bưu cục một cách thụ động vào cuối ngày. AM không nắm được trong từng ca bưu tá nào đang giao tốt, bưu tá nào đang đuối sản lượng, và quan trọng nhất: <strong>Bưu cục còn thiếu chính xác bao nhiêu đơn nữa thì đạt chỉ tiêu ngày?</strong>
         </p>
         <p class="m-text" style="margin-top:8px;">
-          Khi nhìn thấy con số 85% quá xa vời so với thực tế (đang ở mức 45-50%), AM và bưu tá rơi vào tâm lý buông xuôi, bất cần vì biết chắc chắn không thể chạm tới.
+          Việc thiếu thông tin định lượng theo thời gian thực khiến AM chỉ đạo chung chung ("hãy cố gắng lên"), bưu tá không có mốc cụ thể để phấn đấu và thường để lỡ cơ hội bứt phá chỉ tiêu trong các khung giờ giao hàng buổi chiều.
         </p>
       </div>
 
       <div class="m-section">
         <h4 class="m-section-title">🔍 Thuật toán & Insight bóc tách dữ liệu</h4>
-        <p class="m-text">Thủy thiết kế thuật toán <strong>Dynamic Target Staircase (Bậc Thang Động)</strong>:</p>
+        <p class="m-text">Thủy xây dựng hệ thống kết hợp tự động giữa <strong>Năng Suất Bưu Tá Real-time</strong> và <strong>Mục Tiêu Target GTC Bưu Cục</strong>:</p>
         <ul class="m-list">
-          <li><strong>Phân nhánh theo sức khỏe bưu cục:</strong> Nếu GTC ngày N-1 &lt; 55%, bot tự động kích hoạt thang cứu hộ thấp gồm các nấc [40%, 45%, 50%, 55%, 60%] để tạo động lực từng bước. Khi bưu cục đã vượt 55%, bot tự nâng lên thang bứt phá [60%, 70%, 80%].</li>
-          <li><strong>Quy đổi Gap-to-Target ra số lượng đơn:</strong> Thay vì con số % trừu tượng, bot tính toán: <em>Số đơn cần giao thêm = (Target% * Tổng đơn ca) - Số đơn đã giao</em>, cập nhật liên tục theo các khung giờ vàng 11h30, 15h00 và 18h00.</li>
+          <li><strong>Theo dõi tiến độ bưu tá theo thời gian thực:</strong> Đọc dữ liệu phân công và sản lượng giao thực tế của từng nhân viên giao hàng từ Google Sheets theo từng khung giờ.</li>
+          <li><strong>Tính toán số đơn còn thiếu (Gap to Target):</strong> Tự động tính toán mốc mục tiêu phù hợp với thực tế bưu cục và quy đổi thành con số đơn hàng cụ thể: <code>Số đơn cần giao thêm = (Target % * Tổng đơn gán) - Số đơn đã giao thành công</code>.</li>
+          <li><strong>Render thẻ ảnh trực quan (Card PNG):</strong> Tự động dựng thẻ ảnh tông màu cam/vàng kim sang trọng hiển thị danh sách từng bưu tá và bảng tính số đơn còn thiếu của bưu cục.</li>
         </ul>
       </div>
 
       <div class="m-section">
         <h4 class="m-section-title">🎯 Quyết định & Hành động can thiệp (Actionable Decision)</h4>
         <p class="m-text">
-          AM nhận được thẻ ảnh thông số chính xác: <em>"Hub Phan Rang còn thiếu đúng 84 đơn để chạm mốc thưởng 60%"</em>. Thay vì quát tháo chung chung, AM lập tức điều động 3 bưu tá thuộc tuyến hàng vắng sang tiếp ứng các tuyến đông để dứt điểm ngay trong buổi chiều trước giờ chốt sổ.
+          Vào các khung giờ then chốt 11h30, 15h00 và 18h00, bot tự động bắn thẻ ảnh trực tiếp vào nhóm chat GTalk của từng AM. AM mở ảnh ra là thấy ngay: <em>"Bưu cục còn thiếu đúng 84 đơn nữa là chạm chỉ tiêu thưởng"</em>, kèm danh sách các bưu tá còn nhiều đơn trên tuyến. AM lập tức điều chuyển nhân sự tuyến vắng sang hỗ trợ tiếp ứng để dứt điểm chỉ tiêu ngay trong ca phát.
         </p>
       </div>
 
       <div class="m-section">
         <h4 class="m-section-title">💰 Kết quả kinh doanh & Business ROI</h4>
         <ul class="m-list">
-          <li><strong>Tăng từ 4% – 6% GTC</strong> cho toàn bộ nhóm 14 bưu cục cảnh báo chỉ sau 2 tuần triển khai chiến dịch cứu hộ.</li>
-          <li>Trực tiếp đưa tỷ lệ GTC toàn vùng Nam Trung Bộ vươn lên nhóm dẫn đầu toàn hệ thống GHN cả nước.</li>
-          <li>Tạo động lực tinh thần cho đội ngũ giao hàng tuyến đầu, biến mục tiêu bất khả thi thành các mốc khả thi trong tầm tay.</li>
+          <li><strong>Minh bạch hóa 100%</strong> năng suất giao hàng của đội ngũ bưu tá theo từng giờ làm việc.</li>
+          <li>Biến chỉ tiêu % mơ hồ thành <strong>con số đơn hàng cụ thể (Actionable Metric)</strong>, giúp AM và bưu tá có mục tiêu rõ ràng để hoàn thành.</li>
+          <li>Gia tăng đáng kể tỷ lệ giao thành công (GTC) toàn vùng vào các khung giờ chốt sổ buổi chiều.</li>
         </ul>
       </div>
 
       <div class="m-section">
         <h4 class="m-section-title">🛠️ Kiến trúc kỹ thuật & Files thực thi</h4>
         <p class="m-text">
-          <code>report_target_gtalk.py</code> • <code>send_realtime_and_target_gtalk.py</code> • <code>send_gtalk_report.py</code> • Render thẻ ảnh card HTML/CSS bằng Playwright Headless & Pillow (<code>01_Realtime_Target_GTC_Card.png</code>).
+          <code>send_realtime_and_target_gtalk.py</code> • <code>autonangsuat.py</code> • <code>report_target_gtalk.py</code> • Render thẻ ảnh card HTML/CSS bằng Playwright Headless & Pillow (<code>01_Realtime_Target_GTC_Card.png</code>).
         </p>
       </div>
     `
@@ -349,29 +352,28 @@ const CASE_DATA = {
   3: {
     id: 'NTB-AGING-03',
     badge: 'CASE 03 · INVENTORY CONTROL · CLAIMS REDUCTION',
-    title: 'Bóc Tách Aging Cột O & Giám Sát Tỷ Lệ Gán Đơn Tồn AM',
-    role: 'Tối Ưu Hóa Kho Bãi & Cắt Giảm Chi Phí Bồi Thường Hàng Hóa · Python Pandas, JSON Snapshots, Table Generator',
-    desc: 'Phân tầng dữ liệu tồn kho lưu bãi theo dải ngày (>3N, >5N, >8N, >10N). Xây dựng công thức đo lường "Tỷ Lệ Gán Đơn Tồn (Assignment Rate)" của từng AM và xếp hạng công khai trên GTalk lãnh đạo Vùng, triệt tiêu tâm lý né tránh đơn khó và ngăn ngừa hàng nghìn đơn rơi vào tình trạng đền bù.',
+    title: 'Push Đơn Tồn Kho: Aging Lưu Bãi, Treo Luân Chuyển (LC) & Pending Lấy',
+    role: 'Kiểm Soát Hàng Lưu Bãi & Ngăn Ngừa Bồi Thường Hàng Hóa · Python Pandas, JSON Snapshots, Automated Color Table',
+    desc: 'Quét các nút thắt nghẽn kho bãi: Đơn lưu bãi quá hạn (>3N, >5N, >8N), đơn kẹt xe tải luân chuyển liên tỉnh và pending lấy; thiết lập công thức "Tỷ lệ xử lý đơn tồn (Assignment Rate)" của AM để dứt điểm đơn siêu trễ, giảm hàng trăm triệu tiền đền bù hàng hư.',
     metrics: [
       { val: '-65% Đơn >8N', lbl: 'Giảm mạnh hàng tồn siêu trễ' },
       { val: 'Hàng Trăm Triệu', lbl: 'Tiết kiệm chi phí đền bù hư hỏng / tháng' },
       { val: '70% Cut-off', lbl: 'Ngưỡng cảnh báo kỷ luật Assignment Rate' }
     ],
-    tech: ['Python 3.11', 'Pandas Analytics', 'JSON Delta Snapshots', 'Automated Table Coloring', 'Google Chat Broadcast', 'Windows .bat Automation'],
+    tech: ['Python 3.11', 'Pandas Analytics', 'JSON Delta Snapshots', 'Luân Chuyển & Pending Pipeline', 'Google Chat Broadcast'],
     visualHtml: `
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
         <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-amber); display:flex; align-items:center; gap:6px;">
           <span style="width:7px; height:7px; background:#f59e0b; border-radius:50%; box-shadow:0 0 8px #f59e0b;"></span>
-          PHÂN TẦNG TỒN KHO AGING & ASSIGNMENT RATE AM
+          QUÉT ĐIỂM NGHẼN TỒN KHO, TREO LC & PENDING LẤY
         </span>
-        <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-dim);">File: ntb_aging_report_col_o.py</span>
+        <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-dim);">File: calculate_report_luanchuyen.py</span>
       </div>
       <div style="background:rgba(245,158,11,0.06); border:1px solid rgba(245,158,11,0.25); border-radius:8px; padding:10px; margin-bottom:10px;">
-        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; text-align:center; margin-bottom:8px;">
-          <div style="background:rgba(0,0,0,0.3); padding:6px; border-radius:4px;"><div style="color:var(--text-main); font-weight:700;">&gt;3 Ngày</div><div style="font-size:0.65rem; color:#888;">Theo dõi</div></div>
-          <div style="background:rgba(0,0,0,0.3); padding:6px; border-radius:4px;"><div style="color:var(--accent-amber); font-weight:700;">&gt;5 Ngày</div><div style="font-size:0.65rem; color:#888;">Cảnh báo</div></div>
-          <div style="background:rgba(0,0,0,0.3); padding:6px; border-radius:4px;"><div style="color:var(--accent-rose); font-weight:700;">&gt;8 Ngày</div><div style="font-size:0.65rem; color:#888;">Rủi ro đền bù</div></div>
-          <div style="background:rgba(0,0,0,0.3); padding:6px; border-radius:4px;"><div style="color:#c084fc; font-weight:700;">&gt;10 Ngày</div><div style="font-size:0.65rem; color:#888;">Báo động đỏ</div></div>
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:6px; text-align:center; margin-bottom:8px;">
+          <div style="background:rgba(0,0,0,0.3); padding:6px; border-radius:4px;"><div style="color:var(--accent-rose); font-weight:700;">Aging &gt;8N</div><div style="font-size:0.65rem; color:#888;">Nguy cơ đền bù 70%</div></div>
+          <div style="background:rgba(0,0,0,0.3); padding:6px; border-radius:4px;"><div style="color:var(--accent-amber); font-weight:700;">Treo Luân Chuyển</div><div style="font-size:0.65rem; color:#888;">Kẹt kho trung chuyển</div></div>
+          <div style="background:rgba(0,0,0,0.3); padding:6px; border-radius:4px;"><div style="color:var(--accent-cyan); font-weight:700;">Pending Lấy</div><div style="font-size:0.65rem; color:#888;">Trễ SLA Shop gửi</div></div>
         </div>
         <div style="font-size:0.73rem; background:rgba(0,0,0,0.4); padding:6px 10px; border-radius:4px; display:flex; justify-content:space-between;">
           <span>Công thức kỷ luật AM:</span>
@@ -387,27 +389,27 @@ const CASE_DATA = {
       <div class="m-section">
         <h4 class="m-section-title">⚠️ Bối cảnh & Nỗi đau vận hành (Operational Pain Point)</h4>
         <p class="m-text">
-          Hàng lưu kho quá hạn (Aging) là "cơn ác mộng" của bất kỳ doanh nghiệp chuyển phát nhanh nào. Hàng tồn từ 1-3 ngày là biến động tự nhiên, nhưng khi hàng nằm kho từ 8 đến 10 ngày trở lên, tỷ lệ người mua từ chối nhận hàng hoặc hàng hóa bị móp méo, hư hỏng trong quá trình bảo quản tăng vọt lên tới 70%.
+          Hàng lưu kho quá hạn (Aging) và đơn hàng bị ách tắc giữa các mắt xích là "cơn ác mộng" vận hành. Khi hàng nằm kho từ 8 đến 10 ngày trở lên, nguy cơ người mua từ chối nhận hàng hoặc hàng hóa bị móp méo, hư hỏng trong quá trình lưu bãi tăng vọt lên tới 70%, khiến công ty phải đền bù toàn bộ giá trị.
         </p>
         <p class="m-text" style="margin-top:8px;">
-          Khi đó GHN phải chịu toàn bộ chi phí bồi hoàn giá trị đơn hàng. Cấp quản lý bưu cục (AM) thường có tâm lý né tránh, ngại phân công bưu tá đi giao những kiện hàng khó này, khiến hàng ngày càng tồn lâu hơn.
+          Bên cạnh đó, các kiện hàng bị "treo luân chuyển" giữa các trạm xe tải và đơn pending lấy chưa kịp gom từ Shop cũng gây nghẽn dòng hàng liên hoàn nếu không được giám sát và thúc đẩy liên tục.
         </p>
       </div>
 
       <div class="m-section">
         <h4 class="m-section-title">🔍 Thuật toán & Insight bóc tách dữ liệu</h4>
-        <p class="m-text">Thủy xây dựng hệ thống bóc tách dữ liệu tồn kho từ Cột O theo các dải ngày:</p>
+        <p class="m-text">Thủy xây dựng hệ thống bóc tách dữ liệu đa chiều để giải quyết triệt để tồn đọng:</p>
         <ul class="m-list">
-          <li><strong>Phân tầng dải ngày:</strong> Tự động bóc tách và phân loại hàng tồn theo 4 dải nguy hiểm: &gt;3N, &gt;5N, &gt;8N và &gt;10N.</li>
+          <li><strong>Phân tầng dải ngày lưu bãi:</strong> Tự động bóc tách và phân loại hàng tồn theo các dải nguy hiểm: &gt;3N, &gt;5N, &gt;8N và &gt;10N.</li>
+          <li><strong>Theo dõi điểm nghẽn luân chuyển & pending lấy:</strong> Quét các mã vận đơn bị đứng im quá 24h trên tuyến xe tải hoặc các đơn Shop đã báo lấy nhưng chưa có bưu tá tới tiếp nhận.</li>
           <li><strong>Định nghĩa chỉ số Assignment Rate:</strong> Thiết lập công thức đo lường mức độ quyết liệt của từng AM: <code>Assignment Rate = (Số đơn tồn đã được phân công bưu tá đi phát) / (Tổng số đơn tồn hiện hữu trong kho)</code>.</li>
-          <li><strong>So sánh ảnh chụp nhanh (Delta Snapshots):</strong> Lưu trữ trạng thái vào file JSON snapshot để phát hiện trường hợp AM chỉ bấm gán đơn đối phó trên hệ thống rồi sau đó lại thu hồi về kho.</li>
         </ul>
       </div>
 
       <div class="m-section">
         <h4 class="m-section-title">🎯 Quyết định & Hành động can thiệp (Actionable Decision)</h4>
         <p class="m-text">
-          Hệ thống tự động render bảng phân tích màu sắc và xếp hạng công khai mức độ giải quyết hàng tồn của 27 AMs lên nhóm GTalk lãnh đạo Vùng. AM nào có tỷ lệ gán đơn &lt; 70% phải giải trình trực tiếp với Giám đốc Vùng lý do tại sao để đơn hàng nằm im trong kho mà không cho bưu tá xuất phát.
+          Hệ thống tự động render bảng phân tích màu sắc và xếp hạng công khai mức độ giải quyết hàng tồn của 27 AMs lên nhóm GTalk lãnh đạo Vùng. AM nào có tỷ lệ gán đơn &lt; 70% phải giải trình trực tiếp lý do tại sao để đơn hàng nằm im trong kho mà không cho bưu tá xuất phát. Đồng thời cảnh báo ngay trạm xe tải đang bị treo hàng luân chuyển để điều phối giải phóng kho.
         </p>
       </div>
 
@@ -416,23 +418,113 @@ const CASE_DATA = {
         <ul class="m-list">
           <li><strong>Cắt giảm 65%</strong> lượng đơn tồn kho siêu trễ (&gt;8 ngày) trên toàn địa bàn 5 tỉnh Nam Trung Bộ.</li>
           <li><strong>Tiết kiệm hàng trăm triệu đồng</strong> chi phí đền bù hàng hóa hỏng/vỡ mỗi tháng cho công ty.</li>
-          <li>Giải phóng diện tích kho bãi tại 85 bưu cục, nâng cao tốc độ quay vòng của luồng hàng hóa.</li>
+          <li>Giải phóng diện tích kho bãi tại 85 bưu cục, nâng cao tốc độ quay vòng của luồng hàng hóa liên tỉnh.</li>
         </ul>
       </div>
 
       <div class="m-section">
         <h4 class="m-section-title">🛠️ Kiến trúc kỹ thuật & Files thực thi</h4>
         <p class="m-text">
-          <code>ntb_aging_report_col_o.py</code> • <code>ntb_aging_dachien.py</code> • <code>analyze_am_aging_assignment_rate.py</code> • <code>snapshot_aging.json</code> • Bảng màu tự động (<code>table_aging_color.png</code>, <code>table_am_aging_analysis_dachien.png</code>).
+          <code>calculate_report_luanchuyen.py</code> • <code>ntb_aging_report.py</code> • <code>analyze_am_aging_assignment_rate.py</code> • <code>snapshot_aging.json</code> • Bảng màu tự động (<code>table_aging_color.png</code>, <code>table_luanchuyen_color.png</code>).
         </p>
       </div>
     `
   },
 
   4: {
-    id: 'NTB-ATTEND-04',
-    badge: 'CASE 04 · OPERATIONS DISCIPLINE · SQLITE ENGINE',
-    title: 'Bot Điểm Danh & Chấm Phạt Cut-off 5 Mốc Giờ Vàng',
+    id: 'NTB-BATON-04',
+    badge: 'CASE 04 · OPERATIONS RISK · TARGET CLEAR & AUTO OFF',
+    title: 'Cảnh Báo Bưu Cục Bất Ổn & Đề Xuất Tự Động OFF Tuyến Bảo Vệ Trạm',
+    role: 'Giám Sát Bưu Cục Bất Ổn & Đề Xuất Tắt Tuyến TMĐT Bảo Vệ Trạm · Python, GSpread, Bot rqoff',
+    desc: 'Giải quyết triệt để bài toán cảnh báo thụ động: Thay vì chỉ gắn nhãn bưu cục bị "Bất ổn", hệ thống đối soát Backlog Lastmile (BL LM), BL Aging >5 ngày, BL KTC cùng tỉnh với sản lượng tạo mới và GTC trung bình 7 ngày để tự động tính ra chính xác SỐ LƯỢNG ĐƠN CẦN CLEAR TRONG NGÀY (Target LM & Target KTC) giúp bưu cục thoát khỏi danh sách cảnh báo đỏ. Đồng thời Bot rqoff tự động đề xuất OFF tuyến (tắt nhận đơn sàn TMĐT Shopee/Lazada vào bưu cục) để bảo vệ trạm không bị vỡ.',
+    metrics: [
+      { val: '3 Cấp Phân Nhóm', lbl: 'Top Bất Ổn · Nhảy Nhóm · Cảnh Báo' },
+      { val: 'Target Clear Cụ Thể', lbl: 'Định lượng số đơn cần xử lý trong ngày' },
+      { val: 'Bot OFF Tuyến rqoff', lbl: 'Tự động đề xuất tắt tuyến bảo vệ trạm' }
+    ],
+    tech: ['Python 3.11', 'GSpread API (Service Account)', 'Playwright Headless Cards', 'Backlog & Aging Multi-factor Model', 'Bot rqoff & rqoff_plan', 'Telegram Bot API / GTalk'],
+    visualHtml: `
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-sky, #38bdf8); display:flex; align-items:center; gap:6px;">
+          <span style="width:7px; height:7px; background:#38bdf8; border-radius:50%; box-shadow:0 0 8px #38bdf8;"></span>
+          HỆ THỐNG ĐỊNH LƯỢNG CLEAR ĐƠN & BOT OFF TUYẾN
+        </span>
+        <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-dim);">File: report_BC_BatOn_html_23.py & rqoff.py</span>
+      </div>
+      <div style="background:rgba(56,189,248,0.06); border:1px solid rgba(56,189,248,0.25); border-radius:8px; padding:10px; margin-bottom:10px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--text-main);">Định lượng đơn cần clear để thoát bất ổn:</span>
+          <span style="font-family:var(--font-mono); font-size:0.68rem; color:var(--accent-rose); background:rgba(244,63,94,0.15); padding:2px 6px; border-radius:4px;">CẦN CAN THIỆP NGAY</span>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr; gap:5px; font-size:0.73rem;">
+          <div style="background:rgba(0,0,0,0.3); padding:4px 8px; border-radius:4px; display:flex; justify-content:space-between;">
+            <span>1. Target Clear Đơn Lastmile:</span>
+            <span style="color:var(--accent-lime); font-family:var(--font-mono); font-weight:700;">max(Aging_5N - 10% BL, BL + Tạo_7D - 1.8*GTC_7D)</span>
+          </div>
+          <div style="background:rgba(0,0,0,0.3); padding:4px 8px; border-radius:4px; display:flex; justify-content:space-between;">
+            <span>2. Tự động đề xuất OFF tuyến (rqoff):</span>
+            <span style="color:var(--accent-amber); font-family:var(--font-mono); font-weight:700;">Tắt tuyến Shopee/Lazada bưu cục quá tải</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.72rem; color:var(--text-dim);">
+        <span style="color:var(--accent-lime);">✓ Tự động Tag AM phụ trách & Gửi thẻ ảnh</span>
+        <span style="color:var(--accent-cyan); font-family:var(--font-mono);">bc_baton_report.png</span>
+      </div>
+    `,
+    deepDetail: `
+      <div class="m-section">
+        <h4 class="m-section-title">⚠️ Bối cảnh & Nỗi đau vận hành (Operational Pain Point)</h4>
+        <p class="m-text">
+          Tại các bưu cục bị nghẽn vận hành (Backlog Lastmile dồn ứ, hàng tồn Aging quá 5 ngày hoặc hàng trung chuyển KTC cùng tỉnh bị ứ đọng), nếu chỉ gửi một thông báo chung chung là "Bưu cục X đang rơi vào nhóm Bất ổn" thì Quản lý khu vực (AM) và Trưởng bưu cục sẽ rơi vào tình trạng lúng túng, không biết phải ưu tiên xử lý luồng đơn nào trước và cần giao bao nhiêu đơn để trạm trở lại ngưỡng an toàn.
+        </p>
+        <p class="m-text" style="margin-top:8px;">
+          Nếu lượng hàng từ sàn TMĐT (Shopee, Lazada) vẫn tiếp tục đổ dồn về trong khi trạm đang kẹt cứng, bưu cục sẽ rơi vào tình trạng "vỡ trạm", sụp đổ hoàn toàn chất lượng giao nhận của toàn tỉnh.
+        </p>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">🔍 Thuật toán & Insight bóc tách dữ liệu</h4>
+        <p class="m-text">Thủy nâng cấp mô hình phân tích bất ổn thành công cụ định lượng hành động cụ thể kết hợp bot OFF tuyến:</p>
+        <ul class="m-list">
+          <li><strong>Phân nhóm cảnh báo 3 cấp độ:</strong> Tự động bóc tách và xếp loại danh sách bưu cục thành: (1) Nằm TOP Bất Ổn; (2) Chuẩn Bị Nhảy Nhóm; (3) Cấp Cảnh Báo.</li>
+          <li><strong>Thuật toán tính toán số lượng đơn cần Clear trong ngày:</strong>
+            <br>• Đối soát giữa <strong>Backlog LM hiện tại, Tồn Aging >5 ngày, Tồn KTC cùng tỉnh</strong> với <strong>Mức tạo đơn mới TB 7 ngày</strong> và <strong>Sản lượng GTC trung bình 7 ngày</strong>.
+            <br>• Tính toán mục tiêu: <code>Target_LM = max(BL_LM_5ngay - 10%*BL_LM, BL_LM + Tao_Avg_7D - 1.8*GTC_Avg_7D)</code>. Con số trả về chính là số lượng kiện hàng chính xác cần giải tỏa ngay trong ngày để bưu cục thoát khỏi ngưỡng bất ổn!
+          </li>
+          <li><strong>Bot Tự Động Đề Xuất OFF Tuyến (rqoff):</strong> Khi phát hiện bưu cục có nguy cơ vỡ trạm, script <code>rqoff.py</code> tự động quét cơ cấu phường xã và sản lượng Shopee 7 ngày để lên danh sách các tuyến cần tạm thời OFF (tắt luồng nhận đơn TMĐT) để trạm có không gian giải phóng hàng tồn.</li>
+        </ul>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">🎯 Quyết định & Hành động can thiệp (Actionable Decision)</h4>
+        <p class="m-text">
+          Script <code>report_BC_BatOn_html_23.py</code> tự động render thẻ ảnh HTML/CSS tổng hợp và bắn lên Telegram/GTalk điều hành Vùng, Tag đích danh từng AM phụ trách kèm số lượng đơn cần xử lý. Đồng thời đề xuất danh sách OFF tuyến gửi Ban Giám đốc phê duyệt ngay đầu ngày để bảo vệ an toàn công suất trạm.
+        </p>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">💰 Kết quả kinh doanh & Business ROI</h4>
+        <ul class="m-list">
+          <li>Chuyển hóa cảnh báo từ dạng "thông tin thụ động" sang <strong>mục tiêu hành động định lượng chính xác (Actionable KPI)</strong>.</li>
+          <li>Chủ động bảo vệ trạm bằng cơ chế OFF tuyến linh hoạt, dập tắt nguy cơ vỡ trạm trước khi xảy ra sự cố.</li>
+          <li>Bảo vệ cam kết chất lượng dịch vụ (SLA) với các sàn thương mại điện tử lớn.</li>
+        </ul>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">🛠️ Kiến trúc kỹ thuật & Files thực thi</h4>
+        <p class="m-text">
+          <code>report_BC_BatOn_html_23.py</code> • <code>rqoff.py</code> • <code>rqoff_plan.py</code> • GSpread Google Sheets API • Playwright Chromium Headless Card Generator (<code>bc_baton_report.png</code>).
+        </p>
+      </div>
+    `
+  },
+
+  5: {
+    id: 'NTB-ATTEND-05',
+    badge: 'CASE 05 · OPERATIONS DISCIPLINE · SQLITE ENGINE',
+    title: 'Điểm Danh Quân Số & Nhắc Báo Cáo 5 Mốc Vận Hành (Lưu Trữ SQLite)',
     role: 'Kỷ Luật Thép Vận Hành · SQLite Database, Python Automation, GSpread Sync, Automated Penalty Engine',
     desc: 'Chuẩn hóa 5 mốc cut-off chiến lược trong ngày (08:00, 10:00, 11:00, 16:00, 20:00) cho 85 bưu cục. Tích hợp cơ sở dữ liệu SQLite (diem_danh.db) ghi nhận chính xác thời gian báo cáo đến từng giây, đếm ngược nhắc giờ trước 15 phút và tự động chấm phạt vi phạm minh bạch tuyệt đối.',
     metrics: [
@@ -516,174 +608,79 @@ const CASE_DATA = {
     `
   },
 
-  5: {
-    id: 'NTB-RISK-05',
-    badge: 'CASE 05 · LOGISTICS CONTROL TOWER · EARLY WARNING',
-    title: 'Chốt Hàng Về 08:05 & Thuật Toán Risk Score Trạm Bất Ổn',
-    role: 'Kiểm Soát Nút Thắt Cổ Chai Logistics · Python Playwright, Multi-factor Risk Engine, Automated GTalk',
-    desc: 'Phát hiện hiệu ứng domino vận chuyển trước khi bưu cục rơi vào trạng thái vỡ trạm. Thuật toán Risk Score đa biến (0 - 100 điểm) quét lúc 08:05: kết hợp sản lượng hàng về > 130%, thiếu hụt nhân sự > 20% và tồn cũ > 30% để phát lệnh điều phối xe tải và nhân lực cứu viện trước 4-6 tiếng.',
-    metrics: [
-      { val: 'Sớm 4 – 6 Giờ', lbl: 'Nhận diện nguy cơ trước khi vỡ trạm' },
-      { val: '08:05 Sáng', lbl: 'Chốt toàn bộ dữ liệu cập bến' },
-      { val: '100% SLA', lbl: 'Bảo vệ cam kết giao hàng trong ngày' }
-    ],
-    tech: ['Python 3.11', 'Playwright Headless Crawler', 'Pandas Risk Algorithm', 'Looker/BI Integration', 'Google Chat Alerting', 'Windows Task Scheduler'],
-    visualHtml: `
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-        <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-sky, #38bdf8); display:flex; align-items:center; gap:6px;">
-          <span style="width:7px; height:7px; background:#38bdf8; border-radius:50%; box-shadow:0 0 8px #38bdf8;"></span>
-          THUẬT TOÁN RISK SCORE & CẢNH BÁO VỠ TRẠM 08:05
-        </span>
-        <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-dim);">File: chot_hang_ve_08h05.py</span>
-      </div>
-      <div style="background:rgba(56,189,248,0.06); border:1px solid rgba(56,189,248,0.25); border-radius:8px; padding:10px; margin-bottom:10px;">
-        <div style="font-size:0.72rem; color:#38bdf8; font-weight:700; margin-bottom:6px;">
-          ⚡ 3 CHỈ SỐ RISK SCORE ĐA BIẾN (0 - 100 ĐIỂM):
-        </div>
-        <div style="display:grid; grid-template-columns:1fr; gap:5px; font-size:0.73rem;">
-          <div style="display:flex; justify-content:space-between; background:rgba(0,0,0,0.3); padding:4px 8px; border-radius:4px;">
-            <span>1. Tải trọng hàng về lúc 08h05:</span>
-            <span style="color:var(--accent-rose); font-family:var(--font-mono);">&gt; 130% Công suất</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; background:rgba(0,0,0,0.3); padding:4px 8px; border-radius:4px;">
-            <span>2. Tỷ lệ thiếu hụt quân số:</span>
-            <span style="color:var(--accent-amber); font-family:var(--font-mono);">&gt; 20% Định biên</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; background:rgba(0,0,0,0.3); padding:4px 8px; border-radius:4px;">
-            <span>3. Tồn TTS hôm trước dồn sang:</span>
-            <span style="color:var(--accent-rose); font-family:var(--font-mono);">&gt; 30% Sản lượng</span>
-          </div>
-        </div>
-      </div>
-      <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.72rem; color:var(--text-dim);">
-        <span style="color:var(--accent-rose);">⚠️ Risk Score &gt; 75/100: Kích hoạt báo động đỏ</span>
-        <span style="color:var(--accent-lime); font-family:var(--font-mono);">Phát lệnh: 08:30 sáng</span>
-      </div>
-    `,
-    deepDetail: `
-      <div class="m-section">
-        <h4 class="m-section-title">⚠️ Bối cảnh & Nỗi đau vận hành (Operational Pain Point)</h4>
-        <p class="m-text">
-          Dây chuyền vận hành logistics có tính liên hoàn cao: Chỉ cần xe tải trung chuyển liên tỉnh về trễ 30 phút, bưu cục sẽ chia chọn trễ 1 tiếng, dẫn đến việc bưu tá xuất bến muộn và toàn bộ tỷ lệ giao thành công (GTC) buổi sáng bị sụp đổ.
-        </p>
-        <p class="m-text" style="margin-top:8px;">
-          Bưu cục rơi vào trạng thái "vỡ trạm", hàng hóa chất đống tràn ra lối đi mà cấp trên chỉ biết khi sự đã rồi vào cuối buổi chiều — khi không còn thời gian để khắc phục.
-        </p>
-      </div>
-
-      <div class="m-section">
-        <h4 class="m-section-title">🔍 Thuật toán & Insight bóc tách dữ liệu</h4>
-        <p class="m-text">Thủy thiết lập mốc chốt hàng về lúc 08:05 và thuật toán <strong>Risk Score đa biến</strong>:</p>
-        <ul class="m-list">
-          <li><strong>Chốt hàng về lúc 08:05:</strong> Đo lường chính xác tổng khối lượng kiện hàng đã cập bến bưu cục ngay đầu ngày để dự báo áp lực ca phát.</li>
-          <li><strong>Thuật toán Risk Score (0 - 100 điểm):</strong> Đánh giá mức độ rủi ro dựa trên trọng số 3 yếu tố:
-            <br>• Lượng hàng về vượt quá 130% năng lực thông qua của bưu cục.
-            <br>• Quân số bưu tá đi làm thiếu hụt &gt; 20% so với định biên nhân sự.
-            <br>• Tỷ lệ hàng tồn TTS từ ngày hôm trước dồn sang vượt &gt; 30%.
-          </li>
-        </ul>
-      </div>
-
-      <div class="m-section">
-        <h4 class="m-section-title">🎯 Quyết định & Hành động can thiệp (Actionable Decision)</h4>
-        <p class="m-text">
-          Ngay khi Risk Score vượt ngưỡng 75 điểm, hệ thống tự động bắn tín hiệu cảnh báo đỏ lên kênh Điều Phối Vùng trước 08:30 sáng. Lãnh đạo lập tức chỉ đạo xe tải tuyến lân cận chuyển hướng dỡ bớt hàng và điều động đội bưu tá cơ động sang hỗ trợ chia chọn ngay lập tức, dập tắt nguy cơ ùn ứ trước khi nó bùng phát.
-        </p>
-      </div>
-
-      <div class="m-section">
-        <h4 class="m-section-title">💰 Kết quả kinh doanh & Business ROI</h4>
-        <ul class="m-list">
-          <li><strong>Cảnh báo sớm từ 4 đến 6 tiếng</strong> trước khi bưu cục rơi vào nguy cơ vỡ trạm.</li>
-          <li><strong>Bảo vệ 100% cam kết SLA</strong> giao nhận trong ngày đối với các đối tác sàn TMĐT (Shopee, TikTok Shop, Lazada).</li>
-          <li>Tối ưu hóa hành trình xe tải trung chuyển, hạn chế tối đa việc xe chạy rỗng hoặc xe bị ách tắc tại bưu cục.</li>
-        </ul>
-      </div>
-
-      <div class="m-section">
-        <h4 class="m-section-title">🛠️ Kiến trúc kỹ thuật & Files thực thi</h4>
-        <p class="m-text">
-          <code>chot_hang_ve_08h05.py</code> • <code>generate_unstable_hubs_report.py</code> • <code>download_report_gtc_db.py</code> • Playwright Headless Web Crawler • Ảnh phân tích <code>top10_fd_t2_den_gio.png</code>.
-        </p>
-      </div>
-    `
-  },
-
   6: {
-    id: 'NTB-TICKET-06',
-    badge: 'CASE 06 · REALTIME DISPATCH · REGEX NLP',
-    title: 'Flask Webhook Server Phân Luồng Ticket Khiếu Nại Realtime',
-    role: 'Xử Lý Sự Cố Khách Hàng Realtime · Python Flask, Multi-threading, Regex NLP, Google Sheet Routing',
-    desc: 'Máy chủ Flask Webhook đa luồng tiếp nhận tin nhắn khiếu nại khách hàng, sử dụng biểu thức chính quy Regex NLP bóc tách mã vận đơn và tên AM trong tích tắc, tự động tra cứu bảng mapping Group ID và bắn thẳng về nhóm Kaizen của 5 tỉnh chỉ trong < 30 giây.',
+    id: 'NTB-FIELD-06',
+    badge: 'CASE 06 · FIELD OPERATIONS · GEO CHECK-IN',
+    title: 'Số Hóa Giám Sát Đi Thị Trường Cho HRBP & Quản Lý Vận Hành (SUP)',
+    role: 'Quản Trị Nhân Sự & Giám Sát Thực Địa Bưu Cục · Telegram Geo Check-in, Google Sheets Master',
+    desc: 'Số hóa toàn diện lịch trình công tác thực địa của đội ngũ HRBP (Nhân sự) và Supervisor (Giám sát vận hành): Check-in vị trí thực tế tại bưu cục bằng GPS, ghi nhận biên bản đánh giá chất lượng nhân sự, an ninh, cơ sở vật chất và tiêu chuẩn 5S ngay tại hiện trường về Google Sheets thời gian thực. (Tích hợp thêm module cảnh báo quá hạn sàn TMĐT ODR/OPR và xử lý Ticket khiếu nại).',
     metrics: [
-      { val: '< 30 Giây', lbl: 'Tốc độ phân luồng ticket tự động' },
-      { val: '-80% Thời Gian', lbl: 'Rút ngắn quy trình từ 6-12h xuống nửa phút' },
-      { val: '5 Tỉnh NTB', lbl: 'Phân luồng chính xác không cần con người can thiệp' }
+      { val: 'Real-time', lbl: 'Định vị GPS check-in thực tế' },
+      { val: '100% Số Hóa', lbl: 'Biên bản kiểm tra bưu cục' },
+      { val: '5 Tỉnh NTB', lbl: 'Minh bạch lịch trình công tác' }
     ],
-    tech: ['Python Flask Framework', 'ThreadPoolExecutor Multi-threading', 'Regex Natural Language Processing', 'Google Chat Webhooks', 'Google Sheets Mapping'],
+    tech: ['Telegram Geolocation', 'Mobile Form Workflow', 'HRBP & SUP Tracker', 'ODR/OPR Sàn TMĐT', 'Ticket Alerting', 'Google Sheets Integration'],
     visualHtml: `
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
         <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-purple); display:flex; align-items:center; gap:6px;">
           <span style="width:7px; height:7px; background:#a855f7; border-radius:50%; box-shadow:0 0 8px #a855f7;"></span>
-          MÁY CHỦ FLASK WEBHOOK & REGEX NLP TICKET
+          NHẬT KÝ CHECK-IN THỊ TRƯỜNG HRBP & SUP
         </span>
-        <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-dim);">File: ticket_webhook_server.py</span>
+        <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-dim);">File: checkin_sup_bot.py</span>
       </div>
-      <div style="background:rgba(168,85,247,0.06); border:1px solid rgba(168,85,247,0.25); border-radius:8px; padding:10px; margin-bottom:10px;">
-        <div style="display:flex; align-items:center; justify-content:space-between; font-size:0.73rem; margin-bottom:6px;">
-          <span>Quy trình luồng xử lý:</span>
-          <span style="color:var(--accent-lime); font-family:var(--font-mono); font-weight:700;">Tốc độ: &lt; 30 Giây</span>
+      <div style="background:rgba(168,85,247,0.06); border:1px solid rgba(168,85,247,0.25); border-radius:8px; padding:10px; margin-bottom:10px; font-size:0.73rem; line-height:1.6;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+          <span style="color:var(--text-main); font-weight:700;">📍 Điểm kiểm tra: Hub Đà Lạt (Lâm Đồng)</span>
+          <span style="color:var(--accent-lime); font-family:var(--font-mono);">GPS Verified ✓</span>
         </div>
-        <div style="background:rgba(0,0,0,0.3); border-radius:4px; padding:8px; font-family:var(--font-mono); font-size:0.7rem; line-height:1.6; color:var(--text-muted);">
-          [Ticket Incoming] → [Flask Multi-thread Server] → [Regex NLP Extract MVD & AM] → [Lookup Sheet Group ID] → [Push GTalk Kaizen 5 Tỉnh]
+        <div style="color:var(--text-muted); background:rgba(0,0,0,0.3); padding:6px 8px; border-radius:4px;">
+          Nhân sự đánh giá: HRBP Nguyễn Văn A · Biên bản: Cơ sở vật chất 5S đạt 95%, quân số đi làm đủ 100%, không phát sinh vi phạm an ninh kho bãi.
         </div>
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.72rem; color:var(--text-dim);">
-        <span style="color:var(--accent-lime);">✓ Xóa bỏ hoàn toàn thao tác copy-paste thủ công</span>
-        <span style="color:var(--accent-cyan); font-family:var(--font-mono);">Multi-threading</span>
+        <span style="color:var(--accent-lime);">✓ Đồng bộ dữ liệu về Google Sheet tức thì</span>
+        <span style="color:var(--accent-cyan); font-family:var(--font-mono);">5 Tỉnh Nam Trung Bộ</span>
       </div>
     `,
     deepDetail: `
       <div class="m-section">
         <h4 class="m-section-title">⚠️ Bối cảnh & Nỗi đau vận hành (Operational Pain Point)</h4>
         <p class="m-text">
-          Các phiếu khiếu nại khẩn cấp của khách hàng (hàng thất lạc, tài xế có thái độ không chuẩn mực, sai địa chỉ giao) khi gửi vào nhóm chat chung thường bị trôi tin nhắn nhanh chóng do lượng trao đổi quá lớn.
-        </p>
-        <p class="m-text" style="margin-top:8px;">
-          Trước đây, nhân viên trực ca phải đọc từng tin nhắn, tra cứu thủ công và copy-paste sang nhóm chat của từng tỉnh. Quy trình này thường mất từ 6 đến 12 tiếng mới đến được tay AM phụ trách, khiến khách hàng bức xúc và tỷ lệ hủy đơn tăng cao.
+          Đội ngũ HRBP (Đối tác Nhân sự) và Supervisor (Giám sát vận hành) thường xuyên phải di chuyển công tác thực địa tại 85 bưu cục trải dài trên 5 tỉnh. Trước đây, việc quản lý lịch trình công tác phụ thuộc hoàn toàn vào báo cáo miệng hoặc tin nhắn rời rạc, Ban Giám đốc không thể kiểm chứng được nhân sự có thực sự xuống địa bàn kiểm tra bưu cục hay không và các biên bản hiện trường thường bị thất lạc.
         </p>
       </div>
 
       <div class="m-section">
         <h4 class="m-section-title">🔍 Thuật toán & Insight bóc tách dữ liệu</h4>
-        <p class="m-text">Thủy xây dựng máy chủ <strong>Flask Webhook Server</strong> xử lý đa luồng:</p>
+        <p class="m-text">Thủy xây dựng bot Telegram Check-in số hóa toàn bộ quy trình kiểm tra thực địa:</p>
         <ul class="m-list">
-          <li><strong>Kiến trúc đa luồng (Multi-threading):</strong> Sử dụng ThreadPoolExecutor để tiếp nhận và xử lý đồng thời hàng chục yêu cầu webhook mà không bị nghẽn mạng.</li>
-          <li><strong>Biểu thức chính quy Regex NLP:</strong> Tự động bóc tách mã vận đơn (MVD), mã trạm và tên quản lý AM được nhắc tới trong tin nhắn khiếu nại.</li>
-          <li><strong>Bảng định tuyến tự động (Dynamic Routing):</strong> Tra cứu bảng ánh xạ Group ID trên Google Sheet để xác định chính xác nhóm chat Kaizen của tỉnh liên quan (Bình Thuận, Ninh Thuận, Khánh Hòa, Lâm Đồng, Đắk Nông).</li>
+          <li><strong>Xác thực tọa độ GPS (Geolocation Verification):</strong> Bắt buộc gửi vị trí trực tiếp (Live Location) qua Telegram khi đến bưu cục để đối chiếu với tọa độ chuẩn trên hệ thống.</li>
+          <li><strong>Biểu mẫu đánh giá chuẩn hóa:</strong> Số hóa biên bản kiểm tra gồm các tiêu chí: quân số đi làm, kỷ luật vệ sinh 5S kho bãi, an ninh cơ sở vật chất và các vấn đề cần hỗ trợ.</li>
+          <li><strong>Đồng bộ Google Sheets thời gian thực:</strong> Tự động ghi nhận thông tin, tạo nhật ký công tác minh bạch và tổng hợp báo cáo đánh giá chất lượng bưu cục toàn vùng.</li>
+          <li><strong>Mở rộng giám sát chuyên sâu:</strong> Kết hợp cùng các bot bổ trợ: Cảnh báo đơn quá hạn sàn TMĐT (Shopee, TikTok Shop, Lazada - ODR/OPR) và Bot cảnh báo ticket khiếu nại khách hàng.</li>
         </ul>
       </div>
 
       <div class="m-section">
         <h4 class="m-section-title">🎯 Quyết định & Hành động can thiệp (Actionable Decision)</h4>
         <p class="m-text">
-          Tin nhắn cảnh báo kèm đường link tra cứu đơn hàng được bắn trực tiếp vào nhóm Kaizen của tỉnh tương ứng chỉ trong <strong>dưới 30 giây</strong> kể từ khi phát sinh sự cố. AM và Trưởng bưu cục lập tức nhận được thông tin để xử lý ngay tại hiện trường.
+          Ban Giám đốc có ngay một trang tổng quan minh bạch về toàn bộ lịch trình công tác của đội ngũ HRBP và SUP trên cả 5 tỉnh. Các vấn đề tồn đọng tại bưu cục (thiếu nhân sự, mặt bằng chật hẹp, vi phạm an ninh) được ghi nhận tức thì để lãnh đạo đưa ra chỉ đạo giải quyết ngay trong ngày.
         </p>
       </div>
 
       <div class="m-section">
         <h4 class="m-section-title">💰 Kết quả kinh doanh & Business ROI</h4>
         <ul class="m-list">
-          <li><strong>Rút ngắn 80% thời gian xử lý</strong> khiếu nại của khách hàng, từ nửa ngày xuống dưới nửa phút.</li>
-          <li>Gia tăng đáng kể chỉ số hài lòng của khách hàng (CSAT) và ngăn chặn tình trạng khách hủy đơn hàng loạt do chờ đợi quá lâu.</li>
-          <li>Giải phóng 100% thời gian trực kênh và thao tác copy-paste thủ công của trợ lý vận hành.</li>
+          <li><strong>Minh bạch hóa 100%</strong> hoạt động giám sát thực địa của đội ngũ quản lý tuyến đầu.</li>
+          <li>Rút ngắn thời gian phát hiện và xử lý sự cố tại bưu cục từ vài tuần xuống còn vài giờ.</li>
+          <li>Nâng cao kỷ luật tuân thủ tiêu chuẩn vận hành và 5S tại tất cả 85 bưu cục toàn vùng.</li>
         </ul>
       </div>
 
       <div class="m-section">
         <h4 class="m-section-title">🛠️ Kiến trúc kỹ thuật & Files thực thi</h4>
         <p class="m-text">
-          <code>ticket_webhook_server.py</code> • <code>ticket.py</code> • <code>ticket_glt.py</code> • <code>kaizen_bot.py</code> • Flask Microframework • ThreadPoolExecutor • Google Chat Incoming Webhooks.
+          <code>checkin_sup_bot.py</code> • <code>kaizen_bot.py</code> • <code>download_report_odr_tts.py</code> • <code>ticket_glt.py</code> • Telegram Bot API • Google Sheets API (gspread).
         </p>
       </div>
     `
@@ -1078,7 +1075,7 @@ function initLiveTicker() {
     '5 Tỉnh Nam Trung Bộ • 27 Account Managers (AMs) • 85 Bưu cục • Tích hợp Trợ lý AI qua Giao thức MCP',
     'Khánh Hòa: %GTC ca sáng đạt 96.4% • Bưu cục Nha Trang giải tỏa 100% đơn tồn',
     'Lâm Đồng: Phát hiện & xử lý 2 đơn COD gối đầu • Kiểm soát an toàn ngân quỹ',
-    'Đắk Nông: Thang cứu hộ động kích hoạt thành công • 14 bưu cục vượt chỉ tiêu Bậc 2',
+    'Đắk Nông: Thang cứu hộ động kích hoạt thành công • tối ưu năng suất và đạt mốc Target GTC',
     'Ninh Thuận & Bình Thuận: Kết nối sàn TMĐT thông suốt • SLA đạt 99.1%'
   ];
 
@@ -1621,3 +1618,245 @@ function initGhnHighway() {
   }
 }
 
+
+
+/* ==========================================================================
+   INTERACTIVE BOT OPERATIONS ECOSYSTEM (ALL 18+ BOTS)
+   ========================================================================== */
+const ALL_BOTS_DATA = [
+  {
+    id: "FIN-01",
+    mod: "FINANCE",
+    name: "Cảnh Báo Gối Đầu Tiền Mặt COD & Bắt Quả Tang Fake GPS",
+    file: "tao_file_canh_bao_cod.py & gui_canh_bao_goidau_cod.py",
+    input: "Dữ liệu COD Lastmile + GPS Geocode",
+    output: "Google Sheet tab AM riêng + GTalk Alert",
+    freq: "08:30 Sáng hàng ngày",
+    insight: "Phát hiện đơn COD >400k hoãn liên tiếp 2 ngày và shipper check-in lệch >2km (ở nhà/quán cafe). Tự động phân luồng sheet riêng cho 27 AMs kiểm tra túi hàng trước 11h00, triệt tiêu 95% gian lận chiếm dụng tiền mặt."
+  },
+  {
+    id: "PROD-01",
+    mod: "PROD",
+    name: "Báo Cáo Năng Suất Giao Hàng Bưu Tá Real-time",
+    file: "send_realtime_productivity_gtalk.py",
+    input: "GHN Lastmile Core API (Token Auth)",
+    output: "Thẻ ảnh Card PNG gửi GTalk Vùng",
+    freq: "10h00, 11h30, 15h00, 18h00",
+    insight: "Giám sát chi tiết sản lượng gán, giao thành công và LTC của từng bưu tá theo thời gian thực, phát hiện ngay nhân sự bị đuối năng suất để AM kịp thời can thiệp ca chiều."
+  },
+  {
+    id: "PROD-02",
+    mod: "PROD",
+    name: "Đo Lường Gap To Target & Năng Suất N-1",
+    file: "send_realtime_and_target_gtalk.py & report_target_gtalk.py",
+    input: "API Lastmile + Master Sheet Target",
+    output: "Thẻ ảnh Cam/Vàng kim gửi GTalk từng AM",
+    freq: "11h30, 15h00, 18h00",
+    insight: "Tự động quy đổi tỷ lệ % mục tiêu thành số đơn hàng còn thiếu cụ thể: 'Bưu cục còn thiếu đúng 84 đơn để chạm mốc thưởng GTC', giúp AM điều phối bưu tá tuyến vắng sang cứu tuyến đông."
+  },
+  {
+    id: "PROD-03",
+    mod: "PROD",
+    name: "Crawl & Cập Nhật Dữ Liệu Năng Suất Vào Sheet Kết Quả",
+    file: "auto_fetch_lm_and_update_kq.py",
+    input: "GHN Production API",
+    output: "Google Sheet Master Kết Quả Vận Hành",
+    freq: "07:00 Sáng hàng ngày",
+    insight: "Tự động hóa hoàn toàn việc trích xuất và đồng bộ kết quả giao nhận của toàn bộ nhân viên giao hàng 5 tỉnh, loại bỏ 100% thao tác copy-paste thủ công mỗi sáng."
+  },
+  {
+    id: "PROD-04",
+    mod: "PROD",
+    name: "Đồng Bộ Năng Suất Lịch Sử Đêm Vào Kho Dữ Liệu",
+    file: "sync_daily_lastmile_to_kq.py",
+    input: "Lastmile Raw Database",
+    output: "Kho dữ liệu phân tích lịch sử",
+    freq: "23:00 Hàng đêm",
+    insight: "Lưu vết dữ liệu sản lượng và tỷ lệ hoàn thành ca của từng trạm làm dữ liệu cơ sở cho các thuật toán đánh giá bưu cục bất ổn."
+  },
+  {
+    id: "INV-01",
+    mod: "INVENTORY",
+    name: "Push Đơn Tồn Kho: Aging Lưu Bãi Quá Hạn (>3N, >5N, >8N, >10N)",
+    file: "ntb_aging_report.py & CHAY_TIEN_DO_AGING_8NGAY.bat",
+    input: "GHN Aging API (Token) + Snapshot JSON",
+    output: "Google Sheet Master + Bảng màu GTalk",
+    freq: "08:30 & 14:00",
+    insight: "Bóc tách hàng tồn kho theo 4 dải ngày nguy hiểm. Ngăn chặn triệt để các đơn hàng nằm kho lâu ngày rơi vào tình trạng khách hủy hoặc hư hỏng dẫn đến GHN phải bồi thường 70% giá trị."
+  },
+  {
+    id: "INV-02",
+    mod: "INVENTORY",
+    name: "Giám Sát Tỷ Lệ Gán Đơn Tồn (Assignment Rate) Của 27 AM",
+    file: "analyze_am_aging_assignment_rate.py",
+    input: "Aging Snapshot JSON Cache",
+    output: "BXH công khai nhóm GTalk Lãnh Đạo Vùng",
+    freq: "Cuối ngày",
+    insight: "Đo lường chỉ số Assignment Rate = Đơn tồn gán shipper / Tổng tồn kho của AM. AM nào có tỷ lệ < 70% phải giải trình trực tiếp lý do không phân công bưu tá đi phát lại."
+  },
+  {
+    id: "INV-03",
+    mod: "INVENTORY",
+    name: "Phân Tích Cơ Cấu & Kẹt Xe Tải Luân Chuyển Liên Tỉnh (LTC)",
+    file: "calculate_report_luanchuyen.py & CHAY_BAO_CAO_LUAN_CHUYEN.bat",
+    input: "GHN Luân Chuyển API",
+    output: "Bảng màu HTML GTalk Điều Phối",
+    freq: "07:30 & 13:30",
+    insight: "Theo dõi tải trọng xe tải luân chuyển liên tỉnh, phát hiện điểm thắt cổ chai và đơn hàng bị 'treo luân chuyển' quá 24h giữa các Hub để điều xe giải phóng kho."
+  },
+  {
+    id: "INV-04",
+    mod: "INVENTORY",
+    name: "Push Đơn Pending Lấy Của Shop Trễ Cam Kết SLA",
+    file: "report_sla_risk.py & report_opr.py",
+    input: "First-mile Pickup Core Data",
+    output: "GTalk Kênh Điều Phối Lấy Hàng",
+    freq: "Đầu ca sáng & chiều",
+    insight: "Quét các đơn hàng Shop đã tạo và yêu cầu lấy nhưng chưa có bưu tá tới tiếp nhận, cảnh báo đôn đốc trước khi vi phạm cam kết thời gian lấy hàng của sàn TMĐT."
+  },
+  {
+    id: "RISK-01",
+    mod: "RISK",
+    name: "Phát Hiện Bưu Cục Bất Ổn & Định Lượng Đơn Clear Để Thoát Nhóm",
+    file: "report_BC_BatOn_html_23.py",
+    input: "Master Sheet NTB (Backlog LM, Aging >5N, KTC)",
+    output: "Thẻ ảnh HTML Playwright + Telegram / GTalk",
+    freq: "08:00 Sáng hàng ngày",
+    insight: "Phân loại 3 cấp độ (Top Bất Ổn, Nhảy Nhóm, Cảnh Báo) và tự động tính công thức số lượng đơn LM và KTC cần xử lý dứt điểm trong ngày để bưu cục thoát khỏi cảnh báo đỏ."
+  },
+  {
+    id: "RISK-02",
+    mod: "RISK",
+    name: "Bot Tự Động Đề Xuất OFF Tuyến Bảo Vệ Trạm (rqoff)",
+    file: "rqoff.py & rqoff_plan.py",
+    input: "Sheet cơ cấu phường xã, sản lượng Shopee 7 ngày",
+    output: "Sheet đề xuất OFF tuyến + Telegram Ban Giám Đốc",
+    freq: "Kích hoạt khi bưu cục có nguy cơ vỡ trạm",
+    insight: "Tự động phân tích sản lượng và đề xuất tạm thời tắt nhận đơn sàn TMĐT vào bưu cục đang bị quá tải, tạo không gian cho bưu tá giải phóng hàng tồn an toàn."
+  },
+  {
+    id: "RISK-03",
+    mod: "RISK",
+    name: "Báo Cáo Mail Vận Hành Toàn Diện Vùng NTB",
+    file: "report_mail_van_hanh_ntb.py",
+    input: "Tổng hợp toàn bộ 85 bưu cục 5 tỉnh",
+    output: "Email tự động gửi Ban Giám Đốc + File Text",
+    freq: "Hàng ngày",
+    insight: "Bức tranh toàn cảnh về sản lượng, tỷ lệ GTC, tồn kho, tỷ lệ hoàn và danh sách bưu cục bất ổn kèm đề xuất can thiệp cụ thể gửi Lãnh đạo cấp cao."
+  },
+  {
+    id: "ECOMM-01",
+    mod: "ECOMM",
+    name: "Cảnh Báo Quá Hạn Sàn Shopee & TikTok Shop (ODR/OPR)",
+    file: "download_report_odr_tts.py & download_requests.json",
+    input: "Looker BI Web Portal (Crawl tự động bằng Playwright)",
+    output: "GTalk Vùng NTB + File CSV phân tích",
+    freq: "07:30 & 14:00",
+    insight: "Giám sát chặt chẽ tỷ lệ trễ hạn giao (ODR) và trễ hạn lấy (OPR) của các gian hàng sàn TMĐT trọng điểm, ngăn ngừa nguy cơ sàn phạt vi phạm cam kết đối tác."
+  },
+  {
+    id: "ECOMM-02",
+    mod: "ECOMM",
+    name: "Báo Cáo & Nhắc Nhở AM Mua Đơn TikTok Shop (TTS 35k)",
+    file: "baocao_muadon_tts_35k.py & nhac_nho_am_muadon_tts.py",
+    input: "TTS Performance Database",
+    output: "Thẻ ảnh Card PNG + Nhắc nhở đích danh AM",
+    freq: "11:00 & 16:30",
+    insight: "Theo dõi tiến độ xử lý các gói hàng mua đơn TTS giá trị cao, đôn đốc các bưu cục tập trung khai thác để tối đa hóa doanh thu dịch vụ."
+  },
+  {
+    id: "HR-01",
+    mod: "HR",
+    name: "Bot Điểm Danh & Chấm Phạt Cut-off 5 Mốc (Lưu Trữ SQLite)",
+    file: "diem_danh_bot.py & render_daily_recap_card.py",
+    input: "Tin nhắn AM báo cáo + SQLite diem_danh.db",
+    output: "Chatbot tương tác + Sheet 'Theo Dõi Phạt AM'",
+    freq: "5 Mốc: 08h, 10h, 11h, 16h, 20h",
+    insight: "Siết chặt kỷ luật 5 mốc giờ vàng điều hành, ghi nhận chính xác đến từng giây, tự động loại trừ phép hợp lệ và tính phạt đẩy Google Sheets minh bạch, nâng tỷ lệ nộp đúng giờ lên 98.2%."
+  },
+  {
+    id: "HR-02",
+    mod: "HR",
+    name: "Bot Check-in Định Vị GPS Thực Địa Cho HRBP & SUP",
+    file: "checkin_sup_bot.py",
+    input: "Telegram Live Location + Biểu mẫu kiểm tra",
+    output: "Google Sheet Nhật Ký Công Tác Vùng",
+    freq: "Realtime theo lịch công tác thực tế",
+    insight: "Xác thực tọa độ GPS của đội ngũ HRBP và Giám sát khi xuống bưu cục, ghi nhận biên bản đánh giá nhân sự, an ninh và chất lượng kho bãi ngay tại hiện trường."
+  },
+  {
+    id: "HR-03",
+    mod: "HR",
+    name: "Bot Giám Sát Chuẩn Hóa Kỷ Luật 5S Kaizen Bưu Cục",
+    file: "kaizen_bot.py",
+    input: "Hình ảnh hiện trường check-in từ 85 bưu cục",
+    output: "Telegram Group Kaizen 5 Tỉnh",
+    freq: "08:00 Sáng hàng ngày",
+    insight: "Bắt buộc bưu cục chụp ảnh layout kho bãi, lối thoát hiểm và phân khu hàng cồng kềnh (>10kg), tự động chấm điểm và cảnh báo các trạm bừa bộn vi phạm an toàn."
+  },
+  {
+    id: "HR-04",
+    mod: "HR",
+    name: "Bot Cảnh Báo & Phân Luồng Ticket Khiếu Nại Realtime",
+    file: "ticket_glt.py & ticket.py & ticket_webhook_server.py",
+    input: "Tin nhắn báo ticket từ kênh tập trung",
+    output: "Tự động bắn vào 5 Nhóm Kaizen Tỉnh",
+    freq: "Realtime trong < 30 giây",
+    insight: "Sử dụng biểu thức chính quy Regex NLP bóc tách mã vận đơn và tên AM để phân luồng phiếu khiếu nại về đúng nhóm Kaizen tỉnh liên quan trong 30 giây, rút ngắn 80% thời gian xử lý."
+  }
+];
+
+function initBotEcosystemMatrix() {
+  const grid = document.getElementById('botCardsGrid');
+  const pills = document.querySelectorAll('#bmFilterPills .bm-pill');
+  if (!grid || !pills.length) return;
+
+  function renderBots(filterMod) {
+    grid.innerHTML = '';
+    const filtered = (filterMod === 'ALL') 
+      ? ALL_BOTS_DATA 
+      : ALL_BOTS_DATA.filter(b => b.mod === filterMod);
+
+    filtered.forEach(bot => {
+      const card = document.createElement('div');
+      card.className = 'bot-card-item';
+      card.innerHTML = `
+        <div>
+          <div class="bc-top">
+            <span class="bc-id">${bot.id}</span>
+            <span class="bc-status">
+              <span class="bc-status-dot"></span>
+              LIVE PIPELINE
+            </span>
+          </div>
+          <h4 class="bc-name">${bot.name}</h4>
+          <span class="bc-file">⚙️ ${bot.file}</span>
+          <p class="bc-insight">${bot.insight}</p>
+        </div>
+        <div class="bc-meta-row">
+          <div>
+            <span class="bc-meta-label">Đầu vào / Input:</span>
+            <span class="bc-meta-val">${bot.input}</span>
+          </div>
+          <div>
+            <span class="bc-meta-label">Đầu ra / Kênh:</span>
+            <span class="bc-meta-val">${bot.output}</span>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const mod = pill.getAttribute('data-mod');
+      renderBots(mod);
+    });
+  });
+
+  // Initial render all
+  renderBots('ALL');
+}
