@@ -185,7 +185,7 @@ const CASE_DATA = {
     badge: 'CASE 01 · FINANCIAL RISK · FRAUD DETECTION',
     title: 'Cảnh Báo Gối Đầu Tiền Mặt COD & Giả Mạo Vị Trí (Fake GPS)',
     role: 'Kiểm Soát Rủi Ro Tài Chính & Dòng Tiền · Python, GPS Haversine, Google Sheets API, GTalk Bot',
-    desc: 'Thuật toán bóc tách giao thoa 3 điều kiện: Đơn có tiền thu hộ COD > 400.000 VNĐ bị hoãn hẹn liên tiếp từ 2 ngày, kết hợp độ lệch tọa độ check-in GPS bưu tá > 2.000m so với địa chỉ khách hàng. Hệ thống tự động phân tách tab riêng cho 27 AMs và bắn cảnh báo đích danh yêu cầu kiểm tra túi hàng bưu tá trước 11h00 trưa.',
+    desc: 'Thuật toán bóc tách giao thoa 3 điều kiện: Đơn có tiền thu hộ COD > 400.000 VNĐ bị hoãn hẹn liên tiếp từ 2 ngày, kết hợp độ lệch tọa độ check-in GPS bưu tá > 2.000m so với địa chỉ khách hàng. Hệ thống tự động phân tách tab riêng cho 19 AMs + 2 SUPs và bắn cảnh báo đích danh yêu cầu kiểm tra túi hàng bưu tá trước 11h00 trưa.',
     metrics: [
       { val: '> 100% Đơn >400k', lbl: 'Bóc tách toàn diện đơn rủi ro' },
       { val: '95% Triệt tiêu', lbl: 'Gian lận COD & Fake GPS' },
@@ -220,7 +220,7 @@ const CASE_DATA = {
         </div>
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.72rem; color:var(--text-dim);">
-        <span style="color:var(--accent-emerald);">✓ Phân luồng Tab Sheet riêng cho 27 AMs</span>
+        <span style="color:var(--accent-emerald);">✓ Phân luồng Tab Sheet riêng cho 19 AMs + 2 SUPs</span>
         <span style="color:var(--accent-lime); font-family:var(--font-mono);">Ping GTalk: 08:30 sáng</span>
       </div>
     `,
@@ -248,7 +248,7 @@ const CASE_DATA = {
       <div class="m-section">
         <h4 class="m-section-title">🎯 Quyết định & Hành động can thiệp (Actionable Decision)</h4>
         <p class="m-text">
-          Script <code>tao_file_canh_bao_cod.py</code> tự động phân tách danh sách mã vận đơn vi phạm theo từng tab Google Sheet riêng của 27 Quản lý khu vực (AM). Đúng 08:30 sáng, bot <code>gui_canh_bao_goidau_cod.py</code> bắn tin nhắn đích danh kèm link sheet vào nhóm kín của AM, yêu cầu AM <strong>xuống kiểm tra thực tế thùng xe và túi hàng của bưu tá trước 11h00 trưa</strong>.
+          Script <code>tao_file_canh_bao_cod.py</code> tự động phân tách danh sách mã vận đơn vi phạm theo từng tab Google Sheet riêng của 19 AMs và 2 SUPs. Đúng 08:30 sáng, bot <code>gui_canh_bao_goidau_cod.py</code> bắn tin nhắn đích danh kèm link sheet vào nhóm kín của AM, yêu cầu AM <strong>xuống kiểm tra thực tế thùng xe và túi hàng của bưu tá trước 11h00 trưa</strong>.
         </p>
       </div>
 
@@ -412,7 +412,7 @@ const CASE_DATA = {
       <div class="m-section">
         <h4 class="m-section-title">🎯 Quyết định & Hành động can thiệp (Actionable Decision)</h4>
         <p class="m-text">
-          Hệ thống tự động render bảng phân tích màu sắc và xếp hạng công khai mức độ giải quyết hàng tồn của 27 AMs lên nhóm GTalk lãnh đạo Vùng. AM nào có tỷ lệ gán đơn &lt; 70% phải giải trình trực tiếp lý do tại sao để đơn hàng nằm im trong kho mà không cho bưu tá xuất phát. Đồng thời cảnh báo ngay trạm xe tải đang bị treo hàng luân chuyển để điều phối giải phóng kho.
+          Hệ thống tự động render bảng phân tích màu sắc và xếp hạng công khai mức độ giải quyết hàng tồn của 19 AMs + 2 SUPs lên nhóm GTalk lãnh đạo Vùng. AM nào có tỷ lệ gán đơn &lt; 70% phải giải trình trực tiếp lý do tại sao để đơn hàng nằm im trong kho mà không cho bưu tá xuất phát. Đồng thời cảnh báo ngay trạm xe tải đang bị treo hàng luân chuyển để điều phối giải phóng kho.
         </p>
       </div>
 
@@ -844,7 +844,7 @@ const JOURNEY_STOPS = {
     role: 'Assistant Regional Director (Trợ Lý Giám Đốc Vùng Nam Trung Bộ)',
     company: 'Giao Hàng Nhanh (GHN) · Vận Hành 5 Tỉnh: Khánh Hòa, Lâm Đồng, Đắk Nông, Ninh Thuận, Bình Thuận',
     bullets: [
-      'Được Ban Giám Đốc bổ nhiệm làm Trợ Lý GĐ Vùng: Trực tiếp điều hành vận hành toàn diện quy mô 5 tỉnh thành với 27 Quản lý khu vực (AMs) và 85 bưu cục.',
+      'Được Ban Giám Đốc bổ nhiệm làm Trợ Lý GĐ Vùng: Trực tiếp điều hành vận hành toàn diện quy mô 5 tỉnh thành với 19 AMs, 2 SUPs và 85 bưu cục.',
       'Lập trình và làm chủ hệ sinh thái 18+ Bot tự động: Tính toán số đơn KPI còn thiếu so với Target để đưa bưu cục thoát bất ổn, bot tự động đề xuất OFF tuyến bảo vệ trạm khi quá tải, bot push hàng aging...',
       'Thiết lập hệ thống kiểm soát kỷ luật 5 mốc giờ vàng, bot điểm danh Kaizen 5S kho bãi và định vị GPS thực địa cho đội ngũ HRBP & Giám sát SUP.',
       'Theo dõi và tối ưu các chỉ số trọng yếu (%GTC, %ODR, %OPR, %FD), biến dữ liệu thành hành động can thiệp tức thì bảo vệ an toàn kho bãi.'
@@ -1165,7 +1165,7 @@ function initLiveTicker() {
 
   const messages = [
     '🌟 Live Production App: namtrungbo.vercel.app • Hệ thống Quản trị Vận hành NTB do Thủy xây dựng',
-    '5 Tỉnh Nam Trung Bộ • 27 Account Managers (AMs) • 85 Bưu cục • Tích hợp Trợ lý AI qua Giao thức MCP',
+    '5 Tỉnh Nam Trung Bộ • 19 AMs + 2 SUPs • 85 Bưu cục • Tích hợp Trợ lý AI qua Giao thức MCP',
     'Khánh Hòa: %GTC ca sáng đạt 96.4% • Bưu cục Nha Trang giải tỏa 100% đơn tồn',
     'Lâm Đồng: Phát hiện & xử lý 2 đơn COD gối đầu • Kiểm soát an toàn ngân quỹ',
     'Đắk Nông: Thang cứu hộ động kích hoạt thành công • tối ưu năng suất và đạt mốc Target GTC',
@@ -1750,7 +1750,7 @@ const ALL_BOTS_DATA = [
     input: "Dữ liệu COD Lastmile + GPS Geocode",
     output: "Google Sheet tab AM riêng + GTalk Alert",
     freq: "08:30 Sáng hàng ngày",
-    insight: "Phát hiện đơn COD >400k hoãn liên tiếp 2 ngày và shipper check-in lệch >2km (ở nhà/quán cafe). Tự động phân luồng sheet riêng cho 27 AMs kiểm tra túi hàng trước 11h00, triệt tiêu 95% gian lận chiếm dụng tiền mặt."
+    insight: "Phát hiện đơn COD >400k hoãn liên tiếp 2 ngày và shipper check-in lệch >2km (ở nhà/quán cafe). Tự động phân luồng sheet riêng cho 19 AMs + 2 SUPs kiểm tra túi hàng trước 11h00, triệt tiêu 95% gian lận chiếm dụng tiền mặt."
   },
   {
     id: "PROD-01",
@@ -1805,7 +1805,7 @@ const ALL_BOTS_DATA = [
   {
     id: "INV-02",
     mod: "INVENTORY",
-    name: "Giám Sát Tỷ Lệ Gán Đơn Tồn (Assignment Rate) Của 27 AM",
+    name: "Giám Sát Tỷ Lệ Gán Đơn Tồn (Assignment Rate) Của 19 AM + 2 SUP",
     file: "analyze_am_aging_assignment_rate.py",
     input: "Aging Snapshot JSON Cache",
     output: "BXH công khai nhóm GTalk Lãnh Đạo Vùng",
