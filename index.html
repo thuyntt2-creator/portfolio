@@ -105,45 +105,74 @@
         </div>
       </div>
 
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          Assistant Regional Director @ GHN Nam Trung Bộ
+      <div class="hero-grid-layout">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            Assistant Regional Director @ GHN Nam Trung Bộ
+          </div>
+
+          <h1 class="hero-headline" id="heroTitle">
+            <span>MAKE DATA MOVE.</span>
+            <span>MAKE OPS</span>
+            <mark class="highlight-lime">FLAWLESS.</mark>
+          </h1>
+
+          <p class="hero-description">
+            Không chỉ làm báo cáo hay chạy tool — Tôi chuyển hóa <strong>dữ liệu vận hành thành hành động can thiệp tức thì</strong>: phát hiện gối đầu COD & giả mạo GPS, cảnh báo bưu cục bất ổn & tối ưu năng suất giao hàng, và tự động hóa hệ thống Control Tower trên toàn bộ 5 tỉnh Nam Trung Bộ.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#cases" class="btn-primary" id="btnExploreWork">
+              <span>Khám phá 6 Hệ thống Bot tiêu biểu</span>
+              <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M10 4v12m-5-5 5 5 5-5"></path>
+              </svg>
+            </a>
+
+            <a href="https://namtrungbo.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-live-app" id="btnHeroLiveApp">
+              <span class="live-dot-pulse"></span>
+              <span>Mở GHN Ops Dashboard ↗</span>
+            </a>
+
+            <a href="#simulator" class="btn-secondary" id="btnTrySimulator">
+              <svg class="btn-icon icon-lime" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="10" cy="10" r="7"></circle>
+                <polygon points="8 7 14 10 8 13 8 7" fill="currentColor"></polygon>
+              </svg>
+              <span>Trải nghiệm giả lập Bot Radar</span>
+            </a>
+          </div>
         </div>
 
-        <h1 class="hero-headline" id="heroTitle">
-          <span>MAKE DATA MOVE.</span>
-          <span>MAKE OPS</span>
-          <mark class="highlight-lime">FLAWLESS.</mark>
-        </h1>
-
-        <p class="hero-description">
-          Không chỉ làm báo cáo hay chạy tool — Tôi chuyển hóa <strong>dữ liệu vận hành thành hành động can thiệp tức thì</strong>: phát hiện gối đầu COD & giả mạo GPS, cảnh báo bưu cục bất ổn & tối ưu năng suất giao hàng, và tự động hóa hệ thống Control Tower trên toàn bộ 5 tỉnh Nam Trung Bộ.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#cases" class="btn-primary" id="btnExploreWork">
-            <span>Khám phá 6 Hệ thống Bot tiêu biểu</span>
-            <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M10 4v12m-5-5 5 5 5-5"></path>
-            </svg>
-          </a>
-
-          <a href="https://namtrungbo.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-live-app" id="btnHeroLiveApp">
-            <span class="live-dot-pulse"></span>
-            <span>Mở GHN Ops Dashboard ↗</span>
-          </a>
-
-          <a href="#simulator" class="btn-secondary" id="btnTrySimulator">
-            <svg class="btn-icon icon-lime" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <circle cx="10" cy="10" r="7"></circle>
-              <polygon points="8 7 14 10 8 13 8 7" fill="currentColor"></polygon>
-            </svg>
-            <span>Trải nghiệm giả lập Bot Radar</span>
-          </a>
+        <!-- Right Side: The Clean Aesthetic MV Card -->
+        <div class="hero-mv-sidebar">
+          <div class="mv-card-neo" id="btnOpenMvModal" role="button" tabindex="0" aria-label="Mở MV: MAKE DATA MOVE">
+            <div class="mv-neo-buddy" aria-hidden="true">
+              <span class="buddy-pixel">👾</span>
+            </div>
+            <div class="mv-thumbnail-wrapper">
+              <img src="assets/mv_cover.jpg" alt="MV MAKE DATA MOVE" class="mv-cover-img" loading="lazy" />
+              <div class="mv-overlay-gradient"></div>
+              <div class="mv-play-btn" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+              <div class="mv-badge-duration">
+                <span class="mv-dot-live"></span>
+                3:18
+              </div>
+            </div>
+            <div class="mv-card-footer">
+              <h4 class="mv-title">MAKE DATA MOVE</h4>
+              <span class="mv-credits">MV · Suno × Thuy</span>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div class="hero-stats-panel">
+      <div class="hero-stats-panel">
           <div class="canvas-meter">
             <button type="button" class="btn-sort-now" id="btnSortNow">
               <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -169,7 +198,6 @@
             <span class="stat-number">95%</span>
             <span class="stat-label">Ngăn chặn rủi ro chiếm dụng COD</span>
           </div>
-        </div>
       </div>
     </section>
 
@@ -300,33 +328,7 @@
         </div>
       </div>
 
-            <!-- Featured Music Video Card (Clean Vinh Luong Aesthetic) -->
-      <div class="mv-feature-banner">
-        <div class="mv-card-neo" id="btnOpenMvModal" role="button" tabindex="0" aria-label="Mở MV: MAKE DATA MOVE">
-          <div class="mv-neo-buddy" aria-hidden="true">
-            <span class="buddy-pixel">👾</span>
-          </div>
-          <div class="mv-thumbnail-wrapper">
-            <img src="assets/mv_cover.jpg" alt="MV MAKE DATA MOVE" class="mv-cover-img" loading="lazy" />
-            <div class="mv-overlay-gradient"></div>
-            <div class="mv-play-btn" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-            </div>
-            <div class="mv-badge-duration">
-              <span class="mv-dot-live"></span>
-              3:18
-            </div>
-          </div>
-          <div class="mv-card-footer">
-            <h4 class="mv-title">MAKE DATA MOVE</h4>
-            <span class="mv-credits">MV · Suno × Thuy</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="cases-layout">
+            <div class="cases-layout">
         <!-- Cases List -->
         <div class="cases-list" role="tablist" aria-label="Danh sách hệ thống bot vận hành tiêu biểu">
           <!-- Case 1 -->
