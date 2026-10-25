@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=ghn3">
+  <link rel="stylesheet" href="style.css?v=ghn4">
 </head>
 <body class="site-body">
   <!-- Subtle Grain & Background Glow Overlay -->
@@ -66,6 +66,10 @@
           Mô phỏng Control Tower
         </a>
         <a href="#contact" class="nav-link">Liên hệ</a>
+        <a href="https://namtrungbo.vercel.app/" target="_blank" rel="noopener noreferrer" class="nav-link nav-live-app" title="Hệ thống Quản lý Vận hành NTB do Thủy xây dựng">
+          <span class="live-dot-pulse"></span>
+          <span>Live Ops App ↗</span>
+        </a>
         <button type="button" class="btn-cv-header" id="btnOpenCvModal" aria-label="Xem và tải CV">
           <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
             <path d="M4 3h9l4 4v10H4z"></path>
@@ -117,7 +121,34 @@
           Không chỉ làm báo cáo hay chạy tool — Tôi chuyển hóa <strong>dữ liệu vận hành thành hành động can thiệp tức thì</strong>: phát hiện gối đầu COD & giả mạo GPS, giải cứu 14 bưu cục đáy, và tự động hóa hệ thống Control Tower trên toàn bộ 5 tỉnh Nam Trung Bộ.
         </p>
 
+        <!-- Flagship Production Engineering Work Callout -->
+        <div class="hero-flagship-banner">
+          <div class="flagship-badge-group">
+            <span class="live-dot-pulse"></span>
+            <span class="flagship-kicker">FLAGSHIP ENGINEERING WORK · LIVE PRODUCTION</span>
+          </div>
+          <div class="flagship-body">
+            <div class="flagship-info">
+              <h3 class="flagship-title">
+                GHN Ops Dashboard — Hệ thống Quản trị Vận hành NTB
+                <span class="flagship-ai-tag">Tích hợp Trợ lý AI qua Giao thức MCP</span>
+              </h3>
+              <p class="flagship-desc">
+                Nền tảng Web App điều hành thực tế do Thủy tự xây dựng, phục vụ Giám đốc Vùng & 18 AMs quản lý 5 tỉnh: Giám sát Backlog, phát hiện Bưu cục bất ổn (L7D %GTC), phân tích luồng đơn TMĐT (%FD Breakdown) và cổng kết nối AI LLM (Claude, Cursor) qua giao thức Model Context Protocol.
+              </p>
+            </div>
+            <a href="https://namtrungbo.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-flagship-cta" id="btnHeroFlagship">
+              <span>Mở Hệ Thống Live ↗</span>
+            </a>
+          </div>
+        </div>
+
         <div class="hero-actions">
+          <a href="https://namtrungbo.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-live-app" id="btnHeroLiveApp">
+            <span class="live-dot-pulse"></span>
+            <span>Mở GHN Ops Dashboard ↗</span>
+          </a>
+
           <a href="#cases" class="btn-primary" id="btnExploreWork">
             <span>Khám phá 5 Case Study tiêu biểu</span>
             <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -278,10 +309,10 @@
               <span class="case-index">01</span>
               <div class="case-title-group">
                 <h3 class="case-title">
-                  Hệ Sinh Thái NTB Operations Control Tower
-                  <span class="tag-badge badge-ai" title="Tự động hóa pipeline & bot cảnh báo">AUTOMATION</span>
+                  Hệ Sinh Thái NTB Operations Control Tower & Ops Dashboard
+                  <span class="tag-badge badge-ai" title="Live Web App & MCP AI Protocol">LIVE WEB APP · MCP</span>
                 </h3>
-                <span class="case-meta">Trợ lý Giám đốc Vùng · Python & VPS Pipeline · Hiện tại</span>
+                <span class="case-meta">Trợ lý Giám đốc Vùng · Full-stack Web App & Python Pipeline · Live Vercel</span>
               </div>
               <span class="case-metric-pill">Master Pulse 5 Tỉnh</span>
               <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -289,7 +320,7 @@
               </svg>
             </div>
             <p class="case-summary">
-              Tự động hóa quy trình bóc tách dữ liệu từ Google Sheets & API nội bộ, giám sát thời gian thực 4 chỉ số sinh mệnh (%OPR, %ODR, %FD, %GTC) và gửi cảnh báo can thiệp trực tiếp vào Telegram của 18 Quản lý khu vực.
+              Tự thiết kế & triển khai Web App <strong>namtrungbo.vercel.app</strong> giám sát thời gian thực 5 tỉnh, kết hợp bot Telegram và cổng giao thức MCP (Model Context Protocol) cho phép Ban Giám đốc chat trực tiếp với AI để truy vấn số liệu vận hành.
             </p>
           </article>
 
@@ -870,6 +901,6 @@
   </audio>
 
   <!-- Scripts -->
-  <script src="script.js?v=ghn3"></script>
+  <script src="script.js?v=ghn4"></script>
 </body>
 </html>

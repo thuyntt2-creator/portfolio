@@ -178,45 +178,69 @@ function initHeroCanvas() {
 const CASE_DATA = {
   1: {
     id: 'NTB-CTRL-01',
-    badge: 'CASE 01 · AUTOMATION',
-    title: 'Hệ Sinh Thái NTB Operations Control Tower',
-    role: 'Trợ lý Giám Đốc Vùng · Python & VPS Data Pipeline · 2026',
-    desc: 'Thiết kế và triển khai kiến trúc Control Tower tự động hóa cho 5 tỉnh Nam Trung Bộ. Thay thế hoàn toàn quy trình tổng hợp thủ công buổi sáng, giám sát 4 chỉ số sinh mệnh (%OPR, %ODR, %FD, %GTC) và gửi cảnh báo can thiệp trực tiếp vào Telegram của 18 Quản lý khu vực.',
+    badge: 'CASE 01 · FLAGSHIP SYSTEM · LIVE WEB APP',
+    title: 'Hệ Sinh Thái NTB Operations Control Tower & Ops Dashboard',
+    role: 'Trợ lý Giám Đốc Vùng · Web App Vercel & Data Pipeline & MCP AI · Production',
+    desc: 'Hệ sinh thái do Thủy tự tay thiết kế & phát triển từ A-Z: Full-stack Web App (namtrungbo.vercel.app) kết hợp Data Pipeline tự động hóa 5 tỉnh Nam Trung Bộ. Đặc biệt tiên phong tích hợp cổng giao thức Model Context Protocol (MCP) cho phép Ban Giám đốc kết nối Trợ lý AI (Claude Desktop, Cursor) để truy vấn số liệu bằng tiếng Việt tự nhiên.',
     metrics: [
-      { val: '85%', lbl: 'Giảm thời gian làm báo cáo thủ công' },
-      { val: '18 AMs', lbl: 'Nhận thông báo can thiệp tức thì' },
-      { val: '5 Tỉnh', lbl: 'Bao phủ toàn diện Nam Trung Bộ' }
+      { val: '14+ Modules', lbl: 'Giám sát vận hành chuyên sâu' },
+      { val: '18 AMs', lbl: 'Quản trị điều hành trực tiếp 5 tỉnh' },
+      { val: 'MCP Protocol', lbl: 'Cổng tích hợp Trợ lý AI thông minh' }
     ],
-    tech: ['Python 3.11', 'Telegram Bot API', 'Google Sheets API', 'Linux Cron VPS', 'Pandas Pipeline'],
+    tech: ['Production: namtrungbo.vercel.app', 'Model Context Protocol (MCP)', 'Python 3.11', 'Telegram Bot API', 'Google Sheets Engine', 'Pandas Analytics'],
     visualHtml: `
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-        <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-lime);">🟢 MASTER PULSE: LIVE</span>
-        <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-dim);">CRON: 07:15, 09:30, 11:30</span>
+        <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-lime); display:flex; align-items:center; gap:6px;">
+          <span style="width:7px; height:7px; background:#10b981; border-radius:50%; box-shadow:0 0 8px #10b981;"></span>
+          LIVE PRODUCTION: namtrungbo.vercel.app
+        </span>
+        <a href="https://namtrungbo.vercel.app/" target="_blank" rel="noopener noreferrer" style="font-family:var(--font-mono); font-size:0.72rem; color:var(--accent-lime); text-decoration:underline;">Mở trang web ↗</a>
       </div>
       <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:12px; display:grid; grid-template-columns:repeat(4,1fr); gap:8px; text-align:center;">
-        <div><div style="color:var(--accent-emerald); font-weight:700; font-size:1.1rem;">97.2%</div><div style="font-size:0.68rem; color:#888;">%OPR LẤY</div></div>
-        <div><div style="color:var(--accent-lime); font-weight:700; font-size:1.1rem;">94.8%</div><div style="font-size:0.68rem; color:#888;">%GTC GIAO</div></div>
-        <div><div style="color:var(--accent-cyan); font-weight:700; font-size:1.1rem;">1.2%</div><div style="font-size:0.68rem; color:#888;">%ODR TRỄ</div></div>
-        <div><div style="color:var(--accent-amber); font-weight:700; font-size:1.1rem;">92.5%</div><div style="font-size:0.68rem; color:#888;">%FD CA 1</div></div>
+        <div><div style="color:var(--accent-emerald); font-weight:700; font-size:1.05rem;">5 Tỉnh</div><div style="font-size:0.65rem; color:#888;">LÂM ĐỒNG - KHÁNH HÒA...</div></div>
+        <div><div style="color:var(--accent-lime); font-weight:700; font-size:1.05rem;">L7D %GTC</div><div style="font-size:0.65rem; color:#888;">BƯU CỤC BẤT ỔN</div></div>
+        <div><div style="color:var(--accent-cyan); font-weight:700; font-size:1.05rem;">>10kg</div><div style="font-size:0.65rem; color:#888;">ĐỐI SÁNH HÀNG NẶNG</div></div>
+        <div><div style="color:var(--accent-amber); font-weight:700; font-size:1.05rem;">MCP AI</div><div style="font-size:0.65rem; color:#888;">CLAUDE / CURSOR</div></div>
       </div>
-      <div style="margin-top:10px; font-size:0.74rem; color:var(--text-dim); text-align:right;">✓ Auto sync Google Sheets AM & TG Group</div>
+      <div style="margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:0.72rem; color:var(--text-dim);">✓ 14 Modules vận hành & đồng bộ Sheets</span>
+        <a href="https://namtrungbo.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding:6px 14px; font-size:0.76rem; text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+          <span>Xem Live App</span>
+          <svg viewBox="0 0 20 20" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 15 15 5M5 5h10v10"></path></svg>
+        </a>
+      </div>
     `,
     deepDetail: `
       <div class="m-section">
-        <h4 class="m-section-title">⚠️ Nỗi đau vận hành (Operational Pain Point)</h4>
+        <div style="background:rgba(243,101,35,0.1); border:1px solid rgba(243,101,35,0.4); border-radius:8px; padding:16px; margin-bottom:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+          <div>
+            <div style="color:#ff8b4d; font-weight:700; font-size:0.92rem; display:flex; align-items:center; gap:8px;">
+              <span style="width:8px; height:8px; background:#10b981; border-radius:50%; box-shadow:0 0 8px #10b981;"></span>
+              🚀 SẢN PHẨM SẢN XUẤT THỰC TẾ ĐANG VẬN HÀNH (LIVE PRODUCTION)
+            </div>
+            <div style="color:var(--text-muted); font-size:0.82rem; margin-top:4px;">Web App phục vụ Ban Giám đốc Vùng & 18 AMs điều hành 5 tỉnh Nam Trung Bộ hàng ngày.</div>
+          </div>
+          <a href="https://namtrungbo.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding:9px 18px; font-size:0.84rem; text-decoration:none; white-space:nowrap;">
+            Mở Live Dashboard ↗
+          </a>
+        </div>
+        <h4 class="m-section-title">⚠️ Bối cảnh & Nỗi đau vận hành (Operational Pain Point)</h4>
         <p class="m-text">Toàn vùng NTB gồm 5 tỉnh với địa bàn trải rộng từ cao nguyên (Lâm Đồng, Đắk Nông) đến duyên hải (Khánh Hòa, Ninh Thuận, Bình Thuận). Hằng ngày, Ban Giám đốc và 18 Account Manager (AM) phải tổng hợp thủ công hàng chục file dữ liệu rời rạc từ hệ thống. Việc này làm chậm trễ quyết định can thiệp đến tận 11h trưa — khi ca giao sáng gần như đã chốt sổ.</p>
       </div>
       <div class="m-section">
-        <h4 class="m-section-title">🔍 Giải pháp & Thuật toán triển khai</h4>
+        <h4 class="m-section-title">🔍 Giải pháp: Hệ Thống GHN Ops Dashboard (namtrungbo.vercel.app)</h4>
+        <p class="m-text">Thủy trực tiếp thiết kế và lập trình hoàn chỉnh một nền tảng Web Dashboard tập trung hóa với hơn 14 module chức năng chuyên sâu:</p>
         <ul class="m-list">
-          <li><strong>Data Pipeline trên Linux VPS:</strong> Viết pipeline tự động trích xuất dữ liệu từ WMS & Data Warehouse nội bộ bằng Python, làm sạch dữ liệu và tổng hợp theo từng đơn vị bưu cục/AM.</li>
-          <li><strong>Cron Schedule thông minh:</strong> Lên lịch chạy vào các mốc vàng (07h15 đầu ca, 09h30 kiểm soát tồn, 11h30 chốt ca sáng, 15h00 tăng cường ca chiều).</li>
-          <li><strong>Phân luồng thông tin:</strong> Tự động ghi dữ liệu vào Google Sheets riêng của từng AM và bắn message tổng quan có gắn mention đích danh người phụ trách vào nhóm điều hành.</li>
+          <li><strong>Giám sát Bưu cục bất ổn:</strong> Tự động tính toán %GTC trung bình 7 ngày gần nhất (L7D) kết hợp lượng hàng tồn và hàng mới, tự động phát hiện và cảnh báo bưu cục tụt giảm quá 30% so với mốc lịch sử.</li>
+          <li><strong>Xu hướng Đối sánh Đơn tạo vs Hàng nặng >10kg:</strong> Bắt kịp các đợt bùng nổ sản lượng hàng cồng kềnh để cảnh báo tải trọng xe trung chuyển liên tỉnh.</li>
+          <li><strong>Phân tích luồng sàn TMĐT (%FD Channel Breakdown):</strong> Theo dõi tỷ lệ giao thất bại / hoàn trả chia theo từng đối tác Shopee, TikTok Shop, Lazada và hàng ngoài sàn.</li>
+          <li><strong>Kiểm soát Backlog & Năng suất NVPTTT Real-time:</strong> Cập nhật liên tục tiến độ lấy và giao hàng của nhân viên theo từng ca làm việc.</li>
+          <li><strong>Đột phá: Cổng kết nối Trợ lý AI qua Giao thức MCP (Model Context Protocol):</strong> Cho phép Giám đốc Vùng cấu hình kết nối trực tiếp dữ liệu với Claude Desktop hoặc Cursor IDE, chat hỏi đáp tự nhiên ("Bưu cục nào của AM Trần Văn Phước đang bất ổn?") mà không cần mở bảng số liệu!</li>
         </ul>
       </div>
       <div class="m-section">
-        <h4 class="m-section-title">💰 Tác động kinh doanh (Measurable Business Impact)</h4>
-        <p class="m-text">Cắt giảm 85% thời gian tạo báo cáo thủ công mỗi ngày. Giám đốc Vùng có bức tranh toàn cảnh chỉ sau 5 phút mở ca, phát hiện và chỉ đạo xử lý kịp thời các bưu cục có nguy cơ vỡ SLA giao nhận.</p>
+        <h4 class="m-section-title">💰 Tác động & Giá trị đem lại cho Doanh nghiệp</h4>
+        <p class="m-text">Không chỉ là báo cáo tĩnh, hệ thống đã trở thành công cụ làm việc hàng ngày của Giám đốc Vùng và 18 AMs. Giảm 85% thời gian tổng hợp số liệu, giải phóng hàng trăm giờ làm việc mỗi tháng và nâng cao độ nhạy bén trong can thiệp vận hành tức thì.</p>
       </div>
     `
   },
@@ -771,7 +795,8 @@ function initLiveTicker() {
   if (!tickerText) return;
 
   const messages = [
-    '5 Tỉnh Nam Trung Bộ • 18 Account Managers • Tự động hóa Pipeline thời gian thực',
+    '🌟 Live Production App: namtrungbo.vercel.app • Hệ thống Quản trị Vận hành NTB do Thủy xây dựng',
+    '5 Tỉnh Nam Trung Bộ • 18 Account Managers • Tích hợp Trợ lý AI qua Giao thức MCP',
     'Khánh Hòa: %GTC ca sáng đạt 96.4% • Bưu cục Nha Trang giải tỏa 100% đơn tồn',
     'Lâm Đồng: Phát hiện & xử lý 2 đơn COD gối đầu • Kiểm soát an toàn ngân quỹ',
     'Đắk Nông: Thang cứu hộ động kích hoạt thành công • 14 bưu cục vượt chỉ tiêu Bậc 2',
