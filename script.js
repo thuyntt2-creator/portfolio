@@ -245,91 +245,141 @@ const CASE_DATA = {
     `
   },
   2: {
-    id: 'NTB-FRAUD-02',
-    badge: 'CASE 02 · RISK CONTROL',
-    title: 'Radar Bắt Quả Tang Fake GPS & Chặn Chiếm Dụng COD',
-    role: 'Quản trị rủi ro & Chống thất thoát · 2026',
-    desc: 'Thuật toán kết hợp định vị không gian (Haversine Distance) và lịch sử giao nhận nhằm phát hiện bưu tá đứng xa địa chỉ khách hàng để bấm cập nhật "Khách hoãn / Không liên lạc", ngăn chặn hành vi gối đầu tiền mặt COD.',
+    id: 'NTB-BOT-5MOC',
+    badge: 'CASE 02 · 5-TIME PULSE BOT',
+    title: 'Hệ Thống Bot Điểm Danh Báo Cáo 5 Mốc Vận Hành Toàn Vùng',
+    role: 'Tự động hóa Báo cáo Điều hành · Telegram Bot & Google Sheets API · 2026',
+    desc: 'Xây dựng bot Telegram tự động hóa toàn diện quy trình điểm danh quân số và thu thập báo cáo tiến độ theo 5 khung giờ mốc then chốt trong ngày (07h30, 10h00, 12h00, 15h30, 19h00) cho 85 bưu cục trên 5 tỉnh. Bot tự động bóc tách số liệu, phát hiện và ping nhắc nhở đích danh bưu cục chưa chốt số.',
     metrics: [
-      { val: '95%', lbl: 'Triệt tiêu rủi ro chiếm dụng dòng tiền' },
-      { val: '>2.000m', lbl: 'Ngưỡng phát hiện gian lận tọa độ' },
-      { val: 'Top 5', lbl: 'Nhân viên rủi ro cao cảnh báo cho AM' }
+      { val: '5 Mốc/Ngày', lbl: 'Khung giờ chốt dữ liệu vàng' },
+      { val: '85 Bưu Cục', lbl: 'Đồng bộ báo cáo tự động' },
+      { val: '100% On-time', lbl: 'Triệt tiêu tình trạng trễ báo cáo' }
     ],
-    tech: ['Haversine Algorithm', 'Geolocation Analysis', 'Python Fraud Filter', 'Telegram Direct Alert'],
+    tech: ['Telegram Bot API', 'Google Sheets API', 'Python Automation', 'Linux Cron VPS', 'Data Aggregation Engine'],
     visualHtml: `
-      <div style="background:rgba(244,63,94,0.08); border:1px solid rgba(244,63,94,0.3); border-radius:8px; padding:14px; margin-bottom:8px;">
-        <div style="color:var(--accent-rose); font-weight:700; font-size:0.85rem; margin-bottom:6px;">⚠️ CẢNH BÁO GIAN LẬN TỌA ĐỘ (FAKE GPS)</div>
-        <div style="font-family:var(--font-mono); font-size:0.75rem; color:#fff;">Đơn: <strong>GHN-7782910</strong> · COD: <span style="color:var(--accent-lime);">1.450.000đ</span></div>
-        <div style="font-family:var(--font-mono); font-size:0.75rem; color:#cbd5e1;">Khoảng cách check-in: <span style="color:var(--accent-rose); font-weight:bold;">2.840m</span> so với khách</div>
-        <div style="font-family:var(--font-mono); font-size:0.72rem; color:#94a3b8; margin-top:4px;">Bưu tá: N.V.A (Bưu cục Di Linh) · Trạng thái: Hoãn 3 ngày liên tiếp</div>
+      <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-lime); margin-bottom:8px;">5 MỐC BÁO CÁO VẬN HÀNH TIÊU CHUẨN:</div>
+      <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:4px; text-align:center; margin-bottom:10px;">
+        <div style="background:rgba(255,255,255,0.05); padding:6px 2px; border-radius:4px;"><div style="color:var(--accent-lime); font-size:0.72rem; font-weight:700;">07h30</div><div style="font-size:0.6rem; color:#888;">Quân số</div></div>
+        <div style="background:rgba(255,255,255,0.05); padding:6px 2px; border-radius:4px;"><div style="color:var(--accent-cyan); font-size:0.72rem; font-weight:700;">10h00</div><div style="font-size:0.6rem; color:#888;">Xuất kho</div></div>
+        <div style="background:rgba(255,255,255,0.05); padding:6px 2px; border-radius:4px;"><div style="color:var(--accent-emerald); font-size:0.72rem; font-weight:700;">12h00</div><div style="font-size:0.6rem; color:#888;">Chốt ca 1</div></div>
+        <div style="background:rgba(255,255,255,0.05); padding:6px 2px; border-radius:4px;"><div style="color:var(--accent-amber); font-size:0.72rem; font-weight:700;">15h30</div><div style="font-size:0.6rem; color:#888;">Tải ca 2</div></div>
+        <div style="background:rgba(255,255,255,0.05); padding:6px 2px; border-radius:4px;"><div style="color:#f36523; font-size:0.72rem; font-weight:700;">19h00</div><div style="font-size:0.6rem; color:#888;">Chốt ngày</div></div>
       </div>
-      <div style="font-size:0.72rem; color:var(--accent-emerald);">➔ Đã kích hoạt alert: Yêu cầu AM kiểm tra thùng xe trước 11h00</div>
+      <div style="font-size:0.74rem; color:var(--accent-emerald);">✓ Tự động ping nhắc nhở đích danh bưu cục chưa báo cáo</div>
     `,
     deepDetail: `
       <div class="m-section">
         <h4 class="m-section-title">⚠️ Nỗi đau vận hành (Operational Pain Point)</h4>
-        <p class="m-text">Bưu tá thu tiền mặt COD từ khách hàng nhưng không nộp về công ty mà dùng tiền đơn sau đắp đơn trước (gối đầu COD). Để đối phó hệ thống, bưu tá đứng tại quán cà phê hoặc ở nhà rồi bấm "Khách hẹn giao lại" hoặc "Không nghe máy", dẫn đến tỷ lệ giao trễ tăng cao và nguy cơ mất tiền mặt hàng chục triệu đồng.</p>
+        <p class="m-text">Với quy mô 85 bưu cục trải rộng trên 5 tỉnh (Khánh Hòa, Lâm Đồng, Đắk Nông, Bình Thuận, Ninh Thuận), việc thu thập báo cáo thủ công qua tin nhắn rải rác thường xuyên bị sót, trễ hẹn và mất hàng giờ để tổng hợp. Ban Giám đốc và 27 AM không nắm được tiến độ ca theo thời gian thực để can thiệp kịp thời.</p>
       </div>
       <div class="m-section">
-        <h4 class="m-section-title">🔍 Thuật toán lọc rủi ro (Fraud Detection Algorithm)</h4>
+        <h4 class="m-section-title">🔍 Giải pháp & Kiến trúc Bot</h4>
         <ul class="m-list">
-          <li><strong>Điều kiện 1 (Giá trị rủi ro):</strong> Tiền thu hộ COD > 400.000 VNĐ.</li>
-          <li><strong>Điều kiện 2 (Tần suất bất thường):</strong> Đơn hàng bị cập nhật trạng thái hoãn hẹn >= 2 ngày liên tục.</li>
-          <li><strong>Điều kiện 3 (Độ lệch GPS):</strong> Sử dụng công thức Haversine tính khoảng cách giữa tọa độ check-in trên App bưu tá và tọa độ thực tế của khách hàng. Nếu khoảng cách lệch > 2.000m, gắn cờ "Nghi vấn Fake GPS".</li>
+          <li><strong>Chuẩn hóa 5 Mốc Vàng:</strong> Cố định 5 khung giờ điểm danh & chốt dữ liệu then chốt: Mốc 1 (07h30 mở ca & quân số), Mốc 2 (10h00 xuất kho ca 1), Mốc 3 (12h00 chốt tiến độ ca sáng), Mốc 4 (15h30 nhận tải & xuất kho ca chiều), Mốc 5 (19h00 chốt toàn ca & COD nộp ví).</li>
+          <li><strong>Cơ chế tự động bóc tách & nhắc nhở:</strong> Đúng giờ mốc, Bot tự động mở cổng tiếp nhận. Đến trước giờ chốt 10 phút, Bot quét danh sách 85 bưu cục, tự động gắn thẻ (mention) đích danh AM/Trưởng bưu cục chưa nộp.</li>
+          <li><strong>Đồng bộ Real-time:</strong> Bóc tách dữ liệu tin nhắn thành các trường thông tin chuẩn, tự động đẩy về Google Sheets tổng hợp toàn vùng và thông báo vào nhóm điều hành.</li>
         </ul>
       </div>
       <div class="m-section">
         <h4 class="m-section-title">💰 Tác động kinh doanh (Measurable Business Impact)</h4>
-        <p class="m-text">Triệt tiêu 95% hành vi chiếm dụng COD tại các bưu cục vùng sâu. Bảo vệ an toàn dòng tiền ngân quỹ, đồng thời răn đe triệt để hiện tượng bưu tá ngồi một chỗ bấm cập nhật ảo.</p>
+        <p class="m-text">100% bưu cục tuân thủ báo cáo đúng giờ. Tiết kiệm 90% thời gian tổng hợp số liệu cho trợ lý vùng và giúp Giám đốc Vùng có bức tranh vận hành liên tục không gián đoạn.</p>
       </div>
     `
   },
   3: {
-    id: 'NTB-GTC-03',
-    badge: 'CASE 03 · STRATEGY',
-    title: 'Dynamic Target Staircase — Giải Cứu 14 Bưu Cục Đáy',
-    role: 'Operations Strategist · Tối ưu hiệu quả giao · 2026',
-    desc: 'Thuật toán bậc thang động thay thế con số chỉ tiêu cứng nhắc bằng thang bậc chia nhỏ theo khung giờ, tạo động lực tâm lý cho bưu tá tại các bưu cục đồi núi khó khăn vươn lên mốc giao thành công chuẩn.',
+    id: 'NTB-KAIZEN-5S',
+    badge: 'CASE 03 · KAIZEN 5S BOT',
+    title: 'Bot Điểm Danh Kaizen — Kỷ Luật Vệ Sinh Kho & Layout Bưu Cục',
+    role: 'Kỷ luật vận hành & Tiêu chuẩn 5S Kho bãi · Telegram Photo Check-in · 2026',
+    desc: 'Hệ thống bot Telegram giám sát kỷ luật 5S và tiêu chuẩn layout kho bãi tại 85 bưu cục: Yêu cầu check-in hình ảnh thực tế mỗi ngày, kiểm soát lối thoát hiểm thông thoáng, phân khu hàng cồng kềnh (>10kg) và hàng hoàn ngăn nắp, triệt tiêu tối đa nguy cơ dập vỡ, thất lạc hàng hóa.',
     metrics: [
-      { val: '+12.4%', lbl: 'Tăng trưởng GTC nhóm đáy' },
-      { val: '14 BC', lbl: 'Được cứu hộ thoát nhóm báo động' },
-      { val: '2 Giờ/Lần', lbl: 'Tự động tính lại nấc thang' }
+      { val: '85 Bưu Cục', lbl: 'Check-in hình ảnh Kaizen mỗi ngày' },
+      { val: '5S Chuẩn', lbl: 'Giữ gìn vệ sinh & layout ngăn nắp' },
+      { val: '0 Sự Cố', lbl: 'Ngăn ngừa bể vỡ do sai layout' }
     ],
-    tech: ['Dynamic Thresholds', 'Gamification Logic', 'Performance Modeling', 'Real-time Telegram Notification'],
+    tech: ['Telegram Photo Upload', '5S Audit Matrix', 'Image Verification', 'Google Sheets Dashboard', 'Daily Compliance Tracker'],
     visualHtml: `
-      <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted); margin-bottom:8px;">THANG CỨU HỘ ĐỘNG THEO NĂNG LỰC:</div>
-      <div style="display:flex; gap:6px; margin-bottom:12px;">
-        <span style="flex:1; background:rgba(244,63,94,0.2); border:1px solid var(--accent-rose); color:#fff; text-align:center; padding:6px; border-radius:4px; font-size:0.75rem;">Bậc 1: 45%</span>
-        <span style="flex:1; background:rgba(245,158,11,0.2); border:1px solid var(--accent-amber); color:#fff; text-align:center; padding:6px; border-radius:4px; font-size:0.75rem;">Bậc 2: 55%</span>
-        <span style="flex:1; background:rgba(16,185,129,0.2); border:1px solid var(--accent-emerald); color:#fff; text-align:center; padding:6px; border-radius:4px; font-size:0.75rem;">Bậc 3: 70%</span>
-        <span style="flex:1; background:rgba(212,242,54,0.2); border:1px solid var(--accent-lime); color:#fff; text-align:center; padding:6px; border-radius:4px; font-size:0.75rem;">Chuẩn: 85%</span>
+      <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted); margin-bottom:8px;">TIÊU CHÍ CHECK-IN KAIZEN 5S BƯU CỤC HÀNG NGÀY:</div>
+      <div style="display:flex; flex-direction:column; gap:6px;">
+        <div style="display:flex; justify-content:space-between; font-size:0.75rem;">
+          <span>📸 Phân khu layout (Hàng giao / Hàng hoàn):</span>
+          <span style="color:var(--accent-emerald);">Đạt chuẩn 5S</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:0.75rem;">
+          <span>🧹 Vệ sinh sàn bãi & bàn chia chọn:</span>
+          <span style="color:var(--accent-lime);">Sạch sẽ, không rác</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:0.75rem;">
+          <span>🚪 Lối thoát hiểm & cửa xuất nhập tải:</span>
+          <span style="color:var(--accent-emerald);">100% Thông thoáng</span>
+        </div>
       </div>
-      <div style="font-size:0.75rem; color:var(--text-muted);">Bưu cục Krông Nô (Đắk Nông): Vượt Bậc 1 (48%) lúc 10h15 ➔ Kích hoạt Bậc 2</div>
+      <div style="margin-top:8px; font-size:0.72rem; color:var(--accent-lime);">➔ Bot chấm điểm & cảnh báo tức thì bưu cục vi phạm layout</div>
     `,
     deepDetail: `
       <div class="m-section">
         <h4 class="m-section-title">⚠️ Nỗi đau vận hành (Operational Pain Point)</h4>
-        <p class="m-text">Tại các địa bàn đồi núi hiểm trở như Đắk Nông, Lâm Đồng, bán kính giao hàng rộng và giao thông khó khăn khiến tỷ lệ Giao thành công (GTC) sáng thường chỉ đạt 35-45%. Nếu áp chung chỉ tiêu 85% của vùng, bưu tá cảm thấy bất khả thi và buông xuôi, bỏ ca không giao tiếp.</p>
+        <p class="m-text">Tại các bưu cục có sản lượng lớn, kho bãi dễ rơi vào tình trạng bừa bộn sau mỗi đợt nhận tải; hàng cồng kềnh >10kg để tràn ra lối đi, hàng hoàn và hàng giao lẫn lộn dẫn đến việc bưu tá lấy nhầm hàng, nguy cơ dập vỡ hàng hóa cao và vi phạm an toàn phòng cháy chữa cháy.</p>
       </div>
       <div class="m-section">
-        <h4 class="m-section-title">🔍 Thuật toán Bậc thang động (Dynamic Target Staircase)</h4>
+        <h4 class="m-section-title">🔍 Giải pháp & Quy trình Bot Kaizen</h4>
         <ul class="m-list">
-          <li><strong>Phân cụm bưu cục:</strong> Tự động xếp hạng và nhận diện 14 bưu cục có GTC dưới 55% lúc 09h30 sáng.</li>
-          <li><strong>Cơ chế thang động:</strong> Hạ mục tiêu tức thời xuống các nấc thang vừa sức: [40% -> 45% -> 50% -> 60%]. Khi bưu tá vượt một mốc, Bot gửi tin chúc mừng và mở khóa nấc thang tiếp theo.</li>
-          <li><strong>Tính toán lượng đơn cần giao:</strong> Quy đổi cụ thể: "Chỉ cần giao thêm 8 đơn nữa trước 11h30 để chạm mốc an toàn".</li>
+          <li><strong>Bắt buộc Check-in hình ảnh thực tế:</strong> Mỗi ngày bưu cục phải gửi ảnh chụp góc rộng toàn cảnh kho, khu vực chia chọn và lối đi chính vào khung giờ quy định.</li>
+          <li><strong>Bộ tiêu chí đánh giá Kaizen 5S:</strong> Sàng lọc (loại bỏ bao bì rác), Sắp xếp (phân khu hàng nặng, hàng dễ vỡ, hàng giá trị cao riêng biệt), Sạch sẽ (sàn kho khô ráo), Săn sóc và Sẵn sàng.</li>
+          <li><strong>Cảnh báo & Chấn chỉnh tức thì:</strong> Bưu cục nào không gửi ảnh hoặc để kho bừa bộn sẽ bị Bot gửi thông báo lên nhóm điều hành kèm nhắc nhở AM phụ trách xuống kiểm tra xử lý trong ngày.</li>
         </ul>
       </div>
       <div class="m-section">
         <h4 class="m-section-title">💰 Tác động kinh doanh (Measurable Business Impact)</h4>
-        <p class="m-text">Kéo toàn bộ 14 bưu cục khó khăn nhất vùng thoát khỏi nhóm báo động đỏ. Tăng trưởng tỷ lệ GTC trung bình của nhóm này thêm +12.4%, đóng góp trực tiếp vào thành tích chung của toàn vùng Nam Trung Bộ.</p>
+        <p class="m-text">Xây dựng nếp văn hóa kỷ luật và tác phong công nghiệp chuyên nghiệp tại 85 bưu cục. Giảm thiểu tối đa tỷ lệ hư hại, bể vỡ hàng hóa do bảo quản sai quy cách và đảm bảo an toàn tuyệt đối cho người lao động.</p>
       </div>
     `
   },
   4: {
-    id: 'KA-FLOW-04',
-    badge: 'CASE 04 · AWARD 2025',
+    id: 'NTB-FIELD-SUP',
+    badge: 'CASE 04 · FIELD OPS BOT',
+    title: 'Bot Check-in Đi Thị Trường Cho HRBP & Giám Sát Vận Hành (SUP)',
+    role: 'Quản trị nhân sự & Giám sát thực địa · Telegram Geo Check-in · 2026',
+    desc: 'Số hóa toàn diện lịch trình công tác thực địa của đội ngũ HRBP (Nhân sự) và Supervisor (Giám sát vận hành): Check-in vị trí thực tế tại bưu cục bằng GPS, ghi nhận biên bản đánh giá chất lượng nhân sự, an ninh và cơ sở vật chất ngay tại hiện trường về Google Sheets thời gian thực.',
+    metrics: [
+      { val: 'Real-time', lbl: 'Định vị GPS check-in thực tế' },
+      { val: '100% Số Hóa', lbl: 'Biên bản kiểm tra bưu cục' },
+      { val: '5 Tỉnh NTB', lbl: 'Minh bạch lịch trình công tác' }
+    ],
+    tech: ['Telegram Geolocation', 'Mobile Form Workflow', 'HRBP & SUP Tracker', 'Real-time Logs', 'Google Sheets Integration'],
+    visualHtml: `
+      <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted); margin-bottom:8px;">NHẬT KÝ CHECK-IN THỊ TRƯỜNG HRBP / SUP:</div>
+      <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:10px; font-size:0.75rem; line-height:1.5;">
+        <div>📍 <strong>SUP Nguyễn Văn B</strong> check-in: <em>Bưu cục Cam Ranh (Khánh Hòa)</em></div>
+        <div style="color:var(--accent-lime); font-size:0.72rem; margin-top:2px;">🛰️ Tọa độ GPS: Hợp lệ tại bưu cục (Lệch 0m) · 08h45 sáng</div>
+        <div style="color:#aaa; font-size:0.7rem; margin-top:4px;">📝 Biên bản: Đã kiểm tra 12 bưu tá, kiểm tra camera an ninh & tác phong đồng phục.</div>
+      </div>
+      <div style="margin-top:8px; font-size:0.72rem; color:var(--accent-emerald);">✓ Đồng bộ trực tiếp về báo cáo quản trị Ban Giám Đốc</div>
+    `,
+    deepDetail: `
+      <div class="m-section">
+        <h4 class="m-section-title">⚠️ Nỗi đau vận hành (Operational Pain Point)</h4>
+        <p class="m-text">Đội ngũ HRBP (Nhân sự đối tác) và SUP (Giám sát vận hành) thường xuyên phải di chuyển liên tục qua hàng chục bưu cục trên 5 tỉnh. Trước đây, việc quản lý lịch trình đi thị trường dựa trên báo cáo miệng hoặc tin nhắn rời rạc, thiếu dữ liệu vị trí thực tế để đo lường tần suất hỗ trợ bưu cục và chất lượng kiểm tra thực địa.</p>
+      </div>
+      <div class="m-section">
+        <h4 class="m-section-title">🔍 Giải pháp kỹ thuật</h4>
+        <ul class="m-list">
+          <li><strong>Telegram Geolocation Check-in:</strong> Khi đến bưu cục, HRBP/SUP mở bot và chia sẻ vị trí trực tiếp (Live Location). Bot đối chiếu tọa độ với cơ sở dữ liệu 85 bưu cục để xác thực người thật - việc thật.</li>
+          <li><strong>Form số hóa biên bản kiểm tra:</strong> Tích hợp bộ câu hỏi nhanh ngay trên giao diện bot: Quân số bưu tá đi làm, trang thiết bị kho bãi, tác phong kỷ luật, các kiến nghị của nhân viên.</li>
+          <li><strong>Báo cáo tự động về Trung tâm điều hành:</strong> Tự động cập nhật vào Dashboard để Ban Giám đốc Vùng theo dõi được hôm nay bưu cục nào đã được HRBP/SUP ghé thăm và có vấn đề gì cần chỉ đạo giải quyết.</li>
+        </ul>
+      </div>
+      <div class="m-section">
+        <h4 class="m-section-title">💰 Tác động kinh doanh (Measurable Business Impact)</h4>
+        <p class="m-text">Minh bạch 100% hoạt động đi thị trường của đội ngũ giám sát và nhân sự. Tăng cường sự kết nối giữa khối văn phòng vùng và tuyến đầu bưu cục, giải quyết nhanh các vấn đề nhân sự phát sinh ngay tại chỗ.</p>
+      </div>
+    `
+  },
+  5: {
+    id: 'KA-FLOW-05',
+    badge: 'CASE 05 · AWARD 2025',
     title: 'Tái Cấu Trúc Shipping Status Flow & Cắt Giảm 20% Contact Rate',
-    role: 'Key Account Executive · Sàn Shopee, Lazada, Tiki · 2025 – 2026',
+    role: 'Key Account Executive · Sàn Shopee, Lazada, TikTok Shop · 2025 – 2026',
     desc: 'Phân tích điểm nghẽn trải nghiệm người mua hàng trên các sàn TMĐT lớn, thiết kế lại luồng trạng thái đơn hàng và công cụ theo dõi tự động, đạt danh hiệu Chiến Binh Xuất Sắc 2025.',
     metrics: [
       { val: '-20%', lbl: 'Contact rate khiếu nại đơn hàng' },
@@ -363,50 +413,6 @@ const CASE_DATA = {
       <div class="m-section">
         <h4 class="m-section-title">💰 Tác động kinh doanh (Measurable Business Impact)</h4>
         <p class="m-text">Giảm từ 15% đến 20% contact rate khiếu nại. Bảo vệ cam kết SLA trên 99% với các đối tác chiến lược hàng đầu, được Ban Giám đốc vinh danh giải thưởng "Chiến binh xuất sắc năm 2025".</p>
-      </div>
-    `
-  },
-  5: {
-    id: 'NTB-STAFF-05',
-    badge: 'CASE 05 · STAFFING',
-    title: 'Staffing Capacity Model & Cảnh Báo Bưu Tá Bỏ Tuyến',
-    role: 'Điều hành Nguồn lực & Năng suất · Vùng NTB · 2026',
-    desc: 'Mô hình giám sát năng suất phát ca và tỷ lệ bưu tá rời tuyến đột xuất, cân đối số lượng bưu tá cần thiết theo sản lượng dự báo theo ngày, loại bỏ tình trạng ùn tắc hàng hóa ca chiều.',
-    metrics: [
-      { val: '100%', lbl: 'Kiểm soát bưu tá off tuyến' },
-      { val: '<14h00', lbl: 'Cảnh báo tăng cường ca chiều' },
-      { val: '98.5%', lbl: 'Đơn ca 2 được xuất kho kịp thời' }
-    ],
-    tech: ['Staffing Model', 'Delivery Velocity Tracker', 'Capacity Planning', 'Telegram AM Alert'],
-    visualHtml: `
-      <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted); margin-bottom:8px;">THEO DÕI NĂNG SUẤT PHÁT CA THEO GIỜ:</div>
-      <div style="display:flex; flex-direction:column; gap:6px;">
-        <div style="display:flex; justify-content:space-between; font-size:0.75rem;">
-          <span>BC Cam Ranh (Khánh Hòa):</span>
-          <span style="color:var(--accent-emerald);">Đạt chuẩn (48 đơn/người)</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; font-size:0.75rem;">
-          <span>BC Đắk Mil (Đắk Nông):</span>
-          <span style="color:var(--accent-rose); font-weight:bold;">Thiếu 2 bưu tá ca chiều ⚠️</span>
-        </div>
-      </div>
-      <div style="margin-top:8px; font-size:0.72rem; color:var(--accent-lime);">➔ Tự động đề xuất AM điều chuyển 2 bưu tá từ tuyến phụ trợ</div>
-    `,
-    deepDetail: `
-      <div class="m-section">
-        <h4 class="m-section-title">⚠️ Nỗi đau vận hành (Operational Pain Point)</h4>
-        <p class="m-text">Tình trạng bưu tá tự ý nghỉ ca chiều hoặc off tuyến đột xuất mà bưu cục không nắm được kịp thời, dẫn đến hàng trăm đơn hàng ca chiều bị om tại kho, phát sinh khiếu nại trễ hẹn và tồn đọng sang ngày hôm sau.</p>
-      </div>
-      <div class="m-section">
-        <h4 class="m-section-title">🔍 Giải pháp kỹ thuật & Thuật toán</h4>
-        <ul class="m-list">
-          <li><strong>Theo dõi vận tốc giao hàng (Delivery Velocity):</strong> Tính toán số đơn giao thành công/giờ của từng bưu tá. Nếu sau 14h00 bưu tá không có thêm bất kỳ quét mã nào, hệ thống phát tín hiệu cảnh báo.</li>
-          <li><strong>Mô hình cân đối định biên (Staffing Optimizer):</strong> Dựa trên lượng hàng tồn kho và hàng đang luân chuyển về bưu cục, tính toán số lượng bưu tá tối thiểu cần ra đường để giải tỏa trước giờ cutoff.</li>
-        </ul>
-      </div>
-      <div class="m-section">
-        <h4 class="m-section-title">💰 Tác động kinh doanh (Measurable Business Impact)</h4>
-        <p class="m-text">Chấm dứt hoàn toàn hiện tượng bưu cục bị "vỡ trận" ca chiều. Giúp Trưởng bưu cục và AM chủ động điều chuyển nhân sự giữa các tuyến lân cận từ trước 14h00.</p>
       </div>
     `
   }
@@ -564,9 +570,9 @@ const JOURNEY_STOPS = {
     role: 'Assistant Regional Director (Trợ Lý Giám Đốc Vùng Nam Trung Bộ)',
     company: 'Giao Hàng Nhanh (GHN) · 5 Tỉnh: Khánh Hòa, Lâm Đồng, Đắk Nông, Ninh Thuận, Bình Thuận',
     bullets: [
-      'Lập báo cáo vận hành, kinh doanh và theo dõi PFM cho Giám đốc Vùng; tổng hợp dữ liệu KPI 5 tỉnh và 18 Quản lý khu vực (AM).',
+      'Lập báo cáo vận hành, kinh doanh và theo dõi PFM cho Giám đốc Vùng; tổng hợp dữ liệu KPI 5 tỉnh và 27 Quản lý khu vực (AMs) với 85 bưu cục.',
       'Xây dựng pipeline báo cáo tự động (Python, Google Apps Script), rút ngắn 85% thời gian thủ công và theo dõi KPI thời gian thực (%OPR, %ODR, %FD).',
-      'Phân tích rủi ro vận hành: phát hiện bưu tá gian lận GPS, chặn nguy cơ chiếm dụng dòng tiền COD, follow bưu tá off tuyến đột xuất.',
+      'Phát triển hệ sinh thái Bot Telegram: Bot Điểm danh báo cáo 5 mốc, Bot Điểm danh Kaizen 5S kho bãi, Bot Check-in thực địa cho HRBP & SUP.',
       'Dẫn dắt đánh giá nhân sự tài năng hàng quý trên 5 tỉnh, xác định nhân sự tiềm năng cao và định hướng lộ trình thăng tiến.'
     ],
     impact: 'Tự động hóa 100% luồng báo cáo buổi sáng & trưa cho Ban Giám đốc Vùng Nam Trung Bộ.'
@@ -613,60 +619,62 @@ function initCareerJourney() {
    4. CONTROL TOWER LIVE SIMULATOR
    ========================================================================== */
 const SCENARIOS = {
-  cod: {
+  bot_5_moc: {
     terminalLines: [
-      { text: '[SCAN] Quét cơ sở dữ liệu COD 5 tỉnh: Phát hiện đơn hàng nghi vấn tại Bưu cục Di Linh...', type: 'warn' },
-      { text: '[ALGO] Tính khoảng cách Haversine giữa GPS bưu tá và tọa độ khách: Lệch 2.840 mét!', type: 'err' },
-      { text: '[CHECK] Tiền COD: 1.850.000đ · Số lần cập nhật hoãn hẹn: 3 ngày liên tiếp.', type: 'warn' },
-      { text: '[DECISION] Đơn hàng vượt ngưỡng an toàn! Kích hoạt Bot gửi điện khẩn cho AM Lâm Đồng.', type: 'success' }
+      { text: '[07:30 - MỐC 1] Điểm danh quân số: 642 bưu tá xuất tuyến tại 85 bưu cục.', type: 'dim' },
+      { text: '[10:00 - MỐC 2] Quét tỷ lệ xuất kho: 96.8% đơn hàng đã lên thùng xe đi phát ca 1.', type: 'dim' },
+      { text: '[11:50 - MỐC 3] CHỐT CA TRƯA: Quét danh sách 85 bưu cục toàn vùng NTB...', type: 'warn' },
+      { text: '[BOT PING] Phát hiện 2 bưu cục chưa chốt báo cáo: BC Di Linh & BC Hàm Tân!', type: 'err' },
+      { text: '[ALERT SENT] Tự động bắn tin nhắc nhở đích danh AM phụ trách trên nhóm điều hành.', type: 'success' }
     ],
     tg: {
-      time: '10:05',
-      channel: 'AM_LAM_DONG_CANH_BAO',
-      text: `🚨 <b>CẢNH BÁO RỦI RO CHIẾM DỤNG COD & FAKE GPS</b>
-📍 <b>Bưu cục:</b> Di Linh (Lâm Đồng)
-📦 <b>Mã vận đơn:</b> GHN-8839219
-💰 <b>Tiền thu hộ COD:</b> 1.850.000 VNĐ (Hoãn 3 ngày)
-🛰️ <b>Tọa độ check-in:</b> Lệch <b>2.840m</b> so với địa chỉ người nhận.
-👤 <b>Bưu tá phụ trách:</b> Nguyễn Văn A
+      time: '11:55',
+      channel: 'NTB_DIEU_HANH_5_TINH',
+      text: `⏰ <b>ĐIỂM DANH BÁO CÁO MỐC 3 (12H00) — CHỐT CA TRƯA</b>
+📊 <b>Tiến độ toàn vùng:</b> %GTC đạt <b>84.6%</b> · Đã giao: 18.420 đơn
+🚨 <b>Bưu cục CHƯA nộp báo cáo mốc:</b>
+  1. <b>Bưu cục Di Linh (Lâm Đồng):</b> AM Trần Văn Phước
+  2. <b>Bưu cục Hàm Tân (Bình Thuận):</b> AM Phan Đình Duy
 
-👉 <b>YÊU CẦU HÀNH ĐỘNG:</b>
-AM vui lòng trực tiếp xuống bưu cục hoặc gọi điện kiểm tra túi hàng bưu tá <b>trước 11h00 trưa</b> để ngăn ngừa thất thoát ngân quỹ!`
+👉 <b>YÊU CẦU:</b> AM vui lòng liên hệ bưu cục chốt dữ liệu trước 12h10 để hoàn thiện Dashboard toàn vùng!`
     }
   },
-  bottom_bc: {
+  bot_kaizen: {
     terminalLines: [
-      { text: '[PULSE] 10:30 Kiểm tra Giao thành công (GTC) toàn vùng: Phát hiện 1 bưu cục dưới ngưỡng...', type: 'warn' },
-      { text: '[INFO] Bưu cục Krông Nô (Đắk Nông): GTC hiện tại đạt 39.2% (Nguy cơ vỡ SLA).', type: 'err' },
-      { text: '[DYNAMIC TARGET] Hạ mục tiêu tức thời xuống Bậc 1: Cần giao thêm 9 đơn để đạt 48%.', type: 'warn' },
-      { text: '[PUSH] Đã gửi thông báo giải cứu và danh sách 9 khách hàng ưu tiên cho AM Đắk Nông.', type: 'success' }
+      { text: '[08:00 - KAIZEN] Kích hoạt cổng tiếp nhận ảnh check-in vệ sinh kho bãi 85 bưu cục.', type: 'dim' },
+      { text: '[AUDIT] Đã nhận 83/85 ảnh. Kiểm tra tiêu chí 5S: Sàn kho, bàn chia chọn, lối thoát hiểm.', type: 'warn' },
+      { text: '[CHECK FAIL] Phát hiện vi phạm layout: Bưu cục Đức Trọng (hàng cồng kềnh chắn cửa xuất tải).', type: 'err' },
+      { text: '[DISPATCH] Đã tạo biên bản Kaizen & gửi cảnh báo trực tiếp kèm hình ảnh vi phạm.', type: 'success' }
     ],
     tg: {
-      time: '10:31',
-      channel: 'AM_DAK_NONG_DIEU_HANH',
-      text: `🎯 <b>THANG CỨU HỘ ĐỘNG — GIẢI CỨU BƯU CỤC KRÔNG NÔ</b>
-📊 <b>Tình trạng:</b> GTC lúc 10h30 đạt <b>39.2%</b> (Đáy vùng)
-⚡ <b>Mục tiêu Bậc 1 kích hoạt:</b> Đạt <b>48.0%</b> trước 11h30 trưa.
-📦 <b>Hành động cụ thể:</b> Chỉ cần hoàn tất thêm <b>9 đơn hàng</b> nữa trên tuyến chính!
-
-👉 <b>ĐÃ ĐẨY LINK GOOGLE SHEET:</b> Danh sách 9 khách hàng có tỷ lệ nghe máy cao nhất buổi sáng. Đề nghị Trưởng bưu cục tập trung ưu tiên phát dứt điểm!`
+      time: '08:15',
+      channel: 'KAIZEN_5S_NTB_OPERATIONS',
+      text: `🧹 <b>CẢNH BÁO KỶ LUẬT KAIZEN & LAYOUT BƯU CỤC</b>
+📍 <b>Bưu cục:</b> Đức Trọng (Lâm Đồng) · <b>AM phụ trách:</b> Nguyễn Văn C
+📸 <b>Vi phạm phát hiện qua ảnh check-in:</b>
+  • Kiện hàng >10kg để tràn ra lối thoát hiểm
+  • Khu vực hàng hoàn chưa phân loại tem nhãn
+👉 <b>CHỈ ĐẠO:</b> Đề nghị Trưởng bưu cục tổ chức sắp xếp lại theo layout chuẩn 5S và chụp ảnh phản hồi trước 14h00!`
     }
   },
-  drop_shopee: {
+  bot_hrbp_sup: {
     terminalLines: [
-      { text: '[MONITOR] Quét kết nối sàn TMĐT: Phát hiện kiện hàng Shopee bị giữ tại Hub Nha Trang...', type: 'warn' },
-      { text: '[TIME] Thời gian tồn tại bãi trung chuyển: 14 giờ (Sắp chạm ngưỡng cutoff 11h30).', type: 'err' },
-      { text: '[ACTION] Tự động gán cờ "Hàng ưu tiên sàn", kích hoạt lệnh đẩy chuyến xe sớm.', type: 'success' }
+      { text: '[GEO CHECK-IN] Nhận tín hiệu check-in thực địa từ đội ngũ HRBP & Giám sát vận hành (SUP).', type: 'dim' },
+      { text: '[GPS VERIFY] SUP Lê Hoàng Nam check-in tại Bưu cục Phan Rang (Ninh Thuận) — GPS hợp lệ (0m lệch).', type: 'success' },
+      { text: '[FORM SUBMIT] Đã ghi nhận biên bản kiểm tra: Đánh giá quân số bưu tá, camera, an toàn kho.', type: 'warn' },
+      { text: '[SYNC] Tự động đồng bộ báo cáo thực địa lên Dashboard Giám Đốc Vùng.', type: 'success' }
     ],
     tg: {
-      time: '10:45',
-      channel: 'HUB_NHA_TRANG_TMDT',
-      text: `📦 <b>CẢNH BÁO NGUY CƠ RỚT KẾT NỐI SÀN SHOPEE</b>
-🏭 <b>Địa điểm:</b> Kho phân loại Hub Nha Trang (Khánh Hòa)
-⏰ <b>Giờ Cutoff xe kế tiếp:</b> 11h30 trưa
-🚨 <b>Số lượng kiện có nguy cơ trễ SLA:</b> 142 đơn
-
-👉 <b>CHỈ ĐẠO:</b> Đội ngũ phân loại ưu tiên cho 142 kiện này lên xe trung chuyển chuyến 11h15 đi Cam Ranh & Ninh Thuận để bảo toàn 100% SLA sàn TMĐT!`
+      time: '09:20',
+      channel: 'HRBP_SUP_FIELD_CHECKIN',
+      text: `📍 <b>CHECK-IN THỰC ĐỊA HRBP & SUPERVISOR</b>
+👤 <b>Nhân sự:</b> SUP Lê Hoàng Nam (Giám sát Vận hành)
+🏢 <b>Bưu cục ghé thăm:</b> Bưu cục Phan Rang (Ninh Thuận)
+🛰️ <b>Tọa độ GPS:</b> Hợp lệ tại vị trí bưu cục (09h18)
+📝 <b>Nội dung đánh giá thực địa:</b>
+  • Quân số: 18/18 bưu tá đi làm đúng giờ, đồng phục chuẩn
+  • Tình trạng kho: Đạt tiêu chuẩn Kaizen 5S, camera hoạt động 100%
+✓ <i>Biên bản kiểm tra đã được số hóa & lưu vào hệ thống NTB.</i>`
     }
   }
 };
@@ -680,7 +688,7 @@ function initSimulator() {
   const tgTime = document.getElementById('tgTime');
   const tgMessage = document.getElementById('tgMessage');
 
-  let activeScenario = 'cod';
+  let activeScenario = 'bot_5_moc';
 
   scenarioBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
