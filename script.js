@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSimulator();
   initContactAndModals();
   initLiveTicker();
+  initAudioEngine();
 });
 
 /* ==========================================================================
@@ -783,3 +784,251 @@ function initLiveTicker() {
     }, 400);
   }, 4800);
 }
+
+/* ==========================================================================
+   7. WEB AUDIO INTERACTIVE SOUND FX & LO-FI AMBIENT RADIO
+   ========================================================================== */
+const AudioEngine = {
+  ctx: null,
+  isRadioOn: false,
+  radioOscs: [],
+  gainMaster: null,
+  gainRadio: null,
+  lastHoverTime: 0,
+
+  init() {
+    if (!this.ctx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AudioContext();
+      this.gainMaster = this.ctx.createGain();
+      this.gainMaster.gain.setValueAtTime(0.28, this.ctx.currentTime);
+      this.gainMaster.connect(this.ctx.destination);
+
+      this.gainRadio = this.ctx.createGain();
+      this.gainRadio.gain.setValueAtTime(0.09, this.ctx.currentTime);
+      this.gainRadio.connect(this.gainMaster);
+    }
+    if (this.ctx.state === 'suspended') {
+      this.ctx.resume();
+    }
+  },
+
+  playHover() {
+    if (!this.isRadioOn) return;
+    const now = Date.now();
+    if (now - this.lastHoverTime < 70) return;
+    this.lastHoverTime = now;
+    this.init();
+
+    try {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(320, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(480, this.ctx.currentTime + 0.04);
+
+      gain.gain.setValueAtTime(0.02, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.045);
+
+      osc.connect(gain);
+      gain.connect(this.gainMaster);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.045);
+    } catch (e) {}
+  },
+
+  playClick() {
+    if (!this.isRadioOn) return;
+    this.init();
+
+    try {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(640, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(160, this.ctx.currentTime + 0.06);
+
+      gain.gain.setValueAtTime(0.06, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.06);
+
+      osc.connect(gain);
+      gain.connect(this.gainMaster);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.06);
+    } catch (e) {}
+  },
+
+  playSuccess() {
+    if (!this.isRadioOn) return;
+    this.init();
+
+    try {
+      // Warm chord arpeggio: Eb4, G4, Bb4, Eb5
+      const notes = [311.13, 392.00, 466.16, 622.25];
+      notes.forEach((freq, idx) => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        const startT = this.ctx.currentTime + idx * 0.07;
+        osc.frequency.setValueAtTime(freq, startT);
+
+        gain.gain.setValueAtTime(0, startT);
+        gain.gain.linearRampToValueAtTime(0.07, startT + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, startT + 0.45);
+
+        osc.connect(gain);
+        gain.connect(this.gainMaster);
+        osc.start(startT);
+        osc.stop(startT + 0.45);
+      });
+    } catch (e) {}
+  },
+
+  playTerminal() {
+    if (!this.isRadioOn) return;
+    this.init();
+
+    try {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(800 + Math.random() * 400, this.ctx.currentTime);
+
+      gain.gain.setValueAtTime(0.015, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.03);
+
+      osc.connect(gain);
+      gain.connect(this.gainMaster);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.03);
+    } catch (e) {}
+  },
+
+  playTelegram() {
+    if (!this.isRadioOn) return;
+    this.init();
+
+    try {
+      [680, 1020].forEach((freq, i) => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        const startT = this.ctx.currentTime + i * 0.12;
+        osc.frequency.setValueAtTime(freq, startT);
+
+        gain.gain.setValueAtTime(0.07, startT);
+        gain.gain.exponentialRampToValueAtTime(0.0001, startT + 0.35);
+
+        osc.connect(gain);
+        gain.connect(this.gainMaster);
+        osc.start(startT);
+        osc.stop(startT + 0.35);
+      });
+    } catch (e) {}
+  },
+
+  toggleRadio() {
+    this.init();
+    this.isRadioOn = !this.isRadioOn;
+    const btn = document.getElementById('btnSoundToggle');
+    const label = document.getElementById('soundLabel');
+
+    if (this.isRadioOn) {
+      if (btn) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+      }
+      if (label) label.textContent = 'Radio: BẬT';
+      this.startAmbientRadio();
+      this.playSuccess();
+    } else {
+      if (btn) {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      }
+      if (label) label.textContent = 'Radio: TẮT';
+      this.stopAmbientRadio();
+    }
+  },
+
+  startAmbientRadio() {
+    this.stopAmbientRadio();
+    try {
+      const filter = this.ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(680, this.ctx.currentTime);
+      filter.connect(this.gainRadio);
+
+      // Warm relaxing chord: Eb major 9
+      const chordFreqs = [155.56, 233.08, 293.66, 392.00];
+      this.radioOscs = chordFreqs.map(f => {
+        const osc = this.ctx.createOscillator();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(f, this.ctx.currentTime);
+        osc.connect(filter);
+        osc.start();
+        return osc;
+      });
+
+      // LFO filter sweep
+      const lfo = this.ctx.createOscillator();
+      const lfoGain = this.ctx.createGain();
+      lfo.frequency.setValueAtTime(0.25, this.ctx.currentTime);
+      lfoGain.gain.setValueAtTime(140, this.ctx.currentTime);
+      lfo.connect(lfoGain);
+      lfoGain.connect(filter.frequency);
+      lfo.start();
+      this.radioOscs.push(lfo);
+    } catch (e) {}
+  },
+
+  stopAmbientRadio() {
+    this.radioOscs.forEach(o => {
+      try { o.stop(); o.disconnect(); } catch (e) {}
+    });
+    this.radioOscs = [];
+  }
+};
+
+function initAudioEngine() {
+  const btnToggle = document.getElementById('btnSoundToggle');
+  if (btnToggle) {
+    btnToggle.addEventListener('click', () => {
+      AudioEngine.toggleRadio();
+    });
+  }
+
+  // Hook global hover & click sounds
+  const interactiveEls = document.querySelectorAll(
+    '.nav-link, .btn-primary, .btn-secondary, .case-item, .btn-scenario, .journey-node, .btn-open-detail, .btn-copy-email, .btn-sort-now'
+  );
+
+  interactiveEls.forEach(el => {
+    el.addEventListener('mouseenter', () => AudioEngine.playHover());
+    el.addEventListener('click', () => AudioEngine.playClick());
+  });
+
+  // Simulator hookups
+  const btnRunSim = document.getElementById('btnRunSim');
+  if (btnRunSim) {
+    btnRunSim.addEventListener('click', () => {
+      const origInterval = setInterval(() => {
+        if (btnRunSim.disabled) {
+          AudioEngine.playTerminal();
+        } else {
+          clearInterval(origInterval);
+          AudioEngine.playTelegram();
+        }
+      }, 450);
+    });
+  }
+
+  // Sort now hookup
+  const btnSortNow = document.getElementById('btnSortNow');
+  if (btnSortNow) {
+    btnSortNow.addEventListener('click', () => {
+      setTimeout(() => AudioEngine.playSuccess(), 200);
+    });
+  }
+}
+
