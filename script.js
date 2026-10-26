@@ -810,15 +810,15 @@ const JOURNEY_STOPS = {
   },
   2: {
     period: '2022 – 2023',
-    badge: 'QUẢN LÝ BƯU CỤC TUYẾN ĐẦU',
-    role: 'Area Manager (AM - Quản Lý Khu Vực)',
-    company: 'Ninja Van Vietnam · Khối Vận Hành Bưu Cục Tuyến Đầu',
+    badge: 'ACCOUNT MANAGEMENT',
+    role: 'Account Management (AM)',
+    company: 'Ninja Van Vietnam · Khối Quản Lý Khách Hàng Doanh Nghiệp',
     bullets: [
-      'Trực tiếp quản lý và điều phối mạng lưới bưu cục và đội ngũ bưu tá tại khu vực phụ trách.',
-      'Tối ưu hóa tỷ lệ giao hàng thành công (Success Rate), giám sát chặt chẽ tỷ lệ gán đơn và giải phóng tồn kho hàng ngày.',
-      'Thực chiến xử lý sự cố hàng hóa, điều phối tải bưu tá và giải quyết khiếu nại khách hàng ngay tại điểm nóng tuyến đầu.'
+      'Quản lý danh mục tài khoản khách hàng doanh nghiệp và đối tác kinh doanh chiến lược tại Ninja Van.',
+      'Theo dõi và tối ưu các chỉ số cam kết dịch vụ (SLA), tỷ lệ giao hàng thành công (Success Rate) và xử lý sự cố đơn hàng.',
+      'Phối hợp nhịp nhàng giữa khách hàng và khối Vận hành để đảm bảo tiến độ giao nhận và nâng cao mức độ hài lòng.'
     ],
-    impact: 'Kinh nghiệm AM thực chiến tại Ninja Van giúp Thủy thấu hiểu sâu sắc nỗi đau vận hành bưu cục, tạo bước đệm hoàn hảo khi bước qua cánh cổng GHN.'
+    impact: 'Kinh nghiệm thực chiến trong vai trò Account Management tại Ninja Van giúp Thủy nắm vững nghiệp vụ quản trị khách hàng và thấu hiểu vận hành, tạo nền tảng vững chắc khi chuyển sang GHN.'
   },
   3: {
     period: '2023 – 2024',
@@ -865,7 +865,7 @@ const JOURNEY_STOPS = {
 
 const CHIBI_STOPS = [
   { id: 1, x: 80, y: 300, msg: "🎓 Xuất phát: Cử nhân UEH!", shirt: "#3b82f6", item: "#cbd5e1" },
-  { id: 2, x: 260, y: 300, msg: "📦 Area Manager @ Ninja Van!", shirt: "#dc2626", item: "#f59e0b" },
+  { id: 2, x: 260, y: 300, msg: "📦 Account Management @ Ninja Van!", shirt: "#dc2626", item: "#f59e0b" },
   { id: "gate", x: 385, y: 275, msg: "⛩️ MỞ CỔNG GHN! Bước vào nhà Cam!", shirt: "#f97316", item: "#22c55e" },
   { id: 3, x: 460, y: 230, msg: "🧡 KAC @ GHN: Giải cứu đơn hàng!", shirt: "#f97316", item: "#06b6d4" },
   { id: 4, x: 660, y: 130, msg: "🏆 KA Sàn TMĐT · Chiến Binh Xuất Sắc!", shirt: "#f97316", item: "#fbbf24" },
@@ -953,7 +953,15 @@ function initCareerJourney() {
     if (chibi) {
       chibi.classList.add('walking');
       chibi.setAttribute('transform', `translate(${target.x}, ${target.y})`);
-      if (chibiMsg) chibiMsg.textContent = target.msg;
+      if (chibiMsg) {
+        chibiMsg.textContent = target.msg;
+        const bubbleRect = chibi.querySelector('.chibi-bubble rect');
+        if (bubbleRect) {
+          const bw = Math.max(160, target.msg.length * 6.5 + 24);
+          bubbleRect.setAttribute('x', -bw / 2);
+          bubbleRect.setAttribute('width', bw);
+        }
+      }
 
       // Uniform color change
       if (chibiShirt && target.shirt) {
