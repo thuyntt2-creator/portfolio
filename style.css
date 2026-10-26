@@ -1997,6 +1997,7 @@ dialog::backdrop {
   position: absolute;
   top: 24px;
   right: 24px;
+  z-index: 25;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid var(--border-subtle);
   color: var(--text-main);
@@ -4803,4 +4804,135 @@ dialog::backdrop {
 .cv-highlight-val {
   font-family: var(--font-mono);
   font-weight: 700;
+}
+
+
+/* Interactive Milestone Buttons (Cho người xem và nhà tuyển dụng bấm) */
+.road-milestones {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+  padding-bottom: 14px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.milestone-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(17, 24, 39, 0.85);
+  border: 1px solid rgba(243, 101, 35, 0.28);
+  color: #cbd5e1;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-spring);
+  backdrop-filter: blur(8px);
+}
+
+.milestone-btn:hover {
+  background: rgba(243, 101, 35, 0.2);
+  border-color: #f36523;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(243, 101, 35, 0.4);
+}
+
+.station-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  display: inline-block;
+  animation: pulse-dot 1.8s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(0.9); box-shadow: 0 0 4px #22c55e; }
+  50% { transform: scale(1.25); box-shadow: 0 0 12px #22c55e; }
+  100% { transform: scale(0.9); box-shadow: 0 0 4px #22c55e; }
+}
+
+.btn-truck-action.btn-live-link {
+  background: linear-gradient(135deg, rgba(212, 242, 54, 0.15), rgba(243, 101, 35, 0.22));
+  color: #d4f236;
+  border: 1px solid rgba(212, 242, 54, 0.45);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.btn-truck-action.btn-live-link:hover {
+  background: linear-gradient(135deg, #d4f236, #f36523);
+  color: #0b0f17;
+  box-shadow: 0 4px 18px rgba(212, 242, 54, 0.45);
+  transform: translateY(-2px);
+}
+
+/* Bot card interactive elements */
+.bot-card-item {
+  cursor: pointer;
+  transition: transform 0.25s var(--ease-spring), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.bot-card-item:hover {
+  border-color: rgba(245, 158, 11, 0.6) !important;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(245, 158, 11, 0.18);
+}
+
+.bc-action-footer {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.bc-inspect-btn {
+  background: transparent;
+  border: none;
+  color: #f59e0b;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color 0.2s ease, gap 0.2s ease;
+}
+
+.bot-card-item:hover .bc-inspect-btn {
+  color: #fbbf24;
+  gap: 8px;
+}
+
+.bc-link-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(212, 242, 54, 0.12);
+  color: #d4f236;
+  border: 1px solid rgba(212, 242, 54, 0.3);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.bc-link-badge:hover {
+  background: #d4f236;
+  color: #000000;
 }

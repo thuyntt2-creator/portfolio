@@ -331,17 +331,38 @@
           <button type="button" class="btn-truck-action btn-turbo" id="btnTurboTruck" title="Tăng tốc độ xe tải giao hàng">
             <span>⚡ Kích hoạt Turbo Nitro</span>
           </button>
+          <button type="button" class="btn-truck-action" id="btnScooterHonk" title="Gọi bưu tá phát hàng chặng cuối">
+            <span>🛵 Bưu tá chặng cuối</span>
+          </button>
+          <a href="https://namtrungbo.vercel.app/hop" target="_blank" rel="noopener noreferrer" class="btn-truck-action btn-live-link" title="Mở Dashboard Họp Vận Hành Tuần Trực Quan (Live)">
+            <span>📊 DB Họp Vận Tải KTC ↗</span>
+          </a>
         </div>
       </div>
 
       <div class="highway-track-container" id="highwayTrack">
-        <!-- Landmark Milestones -->
-        <div class="road-milestones" aria-hidden="true">
-          <span class="milestone-station ms-1">📍 Hub Nha Trang</span>
-          <span class="milestone-station ms-2">📍 Bưu cục Đà Lạt</span>
-          <span class="milestone-station ms-3">📍 Hub Phan Thiết</span>
-          <span class="milestone-station ms-4">📍 Bưu cục Gia Nghĩa</span>
-          <span class="milestone-station ms-5">📍 Hub Phan Rang</span>
+        <!-- Landmark Milestones (Clickable for Recruiters & Visitors) -->
+        <div class="road-milestones" role="region" aria-label="Các trạm luân chuyển huyết mạch 5 tỉnh">
+          <button type="button" class="milestone-btn ms-1" data-station="nha-trang" title="Bấm xem thông số HUB Nha Trang (Khánh Hòa)">
+            <span class="station-pulse"></span>
+            <span class="station-label">📍 Hub Nha Trang (Khánh Hòa)</span>
+          </button>
+          <button type="button" class="milestone-btn ms-2" data-station="da-lat" title="Bấm xem thông số Bưu cục Đà Lạt (Lâm Đồng)">
+            <span class="station-pulse"></span>
+            <span class="station-label">📍 Bưu cục Đà Lạt (Lâm Đồng)</span>
+          </button>
+          <button type="button" class="milestone-btn ms-3" data-station="phan-thiet" title="Bấm xem thông số HUB Phan Thiết (Bình Thuận)">
+            <span class="station-pulse"></span>
+            <span class="station-label">📍 Hub Phan Thiết (Bình Thuận)</span>
+          </button>
+          <button type="button" class="milestone-btn ms-4" data-station="gia-nghia" title="Bấm xem thông số Bưu cục Gia Nghĩa (Đắk Nông)">
+            <span class="station-pulse"></span>
+            <span class="station-label">📍 Bưu cục Gia Nghĩa (Đắk Nông)</span>
+          </button>
+          <button type="button" class="milestone-btn ms-5" data-station="phan-rang" title="Bấm xem thông số HUB Phan Rang (Ninh Thuận)">
+            <span class="station-pulse"></span>
+            <span class="station-label">📍 Hub Phan Rang (Ninh Thuận)</span>
+          </button>
         </div>
 
         <!-- Animated Road Strip -->
@@ -1539,6 +1560,38 @@
         <p class="modal-subtitle" id="modalSubtitle">Vai trò và bối cảnh vận hành</p>
       </div>
       <div class="modal-content" id="modalContent">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modal: Highway Station Detail (Cho Nhà Tuyển Dụng Xem Số Liệu Trạm) -->
+  <dialog class="modal-case-detail modal-station-detail" id="modalStationDetail" aria-labelledby="modalStationTitle">
+    <div class="modal-box">
+      <div class="modal-glow" aria-hidden="true"></div>
+      <button type="button" class="modal-close" id="btnCloseStationModal" aria-label="Đóng cửa sổ trạm">✕</button>
+      <div class="modal-header">
+        <span class="modal-badge" id="modalStationBadge">TRẠM VẬN TẢI HUYẾT MẠCH · GHN NTB</span>
+        <h3 class="modal-title" id="modalStationTitle">HUB Nha Trang (Khánh Hòa)</h3>
+        <p class="modal-subtitle" id="modalStationSubtitle">Quy mô khu vực, chỉ số SLA và luồng hàng kết nối</p>
+      </div>
+      <div class="modal-content" id="modalStationContent">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modal: Bot Pipeline Detail (Cho Nhà Tuyển Dụng Xem Luồng Bot) -->
+  <dialog class="modal-case-detail modal-bot-detail" id="modalBotDetail" aria-labelledby="modalBotTitle">
+    <div class="modal-box">
+      <div class="modal-glow" aria-hidden="true"></div>
+      <button type="button" class="modal-close" id="btnCloseBotModal" aria-label="Đóng cửa sổ bot">✕</button>
+      <div class="modal-header">
+        <span class="modal-badge" id="modalBotBadge">BOT PIPELINE CHI TIẾT</span>
+        <h3 class="modal-title" id="modalBotTitle">Tên Bot Vận Hành</h3>
+        <p class="modal-subtitle" id="modalBotSubtitle">Kiến trúc luồng dữ liệu & tác động vận hành</p>
+      </div>
+      <div class="modal-content" id="modalBotContent">
         <!-- Injected via JS -->
       </div>
     </div>

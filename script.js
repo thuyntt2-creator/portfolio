@@ -1836,16 +1836,172 @@ function initAudioEngine() {
 /* ==========================================================================
    8. GHN HIGHWAY TRANSIT & VEHICLE SIMULATION
    ========================================================================== */
+/* ==========================================================================
+   STATIONS DATA FOR INTERACTIVE HIGHWAY (DÀNH CHO NHÀ TUYỂN DỤNG BẤM XEM)
+   ========================================================================== */
+const STATIONS_DATA = {
+  'nha-trang': {
+    badge: 'KHO TRUNG CHUYỂN TRỌNG ĐIỂM · KHÁNH HÒA',
+    title: 'HUB Nha Trang & Khu Vực Khánh Hòa',
+    subtitle: 'Nút thắt phân luồng chiến lược trục duyên hải và kết nối Tây Nguyên',
+    scope: '31 Bưu cục · 7 AMs quản lý · 1 HUB Trung Chuyển Diên Khánh',
+    gtc: '96.4% (%GTC Ca Sáng)',
+    fillRate: '89.2% (Xe Tải KTC)',
+    backlog: '0 Đơn Tồn Bãi',
+    truckRoute: 'Kết nối HUB Dĩ An ➔ HUB Khánh Hòa ➔ Phân tuyến 31 bưu cục',
+    desc: 'HUB Nha Trang đóng vai trò trung tâm chia chọn lớn nhất khu vực Nam Trung Bộ, vận hành hệ thống scanner băng chuyền Inbound/Outbound 24/7. Toàn bộ đơn hàng từ các tổng kho miền Nam đổ về đều được bóc tách và phân luồng trong vòng 45 phút để chuyển tiếp đến các trạm Lastmile.',
+    highlight: 'Hệ thống Bot phát hiện rớt LC TTS và Radar Volume Đột Biến chạy tự động mỗi 30 phút, đảm bảo tỷ lệ giao đúng hẹn đạt 99.2% trên toàn địa bàn Khánh Hòa.',
+    liveLink: 'https://namtrungbo.vercel.app/hop'
+  },
+  'da-lat': {
+    badge: 'BƯU CỤC CAO NGUYÊN · LÂM ĐỒNG',
+    title: 'Bưu Cục Đà Lạt & Khu Vực Lâm Đồng',
+    subtitle: 'Địa hình đèo dốc đặc thù và mạng lưới phân phối nông sản hoa quả',
+    scope: '14 Bưu cục · 3 AMs quản lý · 1 Kho Chuyển Tiếp (KCT Bảo Lộc)',
+    gtc: '94.8% (%GTC Toàn Trạm)',
+    fillRate: '87.5% (Tải Đèo Ngoạn Mục)',
+    backlog: 'Giải Tỏa 100% Trong Ngày',
+    truckRoute: 'Trục KCT Bảo Lộc ➔ Bưu cục Đà Lạt ➔ Lạc Dương, Đức Trọng',
+    desc: 'Khu vực Lâm Đồng có địa hình đồi dốc quanh co và thời tiết sương mù đặc thù. Đội xe tải 8 tấn chuyên dụng vượt đèo Ngoạn Mục và đèo Bảo Lộc được trang bị hệ thống giám sát hành trình GPS và đếm ngược cut-off theo thời gian thực.',
+    highlight: 'Áp dụng Bot Bóc Tách Năng Suất NVPPT N-1 và cảnh báo gối đầu COD, duy trì năng suất bưu tá vùng cao đạt trung bình 92 đơn/ngày, 0 thất thoát ngân quỹ.',
+    liveLink: 'https://namtrungbo.vercel.app/hop'
+  },
+  'phan-thiet': {
+    badge: 'KHO TRUNG CHUYỂN HUYẾT MẠCH · BÌNH THUẬN',
+    title: 'HUB Phan Thiết & Khu Vực Bình Thuận',
+    subtitle: 'Cửa ngõ luân chuyển hàng hóa Quốc lộ 1A kết nối Đông Nam Bộ',
+    scope: '22 Bưu cục · 5 AMs quản lý · 1 HUB Trung Chuyển Phan Thiết',
+    gtc: '95.8% (%GTC Toàn Khu Vực)',
+    fillRate: '91.5% (Tỷ Lệ Lấp Đầy Thùng Xe)',
+    backlog: 'An Toàn Tuyệt Đối',
+    truckRoute: 'Trục Quốc Lộ 1A ➔ Phân luồng Tuy Phong, Hàm Thuận Bắc, La Gi',
+    desc: 'HUB Phan Thiết là trạm trung chuyển cửa ngõ đón các luồng xe tải đường dài liên tỉnh (LTC). Tại đây, bot đo lường Truck Fill Rate giám sát chặt chẽ thể tích CBM xuất bến, ngăn chặn xe chạy rỗng và tối ưu hóa 15% chi phí nhiên liệu.',
+    highlight: 'Hệ thống tự động hóa cảnh báo bưu cục chưa bắn kiểm Inbound, yêu cầu hạ tải và quét mã nhập kho ngay trong 15 phút sau khi xe tải cập trạm.',
+    liveLink: 'https://namtrungbo.vercel.app/hop'
+  },
+  'gia-nghia': {
+    badge: 'BƯU CỤC TÂY NGUYÊN · ĐẮK NÔNG',
+    title: 'Bưu Cục Gia Nghĩa & Khu Vực Đắk Nông',
+    subtitle: 'Mạng lưới giao vận liên huyện trải dài trên Quốc lộ 14',
+    scope: '11 Bưu cục · 2 AMs quản lý · 1 HUB KTC Đắk Nông',
+    gtc: '93.9% (%GTC Vượt Target)',
+    fillRate: '84.0% (Tải Trọng Xe KTC)',
+    backlog: '0 Điểm Nóng Tồn Đọng',
+    truckRoute: 'HUB Đắk Nông ➔ Bưu cục Gia Nghĩa ➔ Đắk Mil, Cư Jút, Đắk R\'Lấp',
+    desc: 'Đắk Nông có mật độ dân cư thưa và cự ly giao hàng giữa các xã lên tới 25km. Mô hình điều phối sử dụng bot cảnh báo tồn kho aging và bot push gán đơn NVPPT để bưu tá xuất phát đúng khung giờ vàng buổi sáng.',
+    highlight: 'Khi sản lượng nông sản hoặc mùa vụ thương mại điện tử tăng vọt, bot rqoff tự động đề xuất phương án san tải hoặc tạm hoãn nhận đơn chọn lọc để bảo vệ bưu cục.',
+    liveLink: 'https://namtrungbo.vercel.app/hop'
+  },
+  'phan-rang': {
+    badge: 'KHO TRUNG CHUYỂN DUYÊN HẢI · NINH THUẬN',
+    title: 'HUB Phan Rang & Khu Vực Ninh Thuận',
+    subtitle: 'Vận hành tốc độ cao và giữ vững kỷ luật 5S Kaizen gương mẫu',
+    scope: '8 Bưu cục · 2 AMs quản lý · Trực thuộc Cụm Phan Rang - Cam Ranh',
+    gtc: '96.1% (%GTC Xuất Sắc)',
+    fillRate: '88.0% (Lấp Đầy Xe KTC)',
+    backlog: 'Sạch Kho Hàng Ngày',
+    truckRoute: 'Trục Cam Ranh ➔ HUB Phan Rang ➔ Ninh Sơn, Ninh Phước, Ninh Hải',
+    desc: 'Ninh Thuận là địa bàn dẫn đầu toàn vùng về tỷ lệ Giao Thành Công TikTok Shop Ca 1 (%GTC Ca 1 TTS đạt 82.4%). 100% bưu tá check-in định vị GPS thực địa chuẩn xác và nộp báo cáo điểm danh qua bot SQLite đúng từng giây.',
+    highlight: 'Đạt danh hiệu Vùng Vận Hành Kiểu Mẫu với 0 đơn khiếu nại quá hạn và kỷ luật 5S kho bãi đạt chuẩn 100% trong tất cả các kỳ audit bất thường.',
+    liveLink: 'https://namtrungbo.vercel.app/hop'
+  }
+};
+
 function initGhnHighway() {
   const ghnTruck = document.getElementById('ghnTruck');
   const ghnScooter = document.getElementById('ghnScooter');
   const btnHonkTruck = document.getElementById('btnHonkTruck');
   const btnTurboTruck = document.getElementById('btnTurboTruck');
+  const btnScooterHonk = document.getElementById('btnScooterHonk');
   const parcelDropZone = document.getElementById('parcelDropZone');
   const highwayTrack = document.getElementById('highwayTrack');
   const truckBubble = document.getElementById('truckBubble');
+  const stationBtns = document.querySelectorAll('.milestone-btn');
+
+  // Station Detail Modal for Recruiters
+  const modalStation = document.getElementById('modalStationDetail');
+  const modalStationTitle = document.getElementById('modalStationTitle');
+  const modalStationBadge = document.getElementById('modalStationBadge');
+  const modalStationSubtitle = document.getElementById('modalStationSubtitle');
+  const modalStationContent = document.getElementById('modalStationContent');
+  const btnCloseStation = document.getElementById('btnCloseStationModal');
 
   if (!ghnTruck || !highwayTrack) return;
+
+  function openStationModal(stationKey) {
+    const data = STATIONS_DATA[stationKey];
+    if (!data || !modalStation) return;
+
+    if (modalStationBadge) modalStationBadge.textContent = data.badge;
+    if (modalStationTitle) modalStationTitle.textContent = data.title;
+    if (modalStationSubtitle) modalStationSubtitle.textContent = data.subtitle;
+
+    if (modalStationContent) {
+      modalStationContent.innerHTML = `
+        <div class="m-grid" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 20px;">
+          <div class="m-stat" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 12px;">
+            <div style="color: var(--text-dim); font-size: 0.72rem; font-family: var(--font-mono); text-transform: uppercase;">Quy mô bưu cục</div>
+            <div style="color: #ffffff; font-size: 1.1rem; font-weight: 700; margin-top: 4px;">${data.scope}</div>
+          </div>
+          <div class="m-stat" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 12px;">
+            <div style="color: var(--text-dim); font-size: 0.72rem; font-family: var(--font-mono); text-transform: uppercase;">Tỷ lệ giao (%GTC)</div>
+            <div style="color: #22c55e; font-size: 1.1rem; font-weight: 700; margin-top: 4px;">${data.gtc}</div>
+          </div>
+          <div class="m-stat" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 12px;">
+            <div style="color: var(--text-dim); font-size: 0.72rem; font-family: var(--font-mono); text-transform: uppercase;">Lấp đầy xe KTC</div>
+            <div style="color: #f59e0b; font-size: 1.1rem; font-weight: 700; margin-top: 4px;">${data.fillRate}</div>
+          </div>
+          <div class="m-stat" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 12px;">
+            <div style="color: var(--text-dim); font-size: 0.72rem; font-family: var(--font-mono); text-transform: uppercase;">Tồn bãi Backlog</div>
+            <div style="color: #38bdf8; font-size: 1.1rem; font-weight: 700; margin-top: 4px;">${data.backlog}</div>
+          </div>
+        </div>
+
+        <div class="m-section">
+          <h4 class="m-title">🚚 Tuyến Xe Tải Luân Chuyển KTC</h4>
+          <p class="m-text" style="font-family: var(--font-mono); color: #cbd5e1; background: rgba(0,0,0,0.3); padding: 8px 12px; border-radius: 6px;">${data.truckRoute}</p>
+        </div>
+
+        <div class="m-section">
+          <h4 class="m-title">📍 Thực Trạng Vận Hành & Giải Pháp Can Thiệp</h4>
+          <p class="m-text">${data.desc}</p>
+          <p class="m-text" style="margin-top: 10px; color: #f59e0b;">⚡ ${data.highlight}</p>
+        </div>
+
+        <div class="m-section">
+          <h4 class="m-title">🔗 Liên Kết Thực Tế (Dành Cho Nhà Tuyển Dụng)</h4>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+            <a href="${data.liveLink}" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; text-decoration: none; font-size: 0.85rem; font-weight: 700;">
+              📊 Mở DB Họp Vận Hành Tuần (namtrungbo.vercel.app/hop) ↗
+            </a>
+            <a href="https://namtrungbo.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">
+              🎛️ Mở Control Tower Live ↗
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    AudioEngine.playHorn();
+    modalStation.showModal();
+    showToast(`📍 <strong>Đang xem:</strong> ${data.title}`);
+  }
+
+  // Hook station buttons
+  stationBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const stKey = btn.getAttribute('data-station');
+      openStationModal(stKey);
+    });
+  });
+
+  if (btnCloseStation && modalStation) {
+    btnCloseStation.addEventListener('click', () => modalStation.close());
+    modalStation.addEventListener('click', (e) => {
+      if (e.target === modalStation) modalStation.close();
+    });
+  }
 
   const parcelPhrases = [
     '📦 Đơn Shopee hỏa tốc đã bàn giao!',
@@ -1870,7 +2026,6 @@ function initGhnHighway() {
     badge.className = 'floating-parcel-badge';
     badge.innerHTML = text;
 
-    // Calculate position
     const trackRect = highwayTrack.getBoundingClientRect();
     const sourceRect = sourceEl.getBoundingClientRect();
     const leftOffset = Math.max(20, Math.min(trackRect.width - 240, sourceRect.left - trackRect.left + sourceRect.width * 0.2));
@@ -1914,7 +2069,6 @@ function initGhnHighway() {
         truckBubble.textContent = 'PHÓNG NHANH GIAO ĐÚNG HẸN! 🚀💨';
         truckBubble.style.opacity = '1';
       }
-      // Drop several rapid parcels
       for (let i = 0; i < 3; i++) {
         setTimeout(() => dropParcelBadge(ghnTruck, '🔥 GIAO SIÊU TỐC NITRO!'), i * 350);
       }
@@ -1934,7 +2088,7 @@ function initGhnHighway() {
 
   function triggerScooter() {
     AudioEngine.playScooterBeep();
-    dropParcelBadge(ghnScooter, '🛵 Bưu tá chặng cuối: "Khách ơi xuống nhận hàng nha!"');
+    dropParcelBadge(ghnScooter || ghnTruck, '🛵 Bưu tá chặng cuối: "Khách ơi xuống nhận hàng nha!"');
     showToast('🛵 <strong>Bưu tá GHN:</strong> Tin tin! Đang giao hàng chặng cuối tận tay khách hàng!');
   }
 
@@ -1950,6 +2104,13 @@ function initGhnHighway() {
     btnTurboTruck.addEventListener('click', (e) => {
       e.preventDefault();
       toggleTurbo();
+    });
+  }
+
+  if (btnScooterHonk) {
+    btnScooterHonk.addEventListener('click', (e) => {
+      e.preventDefault();
+      triggerScooter();
     });
   }
 
@@ -1985,11 +2146,6 @@ function initGhnHighway() {
   }
 }
 
-
-
-/* ==========================================================================
-   INTERACTIVE BOT OPERATIONS ECOSYSTEM (ALL 18+ BOTS)
-   ========================================================================== */
 const ALL_BOTS_DATA = [
   // --- 1. RỦI RO, BẤT ỔN & VOLUME ĐỘT BIẾN ---
   {
@@ -2280,7 +2436,62 @@ const ALL_BOTS_DATA = [
 function initBotEcosystemMatrix() {
   const grid = document.getElementById('botCardsGrid');
   const pills = document.querySelectorAll('#bmFilterPills .bm-pill');
+  const modalBot = document.getElementById('modalBotDetail');
+  const modalBotTitle = document.getElementById('modalBotTitle');
+  const modalBotBadge = document.getElementById('modalBotBadge');
+  const modalBotSubtitle = document.getElementById('modalBotSubtitle');
+  const modalBotContent = document.getElementById('modalBotContent');
+  const btnCloseBot = document.getElementById('btnCloseBotModal');
+
   if (!grid || !pills.length) return;
+
+  function openBotModal(bot) {
+    if (!modalBot) return;
+    if (modalBotBadge) modalBotBadge.textContent = `${bot.id} · PHÂN HỆ ${bot.mod} · LIVE PRODUCTION`;
+    if (modalBotTitle) modalBotTitle.textContent = bot.name;
+    if (modalBotSubtitle) modalBotSubtitle.textContent = `Tần suất quét: ${bot.freq} | Nguồn: ${bot.input}`;
+    
+    if (modalBotContent) {
+      modalBotContent.innerHTML = `
+        <div class="m-section">
+          <h4 class="m-title">🎯 Bài Toán Vận Hành & Giá Trị Thực Chiến</h4>
+          <p class="m-text">${bot.insight}</p>
+        </div>
+
+        <div class="m-section">
+          <h4 class="m-title">⚡ Luồng Dữ Liệu & Kiến Trúc Tự Động Hóa</h4>
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 14px; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.6;">
+            <div><strong style="color: #f59e0b;">Đầu vào (Input):</strong> ${bot.input}</div>
+            <div style="margin-top: 6px;"><strong style="color: #22c55e;">Kênh cảnh báo (Output):</strong> ${bot.output}</div>
+            <div style="margin-top: 6px;"><strong style="color: #38bdf8;">Chu kỳ chạy (Frequency):</strong> ${bot.freq}</div>
+          </div>
+        </div>
+
+        <div class="m-section">
+          <h4 class="m-title">🔗 Trải Nghiệm & Liên Kết Trực Tuyến (Dành Cho Nhà Tuyển Dụng)</h4>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+            <a href="https://namtrungbo.vercel.app/hop" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; text-decoration: none; font-size: 0.85rem; font-weight: 700;">
+              📊 Mở Dashboard Họp Vận Hành Tuần Live ↗
+            </a>
+            <a href="https://namtrungbo.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">
+              🎛️ Mở Control Tower NTB Live ↗
+            </a>
+            <a href="mailto:thuytqt120820@gmail.com?subject=Trao%20đổi%20về%20giải%20pháp%20${encodeURIComponent(bot.name)}" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; text-decoration: none; font-size: 0.85rem;">
+              ✉️ Trao đổi giải pháp này với Thủy
+            </a>
+          </div>
+        </div>
+      `;
+    }
+    modalBot.showModal();
+  }
+
+  if (btnCloseBot && modalBot) {
+    btnCloseBot.addEventListener('click', () => modalBot.close());
+    modalBot.addEventListener('click', (e) => {
+      if (e.target === modalBot) modalBot.close();
+    });
+  }
 
   function renderBots(filterMod) {
     grid.innerHTML = '';
@@ -2291,6 +2502,10 @@ function initBotEcosystemMatrix() {
     filtered.forEach(bot => {
       const card = document.createElement('div');
       card.className = 'bot-card-item';
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-label', `Xem chi tiết ${bot.name}`);
+      
       card.innerHTML = `
         <div>
           <div class="bc-top">
@@ -2303,19 +2518,36 @@ function initBotEcosystemMatrix() {
           <h4 class="bc-name">${bot.name}</h4>
           
           <p class="bc-insight">${bot.insight}</p>
-          ${bot.link ? `<div style="margin-top: 10px; margin-bottom: 6px;"><a href="${bot.link}" target="_blank" rel="noopener noreferrer" class="bc-link-pill">📊 Mở Trực Tiếp Dashboard Họp Tuần ↗</a></div>` : ''}
         </div>
-        <div class="bc-meta-row">
-          <div>
-            <span class="bc-meta-label">Đầu vào / Input:</span>
-            <span class="bc-meta-val">${bot.input}</span>
+        <div>
+          <div class="bc-meta-row">
+            <div>
+              <span class="bc-meta-label">Đầu vào / Input:</span>
+              <span class="bc-meta-val">${bot.input}</span>
+            </div>
+            <div>
+              <span class="bc-meta-label">Đầu ra / Kênh:</span>
+              <span class="bc-meta-val">${bot.output}</span>
+            </div>
           </div>
-          <div>
-            <span class="bc-meta-label">Đầu ra / Kênh:</span>
-            <span class="bc-meta-val">${bot.output}</span>
+          <div class="bc-action-footer">
+            <span class="bc-inspect-btn">
+              <span>🔍 Bấm xem chi tiết & luồng bot</span>
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10m-5-5 5 5-5 5"/></svg>
+            </span>
+            ${bot.link ? `<a href="${bot.link}" target="_blank" rel="noopener noreferrer" class="bc-link-badge" onclick="event.stopPropagation()">📊 Mở Live DB ↗</a>` : ''}
           </div>
         </div>
       `;
+
+      card.addEventListener('click', () => openBotModal(bot));
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openBotModal(bot);
+        }
+      });
+
       grid.appendChild(card);
     });
   }
@@ -2324,47 +2556,12 @@ function initBotEcosystemMatrix() {
     pill.addEventListener('click', () => {
       pills.forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
-      const mod = pill.getAttribute('data-mod');
-      renderBots(mod);
+      renderBots(pill.getAttribute('data-mod'));
     });
   });
 
-  // Initial render all
   renderBots('ALL');
 }
-
-
-/* ==========================================================================
-   IN-PLACE LIVE MV SYNTH-POP PLAYER & REAL-TIME KARAOKE LYRICS ENGINE
-   ========================================================================== */
-const SYNCHRONIZED_LYRICS = [
-  { time: 0, text: "🎶 [Intro] Midnight on the terminal screen...", next: "Signal's turning emerald green..." },
-  { time: 6, text: "Signal's turning emerald green.", next: "From the coast to the highland crest..." },
-  { time: 11, text: "From the coast to the highland crest, never stop, never settle for less...", next: "Started at the frontline, picking up the call..." },
-  { time: 19, text: "Started at the frontline, picking up the call,", next: "Every single parcel, watching where they fall..." },
-  { time: 25, text: "Every single parcel, watching where they fall.", next: "Turned the friction into code, turned the panic into speed..." },
-  { time: 31, text: "Turned the friction into code, turned the panic into speed,", next: "Building up the systems for everything they need..." },
-  { time: 38, text: "Building up the systems for everything they need.", next: "Shopee in the fast lane, Tiki on the dash..." },
-  { time: 44, text: "Shopee in the fast lane, Tiki on the dash,", next: "Lazada rolling through the flash!" },
-  { time: 48, text: "Lazada rolling through the flash!", next: "Lines of Python burning bright..." },
-  { time: 54, text: "Lines of Python burning bright, guiding all the trucks tonight.", next: "We don't wait for things to break..." },
-  { time: 61, text: "We don't wait for things to break, we rewrite the moves they make!", next: "🔥 MAKE DATA MOVE! (Hey!)" },
-  { time: 67, text: "🔥 MAKE DATA MOVE! (Hey!)", next: "Hear the rhythm on the highway roar..." },
-  { time: 72, text: "Hear the rhythm on the highway roar, five provinces running strong and pure!", next: "From the ocean breeze to the mountain peaks..." },
-  { time: 79, text: "From the ocean breeze to the mountain peaks, we are the pulse that the city seeks!", next: "MAKE OPS FLAWLESS, BREAK THE GROOVE!" },
-  { time: 87, text: "MAKE OPS FLAWLESS, BREAK THE GROOVE! MAKE DATA MOVE!", next: "Twenty-twenty-five came with the gold in hand..." },
-  { time: 96, text: "Twenty-twenty-five came with the gold in hand,", next: "Best of the best, standing where I stand..." },
-  { time: 102, text: "Best of the best, standing where I stand.", next: "Eighty-five stations locked in sync..." },
-  { time: 108, text: "Eighty-five stations locked in sync, fixing every bottleneck in the time you blink.", next: "Calculate the target, clear the line..." },
-  { time: 116, text: "Calculate the target, clear the line, everything arriving right on time!", next: "🔥 MAKE DATA MOVE! (Hey!)" },
-  { time: 124, text: "🔥 MAKE DATA MOVE! (Hey!)", next: "Hear the rhythm on the highway roar..." },
-  { time: 130, text: "Hear the rhythm on the highway roar, five provinces running strong and pure!", next: "From the ocean breeze to the mountain peaks..." },
-  { time: 138, text: "From the ocean breeze to the mountain peaks, we are the pulse that the city seeks!", next: "MAKE OPS FLAWLESS, BREAK THE GROOVE!" },
-  { time: 146, text: "MAKE OPS FLAWLESS, BREAK THE GROOVE! MAKE DATA MOVE!", next: "No more noise, no more doubt..." },
-  { time: 156, text: "No more noise, no more doubt, that's what data's all about!", next: "Five provinces, one command..." },
-  { time: 165, text: "Five provinces, one command... The fastest pulse across the land.", next: "Make data move... Make ops flawless..." },
-  { time: 175, text: "Make data move... Make ops flawless. ✨", next: "GHN Nam Trung Bộ — 2026" }
-];
 
 function initLiveInPlacePlayer() {
   const stage = document.getElementById('mvDeliveryStage');
