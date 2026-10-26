@@ -1914,10 +1914,10 @@ const ALL_BOTS_DATA = [
     mod: "BI",
     name: "Dashboard (DB) Họp Vận Hành Hàng Tuần Trực Quan Cho BGĐ & 19 AMs + 2 SUPs",
     link: "https://namtrungbo.vercel.app/hop",
-    input: "Tổng hợp toàn bộ chỉ số KPI Vận hành tuần W42 (SLA %GTC, Backlog, Aging, ODR/OPR, %LTC, COD)",
+    input: "Tổng hợp toàn bộ chỉ số KPI Vận hành tuần (SLA %GTC, Backlog, Aging, ODR/OPR, %LTC, COD)",
     output: "Interactive Operations Dashboard trực quan hóa đa chiều (namtrungbo.vercel.app/hop)",
     freq: "Cập nhật tự động trước 07:00 Sáng Thứ Hai hàng tuần",
-    insight: "Hệ thống Dashboard điều hành trực quan phục vụ các buổi họp giao ban đầu tuần của Ban Giám đốc Vùng và 19 AMs + 2 SUPs. Trực quan hóa bản đồ nhiệt (Heatmap) 86 bưu cục, 1 KCT, 4 HUB; so sánh tương quan hiệu suất 4 tuần liên tiếp (W39 – W42); phân tích chuyên sâu %GTC TikTok Shop ca 1, tỷ lệ gán vận hành, tỷ lệ rớt luân chuyển và hỗ trợ lọc linh hoạt theo từng AM và từng tỉnh thành."
+    insight: "Hệ thống Dashboard điều hành trực quan phục vụ các buổi họp giao ban đầu tuần của Ban Giám đốc Vùng và 19 AMs + 2 SUPs. Trực quan hóa bản đồ nhiệt (Heatmap) 86 bưu cục, 1 KCT, 4 HUB; so sánh tương quan hiệu suất 4 tuần liên tiếp (W39 – Hiện tại); phân tích chuyên sâu %GTC TikTok Shop ca 1, tỷ lệ gán vận hành, tỷ lệ rớt luân chuyển và hỗ trợ lọc linh hoạt theo từng AM và từng tỉnh thành."
   },
 
   // --- 3. TÀI CHÍNH & KIỂM SOÁT THU TIỀN ---
@@ -2137,7 +2137,7 @@ function initBotEcosystemMatrix() {
           <h4 class="bc-name">${bot.name}</h4>
           
           <p class="bc-insight">${bot.insight}</p>
-          ${bot.link ? `<div style="margin-top: 10px; margin-bottom: 6px;"><a href="${bot.link}" target="_blank" rel="noopener noreferrer" class="bc-link-pill">📊 Mở Trực Tiếp Dashboard Họp Tuần W42 ↗</a></div>` : ''}
+          ${bot.link ? `<div style="margin-top: 10px; margin-bottom: 6px;"><a href="${bot.link}" target="_blank" rel="noopener noreferrer" class="bc-link-pill">📊 Mở Trực Tiếp Dashboard Họp Tuần ↗</a></div>` : ''}
         </div>
         <div class="bc-meta-row">
           <div>
