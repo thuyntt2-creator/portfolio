@@ -4936,3 +4936,85 @@ dialog::backdrop {
   background: #d4f236;
   color: #000000;
 }
+
+
+/* ==========================================================================
+   10 DISTINCT COLOR THEMES & CATEGORY FILTER FOR CASE STUDIES
+   ========================================================================== */
+.case-card-grid-item.theme-crimson { --case-color: #f43f5e; --case-glow: rgba(244, 63, 94, 0.32); --case-bg-tint: rgba(244, 63, 94, 0.09); }
+.case-card-grid-item.theme-orange  { --case-color: #f97316; --case-glow: rgba(249, 115, 22, 0.32); --case-bg-tint: rgba(249, 115, 22, 0.09); }
+.case-card-grid-item.theme-amber   { --case-color: #f59e0b; --case-glow: rgba(245, 158, 11, 0.32); --case-bg-tint: rgba(245, 158, 11, 0.09); }
+.case-card-grid-item.theme-lime    { --case-color: #84cc16; --case-glow: rgba(132, 204, 22, 0.32); --case-bg-tint: rgba(132, 204, 22, 0.09); }
+.case-card-grid-item.theme-emerald { --case-color: #10b981; --case-glow: rgba(16, 185, 129, 0.32); --case-bg-tint: rgba(16, 185, 129, 0.09); }
+.case-card-grid-item.theme-cyan    { --case-color: #06b6d4; --case-glow: rgba(6, 182, 212, 0.32); --case-bg-tint: rgba(6, 182, 212, 0.09); }
+.case-card-grid-item.theme-purple  { --case-color: #a855f7; --case-glow: rgba(168, 85, 247, 0.35); --case-bg-tint: rgba(168, 85, 247, 0.09); }
+.case-card-grid-item.theme-teal    { --case-color: #14b8a6; --case-glow: rgba(20, 184, 166, 0.32); --case-bg-tint: rgba(20, 184, 166, 0.09); }
+.case-card-grid-item.theme-magenta { --case-color: #ec4899; --case-glow: rgba(236, 72, 153, 0.32); --case-bg-tint: rgba(236, 72, 153, 0.09); }
+.case-card-grid-item.theme-gold    { --case-color: #eab308; --case-glow: rgba(234, 179, 8, 0.32); --case-bg-tint: rgba(234, 179, 8, 0.09); }
+
+.case-card-grid-item:hover,
+.case-card-grid-item:focus-visible {
+  border-color: var(--case-color, rgba(250, 204, 21, 0.55)) !important;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), 0 0 35px var(--case-glow, rgba(250, 204, 21, 0.22)) !important;
+}
+
+.case-card-grid-item .card-glow {
+  background: radial-gradient(circle at top right, var(--case-glow, rgba(251, 191, 36, 0.3)) 0%, transparent 72%) !important;
+}
+
+.case-card-grid-item .card-case-badge {
+  color: var(--case-color, #fbbf24) !important;
+  border: 1px solid var(--case-color, rgba(251, 191, 36, 0.4)) !important;
+  background: var(--case-bg-tint, rgba(251, 191, 36, 0.08)) !important;
+}
+
+.case-card-grid-item .card-case-id {
+  color: var(--case-color, #f59e0b);
+  opacity: 0.9;
+}
+
+.case-card-grid-item .btn-card-inspect {
+  color: var(--case-color, #fbbf24);
+}
+
+/* Category Filter Pills on Top of Case Studies */
+.cases-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.case-pill {
+  background: rgba(17, 24, 39, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  backdrop-filter: blur(8px);
+}
+
+.case-pill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.case-pill.active {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(249, 115, 22, 0.25));
+  border-color: #f59e0b;
+  color: #fbbf24;
+  box-shadow: 0 4px 18px rgba(245, 158, 11, 0.28);
+}
+
+.case-card-grid-item.case-hidden {
+  display: none !important;
+}

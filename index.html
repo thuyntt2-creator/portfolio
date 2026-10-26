@@ -480,14 +480,23 @@
       </div>
 
             <!-- 10 Case Cards Grid with Golden Amber Glow & Live Bot Visual Examples -->
-      <div class="cases-grid-showcase" id="casesGridShowcase">
+              <!-- Quick Domain Filter Bar for 10 Case Studies (Nhận diện nhanh theo nhóm nghiệp vụ) -->
+        <div class="cases-filter-bar" id="casesFilterBar" role="tablist" aria-label="Bộ lọc 10 Case Study theo nghiệp vụ">
+          <button type="button" class="case-pill active" data-cat="all">Tất Cả (10 Case Study)</button>
+          <button type="button" class="case-pill" data-cat="risk">🚨 Rủi Ro & Bất Ổn (Case 1, 2, 4)</button>
+          <button type="button" class="case-pill" data-cat="bi">📊 Điều Hành BI & KTC (Case 7, 8)</button>
+          <button type="button" class="case-pill" data-cat="prod">⚡ Năng Suất & Kỷ Luật (Case 5, 6, 10)</button>
+          <button type="button" class="case-pill" data-cat="ops">📦 Kho Bãi & Ngân Quỹ (Case 3, 9)</button>
+        </div>
+
+<div class="cases-grid-showcase" id="casesGridShowcase">
 
         <!-- Case 01: COD & Fake GPS -->
-        <article class="case-card-grid-item" data-case="1" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 01">
+        <article class="case-card-grid-item theme-crimson" data-case="1" data-cat="risk" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 01">
           <div class="card-glow" aria-hidden="true"></div>
           <div class="card-content-wrap">
             <div class="card-top-row">
-              <span class="card-case-badge">CASE 01 · FINANCIAL RISK</span>
+              <span class="card-case-badge">💰 CASE 01 · FINANCIAL RISK</span>
               <span class="card-case-id">ID: NTB-COD-01</span>
             </div>
             <h3 class="card-case-title">Cảnh Báo Gối Đầu Tiền Mặt COD & Giả Mạo Vị Trí (Fake GPS)</h3>
@@ -538,11 +547,11 @@
         </article>
 
         <!-- Case 02: Năng Suất & Target GTC -->
-        <article class="case-card-grid-item" data-case="2" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 02">
+        <article class="case-card-grid-item theme-orange" data-case="2" data-cat="risk" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 02">
           <div class="card-glow" aria-hidden="true"></div>
           <div class="card-content-wrap">
             <div class="card-top-row">
-              <span class="card-case-badge">CASE 02 · REAL-TIME DISPATCH</span>
+              <span class="card-case-badge">🚨 CASE 02 · REAL-TIME DISPATCH</span>
               <span class="card-case-id">ID: NTB-GTC-02</span>
             </div>
             <h3 class="card-case-title">Báo Cáo Năng Suất Giao Hàng & Đo Lường Gap To Target</h3>
@@ -591,11 +600,11 @@
         </article>
 
         <!-- Case 03: Aging & Kẹt Xe Tải Luân Chuyển -->
-        <article class="case-card-grid-item" data-case="3" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 03">
+        <article class="case-card-grid-item theme-amber" data-case="3" data-cat="ops" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 03">
           <div class="card-glow" aria-hidden="true"></div>
           <div class="card-content-wrap">
             <div class="card-top-row">
-              <span class="card-case-badge">CASE 03 · INVENTORY CONTROL</span>
+              <span class="card-case-badge">⏱️ CASE 03 · INVENTORY CONTROL</span>
               <span class="card-case-id">ID: NTB-AGING-03</span>
             </div>
             <h3 class="card-case-title">Hệ Thống Cảnh Báo Sớm Hàng Tồn Aging & Kẹt Xe Tải Luân Chuyển</h3>
@@ -637,11 +646,11 @@
         </article>
 
         <!-- Case 04: Bất Ổn & OFF Tuyến -->
-        <article class="case-card-grid-item" data-case="4" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 04">
+        <article class="case-card-grid-item theme-lime" data-case="4" data-cat="risk" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 04">
           <div class="card-glow" aria-hidden="true"></div>
           <div class="card-content-wrap">
             <div class="card-top-row">
-              <span class="card-case-badge">CASE 04 · WORKLOAD BALANCING</span>
+              <span class="card-case-badge">⚡ CASE 04 · WORKLOAD BALANCING</span>
               <span class="card-case-id">ID: NTB-BATON-04</span>
             </div>
             <h3 class="card-case-title">Mô Hình Phát Hiện Bưu Cục Bất Ổn & Đề Xuất OFF Tuyến Tự Động</h3>
@@ -688,11 +697,11 @@
         </article>
 
         <!-- Case 05: 5 Mốc Cut-Off & SQLite -->
-        <article class="case-card-grid-item" data-case="5" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 05">
+        <article class="case-card-grid-item theme-emerald" data-case="5" data-cat="prod" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 05">
           <div class="card-glow" aria-hidden="true"></div>
           <div class="card-content-wrap">
             <div class="card-top-row">
-              <span class="card-case-badge">CASE 05 · EXECUTION DISCIPLINE</span>
+              <span class="card-case-badge">📋 CASE 05 · EXECUTION DISCIPLINE</span>
               <span class="card-case-id">ID: NTB-ATTEND-05</span>
             </div>
             <h3 class="card-case-title">Điểm Danh Quân Số & Nhắc Báo Cáo 5 Mốc Vận Hành (Lưu Trữ SQLite)</h3>
@@ -736,11 +745,11 @@
         </article>
 
         <!-- Case 06: HRBP & Kaizen 5S -->
-        <article class="case-card-grid-item" data-case="6" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 06">
+        <article class="case-card-grid-item theme-cyan" data-case="6" data-cat="prod" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 06">
           <div class="card-glow" aria-hidden="true"></div>
           <div class="card-content-wrap">
             <div class="card-top-row">
-              <span class="card-case-badge">CASE 06 · FIELD AUDIT & 5S</span>
+              <span class="card-case-badge">📍 CASE 06 · FIELD AUDIT & 5S</span>
               <span class="card-case-id">ID: NTB-FIELD-06</span>
             </div>
             <h3 class="card-case-title">Số Hóa Giám Sát Đi Thị Trường HRBP/SUP & Audit Kaizen 5S</h3>
@@ -791,11 +800,11 @@
         </article>
 
         <!-- Case 07 (NEW: DB HỌP TUẦN) -->
-        <article class="case-card-grid-item" data-case="7" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 07">
+        <article class="case-card-grid-item theme-purple" data-case="7" data-cat="bi" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 07">
           <div class="card-glow" aria-hidden="true"></div>
           <div class="card-content-wrap">
             <div class="card-top-row">
-              <span class="card-case-badge" style="color:#a7f3d0; background:rgba(16,185,129,0.15); border-color:rgba(16,185,129,0.35);">CASE 07 · EXECUTIVE BI DASHBOARD</span>
+              <span class="card-case-badge" style="color:#a7f3d0; background:rgba(16,185,129,0.15); border-color:rgba(16,185,129,0.35);">📊 CASE 07 · EXECUTIVE BI DASHBOARD</span>
               <span class="card-case-id">ID: NTB-BI-07</span>
             </div>
             <h3 class="card-case-title">Dashboard (DB) Họp Vận Hành & Kinh Doanh Trực Quan Đa Chiều</h3>
@@ -846,11 +855,11 @@
         </article>
 
         <!-- Case 08 (NEW: KTC FILL RATE & BACKLOG) -->
-        <article class="case-card-grid-item" data-case="8" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 08">
+        <article class="case-card-grid-item theme-teal" data-case="8" data-cat="bi" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 08">
           <div class="card-glow" aria-hidden="true"></div>
           <div class="card-content-wrap">
             <div class="card-top-row">
-              <span class="card-case-badge">CASE 08 · LOGISTICS TRANSIT</span>
+              <span class="card-case-badge">🚚 CASE 08 · LOGISTICS TRANSIT</span>
               <span class="card-case-id">ID: NTB-KTC-08</span>
             </div>
             <h3 class="card-case-title">Đo Lường Tỷ Lệ Lấp Đầy Thùng Xe KTC & Cân Đối Backlog Xuất - Nhập 4 HUB</h3>
@@ -901,11 +910,11 @@
         </article>
 
         <!-- Case 09 (NEW: BẮN KIỂM & PHIẾU THU) -->
-        <article class="case-card-grid-item" data-case="9" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 09">
+        <article class="case-card-grid-item theme-magenta" data-case="9" data-cat="ops" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 09">
           <div class="card-glow" aria-hidden="true"></div>
           <div class="card-content-wrap">
             <div class="card-top-row">
-              <span class="card-case-badge">CASE 09 · INBOUND AUDIT & CASH</span>
+              <span class="card-case-badge">📦 CASE 09 · INBOUND AUDIT & CASH</span>
               <span class="card-case-id">ID: NTB-AUDIT-09</span>
             </div>
             <h3 class="card-case-title">Kiểm Soát Toàn Trình: Bắn Kiểm Tải Hàng & Cảnh Báo Chưa Tick Phiếu Thu Tiền Mặt</h3>
@@ -956,11 +965,11 @@
         </article>
 
         <!-- Case 10 (NEW: NĂNG SUẤT NVPPT N-1) -->
-        <article class="case-card-grid-item" data-case="10" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 10">
+        <article class="case-card-grid-item theme-gold" data-case="10" data-cat="prod" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 10">
           <div class="card-glow" aria-hidden="true"></div>
           <div class="card-content-wrap">
             <div class="card-top-row">
-              <span class="card-case-badge">CASE 10 · LASTMILE PRODUCTIVITY</span>
+              <span class="card-case-badge">🛵 CASE 10 · LASTMILE PRODUCTIVITY</span>
               <span class="card-case-id">ID: NTB-NVPPT-10</span>
             </div>
             <h3 class="card-case-title">Bóc Tách Chuyên Sâu Năng Suất Nhân Viên Phân Phát Tuyến (NVPPT) N-1</h3>

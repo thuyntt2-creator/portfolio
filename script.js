@@ -888,6 +888,25 @@ function initCaseStudies() {
     });
   });
 
+  // Domain Filter Pills for 10 Cases (Phân loại nhận biết theo nghiệp vụ)
+  const filterPills = document.querySelectorAll('#casesFilterBar .case-pill');
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      filterPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const cat = pill.getAttribute('data-cat');
+      
+      caseCards.forEach(card => {
+        const cardCat = card.getAttribute('data-cat');
+        if (cat === 'all' || cardCat === cat) {
+          card.classList.remove('case-hidden');
+        } else {
+          card.classList.add('case-hidden');
+        }
+      });
+    });
+  });
+
   // Close Modal handlers
   if (btnCloseCaseModal && modal) {
     btnCloseCaseModal.addEventListener('click', () => modal.close());
