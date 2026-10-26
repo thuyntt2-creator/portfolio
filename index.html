@@ -449,188 +449,280 @@
         </div>
       </div>
 
-            <div class="cases-layout">
-        <!-- Cases List -->
-        <div class="cases-list" role="tablist" aria-label="Danh sách hệ thống bot vận hành tiêu biểu">
-          <!-- Case 1 -->
-          <article class="case-item active" data-case="1" tabindex="0" role="tab" aria-selected="true" id="tab-case-1">
-            <div class="case-header-row">
-              <span class="case-index">01</span>
-              <div class="case-title-group">
-                <h3 class="case-title">
-                  Cảnh Báo Gối Đầu Tiền Mặt COD & Giả Mạo Vị Trí (Fake GPS)
-                  <span class="tag-badge badge-fraud" title="Kiểm soát gian lận dòng tiền">CHỐNG GIAN LẬN · COD RISK</span>
-                </h3>
-                <span class="case-meta">Kiểm soát rủi ro tài chính · Python, GPS Haversine, Google Sheets API & GTalk</span>
-              </div>
-              <span class="case-metric-pill">Triệt tiêu 95% gian lận</span>
-              <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M5 15 15 5M5 5h10v10"></path>
-              </svg>
+                  <!-- Section Intro Header -->
+      <div class="cases-header-wrap" style="margin-bottom: 20px;">
+        <span class="section-tag">DỰ ÁN NGHIÊN CỨU CHUYÊN SÂU (CASE STUDIES)</span>
+        <h2 class="section-title">10 Hệ Thống Điều Hành & Tự Động Hóa Thực Chiến</h2>
+        <p class="section-subtitle">
+          Chạm hoặc bấm vào bất kỳ dự án nào để mở cửa sổ phân tích chi tiết: Nỗi đau thực tế, Thuật toán can thiệp, Kiến trúc kỹ thuật và Số liệu ROI kinh doanh đo lường tại 5 tỉnh Nam Trung Bộ.
+        </p>
+      </div>
+
+      <!-- 10 Case Cards Grid with Golden Amber Glow -->
+      <div class="cases-grid-showcase" id="casesGridShowcase">
+
+        <!-- Case 01 -->
+        <article class="case-card-grid-item" data-case="1" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 01">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-content-wrap">
+            <div class="card-top-row">
+              <span class="card-case-badge">CASE 01 · FINANCIAL RISK</span>
+              <span class="card-case-id">ID: NTB-COD-01</span>
             </div>
-            <p class="case-summary">
-              Thuật toán bóc tách giao thoa 3 điều kiện: Tiền thu hộ COD &gt; 400.000 VNĐ, hoãn hẹn liên tiếp từ 2 ngày và độ lệch GPS check-in &gt; 2.000m. Tự động bóc tách sheet riêng gửi đích danh 19 AMs + 2 SUPs kiểm tra túi hàng trước 11h trưa.
-            </p>
-          </article>
-
-          <!-- Case 2 -->
-          <article class="case-item" data-case="2" tabindex="0" role="tab" aria-selected="false" id="tab-case-2">
-            <div class="case-header-row">
-              <span class="case-index">02</span>
-              <div class="case-title-group">
-                <h3 class="case-title">
-                  Báo Cáo Năng Suất Giao Hàng Real-time & Đo Lường Gap To Target
-                  <span class="tag-badge badge-gtc" title="Mục tiêu GTC & Năng suất">TARGET GTC · GAP TO GOAL</span>
-                </h3>
-                <span class="case-meta">Theo dõi năng suất NVPTT & Quản trị Target GTC · Python, Jinja2 Card PNG, GTalk</span>
-              </div>
-              <span class="case-metric-pill">Đo lường Gap to Target theo giờ</span>
-              <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M5 15 15 5M5 5h10v10"></path>
-              </svg>
+            <h3 class="card-case-title">Cảnh Báo Gối Đầu Tiền Mặt COD & Giả Mạo Vị Trí (Fake GPS)</h3>
+            <p class="card-case-desc">Bóc tách giao thoa 3 điều kiện: Đơn COD >400k hoãn liên tiếp 2 ngày & shipper check-in lệch >2km (ở nhà/quán cafe). Tự động phân luồng sheet riêng cho 19 AMs + 2 SUPs kiểm tra túi hàng trước 11h00 trưa.</p>
+            <div class="card-metrics-row">
+              <div class="card-m-pill"><span class="m-val">95%</span> <span class="m-lbl">Triệt tiêu gian lận COD</span></div>
+              <div class="card-m-pill"><span class="m-val">&lt; 11:00</span> <span class="m-lbl">AM can thiệp ca sáng</span></div>
             </div>
-            <p class="case-summary">
-              Theo dõi sản lượng và năng suất giao hàng bưu tá theo thời gian thực (Realtime & N-1), tự động tính số đơn hàng còn thiếu (Gap to Target) theo từng khung giờ then chốt (11h30, 15h00, 18h00) gửi thẻ ảnh GTalk giúp AM kịp điều phối dứt điểm chỉ tiêu.
-            </p>
-          </article>
-
-          <!-- Case 3 -->
-          <article class="case-item" data-case="3" tabindex="0" role="tab" aria-selected="false" id="tab-case-3">
-            <div class="case-header-row">
-              <span class="case-index">03</span>
-              <div class="case-title-group">
-                <h3 class="case-title">
-                  Push Đơn Tồn Kho: Aging Lưu Bãi, Treo Luân Chuyển (LC) & Pending Lấy
-                  <span class="tag-badge badge-aging" title="Kiểm soát hàng tồn quá hạn">AGING · GIẢM ĐỀN BÙ</span>
-                </h3>
-                <span class="case-meta">Tối ưu hóa kho bãi & Ngăn ngừa đền bù hàng hóa · Python Pandas, JSON Snapshots</span>
-              </div>
-              <span class="case-metric-pill">-65% Đơn tồn &gt;8 ngày</span>
-              <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M5 15 15 5M5 5h10v10"></path>
-              </svg>
+            <div class="card-tech-chips">
+              <span>Python</span>
+              <span>GPS Haversine</span>
+              <span>Google Sheets API</span>
+              <span>GTalk Alert</span>
             </div>
-            <p class="case-summary">
-              Quét các điểm nghẽn kho bãi: Đơn lưu bãi quá hạn (&gt;3N, &gt;5N, &gt;8N), đơn kẹt xe tải luân chuyển liên tỉnh và pending lấy; thiết lập công thức "Tỷ lệ xử lý đơn tồn (Assignment Rate)" của AM để dứt điểm đơn siêu trễ, giảm hàng trăm triệu tiền đền bù hàng hư.
-            </p>
-          </article>
-
-          <!-- Case 4 -->
-          <article class="case-item" data-case="4" tabindex="0" role="tab" aria-selected="false" id="tab-case-4">
-            <div class="case-header-row">
-              <span class="case-index">04</span>
-              <div class="case-title-group">
-                <h3 class="case-title">
-                  Cảnh Báo Bưu Cục Bất Ổn & Đề Xuất Tự Động OFF Tuyến Bảo Vệ Trạm
-                  <span class="tag-badge badge-risk" title="Định lượng đơn cần clear & Tự động OFF tuyến">BẤT ỔN OPS · BOT OFF TUYẾN</span>
-                </h3>
-                <span class="case-meta">Giám sát rủi ro trạm & Đề xuất tắt tuyến TMĐT · Python, GSpread, Bot rqoff</span>
-              </div>
-              <span class="case-metric-pill">Định lượng số đơn thoát bất ổn</span>
-              <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M5 15 15 5M5 5h10v10"></path>
-              </svg>
-            </div>
-            <p class="case-summary">
-              Phân loại bưu cục theo 3 cấp độ (Nằm TOP Bất Ổn, Chuẩn Bị Nhảy Nhóm, Cấp Cảnh Báo), tự động tính số lượng đơn cần clear trong ngày để thoát bất ổn. Kết hợp Bot rqoff tự động đề xuất OFF tuyến (tắt nhận đơn sàn TMĐT Shopee/Lazada vào bưu cục) để bảo vệ trạm không bị vỡ.
-            </p>
-          </article>
-
-          <!-- Case 5 -->
-          <article class="case-item" data-case="5" tabindex="0" role="tab" aria-selected="false" id="tab-case-5">
-            <div class="case-header-row">
-              <span class="case-index">05</span>
-              <div class="case-title-group">
-                <h3 class="case-title">
-                  Điểm Danh Quân Số & Nhắc Báo Cáo 5 Mốc Vận Hành (Lưu Trữ SQLite)
-                  <span class="tag-badge badge-sqlite" title="Kỷ luật thép vận hành SQLite">SQLITE · KỶ LUẬT VẬN HÀNH</span>
-                </h3>
-                <span class="case-meta">Tự động hóa báo cáo & Kỷ luật điều hành · SQLite DB, Python Automation, Telegram & GTalk</span>
-              </div>
-              <span class="case-metric-pill">98.2% Nộp đúng hạn</span>
-              <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M5 15 15 5M5 5h10v10"></path>
-              </svg>
-            </div>
-            <p class="case-summary">
-              Chuẩn hóa 5 mốc cut-off chiến lược (08:00, 10:00, 11:00, 16:00, 20:00) với cơ sở dữ liệu SQLite ghi nhận chính xác đến từng giây. Bot đếm ngược nhắc giờ trước 15p, tự động loại trừ phép hợp lệ và tính phạt đẩy thẳng lên Google Sheet công khai.
-            </p>
-          </article>
-
-          <!-- Case 6 -->
-          <article class="case-item" data-case="6" tabindex="0" role="tab" aria-selected="false" id="tab-case-6">
-            <div class="case-header-row">
-              <span class="case-index">06</span>
-              <div class="case-title-group">
-                <h3 class="case-title">
-                  Số Hóa Giám Sát Đi Thị Trường Cho HRBP & Quản Lý Vận Hành (SUP)
-                  <span class="tag-badge badge-ops" title="Số hóa kiểm tra thực địa">FIELD OPS · GEO CHECK-IN</span>
-                </h3>
-                <span class="case-meta">Quản trị nhân sự & Giám sát thực địa · Telegram Geo Check-in, Google Sheets</span>
-              </div>
-              <span class="case-metric-pill">Real-time GPS Check-in</span>
-              <svg class="case-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M5 15 15 5M5 5h10v10"></path>
-              </svg>
-            </div>
-            <p class="case-summary">
-              Số hóa toàn diện lịch trình công tác thực địa của đội ngũ HRBP và SUP: Check-in vị trí thực tế tại bưu cục bằng GPS, ghi nhận biên bản đánh giá chất lượng nhân sự, an ninh, layout kho bãi và gửi dữ liệu tức thì về Google Sheets thời gian thực.
-            </p>
-          </article>
-        </div>
-
-        <!-- Case Interactive Preview Card -->
-        <aside class="case-preview-card" id="casePreviewCard" aria-live="polite">
-          <div class="preview-glow" aria-hidden="true"></div>
-          <div class="preview-inner">
-            <div class="preview-top">
-              <span class="preview-badge" id="previewBadge">CASE 01 · FINANCIAL RISK · FRAUD DETECTION</span>
-              <span class="preview-id" id="previewId">ID: NTB-COD-01</span>
-            </div>
-
-            <div class="preview-visual" id="previewVisual">
-              <!-- Rendered via JS -->
-            </div>
-
-            <div class="preview-body">
-              <h4 class="preview-title" id="previewTitle">Cảnh Báo Gối Đầu Tiền Mặt COD & Giả Mạo Vị Trí (Fake GPS)</h4>
-              <p class="preview-desc" id="previewDesc">
-                Thuật toán bóc tách giao thoa 3 điều kiện: Đơn có tiền thu hộ COD &gt; 400.000 VNĐ bị hoãn hẹn liên tiếp từ 2 ngày, kết hợp độ lệch tọa độ check-in GPS bưu tá &gt; 2.000m so với địa chỉ khách hàng. Hệ thống tự động phân tách tab riêng cho 19 AMs + 2 SUPs và bắn cảnh báo đích danh yêu cầu kiểm tra túi hàng bưu tá trước 11h00 trưa.
-              </p>
-
-              <div class="preview-metrics-grid" id="previewMetrics">
-                <div class="p-metric">
-                  <span class="p-val">&gt; 100% Đơn &gt;400k</span>
-                  <span class="p-lbl">Bóc tách toàn diện đơn rủi ro</span>
-                </div>
-                <div class="p-metric">
-                  <span class="p-val">95%</span>
-                  <span class="p-lbl">Triệt tiêu gian lận COD & Fake GPS</span>
-                </div>
-                <div class="p-metric">
-                  <span class="p-val">&lt; 11:00 Trưa</span>
-                  <span class="p-lbl">AM can thiệp ngay đầu ca sáng</span>
-                </div>
-              </div>
-
-              <div class="preview-tech-tags" id="previewTech">
-                <span class="tech-chip">Python 3.11</span>
-                <span class="tech-chip">GPS Haversine</span>
-                <span class="tech-chip">Google Sheets API</span>
-                <span class="tech-chip">Google Chat Webhook</span>
-                <span class="tech-chip">Pandas Pipeline</span>
-              </div>
-
-              <button type="button" class="btn-open-detail" id="btnOpenDetailModal">
-                <span>Xem chi tiết giải pháp & kiến trúc</span>
-                <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M5 10h10m-5-5 5 5-5 5"></path>
-                </svg>
-              </button>
+            <div class="card-action-bar">
+              <span class="btn-card-inspect"><span>✨ Bấm xem chi tiết giải pháp</span> <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10m-5-5 5 5-5 5"></path></svg></span>
             </div>
           </div>
-        </aside>
+        </article>
+
+        <!-- Case 02 -->
+        <article class="case-card-grid-item" data-case="2" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 02">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-content-wrap">
+            <div class="card-top-row">
+              <span class="card-case-badge">CASE 02 · REAL-TIME DISPATCH</span>
+              <span class="card-case-id">ID: NTB-GTC-02</span>
+            </div>
+            <h3 class="card-case-title">Báo Cáo Năng Suất Giao Hàng & Đo Lường Gap To Target</h3>
+            <p class="card-case-desc">Quy đổi tỷ lệ % mục tiêu thành số đơn hàng cụ thể: 'Bưu cục còn thiếu đúng 84 đơn để đạt mốc thưởng GTC'. Render thẻ ảnh Playwright tự động gửi kênh điều hành từng ca.</p>
+            <div class="card-metrics-row">
+              <div class="card-m-pill"><span class="m-val">98.5%</span> <span class="m-lbl">Chạm mốc cam kết SLA</span></div>
+              <div class="card-m-pill"><span class="m-val">4 Ca/Ngày</span> <span class="m-lbl">Bắn thẻ ảnh real-time</span></div>
+            </div>
+            <div class="card-tech-chips">
+              <span>Lastmile Core API</span>
+              <span>Playwright Headless</span>
+              <span>Pillow</span>
+              <span>Gap Algorithm</span>
+            </div>
+            <div class="card-action-bar">
+              <span class="btn-card-inspect"><span>✨ Bấm xem chi tiết giải pháp</span> <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10m-5-5 5 5-5 5"></path></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Case 03 -->
+        <article class="case-card-grid-item" data-case="3" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 03">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-content-wrap">
+            <div class="card-top-row">
+              <span class="card-case-badge">CASE 03 · INVENTORY CONTROL</span>
+              <span class="card-case-id">ID: NTB-AGING-03</span>
+            </div>
+            <h3 class="card-case-title">Hệ Thống Cảnh Báo Sớm Hàng Tồn Aging & Kẹt Xe Tải Luân Chuyển</h3>
+            <p class="card-case-desc">Giám sát ma trận tuổi hàng tồn bãi (>3N, >5N, >8N, >10N) và đo lường kẹt xe tải luân chuyển liên tỉnh. Tự động định dạng heatmap màu ép giải phóng kho bãi tại 86 bưu cục và 4 HUB.</p>
+            <div class="card-metrics-row">
+              <div class="card-m-pill"><span class="m-val">-38%</span> <span class="m-lbl">Giảm hàng tồn >5 ngày</span></div>
+              <div class="card-m-pill"><span class="m-val">100%</span> <span class="m-lbl">Minh bạch tỷ lệ gán tồn</span></div>
+            </div>
+            <div class="card-tech-chips">
+              <span>Aging API</span>
+              <span>JSON Cache</span>
+              <span>Heatmap Generator</span>
+              <span>Luân Chuyển API</span>
+            </div>
+            <div class="card-action-bar">
+              <span class="btn-card-inspect"><span>✨ Bấm xem chi tiết giải pháp</span> <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10m-5-5 5 5-5 5"></path></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Case 04 -->
+        <article class="case-card-grid-item" data-case="4" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 04">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-content-wrap">
+            <div class="card-top-row">
+              <span class="card-case-badge">CASE 04 · WORKLOAD BALANCING</span>
+              <span class="card-case-id">ID: NTB-BATON-04</span>
+            </div>
+            <h3 class="card-case-title">Mô Hình Phát Hiện Bưu Cục Bất Ổn & Đề Xuất OFF Tuyến Tự Động</h3>
+            <p class="card-case-desc">Phát hiện trạm quá tải nguy hiểm và tự động phân tích cơ cấu phường xã, sản lượng Shopee 7 ngày để đề xuất tạm dừng nhận đơn TMĐT (OFF tuyến) có chọn lọc, bảo vệ an toàn công suất trạm.</p>
+            <div class="card-metrics-row">
+              <div class="card-m-pill"><span class="m-val">0 Bể Trạm</span> <span class="m-lbl">Bảo vệ 100% công suất</span></div>
+              <div class="card-m-pill"><span class="m-val">&lt; 15 Phút</span> <span class="m-lbl">Phê duyệt OFF tuyến</span></div>
+            </div>
+            <div class="card-tech-chips">
+              <span>Early Warning Matrix</span>
+              <span>Shopee L7D Analysis</span>
+              <span>rqoff Engine</span>
+              <span>Telegram Alert</span>
+            </div>
+            <div class="card-action-bar">
+              <span class="btn-card-inspect"><span>✨ Bấm xem chi tiết giải pháp</span> <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10m-5-5 5 5-5 5"></path></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Case 05 -->
+        <article class="case-card-grid-item" data-case="5" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 05">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-content-wrap">
+            <div class="card-top-row">
+              <span class="card-case-badge">CASE 05 · EXECUTION DISCIPLINE</span>
+              <span class="card-case-id">ID: NTB-ATTEND-05</span>
+            </div>
+            <h3 class="card-case-title">Điểm Danh Quân Số & Nhắc Báo Cáo 5 Mốc Vận Hành (Lưu Trữ SQLite)</h3>
+            <p class="card-case-desc">Chuẩn hóa 5 mốc cut-off chiến lược (08h, 10h, 11h, 16h, 20h) cho 86 bưu cục toàn vùng. Đếm ngược trước 15p, ghi nhận thời gian nộp chính xác đến từng giây vào DB SQLite và tự động chấm phạt minh bạch.</p>
+            <div class="card-metrics-row">
+              <div class="card-m-pill"><span class="m-val">98.2%</span> <span class="m-lbl">Tăng vọt từ 65% đúng hạn</span></div>
+              <div class="card-m-pill"><span class="m-val">5 Mốc/Ngày</span> <span class="m-lbl">Giám sát tự động 100%</span></div>
+            </div>
+            <div class="card-tech-chips">
+              <span>SQLite DB</span>
+              <span>Telegram Polling</span>
+              <span>Google Sheets Sync</span>
+              <span>Auto Penalty</span>
+            </div>
+            <div class="card-action-bar">
+              <span class="btn-card-inspect"><span>✨ Bấm xem chi tiết giải pháp</span> <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10m-5-5 5 5-5 5"></path></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Case 06 -->
+        <article class="case-card-grid-item" data-case="6" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 06">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-content-wrap">
+            <div class="card-top-row">
+              <span class="card-case-badge">CASE 06 · FIELD AUDIT & 5S</span>
+              <span class="card-case-id">ID: NTB-FIELD-06</span>
+            </div>
+            <h3 class="card-case-title">Số Hóa Giám Sát Đi Thị Trường HRBP/SUP & Audit Kaizen 5S</h3>
+            <p class="card-case-desc">Bắt buộc check-in tọa độ GPS thực địa khi đi thị trường kiểm tra bưu cục. Tích hợp bot nhận ảnh hiện trường 5S (sàn kho, bàn chia chọn, lối thoát hiểm), tự động phát hiện vi phạm và gửi biên bản xử lý.</p>
+            <div class="card-metrics-row">
+              <div class="card-m-pill"><span class="m-val">100%</span> <span class="m-lbl">Minh bạch công tác thị trường</span></div>
+              <div class="card-m-pill"><span class="m-val">86 BC</span> <span class="m-lbl">Chuẩn hóa layout kho 5S</span></div>
+            </div>
+            <div class="card-tech-chips">
+              <span>Telegram Live Location</span>
+              <span>Google Sheets API</span>
+              <span>Image Audit Pipeline</span>
+              <span>Kaizen Bot</span>
+            </div>
+            <div class="card-action-bar">
+              <span class="btn-card-inspect"><span>✨ Bấm xem chi tiết giải pháp</span> <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10m-5-5 5 5-5 5"></path></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Case 07 (NEW: DB HỌP TUẦN) -->
+        <article class="case-card-grid-item" data-case="7" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 07">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-content-wrap">
+            <div class="card-top-row">
+              <span class="card-case-badge" style="color:#a7f3d0; background:rgba(16,185,129,0.15); border-color:rgba(16,185,129,0.35);">CASE 07 · EXECUTIVE BI DASHBOARD</span>
+              <span class="card-case-id">ID: NTB-BI-07</span>
+            </div>
+            <h3 class="card-case-title">Dashboard (DB) Họp Vận Hành & Kinh Doanh Trực Quan Đa Chiều</h3>
+            <p class="card-case-desc">Nền tảng BI trực quan hóa toàn diện phục vụ các buổi họp giao ban đầu tuần của Ban Giám Đốc Vùng & 19 AMs + 2 SUPs. Phân tích WoW 4 tuần liên tiếp, %GTC TikTok Shop ca 1, %ODR, %LTC và đối soát tiền mặt COD.</p>
+            <div class="card-metrics-row">
+              <div class="card-m-pill"><span class="m-val">380.455 Đơn</span> <span class="m-lbl">Sản lượng W42 (+4.4% WoW)</span></div>
+              <div class="card-m-pill"><span class="m-val">92.0% %ODR</span> <span class="m-lbl">Đúng hẹn SLA toàn mạng</span></div>
+            </div>
+            <div class="card-tech-chips">
+              <span>Interactive BI Web</span>
+              <span>Vercel Serverless</span>
+              <span>Heatmap 5 Tỉnh</span>
+              <span>20 AM Drill-down</span>
+            </div>
+            <div class="card-action-bar">
+              <span class="btn-card-inspect" style="color:#34d399;"><span>✨ Mở xem Dashboard Họp Tuần</span> <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10m-5-5 5 5-5 5"></path></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Case 08 (NEW: KTC FILL RATE & BACKLOG) -->
+        <article class="case-card-grid-item" data-case="8" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 08">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-content-wrap">
+            <div class="card-top-row">
+              <span class="card-case-badge">CASE 08 · LOGISTICS TRANSIT</span>
+              <span class="card-case-id">ID: NTB-KTC-08</span>
+            </div>
+            <h3 class="card-case-title">Đo Lường Tỷ Lệ Lấp Đầy Thùng Xe KTC & Cân Đối Backlog Xuất - Nhập 4 HUB</h3>
+            <p class="card-case-desc">Giám sát thể tích CBM và tải trọng kg thực tế theo từng chuyến xe lăn bánh xuất bến từ 4 Kho Trung Chuyển (Khánh Hòa, Bình Thuận, Đức Trọng, Đắk Nông). Bắt xe chạy rỗng & giải tỏa nút thắt cổ chai chia chọn.</p>
+            <div class="card-metrics-row">
+              <div class="card-m-pill"><span class="m-val">-15%</span> <span class="m-lbl">Chi phí nhiên liệu & xe</span></div>
+              <div class="card-m-pill"><span class="m-val">4 HUB + 1 KCT</span> <span class="m-lbl">Cân đối Xuất - Nhập - Tồn</span></div>
+            </div>
+            <div class="card-tech-chips">
+              <span>Truck CBM Engine</span>
+              <span>HUB Scanner API</span>
+              <span>Backlog Alert</span>
+              <span>Điều Phối Vận Tải</span>
+            </div>
+            <div class="card-action-bar">
+              <span class="btn-card-inspect"><span>✨ Bấm xem chi tiết giải pháp</span> <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10m-5-5 5 5-5 5"></path></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Case 09 (NEW: BẮN KIỂM & PHIẾU THU) -->
+        <article class="case-card-grid-item" data-case="9" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 09">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-content-wrap">
+            <div class="card-top-row">
+              <span class="card-case-badge">CASE 09 · INBOUND AUDIT & CASH</span>
+              <span class="card-case-id">ID: NTB-AUDIT-09</span>
+            </div>
+            <h3 class="card-case-title">Kiểm Soát Toàn Trình: Bắn Kiểm Tải Hàng & Cảnh Báo Chưa Tick Phiếu Thu Tiền Mặt</h3>
+            <p class="card-case-desc">Cảnh báo khẩn cấp các bưu cục đã nhận xe tải nhưng chưa bắn kiểm nhập kho sau 30 phút (tránh ngâm tải), đồng thời tự động rà soát đối soát phiếu thu tiền mặt cuối ca trưa và tối, chặn đứng thất thoát dòng tiền.</p>
+            <div class="card-metrics-row">
+              <div class="card-m-pill"><span class="m-val">&lt; 30 Phút</span> <span class="m-lbl">Bắn kiểm nhập kho ngay</span></div>
+              <div class="card-m-pill"><span class="m-val">0 Đồng</span> <span class="m-lbl">Thất thoát công nợ phiếu thu</span></div>
+            </div>
+            <div class="card-tech-chips">
+              <span>Inbound Scanning</span>
+              <span>Manifest Matcher</span>
+              <span>Phiếu Thu Reconcile</span>
+              <span>Kế Toán Vùng Ping</span>
+            </div>
+            <div class="card-action-bar">
+              <span class="btn-card-inspect"><span>✨ Bấm xem chi tiết giải pháp</span> <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10m-5-5 5 5-5 5"></path></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Case 10 (NEW: NĂNG SUẤT NVPPT N-1) -->
+        <article class="case-card-grid-item" data-case="10" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Xem chi tiết Case 10">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-content-wrap">
+            <div class="card-top-row">
+              <span class="card-case-badge">CASE 10 · LASTMILE PRODUCTIVITY</span>
+              <span class="card-case-id">ID: NTB-NVPPT-10</span>
+            </div>
+            <h3 class="card-case-title">Bóc Tách Chuyên Sâu Năng Suất Nhân Viên Phân Phát Tuyến (NVPPT) N-1</h3>
+            <p class="card-case-desc">Tự động phân tích sản lượng gán, tỷ lệ giao thành công %GTC, tốc độ giao đơn/giờ và lý do hoãn giao của từng bưu tá trong ngày hôm trước. Xếp hạng Top vượt trội & Bottom cần đào tạo kèm cặp.</p>
+            <div class="card-metrics-row">
+              <div class="card-m-pill"><span class="m-val">+22%</span> <span class="m-lbl">Năng suất bưu tá yếu</span></div>
+              <div class="card-m-pill"><span class="m-val">640+ Bưu Tá</span> <span class="m-lbl">Đo lường chi tiết từng tuyến</span></div>
+            </div>
+            <div class="card-tech-chips">
+              <span>N-1 Reconciliation</span>
+              <span>Route Speed Metric</span>
+              <span>Shipper Ranker</span>
+              <span>AM Coaching Sheet</span>
+            </div>
+            <div class="card-action-bar">
+              <span class="btn-card-inspect"><span>✨ Bấm xem chi tiết giải pháp</span> <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10m-5-5 5 5-5 5"></path></svg></span>
+            </div>
+          </div>
+        </article>
+
       </div>
+
 
       <!-- Interactive Full Bot Ecosystem Operations Matrix -->
       <div class="bot-matrix-wrapper" id="botEcosystemMatrix">
@@ -1171,6 +1263,7 @@
   <!-- Modal: In-Depth Case Study Detail -->
   <dialog class="modal-case-detail" id="modalCaseDetail" aria-labelledby="modalTitle">
     <div class="modal-box">
+      <div class="modal-glow" aria-hidden="true"></div>
       <button type="button" class="modal-close" id="btnCloseCaseModal" aria-label="Đóng cửa sổ chi tiết">✕</button>
       <div class="modal-header">
         <span class="modal-badge" id="modalBadge">CASE STUDY CHI TIẾT</span>
@@ -1217,7 +1310,7 @@
   </audio>
 
   <!-- Scripts -->
-  <script src="script.js?v=now42_2026"></script>
+  <script src="script.js?v=cases10_2026"></script>
 
 </body>
 </html>

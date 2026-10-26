@@ -683,17 +683,177 @@ const CASE_DATA = {
       </div>
     `
   }
+,
+  7: {
+    id: 'NTB-BI-07',
+    badge: 'CASE 07 · EXECUTIVE BI · WEEKLY OPS DASHBOARD',
+    title: 'Dashboard (DB) Họp Vận Hành & Kinh Doanh Trực Quan Đa Chiều',
+    role: 'Nền tảng BI phục vụ Ban Giám Đốc Vùng & 19 AMs + 2 SUPs (namtrungbo.vercel.app/hop)',
+    deepDetail: `
+      <div style="margin-bottom: 20px;">
+        <a href="https://namtrungbo.vercel.app/hop" target="_blank" rel="noopener noreferrer" class="bc-link-pill" style="font-size:0.85rem; padding:8px 16px;">
+          🌐 Mở Trực Tiếp Dashboard Họp Tuần (namtrungbo.vercel.app/hop) ↗
+        </a>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">⚠️ Bối cảnh & Nỗi đau vận hành (Operational Pain Point)</h4>
+        <p class="m-text">
+          Trước đây, các cuộc họp giao ban đầu tuần của Vùng Nam Trung Bộ phụ thuộc vào việc ghép nối hàng chục file Excel và các slide PowerPoint tĩnh tốn hơn 12 tiếng chuẩn bị mỗi cuối tuần. Số liệu bị phân mảnh, Ban Giám Đốc không thể nhìn thấy ngay tương quan giữa <strong>Sản lượng giao (380k đơn)</strong>, <strong>tỷ lệ %GTC (60.4%)</strong>, <strong>%ODR đúng hẹn (92.0%)</strong> và <strong>%LTC lấy thành công (90.8%)</strong>, cũng như không thể drill-down ngay lập tức xuống từng bưu cục hay từng quản lý khu vực (AM) khi có chỉ số rớt đáy.
+        </p>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">💡 Giải pháp can thiệp & Kiến trúc Dashboard Trực quan</h4>
+        <p class="m-text">
+          Thủy đã trực tiếp kiến trúc và phát triển hệ thống <strong>Dashboard Họp Tuần Vận Hành & Kinh Doanh</strong> triển khai trên Vercel:
+        </p>
+        <ul class="m-list">
+          <li><strong>Bản đồ nhiệt & Tổng hợp trọng tâm:</strong> Tự động hiển thị tóm lược các chỉ số cốt lõi tuần W42 so với tuần W41 (+4.4% WoW), làm nổi bật ngay các thành tích vượt mốc và các điểm cần báo động đỏ.</li>
+          <li><strong>Phân tích chuyên sâu 8 Tab chiến lược:</strong> Tổng quan Vùng, Sản lượng giao, %GTC Tổng, %GTC TikTok Shop ca 1 (Target ≥ 76%), % Gán vận hành, %ODR Đúng hẹn, %LTC Lấy thành công và %OPR TikTok Shop.</li>
+          <li><strong>Bộ lọc tương tác tức thời:</strong> Hỗ trợ Ban Giám Đốc chuyển đổi góc nhìn theo 5 Tỉnh thành và từng người trong 20 AMs chỉ bằng một click chuột mà không cần tải lại trang.</li>
+          <li><strong>Giám sát dòng tiền tiền mặt COD:</strong> Theo dõi tỷ lệ tiền mặt COD (41.0%) so với QR/Chuyển khoản (59.0%), kiểm soát chặt chẽ ngân quỹ toàn mạng lưới.</li>
+        </ul>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">💰 Kết quả kinh doanh & Business ROI</h4>
+        <ul class="m-list">
+          <li><strong>Tiết kiệm 100%</strong> thời gian làm slide họp thủ công mỗi tuần của đội ngũ trợ lý và AM.</li>
+          <li><strong>Rút ngắn 50%</strong> thời lượng cuộc họp giao ban đầu tuần nhờ dữ liệu trực quan, tập trung can thiệp trúng đích thay vì tranh cãi về tính chính xác của số liệu.</li>
+          <li>Nâng tỷ lệ %GTC TikTok Shop ca 1 đạt <strong>79.3%</strong> (vượt xa cam kết Target SLA 76.0%).</li>
+        </ul>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">🛠️ Kiến trúc kỹ thuật</h4>
+        <p class="m-text">
+          Interactive BI Web App • Vercel Serverless Architecture • Chart.js Data Visualization • Automated ETL Data Pipeline • Multi-level AM Drill-down.
+        </p>
+      </div>
+    `
+  },
+
+  8: {
+    id: 'NTB-KTC-08',
+    badge: 'CASE 08 · LOGISTICS TRANSIT · TRUCK CAPACITY',
+    title: 'Đo Lường Tỷ Lệ Lấp Đầy Thùng Xe KTC & Cân Đối Backlog Xuất - Nhập 4 HUB',
+    role: 'Tối ưu hóa tải trọng vận tải & Năng lực thông lượng tại 4 HUB Trung Chuyển',
+    deepDetail: `
+      <div class="m-section">
+        <h4 class="m-section-title">⚠️ Bối cảnh & Nỗi đau vận hành (Operational Pain Point)</h4>
+        <p class="m-text">
+          Tại 4 Kho Trung Chuyển (HUB Khánh Hòa, HUB Bình Thuận, HUB Đức Trọng, HUB Đắk Nông) và 1 Kho Chuyển Tiếp, tình trạng xe tải luân chuyển liên tỉnh xuất bến với tỷ lệ lấp đầy thấp (< 60% thể tích CBM thùng xe) gây lãng phí hàng trăm triệu đồng chi phí nhiên liệu mỗi tháng. Ngược lại, vào các đợt Mega Sale, các HUB thường xuyên bị ứ đọng Backlog hàng nghìn kiện do không cân đối kịp thời giữa luồng hàng nhập (Inbound) và năng lực xuất tải (Outbound).
+        </p>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">💡 Giải pháp can thiệp & Thuật toán Fill Rate</h4>
+        <ul class="m-list">
+          <li><strong>Bot Giám Sát Tỷ Lệ Lấp Đầy Thùng Xe:</strong> Tự động tính toán tỷ lệ CBM và tải trọng thực tế của từng chuyến xe trước khi lăn bánh. Cảnh báo các xe chạy rỗng để điều phối ghép tải hoặc điều chuyển xe trọng tải nhỏ hơn phù hợp.</li>
+          <li><strong>Báo Cáo Cân Đối Backlog Xuất - Nhập 4 Mốc/Ngày:</strong> Bóc tách liên tục luồng hàng Inbound/Outbound, phát hiện ngay các nút thắt cổ chai chia chọn tại trạm trung chuyển để tăng ca nhân sự kịp thời.</li>
+        </ul>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">💰 Kết quả kinh doanh & Business ROI</h4>
+        <ul class="m-list">
+          <li><strong>Tiết kiệm 15%</strong> chi phí vận tải và khấu hao đội xe luân chuyển toàn vùng.</li>
+          <li><strong>Tăng tỷ lệ lấp đầy thùng xe bình quân</strong> từ 64% lên 86.5%.</li>
+          <li>Triệt tiêu nguy cơ nghẽn tải luân chuyển, bảo vệ thời gian toàn trình SLA giao hàng.</li>
+        </ul>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">🛠️ Kiến trúc kỹ thuật</h4>
+        <p class="m-text">
+          CBM & Weight Volumetric Analytics • HUB Scanner API • Transit Bottleneck Early Warning • GTalk Dispatch Integration.
+        </p>
+      </div>
+    `
+  },
+
+  9: {
+    id: 'NTB-AUDIT-09',
+    badge: 'CASE 09 · INBOUND AUDIT & CASH RECONCILIATION',
+    title: 'Kiểm Soát Toàn Trình: Bắn Kiểm Tải Hàng & Cảnh Báo Chưa Tick Phiếu Thu Tiền Mặt',
+    role: 'Giám sát kỷ luật tiếp nhận hàng hóa & An toàn dòng tiền ngân quỹ bưu cục',
+    deepDetail: `
+      <div class="m-section">
+        <h4 class="m-section-title">⚠️ Bối cảnh & Nỗi đau vận hành (Operational Pain Point)</h4>
+        <p class="m-text">
+          Tại khâu tuyến đầu cơ sở, hai rủi ro lớn nhất làm suy giảm uy tín và thất thoát tài chính là: (1) Xe tải đã chở hàng đến bưu cục nhưng nhân viên không chịu "bắn kiểm nhập kho" (ngâm tải làm chậm tiến độ giao hàng trong ngày), và (2) Tiền mặt COD bưu tá thu về nộp tại trạm nhưng Trưởng bưu cục hoặc thủ quỹ chưa "tick xác nhận phiếu thu" trên hệ thống, dẫn đến sai lệch sổ sách và nguy cơ chiếm dụng công nợ.
+        </p>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">💡 Giải pháp can thiệp tự động</h4>
+        <ul class="m-list">
+          <li><strong>Bot Cảnh Báo Chưa Bắn Kiểm:</strong> Đối chiếu lịch trình xe tải hạ hàng từ 4 HUB với dữ liệu quét mã kiện. Nếu sau 30 phút xe đến mà chưa phát sinh lượt quét bắn kiểm, bot lập tức ping khẩn cấp lên nhóm điều hành AM.</li>
+          <li><strong>Bot Rà Soát Phiếu Thu Chưa Tick:</strong> Quét tự động vào cuối ca trưa (12:00) và chốt ca tối (20:30), liệt kê danh sách các bưu cục còn tồn đọng phiếu thu chưa xác nhận để Kế toán Vùng và AM can thiệp lập tức.</li>
+        </ul>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">💰 Kết quả kinh doanh & Business ROI</h4>
+        <ul class="m-list">
+          <li><strong>100% chuyến xe hạ tải</strong> được bắn kiểm nhập kho trong vòng 30 phút, đảm bảo đơn hàng xuất tuyến đúng giờ.</li>
+          <li><strong>0 đồng</strong> thất thoát công nợ do chậm nộp hoặc tồn đọng phiếu thu tiền mặt.</li>
+          <li>Nâng cao tính kỷ luật và tính minh bạch tuyệt đối giữa khối Bưu cục cơ sở và Kế toán Vùng.</li>
+        </ul>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">🛠️ Kiến trúc kỹ thuật</h4>
+        <p class="m-text">
+          Inbound Manifest Matcher • Real-time Cash Receipt Reconciliation • Automated GTalk Alerts • Google Sheets Accounting Sync.
+        </p>
+      </div>
+    `
+  },
+
+  10: {
+    id: 'NTB-NVPPT-10',
+    badge: 'CASE 10 · LASTMILE PRODUCTIVITY · SHIPPER PERFORMANCE',
+    title: 'Bóc Tách Chuyên Sâu Năng Suất Nhân Viên Phân Phát Tuyến (NVPPT) N-1',
+    role: 'Tối ưu hóa hiệu suất giao nhận & Chuẩn hóa năng lực từng bưu tá',
+    deepDetail: `
+      <div class="m-section">
+        <h4 class="m-section-title">⚠️ Bối cảnh & Nỗi đau vận hành (Operational Pain Point)</h4>
+        <p class="m-text">
+          Đội ngũ hơn 640 bưu tá (NVPPT) trải rộng trên 86 bưu cục có khoảng cách năng suất rất lớn: có những bưu tá giao trên 120 đơn/ngày với %GTC > 98%, nhưng cũng có nhiều bưu tá chỉ đạt 40-50 đơn và thường xuyên tồn đọng đơn hoãn. Trước đây, AM không có công cụ bóc tách chi tiết từng cá nhân trong ngày hôm trước (N-1) để biết ai đuối tuyến, ai gặp sự cố giao lại nhiều lần để có phương án đào tạo hoặc cơ cấu lại tuyến phát.
+        </p>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">💡 Giải pháp can thiệp tự động</h4>
+        <ul class="m-list">
+          <li><strong>Bóc tách năng suất N-1:</strong> Phân tích toàn diện sản lượng gán, số đơn giao thành công, số đơn thất bại, tỷ lệ %GTC và tốc độ giao đơn/giờ của từng bưu tá.</li>
+          <li><strong>Phát hiện dị biệt (Outlier Detection):</strong> Tự động phân loại nhóm bưu tá xuất sắc (Top Performers) và nhóm đuối năng suất (Bottom Performers) kèm lý do cụ thể (tuyến đồi núi khó đi, đơn khách hẹn nhiều lần hay do thái độ giao hàng).</li>
+          <li><strong>Bảng chỉ đạo hành động cho AM:</strong> Cung cấp danh sách bưu tá cần kèm cặp ngay đầu ngày để AM hướng dẫn kỹ năng hoặc điều phối bưu tá phụ tuyến hỗ trợ.</li>
+        </ul>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">💰 Kết quả kinh doanh & Business ROI</h4>
+        <ul class="m-list">
+          <li><strong>Tăng 22%</strong> năng suất bình quân của nhóm bưu tá yếu sau 2 tuần áp dụng kèm cặp.</li>
+          <li><strong>Tăng tỷ lệ giao thành công lần đầu (%FD)</strong> lên 89.4% toàn mạng lưới.</li>
+          <li>Gắn kết thu nhập của bưu tá với hiệu suất minh bạch, giảm tỷ lệ nghỉ việc tuyến đầu.</li>
+        </ul>
+      </div>
+
+      <div class="m-section">
+        <h4 class="m-section-title">🛠️ Kiến trúc kỹ thuật</h4>
+        <p class="m-text">
+          Lastmile Production Core API • N-1 Daily ETL Pipeline • Outlier Detection Algorithm • Automated Performance Scorecard.
+        </p>
+      </div>
+    `
+  }
 };
 function initCaseStudies() {
-  const caseItems = document.querySelectorAll('.case-item');
-  const previewBadge = document.getElementById('previewBadge');
-  const previewId = document.getElementById('previewId');
-  const previewTitle = document.getElementById('previewTitle');
-  const previewDesc = document.getElementById('previewDesc');
-  const previewMetrics = document.getElementById('previewMetrics');
-  const previewTech = document.getElementById('previewTech');
-  const previewVisual = document.getElementById('previewVisual');
-  const btnOpenDetail = document.getElementById('btnOpenDetailModal');
+  const caseCards = document.querySelectorAll('.case-card-grid-item');
   const modal = document.getElementById('modalCaseDetail');
   const modalBadge = document.getElementById('modalBadge');
   const modalTitle = document.getElementById('modalTitle');
@@ -701,171 +861,44 @@ function initCaseStudies() {
   const modalContent = document.getElementById('modalContent');
   const btnCloseCaseModal = document.getElementById('btnCloseCaseModal');
 
-  let currentCaseId = 1;
-
-  function updatePreview(caseId) {
+  function openCaseModal(caseId) {
     const data = CASE_DATA[caseId];
-    if (!data) return;
-    currentCaseId = caseId;
+    if (!data || !modal) return;
 
-    // Active item UI
-    caseItems.forEach((item) => {
-      const isCurrent = item.getAttribute('data-case') === String(caseId);
-      item.classList.toggle('active', isCurrent);
-      item.setAttribute('aria-selected', isCurrent);
-    });
-
-    // Update preview card
-    if (previewBadge) previewBadge.textContent = data.badge;
-    if (previewId) previewId.textContent = 'ID: ' + data.id;
-    if (previewTitle) previewTitle.textContent = data.title;
-    if (previewDesc) previewDesc.textContent = data.desc;
-    if (previewVisual) previewVisual.innerHTML = data.visualHtml;
-
-    if (previewMetrics) {
-      previewMetrics.innerHTML = data.metrics
-        .map(
-          (m) => `
-        <div class="p-metric">
-          <span class="p-val">${m.val}</span>
-          <span class="p-lbl">${m.lbl}</span>
-        </div>
-      `
-        )
-        .join('');
-    }
-
-    if (previewTech) {
-      previewTech.innerHTML = data.tech
-        .map((t) => `<span class="tech-chip">${t}</span>`)
-        .join('');
-    }
+    if (modalBadge) modalBadge.textContent = data.badge;
+    if (modalTitle) modalTitle.textContent = data.title;
+    if (modalSubtitle) modalSubtitle.textContent = data.role;
+    if (modalContent) modalContent.innerHTML = data.deepDetail;
+    modal.showModal();
   }
 
-  // Event listeners for items
-  caseItems.forEach((item) => {
-    item.addEventListener('mouseenter', () => {
-      const caseId = parseInt(item.getAttribute('data-case'), 10);
-      updatePreview(caseId);
+  // Bind click & keyboard event to every case card
+  caseCards.forEach((card) => {
+    const caseId = parseInt(card.getAttribute('data-case'), 10);
+
+    card.addEventListener('click', (e) => {
+      openCaseModal(caseId);
     });
 
-    item.addEventListener('click', () => {
-      const caseId = parseInt(item.getAttribute('data-case'), 10);
-      updatePreview(caseId);
-    });
-
-    item.addEventListener('keydown', (e) => {
+    card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
-        const caseId = parseInt(item.getAttribute('data-case'), 10);
-        updatePreview(caseId);
+        e.preventDefault();
+        openCaseModal(caseId);
       }
     });
   });
 
-  // Open Modal Details
-  if (btnOpenDetail && modal) {
-    btnOpenDetail.addEventListener('click', () => {
-      const data = CASE_DATA[currentCaseId];
-      if (!data) return;
-
-      modalBadge.textContent = data.badge;
-      modalTitle.textContent = data.title;
-      modalSubtitle.textContent = data.role;
-      modalContent.innerHTML = data.deepDetail;
-      modal.showModal();
-    });
-  }
-
+  // Close Modal handlers
   if (btnCloseCaseModal && modal) {
     btnCloseCaseModal.addEventListener('click', () => modal.close());
+  }
+
+  if (modal) {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) modal.close();
     });
   }
-
-  // Initial load
-  updatePreview(1);
 }
-
-/* ==========================================================================
-   3. INTERACTIVE CAREER JOURNEY (SVG NODES)
-   ========================================================================== */
-const JOURNEY_STOPS = {
-  1: {
-    period: '2018 – 2022',
-    badge: 'NỀN TẢNG HỌC THUẬT',
-    role: 'Cử Nhân Kinh Tế (Bachelor of Economics)',
-    company: 'Đại Học Kinh Tế TP. Hồ Chí Minh (UEH)',
-    bullets: [
-      'Được đào tạo bài bản về tư duy kinh tế vĩ mô & vi mô, phân tích định lượng và mô hình hóa dữ liệu.',
-      'Rèn luyện phương pháp luận giải quyết vấn đề dựa trên bằng chứng dữ liệu (Data-driven Problem Solving).',
-      'Xây dựng tư duy hệ thống và phân tích số liệu tài chính - kinh doanh giúp chuyển dịch thuận lợi sang ngành Logistics.'
-    ],
-    impact: 'Nền tảng tư duy cấu trúc hóa và phân tích số liệu giúp Thủy nhanh chóng làm chủ các luồng dữ liệu chuỗi cung ứng.'
-  },
-  2: {
-    period: '2022 – 2023',
-    badge: 'ACCOUNT MANAGEMENT',
-    role: 'Account Management (AM)',
-    company: 'Ninja Van Vietnam · Khối Quản Lý Khách Hàng Doanh Nghiệp',
-    bullets: [
-      'Quản lý danh mục tài khoản khách hàng doanh nghiệp và đối tác kinh doanh chiến lược tại Ninja Van.',
-      'Theo dõi và tối ưu các chỉ số cam kết dịch vụ (SLA), tỷ lệ giao hàng thành công (Success Rate) và xử lý sự cố đơn hàng.',
-      'Phối hợp nhịp nhàng giữa khách hàng và khối Vận hành để đảm bảo tiến độ giao nhận và nâng cao mức độ hài lòng.'
-    ],
-    impact: 'Kinh nghiệm thực chiến trong vai trò Account Management tại Ninja Van giúp Thủy nắm vững nghiệp vụ quản trị khách hàng và thấu hiểu vận hành, tạo nền tảng vững chắc khi chuyển sang GHN.'
-  },
-  3: {
-    period: '2023 – 2024',
-    badge: 'CÁNH CỔNG GIA NHẬP GHN',
-    role: 'Key Account Care (KAC)',
-    company: 'Giao Hàng Nhanh (GHN Express) · Chăm Sóc Khách Hàng Trọng Điểm',
-    bullets: [
-      'Chính thức bước qua cánh cổng GHN với vị trí KAC: Trực tiếp tiếp nhận, phân loại và xử lý các ca khiếu nại khẩn cấp, cứu đơn hàng cho các sàn TMĐT lớn.',
-      'Làm việc sâu sát giữa khối dịch vụ khách hàng với đội ngũ Vận hành trung chuyển (HUB) và bưu cục cơ sở để tháo gỡ điểm nghẽn giao hàng.',
-      'Thấu hiểu tận tường tâm lý và nỗi đau của đối tác lớn khi đơn hàng bị trễ hoặc xảy ra sự cố, từ đó nhận diện các mắt xích vận hành cần tối ưu bằng dữ liệu.'
-    ],
-    impact: 'Hiểu rõ góc nhìn của cả khách hàng lẫn bưu cục, mở ra cơ hội thăng tiến vượt bậc lên quản lý Key Account cấp cao.'
-  },
-  4: {
-    period: '2024 – 2025',
-    badge: '🏆 CHIẾN BINH XUẤT SẮC 2025',
-    role: 'Key Account Executive (Shopee · Tiki · Lazada)',
-    company: 'Giao Hàng Nhanh (GHN Express) · Khối Khách Hàng Doanh Nghiệp',
-    awardBanner: {
-      title: 'CHIẾN BINH XUẤT SẮC GHN NĂM 2025',
-      desc: 'Vinh danh cá nhân có thành tích vượt trội nhất trong việc bảo vệ sản lượng hàng triệu đơn hàng, duy trì chỉ số cam kết SLA %GTC > 98.5% và xây dựng hệ thống tự động hóa khiếu nại cho các sàn TMĐT hàng đầu Việt Nam.'
-    },
-    bullets: [
-      'Quản lý trực tiếp các tài khoản sàn TMĐT chiến lược hàng đầu (Shopee, Tiki, Lazada) với sản lượng hàng trăm nghìn đơn mỗi ngày.',
-      'Xây dựng Dashboard tự động hóa giám sát SLA real-time, cảnh báo sớm các điểm nghẽn kho bãi và trung chuyển trong các đợt Mega Sale.',
-      'Đàm phán và thống nhất quy trình phối hợp giải quyết khiếu nại nhanh với đội ngũ Ops sàn, giảm 20% thời gian xử lý sự cố hoàn trả.'
-    ],
-    impact: 'Xuất sắc đạt danh hiệu Chiến Binh Xuất Sắc 2025 do Ban Giám Đốc GHN trao tặng — minh chứng cho năng lực thực chiến hàng đầu.'
-  },
-  5: {
-    period: '2026 – Hiện tại',
-    badge: 'VỊ TRÍ HIỆN TẠI',
-    role: 'Assistant Regional Director (Trợ lý Giám Đốc Vùng Nam Trung Bộ)',
-    company: 'Giao Hàng Nhanh (GHN Express) · Địa bàn: Khánh Hòa, Lâm Đồng, Đắk Nông, Ninh Thuận, Bình Thuận',
-    bullets: [
-      'Trực tiếp hỗ trợ Giám đốc Vùng điều hành toàn diện quy mô 5 tỉnh thành với đội ngũ 19 AMs + 2 SUPs, 86 bưu cục, 1 kho chuyển tiếp và 4 kho trung chuyển.',
-      'Kiến trúc và triển khai Web App Control Tower tích hợp AI MCP, tự động hóa 100% pipeline báo cáo ca sáng và ca trưa (%OPR, %ODR, %FD).',
-      'Xây dựng thuật toán bóc tách giao thoa 3 điều kiện phát hiện gian lận GPS và COD gối đầu, triệt tiêu 95% nguy cơ thất thoát dòng tiền.',
-      'Thiết lập mô hình xếp hạng năng lực AM/Bưu cục minh bạch, giúp Ban Giám đốc Vùng ra quyết định can thiệp chính xác trong 15 phút.'
-    ],
-    impact: 'Chuyển hóa hoàn toàn cách thức điều hành vùng từ "báo cáo thủ công bị động" sang "hệ thống cảnh báo sớm và can thiệp tức thì bằng dữ liệu".'
-  }
-};
-
-const CHIBI_STOPS = [
-  { id: 1, x: 80, y: 300, msg: "🎓 Xuất phát: Cử nhân UEH!", shirt: "#3b82f6", item: "#cbd5e1" },
-  { id: 2, x: 260, y: 300, msg: "📦 Account Management @ Ninja Van!", shirt: "#dc2626", item: "#f59e0b" },
-  { id: "gate", x: 385, y: 275, msg: "⛩️ MỞ CỔNG GHN! Bước vào nhà Cam!", shirt: "#f97316", item: "#22c55e" },
-  { id: 3, x: 460, y: 230, msg: "🧡 KAC @ GHN: Giải cứu đơn hàng!", shirt: "#f97316", item: "#06b6d4" },
-  { id: 4, x: 660, y: 130, msg: "🏆 KA Sàn TMĐT · Chiến Binh Xuất Sắc!", shirt: "#f97316", item: "#fbbf24" },
-  { id: 5, x: 870, y: 65, msg: "🚀 Trợ Lý GĐ Vùng NTB (5 Tỉnh)!", shirt: "#f97316", item: "#d4f236" }
-];
 
 function initCareerJourney() {
   const nodes = document.querySelectorAll('.journey-node');
