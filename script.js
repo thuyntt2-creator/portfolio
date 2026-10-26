@@ -227,7 +227,7 @@ const CASE_DATA = {
       <div class="m-section">
         <h4 class="m-section-title">⚠️ Bối cảnh & Nỗi đau vận hành (Operational Pain Point)</h4>
         <p class="m-text">
-          Tại địa bàn 5 tỉnh Nam Trung Bộ với hơn 85 bưu cục và hàng trăm bưu tá, công nợ tiền mặt COD luôn là rủi ro tài chính sống còn. Nhiều bưu tá thu tiền mặt COD từ người nhận nhưng không nộp về tài khoản bưu cục đúng hạn, tự ý cập nhật trạng thái "Khách hoãn / Hẹn giao lại" để chiếm dụng tiền mặt tiêu xài cá nhân hoặc lấy tiền thu của đơn sau đắp bù đơn trước (gối đầu).
+          Tại địa bàn 5 tỉnh Nam Trung Bộ với 86 bưu cục, 1 kho chuyển tiếp, 4 kho trung chuyển và hàng trăm bưu tá, công nợ tiền mặt COD luôn là rủi ro tài chính sống còn. Nhiều bưu tá thu tiền mặt COD từ người nhận nhưng không nộp về tài khoản bưu cục đúng hạn, tự ý cập nhật trạng thái "Khách hoãn / Hẹn giao lại" để chiếm dụng tiền mặt tiêu xài cá nhân hoặc lấy tiền thu của đơn sau đắp bù đơn trước (gối đầu).
         </p>
         <p class="m-text" style="margin-top:8px;">
           Nghiêm trọng hơn, nhiều bưu tá đứng ở nhà hoặc quán cà phê cách xa địa chỉ khách hàng hàng kilomet để bấm cập nhật "Không liên lạc được" (Fake GPS / Giả mạo POD) nhằm trốn tránh chỉ tiêu phát ca. Việc kiểm tra thủ công là bất khả thi vì mỗi ngày phát sinh hàng chục nghìn đơn giao.
@@ -418,7 +418,7 @@ const CASE_DATA = {
         <ul class="m-list">
           <li><strong>Cắt giảm 65%</strong> lượng đơn tồn kho siêu trễ (&gt;8 ngày) trên toàn địa bàn 5 tỉnh Nam Trung Bộ.</li>
           <li><strong>Tiết kiệm hàng trăm triệu đồng</strong> chi phí đền bù hàng hóa hỏng/vỡ mỗi tháng cho công ty.</li>
-          <li>Giải phóng diện tích kho bãi tại 85 bưu cục, nâng cao tốc độ quay vòng của luồng hàng hóa liên tỉnh.</li>
+          <li>Giải phóng diện tích kho bãi tại 86 bưu cục và các kho trung chuyển, nâng cao tốc độ quay vòng của luồng hàng hóa liên tỉnh.</li>
         </ul>
       </div>
 
@@ -525,7 +525,7 @@ const CASE_DATA = {
     badge: 'CASE 05 · OPERATIONS DISCIPLINE · SQLITE ENGINE',
     title: 'Điểm Danh Quân Số & Nhắc Báo Cáo 5 Mốc Vận Hành (Lưu Trữ SQLite)',
     role: 'Kỷ Luật Thép Vận Hành · SQLite Database, Python Automation, GSpread Sync, Automated Penalty Engine',
-    desc: 'Chuẩn hóa 5 mốc cut-off chiến lược trong ngày (08:00, 10:00, 11:00, 16:00, 20:00) cho 85 bưu cục. Tích hợp cơ sở dữ liệu SQLite (diem_danh.db) ghi nhận chính xác thời gian báo cáo đến từng giây, đếm ngược nhắc giờ trước 15 phút và tự động chấm phạt vi phạm minh bạch tuyệt đối.',
+    desc: 'Chuẩn hóa 5 mốc cut-off chiến lược trong ngày (08:00, 10:00, 11:00, 16:00, 20:00) cho 86 bưu cục. Tích hợp cơ sở dữ liệu SQLite (diem_danh.db) ghi nhận chính xác thời gian báo cáo đến từng giây, đếm ngược nhắc giờ trước 15 phút và tự động chấm phạt vi phạm minh bạch tuyệt đối.',
     metrics: [
       { val: '98.2% Tuân thủ', lbl: 'Tăng từ 65% trước khi có bot' },
       { val: '5 Mốc Giờ Vàng', lbl: '08h · 10h · 11h · 16h · 20h' },
@@ -592,7 +592,7 @@ const CASE_DATA = {
       <div class="m-section">
         <h4 class="m-section-title">💰 Kết quả kinh doanh & Business ROI</h4>
         <ul class="m-list">
-          <li><strong>Tỷ lệ nộp báo cáo đúng hạn tăng vọt từ 65% lên 98.2%</strong> trên toàn bộ 85 bưu cục.</li>
+          <li><strong>Tỷ lệ nộp báo cáo đúng hạn tăng vọt từ 65% lên 98.2%</strong> trên toàn bộ 86 bưu cục.</li>
           <li>Xóa bỏ 100% tình trạng "mù thông tin" của Ban Giám đốc trong các khung giờ điều hành then chốt.</li>
           <li>Thiết lập văn hóa kỷ luật thép minh bạch, công bằng tuyệt đối và không có bất kỳ tranh cãi nào.</li>
         </ul>
@@ -644,7 +644,7 @@ const CASE_DATA = {
       <div class="m-section">
         <h4 class="m-section-title">⚠️ Bối cảnh & Nỗi đau vận hành (Operational Pain Point)</h4>
         <p class="m-text">
-          Đội ngũ HRBP (Đối tác Nhân sự) và Supervisor (Giám sát vận hành) thường xuyên phải di chuyển công tác thực địa tại 85 bưu cục trải dài trên 5 tỉnh. Trước đây, việc quản lý lịch trình công tác phụ thuộc hoàn toàn vào báo cáo miệng hoặc tin nhắn rời rạc, Ban Giám đốc không thể kiểm chứng được nhân sự có thực sự xuống địa bàn kiểm tra bưu cục hay không và các biên bản hiện trường thường bị thất lạc.
+          Đội ngũ HRBP (Đối tác Nhân sự) và Supervisor (Giám sát vận hành) thường xuyên phải di chuyển công tác thực địa tại 86 bưu cục, 1 kho chuyển tiếp và 4 kho trung chuyển trải dài trên 5 tỉnh. Trước đây, việc quản lý lịch trình công tác phụ thuộc hoàn toàn vào báo cáo miệng hoặc tin nhắn rời rạc, Ban Giám đốc không thể kiểm chứng được nhân sự có thực sự xuống địa bàn kiểm tra bưu cục hay không và các biên bản hiện trường thường bị thất lạc.
         </p>
       </div>
 
@@ -671,7 +671,7 @@ const CASE_DATA = {
         <ul class="m-list">
           <li><strong>Minh bạch hóa 100%</strong> hoạt động giám sát thực địa của đội ngũ quản lý tuyến đầu.</li>
           <li>Rút ngắn thời gian phát hiện và xử lý sự cố tại bưu cục từ vài tuần xuống còn vài giờ.</li>
-          <li>Nâng cao kỷ luật tuân thủ tiêu chuẩn vận hành và 5S tại tất cả 85 bưu cục toàn vùng.</li>
+          <li>Nâng cao kỷ luật tuân thủ tiêu chuẩn vận hành và 5S tại tất cả 86 bưu cục và hệ thống kho toàn vùng.</li>
         </ul>
       </div>
 
@@ -849,7 +849,7 @@ const JOURNEY_STOPS = {
     role: 'Assistant Regional Director (Trợ lý Giám Đốc Vùng Nam Trung Bộ)',
     company: 'Giao Hàng Nhanh (GHN Express) · Địa bàn: Khánh Hòa, Lâm Đồng, Đắk Nông, Ninh Thuận, Bình Thuận',
     bullets: [
-      'Trực tiếp hỗ trợ Giám đốc Vùng điều hành toàn diện quy mô 5 tỉnh thành với đội ngũ 19 AMs + 2 SUPs và 85 bưu cục.',
+      'Trực tiếp hỗ trợ Giám đốc Vùng điều hành toàn diện quy mô 5 tỉnh thành với đội ngũ 19 AMs + 2 SUPs, 86 bưu cục, 1 kho chuyển tiếp và 4 kho trung chuyển.',
       'Kiến trúc và triển khai Web App Control Tower tích hợp AI MCP, tự động hóa 100% pipeline báo cáo ca sáng và ca trưa (%OPR, %ODR, %FD).',
       'Xây dựng thuật toán bóc tách giao thoa 3 điều kiện phát hiện gian lận GPS và COD gối đầu, triệt tiêu 95% nguy cơ thất thoát dòng tiền.',
       'Thiết lập mô hình xếp hạng năng lực AM/Bưu cục minh bạch, giúp Ban Giám đốc Vùng ra quyết định can thiệp chính xác trong 15 phút.'
@@ -1119,9 +1119,9 @@ function triggerAwardConfetti(event) {
 const SCENARIOS = {
   bot_5_moc: {
     terminalLines: [
-      { text: '[07:30 - MỐC 1] Điểm danh quân số: 642 bưu tá xuất tuyến tại 85 bưu cục.', type: 'dim' },
+      { text: '[07:30 - MỐC 1] Điểm danh quân số: 642 bưu tá xuất tuyến tại 86 bưu cục.', type: 'dim' },
       { text: '[10:00 - MỐC 2] Quét tỷ lệ xuất kho: 96.8% đơn hàng đã lên thùng xe đi phát ca 1.', type: 'dim' },
-      { text: '[11:50 - MỐC 3] CHỐT CA TRƯA: Quét danh sách 85 bưu cục toàn vùng NTB...', type: 'warn' },
+      { text: '[11:50 - MỐC 3] CHỐT CA TRƯA: Quét danh sách 86 bưu cục và 5 kho toàn vùng NTB...', type: 'warn' },
       { text: '[BOT PING] Phát hiện 2 bưu cục chưa chốt báo cáo: BC Di Linh & BC Hàm Tân!', type: 'err' },
       { text: '[ALERT SENT] Tự động bắn tin nhắc nhở đích danh AM phụ trách trên nhóm điều hành.', type: 'success' }
     ],
@@ -1139,8 +1139,8 @@ const SCENARIOS = {
   },
   bot_kaizen: {
     terminalLines: [
-      { text: '[08:00 - KAIZEN] Kích hoạt cổng tiếp nhận ảnh check-in vệ sinh kho bãi 85 bưu cục.', type: 'dim' },
-      { text: '[AUDIT] Đã nhận 83/85 ảnh. Kiểm tra tiêu chí 5S: Sàn kho, bàn chia chọn, lối thoát hiểm.', type: 'warn' },
+      { text: '[08:00 - KAIZEN] Kích hoạt cổng tiếp nhận ảnh check-in vệ sinh kho bãi 86 bưu cục.', type: 'dim' },
+      { text: '[AUDIT] Đã nhận 84/86 ảnh. Kiểm tra tiêu chí 5S: Sàn kho, bàn chia chọn, lối thoát hiểm.', type: 'warn' },
       { text: '[CHECK FAIL] Phát hiện vi phạm layout: Bưu cục Đức Trọng (hàng cồng kềnh chắn cửa xuất tải).', type: 'err' },
       { text: '[DISPATCH] Đã tạo biên bản Kaizen & gửi cảnh báo trực tiếp kèm hình ảnh vi phạm.', type: 'success' }
     ],
@@ -1302,7 +1302,7 @@ function initLiveTicker() {
 
   const messages = [
     '🌟 Live Production App: namtrungbo.vercel.app • Hệ thống Quản trị Vận hành NTB do Thủy xây dựng',
-    '5 Tỉnh Nam Trung Bộ • 19 AMs + 2 SUPs • 85 Bưu cục • Tích hợp Trợ lý AI qua Giao thức MCP',
+    '5 Tỉnh Nam Trung Bộ • 19 AMs + 2 SUPs • 86 Bưu cục • 1 KCT + 4 HUB • Tích hợp Trợ lý AI qua Giao thức MCP',
     'Khánh Hòa: %GTC ca sáng đạt 96.4% • Bưu cục Nha Trang giải tỏa 100% đơn tồn',
     'Lâm Đồng: Phát hiện & xử lý 2 đơn COD gối đầu • Kiểm soát an toàn ngân quỹ',
     'Đắk Nông: Thang cứu hộ động kích hoạt thành công • tối ưu năng suất và đạt mốc Target GTC',
@@ -1982,7 +1982,7 @@ const ALL_BOTS_DATA = [
     id: "RISK-03",
     mod: "RISK",
     name: "Báo Cáo Mail Vận Hành Toàn Diện Vùng NTB",
-    input: "Tổng hợp toàn bộ 85 bưu cục 5 tỉnh",
+    input: "Tổng hợp toàn bộ 86 bưu cục, 1 kho chuyển tiếp và 4 kho trung chuyển tại 5 tỉnh",
     output: "Email tự động gửi Ban Giám Đốc + File Text",
     freq: "Hàng ngày",
     insight: "Bức tranh toàn cảnh về sản lượng, tỷ lệ GTC, tồn kho, tỷ lệ hoàn và danh sách bưu cục bất ổn kèm đề xuất can thiệp cụ thể gửi Lãnh đạo cấp cao."
@@ -2027,7 +2027,7 @@ const ALL_BOTS_DATA = [
     id: "HR-03",
     mod: "HR",
     name: "Bot Giám Sát Chuẩn Hóa Kỷ Luật 5S Kaizen Bưu Cục",
-    input: "Hình ảnh hiện trường check-in từ 85 bưu cục",
+    input: "Hình ảnh hiện trường check-in từ 86 bưu cục và các kho",
     output: "Telegram Group Kaizen 5 Tỉnh",
     freq: "08:00 Sáng hàng ngày",
     insight: "Bắt buộc bưu cục chụp ảnh layout kho bãi, lối thoát hiểm và phân khu hàng cồng kềnh (>10kg), tự động chấm điểm và cảnh báo các trạm bừa bộn vi phạm an toàn."
