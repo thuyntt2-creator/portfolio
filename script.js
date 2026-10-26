@@ -1986,9 +1986,27 @@ const ALL_BOTS_DATA = [
     insight: "Chốt sổ toàn trình sản lượng và năng suất của 86 bưu cục, ghi nhận dữ liệu phục vụ phân tích xu hướng biến động và tối ưu hóa định biên nhân sự theo mùa vụ."
   },
 
-  // --- 5. TỒN KHO, BẮN KIỂM & LUÂN CHUYỂN ---
+  // --- 5. KHO TRUNG CHUYỂN (KTC), LẤP ĐẦY THÙNG XE & TỒN KHO ---
   {
     id: "INV-01",
+    mod: "INVENTORY",
+    name: "Bot Báo Cáo Tỷ Lệ Lấp Đầy Thùng Xe KTC (Truck Fill Rate)",
+    input: "Thể tích CBM & Khối lượng kg thực tế của lô hàng + Định mức thùng xe tải",
+    output: "Thẻ ảnh trực quan đo lường Fill Rate gửi Kênh Điều Phối Vận Tải & HUB",
+    freq: "Từng chuyến xe xuất bến tại 4 HUB KTC (07:00, 11:30, 14:00, 19:30)",
+    insight: "Đo lường và giám sát tự động tỷ lệ lấp đầy thể tích (CBM) và tải trọng của các chuyến xe tải luân chuyển xuất phát từ 4 HUB Kho Trung Chuyển và 1 Kho Chuyển Tiếp. Phát hiện ngay các chuyến xe 'chạy rỗng' (<65% tải) để điều phối ghép tuyến kịp thời và cảnh báo xe quá tải, tối ưu hóa 15% chi phí nhiên liệu và khấu hao xe."
+  },
+  {
+    id: "INV-02",
+    mod: "INVENTORY",
+    name: "Báo Cáo Backlog KTC & Giám Sát Luồng Hàng Xuất - Nhập 4 HUB Trung Chuyển",
+    input: "Dữ liệu Inbound/Outbound Scanning tại 4 HUB KTC + 1 KCT",
+    output: "Bảng cân đối Xuất - Nhập - Tồn realtime gửi GTalk Ban Giám Đốc & Điều Hành Vùng",
+    freq: "06:00, 12:00, 18:00 & 22:00 Hàng ngày",
+    insight: "Bóc tách chi tiết lượng hàng nhập trạm, hàng đã chia chọn xuất tải và lượng hàng Backlog tồn đọng tại 4 Kho Trung Chuyển (Khánh Hòa, Bình Thuận, Đức Trọng, Đắk Nông) cùng 1 Kho Chuyển Tiếp. Nhận diện nút thắt cổ chai chia chọn dồn ứ trước khi ảnh hưởng dây chuyền đến các bưu cục Lastmile."
+  },
+  {
+    id: "INV-03",
     mod: "INVENTORY",
     name: "Bot Cảnh Báo Bưu Cục Chưa Bắn Kiểm Tải Hàng & Luân Chuyển Đến",
     input: "Manifest điều xe tải từ 4 HUB trung chuyển + Dữ liệu Inbound Scanning",
@@ -1997,7 +2015,7 @@ const ALL_BOTS_DATA = [
     insight: "Tự động rà soát lịch trình xe tải đến trạm đối chiếu với trạng thái quét mã kiện. Cảnh báo ngay lập tức nếu bưu cục đã tiếp nhận xe tải nhưng chưa bắn kiểm nhập kho sau 30 phút, ngăn chặn tình trạng 'ngâm tải' khiến đơn không kịp xuất tuyến giao trong ngày."
   },
   {
-    id: "INV-02",
+    id: "INV-04",
     mod: "INVENTORY",
     name: "Push Đơn Tồn Kho: Aging Lưu Bãi Quá Hạn (>3N, >5N, >8N, >10N)",
     input: "GHN Aging API (Token) + Snapshot JSON",
@@ -2006,7 +2024,7 @@ const ALL_BOTS_DATA = [
     insight: "Bóc tách hàng nghìn mã đơn tồn bãi theo từng dải tuổi hàng, tự động định dạng bảng màu cảnh báo đỏ/vàng trên GTalk, ép tỷ lệ xuất kho xử lý đơn trễ và giảm thiểu tối đa bồi thường thất lạc."
   },
   {
-    id: "INV-03",
+    id: "INV-05",
     mod: "INVENTORY",
     name: "Giám Sát Tỷ Lệ Gán Đơn Tồn (Assignment Rate) Của 19 AM + 2 SUP",
     input: "Aging Snapshot JSON Cache",
@@ -2015,7 +2033,7 @@ const ALL_BOTS_DATA = [
     insight: "Theo dõi tỷ lệ gán đơn tồn bãi của từng AM ra tuyến bưu tá. Công khai bảng xếp hạng tỷ lệ giải phóng hàng tồn, tạo áp lực minh bạch để các quản lý khu vực tập trung giải tỏa đơn khó."
   },
   {
-    id: "INV-04",
+    id: "INV-06",
     mod: "INVENTORY",
     name: "Phân Tích Cơ Cấu & Kẹt Xe Tải Luân Chuyển Liên Tỉnh (LTC)",
     input: "GHN Luân Chuyển API",
@@ -2024,7 +2042,7 @@ const ALL_BOTS_DATA = [
     insight: "Đo lường chi tiết sản lượng hàng luân chuyển qua 4 Kho Trung Chuyển (HUB) và 1 Kho Chuyển Tiếp (KCT), phát hiện các xe tải liên tỉnh bị chậm cut-off để điều tiết tải trọng kịp thời."
   },
   {
-    id: "INV-05",
+    id: "INV-07",
     mod: "INVENTORY",
     name: "Push Đơn Pending Lấy Của Shop Trễ Cam Kết SLA",
     input: "First-mile Pickup Core Data",
