@@ -900,6 +900,84 @@ function initCaseStudies() {
   }
 }
 
+const JOURNEY_STOPS = {
+  1: {
+    period: '2018 – 2022',
+    badge: 'NỀN TẢNG HỌC THUẬT',
+    role: 'Cử Nhân Kinh Tế (Bachelor of Economics)',
+    company: 'Đại Học Kinh Tế TP. Hồ Chí Minh (UEH)',
+    bullets: [
+      'Được đào tạo bài bản về tư duy kinh tế vĩ mô & vi mô, phân tích định lượng và mô hình hóa dữ liệu.',
+      'Rèn luyện phương pháp luận giải quyết vấn đề dựa trên bằng chứng dữ liệu (Data-driven Problem Solving).',
+      'Xây dựng tư duy hệ thống và phân tích số liệu tài chính - kinh doanh giúp chuyển dịch thuận lợi sang ngành Logistics.'
+    ],
+    impact: 'Nền tảng tư duy cấu trúc hóa và phân tích số liệu giúp Thủy nhanh chóng làm chủ các luồng dữ liệu chuỗi cung ứng.'
+  },
+  2: {
+    period: '2022 – 2023',
+    badge: 'QUẢN LÝ BƯU CỤC TUYẾN ĐẦU',
+    role: 'Area Manager (AM - Quản Lý Khu Vực)',
+    company: 'Ninja Van Vietnam · Khối Vận Hành Bưu Cục Tuyến Đầu',
+    bullets: [
+      'Trực tiếp quản lý và điều phối mạng lưới bưu cục và đội ngũ bưu tá tại khu vực phụ trách.',
+      'Tối ưu hóa tỷ lệ giao hàng thành công (Success Rate), giám sát chặt chẽ tỷ lệ gán đơn và giải phóng tồn kho hàng ngày.',
+      'Thực chiến xử lý sự cố hàng hóa, điều phối tải bưu tá và giải quyết khiếu nại khách hàng ngay tại điểm nóng tuyến đầu.'
+    ],
+    impact: 'Kinh nghiệm AM thực chiến tại Ninja Van giúp Thủy thấu hiểu sâu sắc nỗi đau vận hành bưu cục, tạo bước đệm hoàn hảo khi bước qua cánh cổng GHN.'
+  },
+  3: {
+    period: '2023 – 2024',
+    badge: 'CÁNH CỔNG GIA NHẬP GHN',
+    role: 'Key Account Care (KAC)',
+    company: 'Giao Hàng Nhanh (GHN Express) · Chăm Sóc Khách Hàng Trọng Điểm',
+    bullets: [
+      'Chính thức bước qua cánh cổng GHN với vị trí KAC: Trực tiếp tiếp nhận, phân loại và xử lý các ca khiếu nại khẩn cấp, cứu đơn hàng cho các sàn TMĐT lớn.',
+      'Làm việc sâu sát giữa khối dịch vụ khách hàng với đội ngũ Vận hành trung chuyển (HUB) và bưu cục cơ sở để tháo gỡ điểm nghẽn giao hàng.',
+      'Thấu hiểu tận tường tâm lý và nỗi đau của đối tác lớn khi đơn hàng bị trễ hoặc xảy ra sự cố, từ đó nhận diện các mắt xích vận hành cần tối ưu bằng dữ liệu.'
+    ],
+    impact: 'Hiểu rõ góc nhìn của cả khách hàng lẫn bưu cục, mở ra cơ hội thăng tiến vượt bậc lên quản lý Key Account cấp cao.'
+  },
+  4: {
+    period: '2024 – 2025',
+    badge: '🏆 CHIẾN BINH XUẤT SẮC 2025',
+    role: 'Key Account Executive (Shopee · Tiki · Lazada)',
+    company: 'Giao Hàng Nhanh (GHN Express) · Khối Khách Hàng Doanh Nghiệp',
+    awardBanner: {
+      title: 'CHIẾN BINH XUẤT SẮC GHN NĂM 2025',
+      desc: 'Vinh danh cá nhân có thành tích vượt trội nhất trong việc bảo vệ sản lượng hàng triệu đơn hàng, duy trì chỉ số cam kết SLA %GTC > 98.5% và xây dựng hệ thống tự động hóa khiếu nại cho các sàn TMĐT hàng đầu Việt Nam.'
+    },
+    bullets: [
+      'Quản lý trực tiếp các tài khoản sàn TMĐT chiến lược hàng đầu (Shopee, Tiki, Lazada) với sản lượng hàng trăm nghìn đơn mỗi ngày.',
+      'Xây dựng Dashboard tự động hóa giám sát SLA real-time, cảnh báo sớm các điểm nghẽn kho bãi và trung chuyển trong các đợt Mega Sale.',
+      'Đàm phán và thống nhất quy trình phối hợp giải quyết khiếu nại nhanh với đội ngũ Ops sàn, giảm 20% thời gian xử lý sự cố hoàn trả.'
+    ],
+    impact: 'Xuất sắc đạt danh hiệu Chiến Binh Xuất Sắc 2025 do Ban Giám Đốc GHN trao tặng — minh chứng cho năng lực thực chiến hàng đầu.'
+  },
+  5: {
+    period: '2026 – Hiện tại',
+    badge: 'VỊ TRÍ HIỆN TẠI',
+    role: 'Assistant Regional Director (Trợ lý Giám Đốc Vùng Nam Trung Bộ)',
+    company: 'Giao Hàng Nhanh (GHN Express) · Địa bàn: Khánh Hòa, Lâm Đồng, Đắk Nông, Ninh Thuận, Bình Thuận',
+    bullets: [
+      'Trực tiếp hỗ trợ Giám đốc Vùng điều hành toàn diện quy mô 5 tỉnh thành với đội ngũ 19 AMs + 2 SUPs và 85 bưu cục.',
+      'Kiến trúc và triển khai Web App Control Tower tích hợp AI MCP, tự động hóa 100% pipeline báo cáo ca sáng và ca trưa (%OPR, %ODR, %FD).',
+      'Xây dựng thuật toán bóc tách giao thoa 3 điều kiện phát hiện gian lận GPS và COD gối đầu, triệt tiêu 95% nguy cơ thất thoát dòng tiền.',
+      'Thiết lập mô hình xếp hạng năng lực AM/Bưu cục minh bạch, giúp Ban Giám đốc Vùng ra quyết định can thiệp chính xác trong 15 phút.'
+    ],
+    impact: 'Chuyển hóa hoàn toàn cách thức điều hành vùng từ "báo cáo thủ công bị động" sang "hệ thống cảnh báo sớm và can thiệp tức thì bằng dữ liệu".'
+  }
+};
+
+const CHIBI_STOPS = [
+  { id: 1, x: 80, y: 300, msg: "🎓 Xuất phát: Cử nhân UEH!", shirt: "#3b82f6", item: "#cbd5e1" },
+  { id: 2, x: 260, y: 300, msg: "📦 Account Management @ Ninja Van!", shirt: "#dc2626", item: "#f59e0b" },
+  { id: "gate", x: 385, y: 275, msg: "⛩️ MỞ CỔNG GHN! Bước vào nhà Cam!", shirt: "#f97316", item: "#22c55e" },
+  { id: 3, x: 460, y: 230, msg: "🧡 KAC @ GHN: Giải cứu đơn hàng!", shirt: "#f97316", item: "#06b6d4" },
+  { id: 4, x: 660, y: 130, msg: "🏆 KA Sàn TMĐT · Chiến Binh Xuất Sắc!", shirt: "#f97316", item: "#fbbf24" },
+  { id: 5, x: 870, y: 65, msg: "🚀 Trợ Lý GĐ Vùng NTB (5 Tỉnh)!", shirt: "#f97316", item: "#d4f236" }
+];
+
+
 function initCareerJourney() {
   const nodes = document.querySelectorAll('.journey-node');
   const jPeriod = document.getElementById('jPeriod');
