@@ -1879,6 +1879,47 @@ function initGhnHighway() {
    INTERACTIVE BOT OPERATIONS ECOSYSTEM (ALL 18+ BOTS)
    ========================================================================== */
 const ALL_BOTS_DATA = [
+  // --- 1. RỦI RO, BẤT ỔN & VOLUME ĐỘT BIẾN ---
+  {
+    id: "RISK-01",
+    mod: "RISK",
+    name: "Báo Cáo Danh Sách Bưu Cục Nhóm Bất Ổn & Định Lượng Đơn Clear Thoát Nhóm",
+    input: "Master Sheet NTB (Backlog Lastmile, Aging >5N, KTC)",
+    output: "Thẻ ảnh HTML Playwright + Telegram / GTalk Vùng",
+    freq: "08:00 Sáng hàng ngày",
+    insight: "Tự động phân loại 86 bưu cục thành 3 nhóm rõ rệt: 'TOP Bất Ổn', 'Chuẩn Bị Nhảy Nhóm Bất Ổn' và 'Cảnh Báo'. Tính toán chính xác số đơn tối thiểu cần giải phóng trong ngày để trạm thoát khỏi danh sách đen, tag đích danh từng AM phụ trách."
+  },
+  {
+    id: "RISK-02",
+    mod: "RISK",
+    name: "Bot Cảnh Báo Volume Đột Biến (Sản Lượng Bất Thường Vượt Công Suất Trạm)",
+    input: "Dữ liệu nhập hàng theo giờ + Baseline sản lượng trung bình 7 ngày",
+    output: "Cảnh báo khẩn cấp GTalk / Telegram Ban Giám Đốc & AM",
+    freq: "Quét liên tục mỗi 30 phút",
+    insight: "Phát hiện sớm các bưu cục có sản lượng hàng về tăng vọt bất thường (+40% đến +100% so với định biên công suất bưu tá hoặc dồn toa đột ngột từ các Shop lớn). Kích hoạt báo động sớm để Lãnh đạo Vùng và AM kịp thời tăng cường xe tải phụ tuyến hoặc điều động bưu tá hỗ trợ, ngăn chặn nguy cơ vỡ trạm."
+  },
+  {
+    id: "RISK-03",
+    mod: "RISK",
+    name: "Bot Tự Động Đề Xuất OFF Tuyến Bảo Vệ Trạm (rqoff)",
+    input: "Sheet cơ cấu phường xã, sản lượng Shopee 7 ngày",
+    output: "Sheet đề xuất OFF tuyến + Telegram Ban Giám Đốc",
+    freq: "Kích hoạt khi bưu cục có nguy cơ vỡ trạm",
+    insight: "Khi bưu cục chạm ngưỡng quá tải nguy hiểm, bot tự động quét tỷ lệ đơn của từng phường xã để lập danh sách đề xuất tạm dừng nhận đơn TMĐT (OFF tuyến) có chọn lọc, bảo vệ an toàn công suất mà không ảnh hưởng toàn diện đến kinh doanh."
+  },
+
+  // --- 2. EXECUTIVE BI & DASHBOARD HỌP HÀNG TUẦN ---
+  {
+    id: "BI-01",
+    mod: "BI",
+    name: "Dashboard (DB) Họp Vận Hành Hàng Tuần Trực Quan Cho BGĐ & 19 AMs + 2 SUPs",
+    input: "Tổng hợp toàn bộ chỉ số KPI Vận hành tuần (SLA %GTC, Backlog, Aging, ODR/OPR, Kỷ luật 5S)",
+    output: "Interactive Operations Dashboard trực quan hóa đa chiều",
+    freq: "Cập nhật tự động trước 07:00 Sáng Thứ Hai hàng tuần",
+    insight: "Hệ thống Dashboard điều hành trực quan phục vụ các buổi họp giao ban đầu tuần của Ban Giám đốc Vùng và 19 AMs + 2 SUPs. Trực quan hóa bản đồ nhiệt (Heatmap) 86 bưu cục, 1 KCT, 4 HUB; so sánh tương quan hiệu suất tuần này vs tuần trước; bóc tách nguyên nhân rớt cam kết và hỗ trợ drill-down trực tiếp chỉ trong vài giây."
+  },
+
+  // --- 3. TÀI CHÍNH & KIỂM SOÁT THU TIỀN ---
   {
     id: "FIN-01",
     mod: "FINANCE",
@@ -1889,7 +1930,27 @@ const ALL_BOTS_DATA = [
     insight: "Phát hiện đơn COD >400k hoãn liên tiếp 2 ngày và shipper check-in lệch >2km (ở nhà/quán cafe). Tự động phân luồng sheet riêng cho 19 AMs + 2 SUPs kiểm tra túi hàng trước 11h00, triệt tiêu 95% gian lận chiếm dụng tiền mặt."
   },
   {
+    id: "FIN-02",
+    mod: "FINANCE",
+    name: "Bot Cảnh Báo Bưu Cục Chưa Tick Phiếu Thu Tiền Mặt & Chậm Nộp Quỹ",
+    input: "Dữ liệu nộp tiền ngân quỹ & hệ thống phiếu thu bưu cục",
+    output: "Cảnh báo GTalk đích danh AM & Kế toán Vùng",
+    freq: "Cuối ca trưa (12:00) & Chốt ca tối (20:30)",
+    insight: "Tự động rà soát đối soát phiếu thu tiền mặt của 86 bưu cục, phát hiện ngay các bưu cục có tiền thu từ bưu tá nhưng chưa hoàn tất thủ tục tick xác nhận phiếu thu trên hệ thống, triệt tiêu rủi ro tồn đọng công nợ và thất thoát dòng tiền bưu cục."
+  },
+
+  // --- 4. NĂNG SUẤT NVPPT & GIAO HÀNG ---
+  {
     id: "PROD-01",
+    mod: "PROD",
+    name: "Bot Đo Lường & Bóc Tách Năng Suất NVPPT (Bưu Tá) N-1 Chi Tiết",
+    input: "Dữ liệu đóng ca toàn trình Lastmile N-1",
+    output: "Bảng phân tích hiệu suất chi tiết gửi AM & Trưởng Bưu Cục",
+    freq: "07:00 Sáng hàng ngày",
+    insight: "Phân tích toàn diện hiệu suất của từng Nhân viên phân phát tuyến (NVPPT/bưu tá) trong ngày hôm trước: tỷ lệ hoàn thành %GTC, số đơn giao/giờ, số ca giao lại và lý do hoãn. Xếp hạng Top vượt trội & Bottom cần đào tạo kèm cặp."
+  },
+  {
+    id: "PROD-02",
     mod: "PROD",
     name: "Báo Cáo Năng Suất Giao Hàng Bưu Tá Real-time",
     input: "GHN Lastmile Core API (Token Auth)",
@@ -1898,95 +1959,81 @@ const ALL_BOTS_DATA = [
     insight: "Giám sát chi tiết sản lượng gán, giao thành công và LTC của từng bưu tá theo thời gian thực, phát hiện ngay nhân sự bị đuối năng suất để AM kịp thời can thiệp ca chiều."
   },
   {
-    id: "PROD-02",
+    id: "PROD-03",
     mod: "PROD",
-    name: "Đo Lường Gap To Target & Năng Suất N-1",
+    name: "Đo Lường Gap To Target & Năng Suất N-1 Toàn Vùng",
     input: "API Lastmile + Master Sheet Target",
     output: "Thẻ ảnh Cam/Vàng kim gửi GTalk từng AM",
     freq: "11h30, 15h00, 18h00",
     insight: "Tự động quy đổi tỷ lệ % mục tiêu thành số đơn hàng còn thiếu cụ thể: 'Bưu cục còn thiếu đúng 84 đơn để chạm mốc thưởng GTC', giúp AM điều phối bưu tá tuyến vắng sang cứu tuyến đông."
   },
   {
-    id: "PROD-03",
+    id: "PROD-04",
     mod: "PROD",
     name: "Crawl & Cập Nhật Dữ Liệu Năng Suất Vào Sheet Kết Quả",
     input: "GHN Production API",
     output: "Google Sheet Master Kết Quả Vận Hành",
     freq: "07:00 Sáng hàng ngày",
-    insight: "Tự động hóa hoàn toàn việc trích xuất và đồng bộ kết quả giao nhận của toàn bộ nhân viên giao hàng 5 tỉnh, loại bỏ 100% thao tác copy-paste thủ công mỗi sáng."
+    insight: "Tự động hóa luồng dữ liệu thô từ cổng quản lý sản xuất đổ về Master Sheet, chuẩn hóa cấu trúc báo cáo tự động cho 19 AMs + 2 SUPs mà không cần bất kỳ thao tác copy-paste thủ công nào."
   },
   {
-    id: "PROD-04",
+    id: "PROD-05",
     mod: "PROD",
     name: "Đồng Bộ Năng Suất Lịch Sử Đêm Vào Kho Dữ Liệu",
     input: "Lastmile Raw Database",
     output: "Kho dữ liệu phân tích lịch sử",
     freq: "23:00 Hàng đêm",
-    insight: "Lưu vết dữ liệu sản lượng và tỷ lệ hoàn thành ca của từng trạm làm dữ liệu cơ sở cho các thuật toán đánh giá bưu cục bất ổn."
+    insight: "Chốt sổ toàn trình sản lượng và năng suất của 86 bưu cục, ghi nhận dữ liệu phục vụ phân tích xu hướng biến động và tối ưu hóa định biên nhân sự theo mùa vụ."
   },
+
+  // --- 5. TỒN KHO, BẮN KIỂM & LUÂN CHUYỂN ---
   {
     id: "INV-01",
+    mod: "INVENTORY",
+    name: "Bot Cảnh Báo Bưu Cục Chưa Bắn Kiểm Tải Hàng & Luân Chuyển Đến",
+    input: "Manifest điều xe tải từ 4 HUB trung chuyển + Dữ liệu Inbound Scanning",
+    output: "Ping khẩn cấp GTalk Kênh Điều Phối & Trưởng Bưu Cục",
+    freq: "Các mốc xe tải hạ hàng (06:30, 08:30, 13:30)",
+    insight: "Tự động rà soát lịch trình xe tải đến trạm đối chiếu với trạng thái quét mã kiện. Cảnh báo ngay lập tức nếu bưu cục đã tiếp nhận xe tải nhưng chưa bắn kiểm nhập kho sau 30 phút, ngăn chặn tình trạng 'ngâm tải' khiến đơn không kịp xuất tuyến giao trong ngày."
+  },
+  {
+    id: "INV-02",
     mod: "INVENTORY",
     name: "Push Đơn Tồn Kho: Aging Lưu Bãi Quá Hạn (>3N, >5N, >8N, >10N)",
     input: "GHN Aging API (Token) + Snapshot JSON",
     output: "Google Sheet Master + Bảng màu GTalk",
     freq: "08:30 & 14:00",
-    insight: "Bóc tách hàng tồn kho theo 4 dải ngày nguy hiểm. Ngăn chặn triệt để các đơn hàng nằm kho lâu ngày rơi vào tình trạng khách hủy hoặc hư hỏng dẫn đến GHN phải bồi thường 70% giá trị."
+    insight: "Bóc tách hàng nghìn mã đơn tồn bãi theo từng dải tuổi hàng, tự động định dạng bảng màu cảnh báo đỏ/vàng trên GTalk, ép tỷ lệ xuất kho xử lý đơn trễ và giảm thiểu tối đa bồi thường thất lạc."
   },
   {
-    id: "INV-02",
+    id: "INV-03",
     mod: "INVENTORY",
     name: "Giám Sát Tỷ Lệ Gán Đơn Tồn (Assignment Rate) Của 19 AM + 2 SUP",
     input: "Aging Snapshot JSON Cache",
     output: "BXH công khai nhóm GTalk Lãnh Đạo Vùng",
     freq: "Cuối ngày",
-    insight: "Đo lường chỉ số Assignment Rate = Đơn tồn gán shipper / Tổng tồn kho của AM. AM nào có tỷ lệ < 70% phải giải trình trực tiếp lý do không phân công bưu tá đi phát lại."
+    insight: "Theo dõi tỷ lệ gán đơn tồn bãi của từng AM ra tuyến bưu tá. Công khai bảng xếp hạng tỷ lệ giải phóng hàng tồn, tạo áp lực minh bạch để các quản lý khu vực tập trung giải tỏa đơn khó."
   },
   {
-    id: "INV-03",
+    id: "INV-04",
     mod: "INVENTORY",
     name: "Phân Tích Cơ Cấu & Kẹt Xe Tải Luân Chuyển Liên Tỉnh (LTC)",
     input: "GHN Luân Chuyển API",
     output: "Bảng màu HTML GTalk Điều Phối",
     freq: "07:30 & 13:30",
-    insight: "Theo dõi tải trọng xe tải luân chuyển liên tỉnh, phát hiện điểm thắt cổ chai và đơn hàng bị 'treo luân chuyển' quá 24h giữa các Hub để điều xe giải phóng kho."
+    insight: "Đo lường chi tiết sản lượng hàng luân chuyển qua 4 Kho Trung Chuyển (HUB) và 1 Kho Chuyển Tiếp (KCT), phát hiện các xe tải liên tỉnh bị chậm cut-off để điều tiết tải trọng kịp thời."
   },
   {
-    id: "INV-04",
+    id: "INV-05",
     mod: "INVENTORY",
     name: "Push Đơn Pending Lấy Của Shop Trễ Cam Kết SLA",
     input: "First-mile Pickup Core Data",
     output: "GTalk Kênh Điều Phối Lấy Hàng",
     freq: "Đầu ca sáng & chiều",
-    insight: "Quét các đơn hàng Shop đã tạo và yêu cầu lấy nhưng chưa có bưu tá tới tiếp nhận, cảnh báo đôn đốc trước khi vi phạm cam kết thời gian lấy hàng của sàn TMĐT."
+    insight: "Quét toàn bộ yêu cầu lấy hàng từ người gửi (Shop/Merchant), cảnh báo sớm các đơn sắp vượt ngưỡng cam kết SLA lấy hàng để bưu tá ưu tiên lấy trước, bảo vệ chỉ số hài lòng khách hàng."
   },
-  {
-    id: "RISK-01",
-    mod: "RISK",
-    name: "Phát Hiện Bưu Cục Bất Ổn & Định Lượng Đơn Clear Để Thoát Nhóm",
-    input: "Master Sheet NTB (Backlog LM, Aging >5N, KTC)",
-    output: "Thẻ ảnh HTML Playwright + Telegram / GTalk",
-    freq: "08:00 Sáng hàng ngày",
-    insight: "Phân loại 3 cấp độ (Top Bất Ổn, Nhảy Nhóm, Cảnh Báo) và tự động tính công thức số lượng đơn LM và KTC cần xử lý dứt điểm trong ngày để bưu cục thoát khỏi cảnh báo đỏ."
-  },
-  {
-    id: "RISK-02",
-    mod: "RISK",
-    name: "Bot Tự Động Đề Xuất OFF Tuyến Bảo Vệ Trạm (rqoff)",
-    input: "Sheet cơ cấu phường xã, sản lượng Shopee 7 ngày",
-    output: "Sheet đề xuất OFF tuyến + Telegram Ban Giám Đốc",
-    freq: "Kích hoạt khi bưu cục có nguy cơ vỡ trạm",
-    insight: "Tự động phân tích sản lượng và đề xuất tạm thời tắt nhận đơn sàn TMĐT vào bưu cục đang bị quá tải, tạo không gian cho bưu tá giải phóng hàng tồn an toàn."
-  },
-  {
-    id: "RISK-03",
-    mod: "RISK",
-    name: "Báo Cáo Mail Vận Hành Toàn Diện Vùng NTB",
-    input: "Tổng hợp toàn bộ 86 bưu cục, 1 kho chuyển tiếp và 4 kho trung chuyển tại 5 tỉnh",
-    output: "Email tự động gửi Ban Giám Đốc + File Text",
-    freq: "Hàng ngày",
-    insight: "Bức tranh toàn cảnh về sản lượng, tỷ lệ GTC, tồn kho, tỷ lệ hoàn và danh sách bưu cục bất ổn kèm đề xuất can thiệp cụ thể gửi Lãnh đạo cấp cao."
-  },
+
+  // --- 6. SÀN THƯƠNG MẠI ĐIỆN TỬ ---
   {
     id: "ECOMM-01",
     mod: "ECOMM",
@@ -1994,7 +2041,7 @@ const ALL_BOTS_DATA = [
     input: "Looker BI Web Portal (Crawl tự động bằng Playwright)",
     output: "GTalk Vùng NTB + File CSV phân tích",
     freq: "07:30 & 14:00",
-    insight: "Giám sát chặt chẽ tỷ lệ trễ hạn giao (ODR) và trễ hạn lấy (OPR) của các gian hàng sàn TMĐT trọng điểm, ngăn ngừa nguy cơ sàn phạt vi phạm cam kết đối tác."
+    insight: "Bảo vệ tỷ lệ cam kết bàn giao đơn hàng sàn TMĐT không vượt quá ngưỡng phạt. Tự động bóc tách các mã vận đơn có nguy cơ fail SLA sàn và gửi cảnh báo sớm về các bưu cục trọng điểm."
   },
   {
     id: "ECOMM-02",
@@ -2003,8 +2050,10 @@ const ALL_BOTS_DATA = [
     input: "TTS Performance Database",
     output: "Thẻ ảnh Card PNG + Nhắc nhở đích danh AM",
     freq: "11:00 & 16:30",
-    insight: "Theo dõi tiến độ xử lý các gói hàng mua đơn TTS giá trị cao, đôn đốc các bưu cục tập trung khai thác để tối đa hóa doanh thu dịch vụ."
+    insight: "Theo dõi chỉ số mua đơn TikTok Shop ưu đãi 35k, tự động tổng hợp số lượng AM đã kích hoạt và gửi thẻ ảnh nhắc nhở đích danh các quản lý khu vực chưa đạt tiến độ cam kết."
   },
+
+  // --- 7. NHÂN SỰ & KỶ LUẬT 5S KAIZEN ---
   {
     id: "HR-01",
     mod: "HR",
@@ -2012,7 +2061,7 @@ const ALL_BOTS_DATA = [
     input: "Tin nhắn AM báo cáo + SQLite diem_danh.db",
     output: "Chatbot tương tác + Sheet 'Theo Dõi Phạt AM'",
     freq: "5 Mốc: 08h, 10h, 11h, 16h, 20h",
-    insight: "Siết chặt kỷ luật 5 mốc giờ vàng điều hành, ghi nhận chính xác đến từng giây, tự động loại trừ phép hợp lệ và tính phạt đẩy Google Sheets minh bạch, nâng tỷ lệ nộp đúng giờ lên 98.2%."
+    insight: "Chuẩn hóa kỷ luật báo cáo của 19 AMs + 2 SUPs. Đếm ngược trước 15 phút, ghi nhận thời gian nộp chính xác đến từng giây vào cơ sở dữ liệu SQLite và tự động tính tiền phạt vi phạm công bằng, không cảm tính."
   },
   {
     id: "HR-02",
@@ -2021,7 +2070,7 @@ const ALL_BOTS_DATA = [
     input: "Telegram Live Location + Biểu mẫu kiểm tra",
     output: "Google Sheet Nhật Ký Công Tác Vùng",
     freq: "Realtime theo lịch công tác thực tế",
-    insight: "Xác thực tọa độ GPS của đội ngũ HRBP và Giám sát khi xuống bưu cục, ghi nhận biên bản đánh giá nhân sự, an ninh và chất lượng kho bãi ngay tại hiện trường."
+    insight: "Giám sát lịch trình công tác thực địa của đội ngũ HRBP và Giám sát bưu cục. Bắt buộc chia sẻ vị trí trực tiếp để xác thực việc nhân sự có mặt tại trạm kiểm tra và tự động cập nhật nhật ký công tác vùng."
   },
   {
     id: "HR-03",
@@ -2039,7 +2088,7 @@ const ALL_BOTS_DATA = [
     input: "Tin nhắn báo ticket từ kênh tập trung",
     output: "Tự động bắn vào 5 Nhóm Kaizen Tỉnh",
     freq: "Realtime trong < 30 giây",
-    insight: "Sử dụng biểu thức chính quy Regex NLP bóc tách mã vận đơn và tên AM để phân luồng phiếu khiếu nại về đúng nhóm Kaizen tỉnh liên quan trong 30 giây, rút ngắn 80% thời gian xử lý."
+    insight: "Tiếp nhận các ticket khiếu nại chất lượng dịch vụ, tự động bóc tách từ khóa phân loại theo từng tỉnh và chuyển tiếp ngay lập tức đến nhóm xử lý liên quan để tháo gỡ sự cố trong 15 phút."
   }
 ];
 
