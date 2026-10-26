@@ -4480,3 +4480,37 @@ dialog::backdrop {
   filter: brightness(1.1);
   box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5) !important;
 }
+
+/* 📊 DB HỌP TUẦN TOP NAV & HERO BUTTONS */
+.dot-emerald {
+  background: #10b981 !important;
+  box-shadow: 0 0 10px #10b981 !important;
+}
+
+.nav-hop-link {
+  background: rgba(16, 185, 129, 0.12) !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
+  color: #a7f3d0 !important;
+  font-weight: 700 !important;
+}
+
+.nav-hop-link:hover {
+  background: rgba(16, 185, 129, 0.25) !important;
+  border-color: #10b981 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
+
+.btn-hero-hop {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.3) 100%) !important;
+  border: 1px solid rgba(16, 185, 129, 0.5) !important;
+  color: #a7f3d0 !important;
+}
+
+.btn-hero-hop:hover {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important;
+  color: #ffffff !important;
+  border-color: #34d399 !important;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+}
