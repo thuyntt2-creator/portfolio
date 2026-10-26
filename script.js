@@ -198,7 +198,6 @@ const CASE_DATA = {
           <span style="width:7px; height:7px; background:#f43f5e; border-radius:50%; box-shadow:0 0 8px #f43f5e;"></span>
           RADAR PHÁT HIỆN GIAN LẬN DÒNG TIỀN COD & GPS
         </span>
-        <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-dim);">File: tao_file_canh_bao_cod.py</span>
       </div>
       <div style="background:rgba(244,63,94,0.06); border:1px solid rgba(244,63,94,0.25); border-radius:8px; padding:12px; margin-bottom:10px;">
         <div style="font-size:0.72rem; color:var(--accent-rose); font-weight:700; margin-bottom:6px; text-transform:uppercase;">
@@ -248,7 +247,7 @@ const CASE_DATA = {
       <div class="m-section">
         <h4 class="m-section-title">🎯 Quyết định & Hành động can thiệp (Actionable Decision)</h4>
         <p class="m-text">
-          Script <code>tao_file_canh_bao_cod.py</code> tự động phân tách danh sách mã vận đơn vi phạm theo từng tab Google Sheet riêng của 19 AMs và 2 SUPs. Đúng 08:30 sáng, bot <code>gui_canh_bao_goidau_cod.py</code> bắn tin nhắn đích danh kèm link sheet vào nhóm kín của AM, yêu cầu AM <strong>xuống kiểm tra thực tế thùng xe và túi hàng của bưu tá trước 11h00 trưa</strong>.
+          Hệ thống tự động phân tách danh sách mã vận đơn vi phạm theo từng tab Google Sheet riêng của 19 AMs và 2 SUPs. Đúng 08:30 sáng, Bot Cảnh Báo Gối Đầu COD tự động gửi tin nhắn đích danh kèm link sheet vào nhóm điều hành của AM, yêu cầu AM <strong>xuống kiểm tra thực tế thùng xe và túi hàng của bưu tá trước 11h00 trưa</strong>.
         </p>
       </div>
 
@@ -264,7 +263,7 @@ const CASE_DATA = {
       <div class="m-section">
         <h4 class="m-section-title">🛠️ Kiến trúc kỹ thuật & Files thực thi</h4>
         <p class="m-text">
-          <code>tao_file_canh_bao_cod.py</code> (ETL & bóc tách logic) • <code>gui_canh_bao_goidau_cod.py</code> (Google Chat API & gspread) • <code>Bao_Cao_Canh_Bao_Goi_Dau_COD_*.xlsx</code> • Tự động chạy lịch trình qua Windows Task Scheduler / .bat.
+          Python ETL Data Engine • Google Chat Webhook API & GSpread • Báo cáo Excel chi tiết • Windows Automation Task Scheduler.
         </p>
       </div>
     `
@@ -288,7 +287,6 @@ const CASE_DATA = {
           <span style="width:7px; height:7px; background:#10b981; border-radius:50%; box-shadow:0 0 8px #10b981;"></span>
           BÁO CÁO NĂNG SUẤT NVPTT & THEO DÕI TARGET GTC
         </span>
-        <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-dim);">File: send_realtime_and_target_gtalk.py</span>
       </div>
       <div style="background:rgba(16,185,129,0.06); border:1px solid rgba(16,185,129,0.25); border-radius:8px; padding:12px; margin-bottom:10px;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
@@ -346,7 +344,7 @@ const CASE_DATA = {
       <div class="m-section">
         <h4 class="m-section-title">🛠️ Kiến trúc kỹ thuật & Files thực thi</h4>
         <p class="m-text">
-          <code>send_realtime_and_target_gtalk.py</code> • <code>autonangsuat.py</code> • <code>report_target_gtalk.py</code> • Render thẻ ảnh card HTML/CSS bằng Playwright Headless & Pillow (<code>01_Realtime_Target_GTC_Card.png</code>).
+          Lastmile Core API Integration • Real-time Target Engine • Headless Chromium Card Generator (Playwright & Pillow) • GTalk Regional Webhook.
         </p>
       </div>
     `
@@ -370,7 +368,6 @@ const CASE_DATA = {
           <span style="width:7px; height:7px; background:#f59e0b; border-radius:50%; box-shadow:0 0 8px #f59e0b;"></span>
           QUÉT ĐIỂM NGHẼN TỒN KHO, TREO LC & PENDING LẤY
         </span>
-        <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-dim);">File: calculate_report_luanchuyen.py</span>
       </div>
       <div style="background:rgba(245,158,11,0.06); border:1px solid rgba(245,158,11,0.25); border-radius:8px; padding:10px; margin-bottom:10px;">
         <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:6px; text-align:center; margin-bottom:8px;">
@@ -428,7 +425,7 @@ const CASE_DATA = {
       <div class="m-section">
         <h4 class="m-section-title">🛠️ Kiến trúc kỹ thuật & Files thực thi</h4>
         <p class="m-text">
-          <code>calculate_report_luanchuyen.py</code> • <code>ntb_aging_report.py</code> • <code>analyze_am_aging_assignment_rate.py</code> • <code>snapshot_aging.json</code> • Bảng màu tự động (<code>table_aging_color.png</code>, <code>table_luanchuyen_color.png</code>).
+          Aging & Transit Analysis Engine • Heatmap Matrix Generator • Snapshot Cache System • GTalk Automated Dispatch.
         </p>
       </div>
     `
@@ -452,7 +449,6 @@ const CASE_DATA = {
           <span style="width:7px; height:7px; background:#38bdf8; border-radius:50%; box-shadow:0 0 8px #38bdf8;"></span>
           HỆ THỐNG ĐỊNH LƯỢNG CLEAR ĐƠN & BOT OFF TUYẾN
         </span>
-        <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-dim);">File: report_BC_BatOn_html_23.py & rqoff.py</span>
       </div>
       <div style="background:rgba(56,189,248,0.06); border:1px solid rgba(56,189,248,0.25); border-radius:8px; padding:10px; margin-bottom:10px;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
@@ -495,14 +491,14 @@ const CASE_DATA = {
             <br>• Đối soát giữa <strong>Backlog LM hiện tại, Tồn Aging >5 ngày, Tồn KTC cùng tỉnh</strong> với <strong>Mức tạo đơn mới TB 7 ngày</strong> và <strong>Sản lượng GTC trung bình 7 ngày</strong>.
             <br>• Tính toán mục tiêu: <code>Target_LM = max(BL_LM_5ngay - 10%*BL_LM, BL_LM + Tao_Avg_7D - 1.8*GTC_Avg_7D)</code>. Con số trả về chính là số lượng kiện hàng chính xác cần giải tỏa ngay trong ngày để bưu cục thoát khỏi ngưỡng bất ổn!
           </li>
-          <li><strong>Bot Tự Động Đề Xuất OFF Tuyến (rqoff):</strong> Khi phát hiện bưu cục có nguy cơ vỡ trạm, script <code>rqoff.py</code> tự động quét cơ cấu phường xã và sản lượng Shopee 7 ngày để lên danh sách các tuyến cần tạm thời OFF (tắt luồng nhận đơn TMĐT) để trạm có không gian giải phóng hàng tồn.</li>
+          <li><strong>Hệ Thống Tự Động Đề Xuất OFF Tuyến:</strong> Khi phát hiện bưu cục có nguy cơ vỡ trạm, hệ thống tự động quét cơ cấu phường xã và sản lượng Shopee 7 ngày để lên danh sách các tuyến cần tạm thời OFF (tắt luồng nhận đơn TMĐT) để trạm có không gian giải phóng hàng tồn.</li>
         </ul>
       </div>
 
       <div class="m-section">
         <h4 class="m-section-title">🎯 Quyết định & Hành động can thiệp (Actionable Decision)</h4>
         <p class="m-text">
-          Script <code>report_BC_BatOn_html_23.py</code> tự động render thẻ ảnh HTML/CSS tổng hợp và bắn lên Telegram/GTalk điều hành Vùng, Tag đích danh từng AM phụ trách kèm số lượng đơn cần xử lý. Đồng thời đề xuất danh sách OFF tuyến gửi Ban Giám đốc phê duyệt ngay đầu ngày để bảo vệ an toàn công suất trạm.
+          Hệ thống tự động render thẻ ảnh HTML/CSS tổng hợp và gửi lên Telegram/GTalk điều hành Vùng, Tag đích danh từng AM phụ trách kèm số lượng đơn cần xử lý. Đồng thời đề xuất danh sách OFF tuyến gửi Ban Giám đốc phê duyệt ngay đầu ngày để bảo vệ an toàn công suất trạm.
         </p>
       </div>
 
@@ -518,7 +514,7 @@ const CASE_DATA = {
       <div class="m-section">
         <h4 class="m-section-title">🛠️ Kiến trúc kỹ thuật & Files thực thi</h4>
         <p class="m-text">
-          <code>report_BC_BatOn_html_23.py</code> • <code>rqoff.py</code> • <code>rqoff_plan.py</code> • GSpread Google Sheets API • Playwright Chromium Headless Card Generator (<code>bc_baton_report.png</code>).
+          Early Warning Operational Engine • Thuật toán tối ưu OFF tuyến Shopee • Google Sheets Realtime API • Playwright Headless Card Generator.
         </p>
       </div>
     `
@@ -605,7 +601,7 @@ const CASE_DATA = {
       <div class="m-section">
         <h4 class="m-section-title">🛠️ Kiến trúc kỹ thuật & Files thực thi</h4>
         <p class="m-text">
-          <code>diem_danh_bot.py</code> • <code>setup_attendance_sheet.py</code> • <code>sync_attendance_sheets.py</code> • <code>render_daily_recap_card.py</code> • SQLite DB <code>diem_danh.db</code> • Thẻ ảnh HTML <code>recap_daily_attendance.png</code>.
+          Telegram Bot Polling Engine • SQLite Attendance Database • Google Sheets Realtime Sync • Daily Recap Card Renderer.
         </p>
       </div>
     `
@@ -629,7 +625,6 @@ const CASE_DATA = {
           <span style="width:7px; height:7px; background:#a855f7; border-radius:50%; box-shadow:0 0 8px #a855f7;"></span>
           NHẬT KÝ CHECK-IN THỊ TRƯỜNG HRBP & SUP
         </span>
-        <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-dim);">File: checkin_sup_bot.py</span>
       </div>
       <div style="background:rgba(168,85,247,0.06); border:1px solid rgba(168,85,247,0.25); border-radius:8px; padding:10px; margin-bottom:10px; font-size:0.73rem; line-height:1.6;">
         <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
@@ -683,7 +678,7 @@ const CASE_DATA = {
       <div class="m-section">
         <h4 class="m-section-title">🛠️ Kiến trúc kỹ thuật & Files thực thi</h4>
         <p class="m-text">
-          <code>checkin_sup_bot.py</code> • <code>kaizen_bot.py</code> • <code>download_report_odr_tts.py</code> • <code>ticket_glt.py</code> • Telegram Bot API • Google Sheets API (gspread).
+          Field Supervisor Tracking Bot • Kaizen Automation Pipeline • Ticket Resolution Webhook • Telegram Bot API & GSpread.
         </p>
       </div>
     `
@@ -1888,7 +1883,6 @@ const ALL_BOTS_DATA = [
     id: "FIN-01",
     mod: "FINANCE",
     name: "Cảnh Báo Gối Đầu Tiền Mặt COD & Bắt Quả Tang Fake GPS",
-    file: "tao_file_canh_bao_cod.py & gui_canh_bao_goidau_cod.py",
     input: "Dữ liệu COD Lastmile + GPS Geocode",
     output: "Google Sheet tab AM riêng + GTalk Alert",
     freq: "08:30 Sáng hàng ngày",
@@ -1898,7 +1892,6 @@ const ALL_BOTS_DATA = [
     id: "PROD-01",
     mod: "PROD",
     name: "Báo Cáo Năng Suất Giao Hàng Bưu Tá Real-time",
-    file: "send_realtime_productivity_gtalk.py",
     input: "GHN Lastmile Core API (Token Auth)",
     output: "Thẻ ảnh Card PNG gửi GTalk Vùng",
     freq: "10h00, 11h30, 15h00, 18h00",
@@ -1908,7 +1901,6 @@ const ALL_BOTS_DATA = [
     id: "PROD-02",
     mod: "PROD",
     name: "Đo Lường Gap To Target & Năng Suất N-1",
-    file: "send_realtime_and_target_gtalk.py & report_target_gtalk.py",
     input: "API Lastmile + Master Sheet Target",
     output: "Thẻ ảnh Cam/Vàng kim gửi GTalk từng AM",
     freq: "11h30, 15h00, 18h00",
@@ -1918,7 +1910,6 @@ const ALL_BOTS_DATA = [
     id: "PROD-03",
     mod: "PROD",
     name: "Crawl & Cập Nhật Dữ Liệu Năng Suất Vào Sheet Kết Quả",
-    file: "auto_fetch_lm_and_update_kq.py",
     input: "GHN Production API",
     output: "Google Sheet Master Kết Quả Vận Hành",
     freq: "07:00 Sáng hàng ngày",
@@ -1928,7 +1919,6 @@ const ALL_BOTS_DATA = [
     id: "PROD-04",
     mod: "PROD",
     name: "Đồng Bộ Năng Suất Lịch Sử Đêm Vào Kho Dữ Liệu",
-    file: "sync_daily_lastmile_to_kq.py",
     input: "Lastmile Raw Database",
     output: "Kho dữ liệu phân tích lịch sử",
     freq: "23:00 Hàng đêm",
@@ -1938,7 +1928,6 @@ const ALL_BOTS_DATA = [
     id: "INV-01",
     mod: "INVENTORY",
     name: "Push Đơn Tồn Kho: Aging Lưu Bãi Quá Hạn (>3N, >5N, >8N, >10N)",
-    file: "ntb_aging_report.py & CHAY_TIEN_DO_AGING_8NGAY.bat",
     input: "GHN Aging API (Token) + Snapshot JSON",
     output: "Google Sheet Master + Bảng màu GTalk",
     freq: "08:30 & 14:00",
@@ -1948,7 +1937,6 @@ const ALL_BOTS_DATA = [
     id: "INV-02",
     mod: "INVENTORY",
     name: "Giám Sát Tỷ Lệ Gán Đơn Tồn (Assignment Rate) Của 19 AM + 2 SUP",
-    file: "analyze_am_aging_assignment_rate.py",
     input: "Aging Snapshot JSON Cache",
     output: "BXH công khai nhóm GTalk Lãnh Đạo Vùng",
     freq: "Cuối ngày",
@@ -1958,7 +1946,6 @@ const ALL_BOTS_DATA = [
     id: "INV-03",
     mod: "INVENTORY",
     name: "Phân Tích Cơ Cấu & Kẹt Xe Tải Luân Chuyển Liên Tỉnh (LTC)",
-    file: "calculate_report_luanchuyen.py & CHAY_BAO_CAO_LUAN_CHUYEN.bat",
     input: "GHN Luân Chuyển API",
     output: "Bảng màu HTML GTalk Điều Phối",
     freq: "07:30 & 13:30",
@@ -1968,7 +1955,6 @@ const ALL_BOTS_DATA = [
     id: "INV-04",
     mod: "INVENTORY",
     name: "Push Đơn Pending Lấy Của Shop Trễ Cam Kết SLA",
-    file: "report_sla_risk.py & report_opr.py",
     input: "First-mile Pickup Core Data",
     output: "GTalk Kênh Điều Phối Lấy Hàng",
     freq: "Đầu ca sáng & chiều",
@@ -1978,7 +1964,6 @@ const ALL_BOTS_DATA = [
     id: "RISK-01",
     mod: "RISK",
     name: "Phát Hiện Bưu Cục Bất Ổn & Định Lượng Đơn Clear Để Thoát Nhóm",
-    file: "report_BC_BatOn_html_23.py",
     input: "Master Sheet NTB (Backlog LM, Aging >5N, KTC)",
     output: "Thẻ ảnh HTML Playwright + Telegram / GTalk",
     freq: "08:00 Sáng hàng ngày",
@@ -1988,7 +1973,6 @@ const ALL_BOTS_DATA = [
     id: "RISK-02",
     mod: "RISK",
     name: "Bot Tự Động Đề Xuất OFF Tuyến Bảo Vệ Trạm (rqoff)",
-    file: "rqoff.py & rqoff_plan.py",
     input: "Sheet cơ cấu phường xã, sản lượng Shopee 7 ngày",
     output: "Sheet đề xuất OFF tuyến + Telegram Ban Giám Đốc",
     freq: "Kích hoạt khi bưu cục có nguy cơ vỡ trạm",
@@ -1998,7 +1982,6 @@ const ALL_BOTS_DATA = [
     id: "RISK-03",
     mod: "RISK",
     name: "Báo Cáo Mail Vận Hành Toàn Diện Vùng NTB",
-    file: "report_mail_van_hanh_ntb.py",
     input: "Tổng hợp toàn bộ 85 bưu cục 5 tỉnh",
     output: "Email tự động gửi Ban Giám Đốc + File Text",
     freq: "Hàng ngày",
@@ -2008,7 +1991,6 @@ const ALL_BOTS_DATA = [
     id: "ECOMM-01",
     mod: "ECOMM",
     name: "Cảnh Báo Quá Hạn Sàn Shopee & TikTok Shop (ODR/OPR)",
-    file: "download_report_odr_tts.py & download_requests.json",
     input: "Looker BI Web Portal (Crawl tự động bằng Playwright)",
     output: "GTalk Vùng NTB + File CSV phân tích",
     freq: "07:30 & 14:00",
@@ -2018,7 +2000,6 @@ const ALL_BOTS_DATA = [
     id: "ECOMM-02",
     mod: "ECOMM",
     name: "Báo Cáo & Nhắc Nhở AM Mua Đơn TikTok Shop (TTS 35k)",
-    file: "baocao_muadon_tts_35k.py & nhac_nho_am_muadon_tts.py",
     input: "TTS Performance Database",
     output: "Thẻ ảnh Card PNG + Nhắc nhở đích danh AM",
     freq: "11:00 & 16:30",
@@ -2028,7 +2009,6 @@ const ALL_BOTS_DATA = [
     id: "HR-01",
     mod: "HR",
     name: "Bot Điểm Danh & Chấm Phạt Cut-off 5 Mốc (Lưu Trữ SQLite)",
-    file: "diem_danh_bot.py & render_daily_recap_card.py",
     input: "Tin nhắn AM báo cáo + SQLite diem_danh.db",
     output: "Chatbot tương tác + Sheet 'Theo Dõi Phạt AM'",
     freq: "5 Mốc: 08h, 10h, 11h, 16h, 20h",
@@ -2038,7 +2018,6 @@ const ALL_BOTS_DATA = [
     id: "HR-02",
     mod: "HR",
     name: "Bot Check-in Định Vị GPS Thực Địa Cho HRBP & SUP",
-    file: "checkin_sup_bot.py",
     input: "Telegram Live Location + Biểu mẫu kiểm tra",
     output: "Google Sheet Nhật Ký Công Tác Vùng",
     freq: "Realtime theo lịch công tác thực tế",
@@ -2048,7 +2027,6 @@ const ALL_BOTS_DATA = [
     id: "HR-03",
     mod: "HR",
     name: "Bot Giám Sát Chuẩn Hóa Kỷ Luật 5S Kaizen Bưu Cục",
-    file: "kaizen_bot.py",
     input: "Hình ảnh hiện trường check-in từ 85 bưu cục",
     output: "Telegram Group Kaizen 5 Tỉnh",
     freq: "08:00 Sáng hàng ngày",
@@ -2058,7 +2036,6 @@ const ALL_BOTS_DATA = [
     id: "HR-04",
     mod: "HR",
     name: "Bot Cảnh Báo & Phân Luồng Ticket Khiếu Nại Realtime",
-    file: "ticket_glt.py & ticket.py & ticket_webhook_server.py",
     input: "Tin nhắn báo ticket từ kênh tập trung",
     output: "Tự động bắn vào 5 Nhóm Kaizen Tỉnh",
     freq: "Realtime trong < 30 giây",
@@ -2090,7 +2067,7 @@ function initBotEcosystemMatrix() {
             </span>
           </div>
           <h4 class="bc-name">${bot.name}</h4>
-          <span class="bc-file">⚙️ ${bot.file}</span>
+          
           <p class="bc-insight">${bot.insight}</p>
         </div>
         <div class="bc-meta-row">
